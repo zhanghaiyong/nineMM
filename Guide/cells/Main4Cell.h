@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainCell : UITableViewCell
+@interface Main4Cell : UITableViewCell
 
 @end

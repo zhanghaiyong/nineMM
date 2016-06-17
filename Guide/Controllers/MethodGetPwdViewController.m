@@ -6,22 +6,39 @@
 //  Copyright © 2016年 ksm. All rights reserved.
 //
 
-#import "PhoneGetPwdViewController.h"
-
-@interface PhoneGetPwdViewController ()
+#import "MethodGetPwdViewController.h"
+#import "FindPwdViewController.h"
+@interface MethodGetPwdViewController ()
 
 @end
 
-@implementation PhoneGetPwdViewController
+@implementation MethodGetPwdViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.title = @"找回密码";
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)sendCodeAction:(id)sender {
+    UIButton *button = (UIButton *)sender;
+    
+    //100为手机，101为邮箱
+    UIStoryboard *loginSB = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+    FindPwdViewController *findPwdVC = [loginSB instantiateViewControllerWithIdentifier:@"FindPwdViewController"];
+    findPwdVC.type = button.tag;
+    [self.navigationController pushViewController:findPwdVC animated:YES];
+    
 }
 
 /*

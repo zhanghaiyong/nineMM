@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Produce1Model.h"
+@interface ProduceCell_1 : UICollectionViewCell
+@property (nonatomic,strong)Produce1Model *model;
 
-@interface ProduceCell : UICollectionViewCell
-
+@property (nonatomic,strong)UILabel *label1;
+@property (nonatomic,strong)UILabel *label2;
+@property (nonatomic,strong)UILabel *label3;
 @end

@@ -4,9 +4,9 @@
 <array>
 	<dict>
 		<key>ClassName</key>
-		<string>ChatListViewController</string>
+		<string>MainViewController</string>
 		<key>Title</key>
-		<string>聊一聊</string>
+		<string>首页</string>
 		<key>Image</key>
 		<string>icon_talk_iphone</string>
 		<key>SelectImage</key>
@@ -14,9 +14,9 @@
 	</dict>
 	<dict>
 		<key>ClassName</key>
-		<string>OrderListViewController</string>
+		<string>ClassifyViewController</string>
 		<key>Title</key>
-		<string>订单</string>
+		<string>分类</string>
 		<key>Image</key>
 		<string>icon_order_iphone</string>
 		<key>SelectImage</key>
@@ -24,25 +24,23 @@
 	</dict>
 	<dict>
 		<key>ClassName</key>
-		<string>NewsViewController</string>
+		<string>MethodBagViewController</string>
 		<key>Title</key>
-		<string>消息</string>
+		<string>方案包</string>
 		<key>Image</key>
-		<string>icon_news_iphone</string>
+		<string>icon_talk_iphone</string>
 		<key>SelectImage</key>
-		<string>icon_news_selected_iphone</string>
-		<key>UnLoad</key>
-		<false/>
+		<string>icon_talk_selected_iphone</string>
 	</dict>
 	<dict>
 		<key>ClassName</key>
 		<string>PersonalViewController</string>
 		<key>Title</key>
-		<string>个人</string>
+		<string>我的</string>
 		<key>Image</key>
-		<string>icon_me_iphone</string>
+		<string>icon_talk_iphone</string>
 		<key>SelectImage</key>
-		<string>icon_me_selected_iphone</string>
+		<string>icon_talk_selected_iphone</string>
 	</dict>
 </array>
 </plist>

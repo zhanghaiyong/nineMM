@@ -6,9 +6,9 @@
 //  Copyright © 2016年 ksm. All rights reserved.
 //
 
-#import "MainCell.h"
+#import "Main4Cell.h"
 
-@implementation MainCell
+@implementation Main4Cell
 
 - (void)awakeFromNib {
     // Initialization code
