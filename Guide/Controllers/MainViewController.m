@@ -126,7 +126,7 @@
                 [topImages addObject:bannerModel.imageId];
             }
             bannerView.imageArray = topImages;
-            
+            //
             //按钮
             for (int i = 0; i<self.mainStaticModel.buttons.count; i++) {
                 ButtonView *buttonView = [cell viewWithTag:i+101];
