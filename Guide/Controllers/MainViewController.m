@@ -18,25 +18,41 @@
 #import "TopBannersModel.h"
 #import "ButtonsModel.h"
 #import "GoodsTypeModel.h"
+#import "MainProduceListParams.h"
+#import "MainProduceModel.h"
 @interface MainViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic,strong)MainProduceListParams *produceListParams;
+@property (nonatomic,strong)NSMutableArray *produces;
 @end
 
 @implementation MainViewController
+-(NSMutableArray *)produces {
+
+    if (_produces == nil) {
+        
+        NSMutableArray *produces = [NSMutableArray array];
+        _produces = produces;
+    }
+    return _produces;
+}
+
+-(MainProduceListParams *)produceListParams {
+
+    if (_produceListParams == nil) {
+        
+        MainProduceListParams *produceListParams = [[MainProduceListParams alloc]init];
+        _produceListParams = produceListParams;
+        _produceListParams.rows = @"10";
+    }
+    return _produceListParams;
+}
+
 - (void)viewWillAppear:(BOOL)animated {
 
     [super viewWillAppear:animated];
 
-}
-
-- (instancetype)initWithCoder:(NSCoder *)coder
-{
-    self = [super initWithCoder:coder];
-    if (self) {
-        
-    }
-    return self;
 }
 
 - (void)viewDidLoad {
@@ -47,9 +63,58 @@
     SearchBar *search = [[[NSBundle mainBundle] loadNibNamed:@"SearchBar" owner:self options:nil] lastObject];
     search.frame = CGRectMake(0, 20, SCREEN_WIDTH, 44);
     [self.navigationController.view addSubview:search];
-    NSLog(@"xozfsdfsd %@",self.mainStaticModel);
+    
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        
+        [self loadProduceList];
+        
+    }];
+    [self.tableView.mj_footer beginRefreshing];
+    
+}
+
+- (void)loadProduceList {
     
     
+    [[HUDConfig shareHUD]alwaysShow];
+    self.produceListParams.page = [NSString stringWithFormat:@"%ld",[self.produceListParams.page integerValue]+1];
+    
+    [KSMNetworkRequest postRequest:KHomePageProcudeList params:self.produceListParams.mj_keyValues success:^(NSDictionary *dataDic) {
+        
+        NSLog(@"produceListParams = %@",self.produceListParams.mj_keyValues);
+        NSLog(@"loadProduceList = %@",dataDic);
+        
+        if ([[dataDic objectForKey:@"retCode"]integerValue] == 0) {
+            
+            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            
+            if (![[dataDic objectForKey:@"retObj"] isEqual:[NSNull null]]) {
+                
+                NSArray *rows = [[dataDic objectForKey:@"retObj"] objectForKey:@"rows"];
+                [self.produces addObjectsFromArray:[MainProduceModel mj_objectArrayWithKeyValuesArray:rows]];
+                
+                NSIndexSet * nd=[[NSIndexSet alloc]initWithIndex:3];//刷新第二个section
+                 [self.tableView reloadSections:nd withRowAnimation:UITableViewRowAnimationTop];
+                
+                if (rows.count < 10) {
+                    
+                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                    
+                }else {
+                
+                    [self.tableView.mj_footer endRefreshing];
+                }
+            }
+        }else {
+        
+            [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+        }
+        
+    } failure:^(NSError *error) {
+        
+        [[HUDConfig shareHUD]Tips :error.localizedDescription delay:DELAY];
+        [self.tableView.mj_footer endRefreshing];
+    }];
 }
 
 #pragma mark UITableViewDelegate&&DataSource
@@ -71,7 +136,7 @@
             return 1;
             break;
         case 3:
-            return 4;
+            return self.produces.count;;
             break;
             
         default:
@@ -104,7 +169,7 @@
             return 80;
             break;
         case 3:
-            return 130;
+            return 180;
             break;
         default:
             break;
@@ -131,6 +196,7 @@
                 ButtonView *buttonView = [cell viewWithTag:i+101];
                 ButtonsModel *buttonModel = self.mainStaticModel.buttons[i];
                 buttonView.labelTitle = buttonModel.imageId;
+                buttonView.imageName = buttonModel.imageId;
             }
             
             //新资源
@@ -160,6 +226,20 @@
         case 3:{
             
             Main4Cell *cell = [[[NSBundle mainBundle] loadNibNamed:@"Main4Cell" owner:self options:nil] lastObject];
+            
+            MainProduceModel *model = self.produces[indexPath.row];
+            UIImageView *imagV = [cell.contentView viewWithTag:100];
+            imagV.image = [UIImage imageNamed:model.imageId];
+            
+            UILabel *label1 = [cell.contentView viewWithTag:101];
+            label1.text = model.fullName;
+            
+            UILabel *label3 = [cell.contentView viewWithTag:103];
+            label3.text = model.price;
+            
+            UILabel *label4 = [cell.contentView viewWithTag:104];
+            label4.text = model.marketPrice;
+            
             return cell;
         }
             

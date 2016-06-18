@@ -12,4 +12,6 @@ pod 'SDWebImage'
 
 pod 'IQKeyboardManager','3.3.7'
 
+pod 'SVProgressHUD'
+
 end

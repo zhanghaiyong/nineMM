@@ -17,3 +17,5 @@
 //验证成功 获取用户ID
 #define KHomePage [BaseURLString stringByAppendingString:@"appQueryIndexStaticContent"]
 
+//验证成功 获取用户ID
+#define KHomePageProcudeList [BaseURLString stringByAppendingString:@"appQueryProductList"]

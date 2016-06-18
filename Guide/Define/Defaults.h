@@ -42,6 +42,7 @@
 
 //#define LaunchImage (@"LaunchImage")
 #define LaunchCaches (@"LaunchCaches")
+#define DELAY 2
 
 
 #if (DEBUG || TESTCASE)

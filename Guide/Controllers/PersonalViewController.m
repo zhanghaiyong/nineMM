@@ -8,8 +8,9 @@
 
 #import "PersonalViewController.h"
 
-@interface PersonalViewController ()
+@interface PersonalViewController ()<UITableViewDelegate,UITableViewDataSource>
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
 
 @implementation PersonalViewController
@@ -17,27 +18,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    self.edgesForExtendedLayout = UIRectEdgeTop;
-//    self.automaticallyAdjustsScrollViewInsets = YES;
+    self.navigationController.navigationBar.alpha = 0;
+
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-#pragma mark UITAbleViewDelegate&&DataSource
-
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-
-    return 5;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-
-    return 1;
-}
+#pragma mark UITableViewDelegate&&DataSource
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+//
+//    return 1;
+//}
 
 
 

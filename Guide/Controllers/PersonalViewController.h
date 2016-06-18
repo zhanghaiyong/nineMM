@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface PersonalViewController : UITableViewController
+#import "BaseTableViewController.h"
+@interface PersonalViewController : BaseTableViewController
 
 @end
