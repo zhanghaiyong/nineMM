@@ -22,7 +22,7 @@
     [super viewDidLoad];
 
     
-    self.edgesForExtendedLayout = UIRectEdgeNone;
+//    self.edgesForExtendedLayout = UIRectEdgeNone;
     self.tableView.frame=CGRectMake(0,0,self.view.width,-44);
     
 }

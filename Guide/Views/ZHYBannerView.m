@@ -50,7 +50,7 @@
 
 - (void)layoutSubviews {
 
-    self.ScrollView.frame = CGRectMake(0, 0, self.width, self.height);
+    self.ScrollView.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.height);
     self.pageControl.frame = CGRectMake(0, self.height-30, self.width, 30);
 }
 
@@ -98,9 +98,12 @@
     // 如果当前页是第0页就跳转到数组中最后一个地方进行跳转
     self.pageControl.currentPage = page-1;
     if (page == 0) {
+        
         self.pageControl.currentPage = _imageArray.count-1;
         [scrollView setContentOffset:CGPointMake(scrollView.frame.size.width * ([self.imageArray count]), 0)];
+        
     }else if (page == [self.imageArray count] + 1){
+        
         self.pageControl.currentPage = 0;
         // 如果是第最后一页就跳转到数组第一个元素的地点
         [scrollView setContentOffset:CGPointMake(scrollView.frame.size.width, 0)];

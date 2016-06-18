@@ -22,7 +22,7 @@
 - (void)configure {
     
     //设置主导航栏背景色
-    [[UINavigationBar appearance] setBarTintColor:MainColor];
+//    [[UINavigationBar appearance] setBarTintColor:MainColor];
     [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
                                                            lever1Color,
                                                            NSForegroundColorAttributeName,

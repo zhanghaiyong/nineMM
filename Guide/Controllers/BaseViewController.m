@@ -16,7 +16,7 @@
 {
 
     //将导航栏下面默认的横线消除
-    UIImageView *navBarHairlineImageView;
+//    UIImageView *navBarHairlineImageView;
 }
 
 - (void)dealloc {
@@ -27,14 +27,13 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
-    navBarHairlineImageView.hidden = YES;
+//    navBarHairlineImageView.hidden = YES;
 }
 
 //在页面消失的时候就让出现
 -(void)viewWillDisappear:(BOOL)animated
 {
-    navBarHairlineImageView.hidden = NO;
+//    navBarHairlineImageView.hidden = NO;
 }
 
 - (void)viewDidLoad
@@ -43,33 +42,33 @@
     self.view.backgroundColor = backgroudColor;
     
     
-    navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
+//    navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
 
 }
 
+//
+//- (UIImageView *)findHairlineImageViewUnder:(UIView *)view {
+//    if ([view isKindOfClass:UIImageView.class] && view.bounds.size.height <= 1.0) {
+//        return (UIImageView *)view;
+//    }
+//    for (UIView *subview in view.subviews) {
+//        UIImageView *imageView = [self findHairlineImageViewUnder:subview];
+//        if (imageView) {
+//            return imageView;
+//        }
+//    }
+//    return nil;
+//}
 
-- (UIImageView *)findHairlineImageViewUnder:(UIView *)view {
-    if ([view isKindOfClass:UIImageView.class] && view.bounds.size.height <= 1.0) {
-        return (UIImageView *)view;
-    }
-    for (UIView *subview in view.subviews) {
-        UIImageView *imageView = [self findHairlineImageViewUnder:subview];
-        if (imageView) {
-            return imageView;
-        }
-    }
-    return nil;
-}
 
 
-
-- (void)setNavigationTitleImage:(NSString *)imageName
-{
-    UIImage *image = [UIImage imageNamed:imageName];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-    
-    self.navigationItem.titleView = imageView;
-}
+//- (void)setNavigationTitleImage:(NSString *)imageName
+//{
+//    UIImage *image = [UIImage imageNamed:imageName];
+//    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+//    
+//    self.navigationItem.titleView = imageView;
+//}
 
 - (UIButton *)customButton:(NSString *)imageName
                   selector:(SEL)sel

@@ -16,33 +16,33 @@
 #import "ProduceCell_2.h"
 #import "ProduceCell_3.h"
 #import "Produce1Model.h"
-#import "CategoryList.h"
+#import "MeumList.h"
+#import "ProduceDetailView1.h"
 
 @interface ProduceDetailViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
 {
     UICollectionView *collection;
 }
 @property (strong, nonatomic)UIScrollView *backScroll;
-@property (nonatomic,strong)CategoryList *categoryList;
+@property (nonatomic,strong)MeumList *meumList;
 
 @end
 
 @implementation ProduceDetailViewController
 
-- (CategoryList *)categoryList {
+- (MeumList *)meumList {
     
-    if (_categoryList == nil) {
-        CategoryList *categoryList = [[CategoryList alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-100, 0, 90,5*40+10)];
+    if (_meumList == nil) {
+        MeumList *meumList = [[MeumList alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-110, 60, 90,4*40+10)];
 //        categoryList.delegate = self;
-        _categoryList = categoryList;
-        [self.view addSubview:categoryList];
+        _meumList = meumList;
+       
     }
-    return _categoryList;
+    return _meumList;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.edgesForExtendedLayout = UIRectEdgeNone;
     
     [self setNavigationRight:@"icon_order_iphone"];
     
@@ -81,7 +81,7 @@
     self.navigationItem.titleView = titleView;
     
     //滚动时图
-    _backScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-49)];
+    _backScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-49-64)];
     _backScroll.contentSize = CGSizeMake(SCREEN_WIDTH*2, _backScroll.height);
     _backScroll.pagingEnabled = YES;
     _backScroll.scrollEnabled = NO;
@@ -89,72 +89,14 @@
     _backScroll.backgroundColor = backgroudColor;
     [self.view addSubview:_backScroll];
     
-    //scroller第一部分
-    ZHYBannerView *banner = [[ZHYBannerView alloc]initWithFrame:CGRectMake(0, 0, _backScroll.width, 200)];
-    banner.imageArray = @[@"icon_me_selected_iphone",@"icon_me_selected_iphone",@"icon_me_selected_iphone"];
-    [_backScroll addSubview:banner];
+    ProduceDetailView1 *produceDetailView1 = [[[NSBundle mainBundle]loadNibNamed:@"ProduceDetailView1" owner:self options:nil] lastObject];
+    produceDetailView1.frame = CGRectMake(0, 0, _backScroll.width, _backScroll.height);
+    [_backScroll addSubview:produceDetailView1];
     
-    UITextView *textView = [[UITextView alloc]initWithFrame:CGRectMake(0, banner.bottom, _backScroll.width, 50)];
-    textView.editable = NO;
-    textView.backgroundColor = [UIColor clearColor];
-    textView.textColor = [UIColor blackColor];
-    textView.font = [UIFont systemFontOfSize:15];
-    textView.text = @"1919天猫旗舰店PC端首页推广大图点击进入单品详情直接购买或二级专题页面";
-    [_backScroll addSubview:textView];
-    
-    //促销
-    UILabel *cx = [[UILabel alloc]initWithFrame:CGRectMake(10, textView.bottom, _backScroll.width, 30)];
-    cx.text = @"【限时促销】6折优惠，限时抢购";
-    cx.textColor = [UIColor redColor];
-    cx.font = [UIFont systemFontOfSize:15];
-    [_backScroll addSubview:cx];
-    
-    //价格
-    UILabel *price = [[UILabel alloc]initWithFrame:CGRectMake(10, cx.bottom,200, 30)];
-    price.text = @"￥35000.00";
-    price.textColor = [UIColor redColor];
-    price.font = [UIFont boldSystemFontOfSize:17];
-    [_backScroll addSubview:price];
-    
-    //限时优惠 图片
-    UIImageView *yhIgView = [[UIImageView alloc]initWithFrame:CGRectMake(10, price.bottom, 100, 30)];
-    yhIgView.image = [UIImage imageNamed:@"icon_male_iphone"];
-    [_backScroll addSubview:yhIgView];
-    
-    //省多少钱
-    UILabel *GMLS = [[UILabel alloc]initWithFrame:CGRectMake(yhIgView.right+5, price.bottom, _backScroll.width-100, 30)];
-    GMLS.text = @"购买立省15000酒币";
-    GMLS.textColor = [UIColor redColor];
-    GMLS.font = [UIFont systemFontOfSize:15];
-    [_backScroll addSubview:GMLS];
-    
-    //分割线
-    UIView *line1 = [[UIView alloc]initWithFrame:CGRectMake(0, GMLS.bottom, _backScroll.width, 1)];
-    line1.backgroundColor = [UIColor blackColor];
-    [_backScroll addSubview:line1];
-    
-    //选择商品资源
-    UIButton *proSource = [[UIButton alloc]initWithFrame:CGRectMake(10, line1.bottom, SCREEN_WIDTH-10, 30)];
-    [proSource setTitle:@"请选择指定商品使用该资源" forState:UIControlStateNormal];
-    [proSource setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    proSource.titleLabel.font = [UIFont systemFontOfSize:15];
-    proSource.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-    [_backScroll addSubview:proSource];
-    
-    //箭头
-    UILabel *arrow = [[UILabel alloc]initWithFrame:CGRectMake(_backScroll.width-40, line1.bottom, 30, 30)];
-    arrow.text = @"➤";
-    arrow.textColor = [UIColor blackColor];
-    arrow.font = [UIFont boldSystemFontOfSize:15];
-    [_backScroll addSubview:arrow];
-    
-    //分割线
-    UIView *line2 = [[UIView alloc]initWithFrame:CGRectMake(0, proSource.bottom, _backScroll.width, 1)];
-    line2.backgroundColor = [UIColor blackColor];
-    [_backScroll addSubview:line2];
+    produceDetailView1.bannerView.imageArray = @[@"001",@"002",@"001"];
     
     ProduceOfCollectHead *proOfCollectHead = [[[NSBundle mainBundle] loadNibNamed:@"ProduceOfCollectHead" owner:self options:nil] lastObject];
-    proOfCollectHead.frame = CGRectMake(SCREEN_WIDTH, 0, _backScroll.width, 30);
+    proOfCollectHead.frame = CGRectMake(SCREEN_WIDTH, 0, _backScroll.width, 40);
     [proOfCollectHead ProduceOfCollectHeadBack:^(NSInteger buttonTag) {
         
         [UIView animateWithDuration:0.3 animations:^{
@@ -180,7 +122,7 @@
     
 
     
-    collection = [[UICollectionView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH, proOfCollectHead.bottom, _backScroll.width, _backScroll.height-30) collectionViewLayout:[[ProduceFlowLayout alloc]init]];
+    collection = [[UICollectionView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH, proOfCollectHead.bottom, _backScroll.width, _backScroll.height-proOfCollectHead.height) collectionViewLayout:[[ProduceFlowLayout alloc]init]];
     collection.backgroundColor = [UIColor clearColor];
     collection.dataSource = self;
     collection.delegate = self;
@@ -211,8 +153,7 @@
 
 
 //必须实现，返回每个item的内容
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
         
         ProduceCell_1 *cell = [collection dequeueReusableCellWithReuseIdentifier:@"CELL1" forIndexPath:indexPath];
@@ -251,8 +192,15 @@
 
 - (void)doRight:(UIButton *)sender
 {
- 
-    self.categoryList.arrowX = SCREEN_WIDTH-30;
+    if (_meumList == nil) {
+        
+       [self.navigationController.view addSubview:self.meumList];
+        
+    }else {
+     
+        [_meumList removeFromSuperview];
+        _meumList = nil;
+    }
 }
 
 @end

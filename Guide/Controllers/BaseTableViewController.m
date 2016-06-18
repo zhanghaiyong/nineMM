@@ -25,7 +25,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+//    [[UIApplication sharedApplication] setStatusBarHidden:NO];
 //     navBarHairlineImageView.hidden = YES;
 }
 
@@ -58,13 +58,13 @@
 //}
 
 
-- (void)setNavigationTitleImage:(NSString *)imageName
-{
-    UIImage *image = [UIImage imageNamed:imageName];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-    
-    self.navigationItem.titleView = imageView;
-}
+//- (void)setNavigationTitleImage:(NSString *)imageName
+//{
+//    UIImage *image = [UIImage imageNamed:imageName];
+//    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+//    
+//    self.navigationItem.titleView = imageView;
+//}
 
 - (UIButton *)customButton:(NSString *)imageName
                   selector:(SEL)sel

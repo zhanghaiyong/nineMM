@@ -65,7 +65,6 @@
 		BFC50F0C1CFC447800CA7CD5 /* PersonalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC50F0B1CFC447800CA7CD5 /* PersonalViewController.m */; };
 		BFC687161D1185EF006524C2 /* LaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC687141D1185EF006524C2 /* LaunchViewController.m */; };
 		BFC687171D1185EF006524C2 /* LaunchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFC687151D1185EF006524C2 /* LaunchViewController.xib */; };
-		BFCF33981CFEC493009573B3 /* CategoryList.m in Sources */ = {isa = PBXBuildFile; fileRef = BFCF33971CFEC493009573B3 /* CategoryList.m */; };
 		BFD1FE991CF7351B006FDDF6 /* ZHYBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD1FE981CF7351B006FDDF6 /* ZHYBannerView.m */; };
 		BFD1FEA01CF746BC006FDDF6 /* RecommendView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD1FE9F1CF746BC006FDDF6 /* RecommendView.m */; };
 		BFD1FEA31CF74925006FDDF6 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD1FEA21CF74925006FDDF6 /* MainViewController.m */; };
@@ -99,6 +98,9 @@
 		BFF433A61D151B7800D21427 /* ControlAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF433A51D151B7800D21427 /* ControlAccount.m */; };
 		BFF433A91D15200200D21427 /* ModifyPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF433A81D15200200D21427 /* ModifyPassword.m */; };
 		BFF433AC1D15202800D21427 /* ModifyEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF433AB1D15202800D21427 /* ModifyEmail.m */; };
+		BFF433D51D152B9A00D21427 /* MeumList.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF433D41D152B9A00D21427 /* MeumList.m */; };
+		BFF433D81D1531B000D21427 /* ProduceDetailView1.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF433D71D1531B000D21427 /* ProduceDetailView1.m */; };
+		BFF433DA1D1531C300D21427 /* ProduceDetailView1.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFF433D91D1531C300D21427 /* ProduceDetailView1.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -209,8 +211,6 @@
 		BFC687131D1185EF006524C2 /* LaunchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchViewController.h; sourceTree = "<group>"; };
 		BFC687141D1185EF006524C2 /* LaunchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchViewController.m; sourceTree = "<group>"; };
 		BFC687151D1185EF006524C2 /* LaunchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchViewController.xib; sourceTree = "<group>"; };
-		BFCF33961CFEC493009573B3 /* CategoryList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryList.h; sourceTree = "<group>"; };
-		BFCF33971CFEC493009573B3 /* CategoryList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryList.m; sourceTree = "<group>"; };
 		BFD1FE971CF7351B006FDDF6 /* ZHYBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHYBannerView.h; sourceTree = "<group>"; };
 		BFD1FE981CF7351B006FDDF6 /* ZHYBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHYBannerView.m; sourceTree = "<group>"; };
 		BFD1FE9E1CF746BC006FDDF6 /* RecommendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendView.h; sourceTree = "<group>"; };
@@ -267,6 +267,11 @@
 		BFF433A81D15200200D21427 /* ModifyPassword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyPassword.m; sourceTree = "<group>"; };
 		BFF433AA1D15202800D21427 /* ModifyEmail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyEmail.h; sourceTree = "<group>"; };
 		BFF433AB1D15202800D21427 /* ModifyEmail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyEmail.m; sourceTree = "<group>"; };
+		BFF433D31D152B9A00D21427 /* MeumList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeumList.h; sourceTree = "<group>"; };
+		BFF433D41D152B9A00D21427 /* MeumList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeumList.m; sourceTree = "<group>"; };
+		BFF433D61D1531B000D21427 /* ProduceDetailView1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProduceDetailView1.h; sourceTree = "<group>"; };
+		BFF433D71D1531B000D21427 /* ProduceDetailView1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProduceDetailView1.m; sourceTree = "<group>"; };
+		BFF433D91D1531C300D21427 /* ProduceDetailView1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProduceDetailView1.xib; sourceTree = "<group>"; };
 		DEF3765A6EB40C9BAAA74DBE /* Pods-Guide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guide.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Guide/Pods-Guide.debug.xcconfig"; sourceTree = "<group>"; };
 		FCCFA29195E5FFABD0D2B018 /* Pods-Guide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guide.release.xcconfig"; path = "Pods/Target Support Files/Pods-Guide/Pods-Guide.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -706,8 +711,8 @@
 		BFD887C01CF9621C00C9DF44 /* MeumList */ = {
 			isa = PBXGroup;
 			children = (
-				BFCF33961CFEC493009573B3 /* CategoryList.h */,
-				BFCF33971CFEC493009573B3 /* CategoryList.m */,
+				BFF433D31D152B9A00D21427 /* MeumList.h */,
+				BFF433D41D152B9A00D21427 /* MeumList.m */,
 			);
 			name = MeumList;
 			sourceTree = "<group>";
@@ -731,6 +736,7 @@
 				BFD69E5E1CF7F9CD00B50A6E /* ClassifyDetailViewController.xib */,
 				BFD69E761CF8212F00B50A6E /* ProduceDetailViewController.h */,
 				BFD69E771CF8212F00B50A6E /* ProduceDetailViewController.m */,
+				BFF433DB1D1531CE00D21427 /* View */,
 			);
 			name = "分类";
 			sourceTree = "<group>";
@@ -752,6 +758,16 @@
 				BFF433A21D151AC900D21427 /* NavigationBarView.xib */,
 			);
 			name = NavigationBarView;
+			sourceTree = "<group>";
+		};
+		BFF433DB1D1531CE00D21427 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BFF433D61D1531B000D21427 /* ProduceDetailView1.h */,
+				BFF433D71D1531B000D21427 /* ProduceDetailView1.m */,
+				BFF433D91D1531C300D21427 /* ProduceDetailView1.xib */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -836,6 +852,7 @@
 				BFD69E871CF89C9100B50A6E /* ProduceOfCollectHead.xib in Resources */,
 				788A56471CB7907E00A58302 /* TabBar.plist in Resources */,
 				BF4086561D12E59000E11065 /* SearchBar.xib in Resources */,
+				BFF433DA1D1531C300D21427 /* ProduceDetailView1.xib in Resources */,
 				788836D41CBCC9D30030909E /* BirthdayView.xib in Resources */,
 				BFD887BA1CF95A0200C9DF44 /* ProduceCell_2.xib in Resources */,
 				BFD887BF1CF95BCB00C9DF44 /* ProduceCell_3.xib in Resources */,
@@ -929,6 +946,7 @@
 				BFC50F0C1CFC447800CA7CD5 /* PersonalViewController.m in Sources */,
 				BFD69E5F1CF7F9CD00B50A6E /* ClassifyDetailViewController.m in Sources */,
 				BFA2B7181CF6E8C600EB460E /* MethodGetPwdViewController.m in Sources */,
+				BFF433D51D152B9A00D21427 /* MeumList.m in Sources */,
 				BFD887B91CF95A0200C9DF44 /* ProduceCell_2.m in Sources */,
 				BFF433AC1D15202800D21427 /* ModifyEmail.m in Sources */,
 				BFD887CF1CF976CF00C9DF44 /* MethodBagCell.m in Sources */,
@@ -947,6 +965,7 @@
 				BFD69E561CF7F44200B50A6E /* ScenicLayout.m in Sources */,
 				BFD69E781CF8212F00B50A6E /* ProduceDetailViewController.m in Sources */,
 				BFD69E6F1CF812B700B50A6E /* ClassifyDetailSearchView.m in Sources */,
+				BFF433D81D1531B000D21427 /* ProduceDetailView1.m in Sources */,
 				BFD69E7B1CF8793D00B50A6E /* TitleView.m in Sources */,
 				789E78DA1CB632FC0039AC69 /* Uitils.m in Sources */,
 				BFD69E6A1CF7FC3D00B50A6E /* ClassifyDetailCell.m in Sources */,
@@ -954,7 +973,6 @@
 				789E78DD1CB633580039AC69 /* NSString+HYExtension.m in Sources */,
 				BF35098C1D13A3C900F2BCC5 /* MainProduceListParams.m in Sources */,
 				789E78CA1CB631700039AC69 /* UIColor+HYExtension.m in Sources */,
-				BFCF33981CFEC493009573B3 /* CategoryList.m in Sources */,
 				BFF433A61D151B7800D21427 /* ControlAccount.m in Sources */,
 				BFD1FE991CF7351B006FDDF6 /* ZHYBannerView.m in Sources */,
 				BFC50EF81CFC175000CA7CD5 /* Main4Cell.m in Sources */,

@@ -26,22 +26,22 @@
 
 @implementation ClassifyViewController
 
-- (void)viewDidAppear:(BOOL)animated {
-
-    [super viewDidAppear:animated];
-    self.hidesBottomBarWhenPushed = YES;
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-
-    [super viewWillDisappear:animated];
-    self.hidesBottomBarWhenPushed = NO;
-}
+//- (void)viewDidAppear:(BOOL)animated {
+//
+//    [super viewDidAppear:animated];
+//    self.hidesBottomBarWhenPushed = YES;
+//}
+//
+//- (void)viewWillDisappear:(BOOL)animated {
+//
+//    [super viewWillDisappear:animated];
+////    self.hidesBottomBarWhenPushed = NO;
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.edgesForExtendedLayout = UIRectEdgeNone;
+//    self.edgesForExtendedLayout = UIRectEdgeNone;
     [self initTableViews];
     
 }

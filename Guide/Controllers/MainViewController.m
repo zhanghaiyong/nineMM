@@ -58,7 +58,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationController.navigationBar.alpha = 0;
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.tableView.frame = CGRectMake(0, -64, SCREEN_WIDTH, self.tableView.height);
     
     SearchBar *search = [[[NSBundle mainBundle] loadNibNamed:@"SearchBar" owner:self options:nil] lastObject];
     search.frame = CGRectMake(0, 20, SCREEN_WIDTH, 44);
@@ -67,14 +70,12 @@
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         
         [self loadProduceList];
-        
     }];
     [self.tableView.mj_footer beginRefreshing];
     
 }
 
 - (void)loadProduceList {
-    
     
     [[HUDConfig shareHUD]alwaysShow];
     self.produceListParams.page = [NSString stringWithFormat:@"%ld",[self.produceListParams.page integerValue]+1];
@@ -251,11 +252,24 @@
     return nil;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    if (indexPath.section == 3) {
+        
+
+    }
+}
+
+- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView {
+
+    return YES;
+}
+
 -  (void)scrollViewDidScroll:(UIScrollView *)scrollView {
 
     CGFloat offSet = scrollView.contentOffset.y;
     
-    CGFloat alpha = (offSet - 64)/64;
+    CGFloat alpha = (64 - offSet)/64;
     self.navigationController.navigationBar.alpha = alpha;
     
     NSLog(@"%f",alpha);
