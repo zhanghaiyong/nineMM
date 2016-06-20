@@ -68,8 +68,6 @@
 		BFD1FE991CF7351B006FDDF6 /* ZHYBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD1FE981CF7351B006FDDF6 /* ZHYBannerView.m */; };
 		BFD1FEA01CF746BC006FDDF6 /* RecommendView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD1FE9F1CF746BC006FDDF6 /* RecommendView.m */; };
 		BFD1FEA31CF74925006FDDF6 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD1FEA21CF74925006FDDF6 /* MainViewController.m */; };
-		BFD69E541CF7F44200B50A6E /* ScenicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD69E4F1CF7F44200B50A6E /* ScenicCell.m */; };
-		BFD69E551CF7F44200B50A6E /* ScenicHead.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD69E511CF7F44200B50A6E /* ScenicHead.m */; };
 		BFD69E561CF7F44200B50A6E /* ScenicLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD69E531CF7F44200B50A6E /* ScenicLayout.m */; };
 		BFD69E5F1CF7F9CD00B50A6E /* ClassifyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD69E5D1CF7F9CD00B50A6E /* ClassifyDetailViewController.m */; };
 		BFD69E601CF7F9CD00B50A6E /* ClassifyDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFD69E5E1CF7F9CD00B50A6E /* ClassifyDetailViewController.xib */; };
@@ -101,6 +99,12 @@
 		BFF433D51D152B9A00D21427 /* MeumList.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF433D41D152B9A00D21427 /* MeumList.m */; };
 		BFF433D81D1531B000D21427 /* ProduceDetailView1.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF433D71D1531B000D21427 /* ProduceDetailView1.m */; };
 		BFF433DA1D1531C300D21427 /* ProduceDetailView1.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFF433D91D1531C300D21427 /* ProduceDetailView1.xib */; };
+		BFF472A81D178F6700516EE3 /* ClassityCollecteHead.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF472A61D178F6700516EE3 /* ClassityCollecteHead.m */; };
+		BFF472A91D178F6700516EE3 /* ClassityCollecteHead.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFF472A71D178F6700516EE3 /* ClassityCollecteHead.xib */; };
+		BFF472AD1D17935D00516EE3 /* ClassityCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF472AB1D17935D00516EE3 /* ClassityCollectionViewCell.m */; };
+		BFF472AE1D17935D00516EE3 /* ClassityCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFF472AC1D17935D00516EE3 /* ClassityCollectionViewCell.xib */; };
+		BFF472B21D179B2C00516EE3 /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BFF472B11D179B2C00516EE3 /* search@2x.png */; };
+		BFF472B51D17C93F00516EE3 /* MyCoinsController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF472B41D17C93F00516EE3 /* MyCoinsController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -216,10 +220,6 @@
 		BFD1FE9E1CF746BC006FDDF6 /* RecommendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendView.h; sourceTree = "<group>"; };
 		BFD1FE9F1CF746BC006FDDF6 /* RecommendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendView.m; sourceTree = "<group>"; };
 		BFD1FEA21CF74925006FDDF6 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		BFD69E4E1CF7F44200B50A6E /* ScenicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScenicCell.h; sourceTree = "<group>"; };
-		BFD69E4F1CF7F44200B50A6E /* ScenicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScenicCell.m; sourceTree = "<group>"; };
-		BFD69E501CF7F44200B50A6E /* ScenicHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScenicHead.h; sourceTree = "<group>"; };
-		BFD69E511CF7F44200B50A6E /* ScenicHead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScenicHead.m; sourceTree = "<group>"; };
 		BFD69E521CF7F44200B50A6E /* ScenicLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScenicLayout.h; sourceTree = "<group>"; };
 		BFD69E531CF7F44200B50A6E /* ScenicLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScenicLayout.m; sourceTree = "<group>"; };
 		BFD69E5C1CF7F9CD00B50A6E /* ClassifyDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassifyDetailViewController.h; sourceTree = "<group>"; };
@@ -272,6 +272,15 @@
 		BFF433D61D1531B000D21427 /* ProduceDetailView1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProduceDetailView1.h; sourceTree = "<group>"; };
 		BFF433D71D1531B000D21427 /* ProduceDetailView1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProduceDetailView1.m; sourceTree = "<group>"; };
 		BFF433D91D1531C300D21427 /* ProduceDetailView1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProduceDetailView1.xib; sourceTree = "<group>"; };
+		BFF472A51D178F6700516EE3 /* ClassityCollecteHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassityCollecteHead.h; sourceTree = "<group>"; };
+		BFF472A61D178F6700516EE3 /* ClassityCollecteHead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassityCollecteHead.m; sourceTree = "<group>"; };
+		BFF472A71D178F6700516EE3 /* ClassityCollecteHead.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassityCollecteHead.xib; sourceTree = "<group>"; };
+		BFF472AA1D17935D00516EE3 /* ClassityCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassityCollectionViewCell.h; sourceTree = "<group>"; };
+		BFF472AB1D17935D00516EE3 /* ClassityCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassityCollectionViewCell.m; sourceTree = "<group>"; };
+		BFF472AC1D17935D00516EE3 /* ClassityCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassityCollectionViewCell.xib; sourceTree = "<group>"; };
+		BFF472B11D179B2C00516EE3 /* search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search@2x.png"; sourceTree = "<group>"; };
+		BFF472B31D17C93F00516EE3 /* MyCoinsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCoinsController.h; sourceTree = "<group>"; };
+		BFF472B41D17C93F00516EE3 /* MyCoinsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCoinsController.m; sourceTree = "<group>"; };
 		DEF3765A6EB40C9BAAA74DBE /* Pods-Guide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guide.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Guide/Pods-Guide.debug.xcconfig"; sourceTree = "<group>"; };
 		FCCFA29195E5FFABD0D2B018 /* Pods-Guide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guide.release.xcconfig"; path = "Pods/Target Support Files/Pods-Guide/Pods-Guide.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -614,6 +623,8 @@
 			children = (
 				BFC50F0A1CFC447800CA7CD5 /* PersonalViewController.h */,
 				BFC50F0B1CFC447800CA7CD5 /* PersonalViewController.m */,
+				BFF472B31D17C93F00516EE3 /* MyCoinsController.h */,
+				BFF472B41D17C93F00516EE3 /* MyCoinsController.m */,
 				BFF433A41D151B7800D21427 /* ControlAccount.h */,
 				BFF433A51D151B7800D21427 /* ControlAccount.m */,
 				BFF433A71D15200200D21427 /* ModifyPassword.h */,
@@ -661,10 +672,12 @@
 		BFD69E4D1CF7F42600B50A6E /* ClassifyCollection */ = {
 			isa = PBXGroup;
 			children = (
-				BFD69E4E1CF7F44200B50A6E /* ScenicCell.h */,
-				BFD69E4F1CF7F44200B50A6E /* ScenicCell.m */,
-				BFD69E501CF7F44200B50A6E /* ScenicHead.h */,
-				BFD69E511CF7F44200B50A6E /* ScenicHead.m */,
+				BFF472AA1D17935D00516EE3 /* ClassityCollectionViewCell.h */,
+				BFF472AB1D17935D00516EE3 /* ClassityCollectionViewCell.m */,
+				BFF472AC1D17935D00516EE3 /* ClassityCollectionViewCell.xib */,
+				BFF472A51D178F6700516EE3 /* ClassityCollecteHead.h */,
+				BFF472A61D178F6700516EE3 /* ClassityCollecteHead.m */,
+				BFF472A71D178F6700516EE3 /* ClassityCollecteHead.xib */,
 				BFD69E521CF7F44200B50A6E /* ScenicLayout.h */,
 				BFD69E531CF7F44200B50A6E /* ScenicLayout.m */,
 			);
@@ -731,6 +744,7 @@
 			children = (
 				BFA2B71F1CF6E96000EB460E /* ClassifyViewController.h */,
 				BFA2B7201CF6E96000EB460E /* ClassifyViewController.m */,
+				BFF472B11D179B2C00516EE3 /* search@2x.png */,
 				BFD69E5C1CF7F9CD00B50A6E /* ClassifyDetailViewController.h */,
 				BFD69E5D1CF7F9CD00B50A6E /* ClassifyDetailViewController.m */,
 				BFD69E5E1CF7F9CD00B50A6E /* ClassifyDetailViewController.xib */,
@@ -838,6 +852,7 @@
 			files = (
 				786B637C1CC71F9F00362DBF /* ProgressHUD.bundle in Resources */,
 				789E789A1CB60D080039AC69 /* Assets.xcassets in Resources */,
+				BFF472A91D178F6700516EE3 /* ClassityCollecteHead.xib in Resources */,
 				BFC50EF91CFC175000CA7CD5 /* Main4Cell.xib in Resources */,
 				BFC50F081CFC1BD800CA7CD5 /* Main3Cell.xib in Resources */,
 				BFC50EFE1CFC1B7300CA7CD5 /* Main1Cell.xib in Resources */,
@@ -854,10 +869,12 @@
 				BF4086561D12E59000E11065 /* SearchBar.xib in Resources */,
 				BFF433DA1D1531C300D21427 /* ProduceDetailView1.xib in Resources */,
 				788836D41CBCC9D30030909E /* BirthdayView.xib in Resources */,
+				BFF472AE1D17935D00516EE3 /* ClassityCollectionViewCell.xib in Resources */,
 				BFD887BA1CF95A0200C9DF44 /* ProduceCell_2.xib in Resources */,
 				BFD887BF1CF95BCB00C9DF44 /* ProduceCell_3.xib in Resources */,
 				BFC50F031CFC1BAF00CA7CD5 /* Main2Cell.xib in Resources */,
 				BFD887D01CF976CF00C9DF44 /* MethodBagCell.xib in Resources */,
+				BFF472B21D179B2C00516EE3 /* search@2x.png in Resources */,
 				BFA2B7041CF6D33E00EB460E /* MainView.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -926,11 +943,11 @@
 				BFA2B7231CF6EE1B00EB460E /* PageInfo.m in Sources */,
 				7828007D1CD1B89600F760EF /* JiPush.m in Sources */,
 				789E78D41CB6328E0039AC69 /* HYSystem.m in Sources */,
+				BFF472B51D17C93F00516EE3 /* MyCoinsController.m in Sources */,
 				BF4086621D12EF9500E11065 /* TopBannersModel.m in Sources */,
 				BFD69E8E1CF89EB900B50A6E /* ProduceFlowLayout.m in Sources */,
 				789E78E41CB63E7E0039AC69 /* BaseViewController.m in Sources */,
 				BFD887CA1CF9752D00C9DF44 /* MethodBagViewController.m in Sources */,
-				BFD69E541CF7F44200B50A6E /* ScenicCell.m in Sources */,
 				BF3509921D13AFB300F2BCC5 /* MainProduceModel.m in Sources */,
 				BFD887BE1CF95BCB00C9DF44 /* ProduceCell_3.m in Sources */,
 				786B637D1CC71F9F00362DBF /* ProgressHUD.m in Sources */,
@@ -939,17 +956,18 @@
 				BFC50F021CFC1BAF00CA7CD5 /* Main2Cell.m in Sources */,
 				787226EC1CC5D53500BFB45F /* TakePhotoViewController.m in Sources */,
 				788A56341CB77A6200A58302 /* BaseTableViewController.m in Sources */,
-				BFD69E551CF7F44200B50A6E /* ScenicHead.m in Sources */,
 				BFD69E851CF89C8700B50A6E /* ProduceOfCollectHead.m in Sources */,
 				BFA2B7151CF6E8AD00EB460E /* FindPwdViewController.m in Sources */,
 				BFA2B7211CF6E96000EB460E /* ClassifyViewController.m in Sources */,
 				BFC50F0C1CFC447800CA7CD5 /* PersonalViewController.m in Sources */,
 				BFD69E5F1CF7F9CD00B50A6E /* ClassifyDetailViewController.m in Sources */,
+				BFF472A81D178F6700516EE3 /* ClassityCollecteHead.m in Sources */,
 				BFA2B7181CF6E8C600EB460E /* MethodGetPwdViewController.m in Sources */,
 				BFF433D51D152B9A00D21427 /* MeumList.m in Sources */,
 				BFD887B91CF95A0200C9DF44 /* ProduceCell_2.m in Sources */,
 				BFF433AC1D15202800D21427 /* ModifyEmail.m in Sources */,
 				BFD887CF1CF976CF00C9DF44 /* MethodBagCell.m in Sources */,
+				BFF472AD1D17935D00516EE3 /* ClassityCollectionViewCell.m in Sources */,
 				BF35098F1D13AE1D00F2BCC5 /* HUDConfig.m in Sources */,
 				786D50B71CCF4F19001242D8 /* LDXScore.m in Sources */,
 				BF40865C1D12EF7600E11065 /* ButtonsModel.m in Sources */,

@@ -53,8 +53,8 @@
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
-                            <exclude reference="Za2-oC-27l"/>
                             <exclude reference="Fie-YA-uOF"/>
+                            <exclude reference="Za2-oC-27l"/>
                         </mask>
                     </variation>
                 </imageView>
@@ -66,8 +66,8 @@
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
-                            <exclude reference="vab-z2-OQa"/>
                             <exclude reference="QnT-Iw-SEf"/>
+                            <exclude reference="vab-z2-OQa"/>
                         </mask>
                     </variation>
                 </imageView>

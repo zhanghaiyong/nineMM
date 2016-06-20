@@ -22,13 +22,18 @@
 - (void)configure {
     
     //设置主导航栏背景色
-//    [[UINavigationBar appearance] setBarTintColor:MainColor];
+    [[UINavigationBar appearance] setBarTintColor:TintColor];
     [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
                                                            lever1Color,
                                                            NSForegroundColorAttributeName,
                                                            nil, NSShadowAttributeName,
                                                            [UIFont boldSystemFontOfSize:17],
                                                            NSFontAttributeName, nil]];
+//    [[UITabBar appearance] setTintColor:TintColor];
+    
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:lever2Color} forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:MainColor} forState:UIControlStateSelected];
+    
 }
 
 

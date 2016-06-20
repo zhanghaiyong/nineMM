@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface SearchBar : UIView
+@property (weak, nonatomic) IBOutlet UITextField *searchTF;
 
 @end

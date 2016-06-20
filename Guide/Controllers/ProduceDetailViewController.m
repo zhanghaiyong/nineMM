@@ -51,9 +51,11 @@
 }
 #pragma mark 创建子视图
 - (void)setUp {
-
+    
     //头部
     TitleView *titleView = [[TitleView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/2, 44)];
+    titleView.normalColor = [UIColor blackColor];
+    titleView.selectedColor = [UIColor blackColor];
     titleView.titleArray = @[@"资源",@"详情"];
     
     [titleView TitleViewCallBack:^(NSInteger btnTag) {

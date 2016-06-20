@@ -10,10 +10,6 @@
 
 @interface PersonalViewController ()<UITableViewDelegate,UITableViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UITableViewCell *cell1;
-@property (weak, nonatomic) IBOutlet UITableViewCell *cell2;
-@property (weak, nonatomic) IBOutlet UITableViewCell *cell3;
-@property (weak, nonatomic) IBOutlet UITableViewCell *cell4;
 @end
 
 @implementation PersonalViewController
@@ -21,24 +17,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    
-//    self.edgesForExtendedLayout = UIRectEdgeNone;
-    self.tableView.frame=CGRectMake(0,0,self.view.width,-44);
-    
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.tableView.frame = CGRectMake(0, -20, SCREEN_WIDTH, self.tableView.height);
+    self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = YES;
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-
-    [super viewWillDisappear:animated];
-    self.navigationController.navigationBar.hidden = NO;
-}
 
 #pragma mark UITableViewDelegate&&DataSource
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
 
+    return 10;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+
+    return 0.1;
+}
 @end

@@ -19,18 +19,6 @@
 
 @implementation ClassifyDetailViewController
 
-- (void)viewDidAppear:(BOOL)animated {
-    
-    [super viewDidAppear:animated];
-    self.hidesBottomBarWhenPushed = YES;
-}
-
-//- (void)viewWillDisappear:(BOOL)animated {
-//    
-//    [super viewWillDisappear:animated];
-//    self.hidesBottomBarWhenPushed = NO;
-//}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -44,7 +32,7 @@
     headView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 40);
     headView.delegate = self;
     
-    classifyDetailTab = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
+    classifyDetailTab = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     classifyDetailTab.delegate = self;
     classifyDetailTab.dataSource = self;
     classifyDetailTab.separatorColor = [UIColor clearColor];
@@ -97,7 +85,7 @@
             [searchView callBack:^(BOOL isMove) {
                 
                 [UIView animateWithDuration:0.3 animations:^{
-                    searchView.frame = CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64);
+                    searchView.frame = CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
                 }completion:^(BOOL finished) {
                     [searchView removeFromSuperview];
                     searchView = nil;
@@ -105,10 +93,11 @@
             }];
             searchView.frame = CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64);
             searchView.frame = CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64);
-            [self.view addSubview:searchView];
+            [[UIApplication sharedApplication].keyWindow addSubview:searchView];
             [UIView animateWithDuration:0.3 animations:^{
                 
-                searchView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64);
+                searchView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT
+                                              );
             }];
         }
             break;

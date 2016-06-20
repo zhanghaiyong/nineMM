@@ -14,10 +14,11 @@
 
 @end
 
-@interface BirthdayView : UIView
+@interface BirthdayView : UIView<UIPickerViewDelegate,UIPickerViewDataSource>
 
+@property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 @property (nonatomic,assign)id<BirthdayViewDelegate>delegate;
 
-@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
+
 
 @end

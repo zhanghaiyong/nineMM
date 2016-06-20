@@ -13,6 +13,8 @@ typedef void(^TitleViewBlock)(NSInteger btnTag);
 @property (nonatomic,strong)NSArray *titleArray;
 
 @property (nonatomic,copy)TitleViewBlock callBlock;
+@property (nonatomic,strong)UIColor *normalColor;
+@property (nonatomic,strong)UIColor *selectedColor;
 
 - (void)TitleViewCallBack:(TitleViewBlock)block;
 

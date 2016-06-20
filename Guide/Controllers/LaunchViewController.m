@@ -100,6 +100,12 @@
     
     UIStoryboard *loginStoryB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
     TabBarViewController *rootTabBar = [loginStoryB instantiateViewControllerWithIdentifier:@"TabBarViewController"];
+    UIView *bgView = [[UIView alloc] initWithFrame:rootTabBar.tabBar.bounds];
+    bgView.backgroundColor = [UIColor whiteColor];
+    [rootTabBar.tabBar insertSubview:bgView atIndex:0];
+    rootTabBar.tabBar.opaque = YES;
+    
+    
     for (PageInfo *pageInfo in pages) {
         
         pageController = [loginStoryB instantiateViewControllerWithIdentifier:pageInfo.ClassName];

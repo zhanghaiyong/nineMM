@@ -20,6 +20,7 @@
 #import "GoodsTypeModel.h"
 #import "MainProduceListParams.h"
 #import "MainProduceModel.h"
+#import "ProduceDetailViewController.h"
 @interface MainViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -49,23 +50,18 @@
     return _produceListParams;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-
-    [super viewWillAppear:animated];
-
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+//    
+    self.navigationController.navigationBar.hidden = YES;
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.tableView.frame = CGRectMake(0, -64, SCREEN_WIDTH, self.tableView.height);
+    self.tableView.frame = CGRectMake(0, -20, SCREEN_WIDTH, self.tableView.height);
     
     SearchBar *search = [[[NSBundle mainBundle] loadNibNamed:@"SearchBar" owner:self options:nil] lastObject];
     search.frame = CGRectMake(0, 20, SCREEN_WIDTH, 44);
-    [self.navigationController.view addSubview:search];
+    search.searchTF.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:search];
     
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         
@@ -147,27 +143,30 @@
 }
 
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-//
-//    return 1;
-//}
-//
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-//
-//    return 1;
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+
+    if (section !=3) {
+        return 10;
+    }
+    return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+
+    return 1;
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     switch (indexPath.section) {
         case 0:
-            return 400;
+            return 370;
             break;
         case 1:
             return 140;
             break;
         case 2:
-            return 80;
+            return 70;
             break;
         case 3:
             return 180;
@@ -256,13 +255,10 @@
 
     if (indexPath.section == 3) {
         
-
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        ProduceDetailViewController *produceDetail = [mainSB instantiateViewControllerWithIdentifier:@"ProduceDetailViewController"];
+        [self.navigationController pushViewController:produceDetail animated:YES];
     }
-}
-
-- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView {
-
-    return YES;
 }
 
 -  (void)scrollViewDidScroll:(UIScrollView *)scrollView {

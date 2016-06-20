@@ -24,14 +24,16 @@
 
 //#define RGBC(r,g,b)      [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1]
 
-#define MainColor        RGB(255, 206, 45)
+#define TintColor        RGB(255, 255, 255)
+#define MainColor        RGB(215, 158, 9)
 #define DeepMainColor    RGB(248, 195, 49)
-#define backgroudColor   RGB(240, 240, 240)
+#define backgroudColor   RGB(240, 242, 245)
 #define lever1Color      RGB(74, 74, 74)
 #define lever2Color      RGB(166, 166, 166)
 #define lever3Color      RGB(212, 212, 212)
 #define specialRed       RGB(255, 100, 136)
 #define specialGreed     RGB(47, 176, 130)
+#define lineColor        RGB(217, 217, 217)
 
 #define lever1Font         [UIFont systemFontOfSize:17]
 #define lever2Font         [UIFont systemFontOfSize:14]
