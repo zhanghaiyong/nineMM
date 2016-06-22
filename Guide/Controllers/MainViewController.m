@@ -148,12 +148,12 @@
     if (section !=3) {
         return 10;
     }
-    return 1;
+    return 0.1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 
-    return 1;
+    return 0.1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -166,10 +166,10 @@
             return 140;
             break;
         case 2:
-            return 70;
+            return 90;
             break;
         case 3:
-            return 180;
+            return 150;
             break;
         default:
             break;

@@ -34,7 +34,7 @@
     IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
     manager.enable = YES;
     manager.shouldResignOnTouchOutside = YES;
-    manager.shouldToolbarUsesTextFieldTintColor = YES;
+    manager.shouldToolbarUsesTextFieldTintColor = NO;
     manager.enableAutoToolbar = NO;
 }
 

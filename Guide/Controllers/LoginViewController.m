@@ -15,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *accountTF;
 @property (weak, nonatomic) IBOutlet UITextField *pwdTF;
 
+@property (weak, nonatomic) IBOutlet UIVisualEffectView *visualView;
+@property (weak, nonatomic) IBOutlet UILabel *tipsLbel;
 
 @end
 
@@ -29,16 +31,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [_accountTF setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
-    [_accountTF setValue:[UIFont boldSystemFontOfSize:14] forKeyPath:@"_placeholderLabel.font"];
-    
-    [_pwdTF setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
-    [_pwdTF setValue:[UIFont boldSystemFontOfSize:14] forKeyPath:@"_placeholderLabel.font"];
+    self.visualView.hidden = YES;
+//    
+//    [_accountTF setValue:lever3Color forKeyPath:@"_placeholderLabel.textColor"];
+//    [_accountTF setValue:[UIFont boldSystemFontOfSize:14] forKeyPath:@"_placeholderLabel.font"];
+//    
+//    [_pwdTF setValue:lever3Color forKeyPath:@"_placeholderLabel.textColor"];
+//    [_pwdTF setValue:[UIFont boldSystemFontOfSize:14] forKeyPath:@"_placeholderLabel.font"];
 }
 
 
 - (IBAction)loginAction:(id)sender {
     
-    [self presentViewController:[PageInfo pageControllers] animated:YES completion:nil];
+//    [self presentViewController:[PageInfo pageControllers] animated:YES completion:nil];
 }
+
 @end

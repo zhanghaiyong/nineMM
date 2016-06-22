@@ -15,18 +15,18 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="为你推荐" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n7W-II-ICt">
-                        <rect key="frame" x="10" y="54" width="300" height="25"/>
+                        <rect key="frame" x="10" y="39" width="300" height="40"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="002" translatesAutoresizingMaskIntoConstraints="NO" id="0zY-dy-g1H">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="54.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="39.5"/>
                     </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="0zY-dy-g1H" secondAttribute="trailing" id="C9M-YC-geD"/>
-                    <constraint firstAttribute="bottom" secondItem="0zY-dy-g1H" secondAttribute="bottom" constant="25" id="Fr9-7e-gnR"/>
+                    <constraint firstAttribute="bottom" secondItem="0zY-dy-g1H" secondAttribute="bottom" constant="40" id="Fr9-7e-gnR"/>
                     <constraint firstItem="0zY-dy-g1H" firstAttribute="leading" secondItem="LJs-6E-8iQ" secondAttribute="leading" id="Poy-VL-xcu"/>
                     <constraint firstItem="0zY-dy-g1H" firstAttribute="top" secondItem="LJs-6E-8iQ" secondAttribute="top" id="amL-VQ-E0M"/>
                     <constraint firstItem="n7W-II-ICt" firstAttribute="top" secondItem="0zY-dy-g1H" secondAttribute="bottom" id="oZX-2Y-NaT"/>

@@ -10,6 +10,7 @@
 //#import "JiPush.h"
 #import "SDKKey.h"
 #import "LaunchViewController.h"
+#import "LoginViewController.h"
 #import "PageInfo.h"
 @interface AppDelegate ()
 
@@ -60,6 +61,11 @@
     LaunchViewController *launchVC = [[LaunchViewController alloc]initWithNibName:@"LaunchViewController" bundle:nil];
     [launchVC showLaunchImage];
     self.window.rootViewController = launchVC;
+    
+//    UIStoryboard *SB = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+//    LoginViewController *loginVC = [SB instantiateViewControllerWithIdentifier:@"LoginViewController"];
+//    UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:loginVC];
+//    self.window.rootViewController = navi;
     
     [self.window makeKeyAndVisible];
     

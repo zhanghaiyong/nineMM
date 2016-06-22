@@ -20,8 +20,8 @@
     // Do any additional setup after loading the view from its nib.
     self.title = @"方案包";
     
-    _tableV.delegate = self;
-    _tableV.dataSource = self;
+    self.tableV.delegate = self;
+    self.tableV.dataSource = self;
 }
 
 #pragma mark UITableViewDelegate&&DataSource
@@ -37,13 +37,27 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-//    MethodBagCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MethodBagCell"];
+//    static NSString *ideitifier = @"MethodBagCell";
+//    MethodBagCell *cell = [tableView dequeueReusableCellWithIdentifier:ideitifier];
 //    if (!cell) {
-//        cell = [[MethodBagCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MethodBagCell"];
+//        cell = [[[NSBundle mainBundle] loadNibNamed:@"MethodBagCell" owner:nil options:nil] lastObject];
 //    }
     MethodBagCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"MethodBagCell" owner:self options:nil] lastObject];
     cell.tag = 100+indexPath.row;
     return cell;
+}
+
+- (void)viewDidLayoutSubviews {
+    
+    [super viewDidLayoutSubviews];
+    self.tableV.separatorInset = UIEdgeInsetsZero;
+    self.tableV.layoutMargins = UIEdgeInsetsZero;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    self.tableV.separatorInset = UIEdgeInsetsZero;
+    self.tableV.layoutMargins = UIEdgeInsetsZero;
 }
 
 @end

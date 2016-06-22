@@ -16,6 +16,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.navigationController.navigationBar.hidden = YES;
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
         self.tableView.frame = CGRectMake(0, -20, SCREEN_WIDTH, self.tableView.height);
