@@ -95,6 +95,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="i90-Lz-Nis" firstAttribute="centerY" secondItem="8MD-cF-wYI" secondAttribute="centerY" id="0Fw-An-khA"/>
                     <constraint firstAttribute="bottom" secondItem="XV1-HQ-msn" secondAttribute="bottom" constant="10" id="2rZ-Cp-1pE"/>
@@ -132,7 +133,7 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.88235294117647056" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <point key="canvasLocation" x="196" y="236"/>
         </tableViewCell>
     </objects>

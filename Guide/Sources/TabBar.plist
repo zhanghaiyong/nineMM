@@ -6,7 +6,7 @@
 		<key>ClassName</key>
 		<string>MainViewController</string>
 		<key>Title</key>
-		<string>首页</string>
+		<string>玖妈妈</string>
 		<key>Image</key>
 		<string>icon_talk_iphone</string>
 		<key>SelectImage</key>
@@ -26,7 +26,7 @@
 		<key>ClassName</key>
 		<string>MethodBagViewController</string>
 		<key>Title</key>
-		<string>方案包</string>
+		<string>购物车</string>
 		<key>Image</key>
 		<string>icon_talk_iphone</string>
 		<key>SelectImage</key>

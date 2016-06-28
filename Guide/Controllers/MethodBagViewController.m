@@ -8,6 +8,7 @@
 
 #import "MethodBagViewController.h"
 #import "MethodBagCell.h"
+#import "EditSourceViewController.h"
 @interface MethodBagViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableV;
 
@@ -17,11 +18,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    self.title = @"方案包";
-    
+
+    self.title = @"购物车";
     self.tableV.delegate = self;
     self.tableV.dataSource = self;
+    [self setNavigationRightTitle:@"编辑"];
 }
 
 #pragma mark UITableViewDelegate&&DataSource
@@ -58,6 +59,13 @@
     
     self.tableV.separatorInset = UIEdgeInsetsZero;
     self.tableV.layoutMargins = UIEdgeInsetsZero;
+}
+
+- (void)doRight:(UIButton *)sender {
+    
+    UIStoryboard *SB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+    EditSourceViewController *editSourceList = [SB instantiateViewControllerWithIdentifier:@"EditSourceViewController"];
+    [self.navigationController pushViewController:editSourceList animated:YES];
 }
 
 @end
