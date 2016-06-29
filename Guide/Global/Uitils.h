@@ -31,6 +31,7 @@
 //图片缓存
 +(void)cacheImage:(NSString *)urlStr withImageV:(UIImageView *)imageV withPlaceholder:(NSString *)placehImg;
 
++ (void)cacheImagwWithSize:(CGSize)size imageID:(NSString *)imageID imageV:(UIImageView *)imageV placeholder:(NSString *)placehImg;
 
 //给你一个方法，输入参数是NSDate，输出结果是星期几的字符串。
 + (NSString*)weekdayStringFromDate:(NSDate*)inputDate;

@@ -16,4 +16,6 @@
 //页号
 @property (nonatomic,strong) NSString *page;
 
+@property (nonatomic,strong) NSString *sessionId;
+
 @end

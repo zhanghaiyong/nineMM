@@ -43,7 +43,8 @@
 
 
 //#define LaunchImage (@"LaunchImage")
-#define LaunchCaches (@"LaunchCaches")
+#define LaunchCaches  (@"LaunchCaches")
+#define TOKEN         (@"SessionID")
 #define DELAY 2
 
 

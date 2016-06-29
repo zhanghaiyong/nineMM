@@ -118,29 +118,14 @@
 +(void)cacheImage:(NSString *)urlStr withImageV:(UIImageView *)imageV withPlaceholder:(NSString *)placehImg{
 
     [imageV sd_setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:[UIImage imageNamed:placehImg]];
-    
-//    ///设置回调
-//    [UIImageView lk_setImageDownloadDelegate:self];
-//    if (urlStr) {
-//        __weak UIImageView *weakImageView = imageV;
-//        weakImageView.userInteractionEnabled = YES;
-//        weakImageView.imageURL = [NSURL URLWithString:urlStr];
-//        
-//        //        [self.imageView setImageWithURL:self.imageURL placeholderImage:nil options:SDWebImageProgressiveDownload progress:^(NSInteger receivedSize, NSInteger expectedSize)
-//        //        {
-//        //            if (!activityIndicator)
-//        //            {
-//        //                [weakImageView addSubview:activityIndicator = [UIActivityIndicatorView.alloc initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]];
-//        //                activityIndicator.center = weakImageView.center;
-//        //                [activityIndicator startAnimating];
-//        //            }
-//        //        }
-//        //        completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType)
-//        //        {
-//        //            [activityIndicator removeFromSuperview];
-//        //            activityIndicator = nil;
-//        //        }];
-//    }
+}
+
++ (void)cacheImagwWithSize:(CGSize)size imageID:(NSString *)imageID imageV:(UIImageView *)imageV placeholder:(NSString *)placehImg {
+
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@_%.0f_%.0f_0.png",BaseImageURL,imageID,size.width,size.height];
+    NSURL    *url = [NSURL URLWithString:urlStr];
+    NSLog(@"url = %@",url);
+    [imageV sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:placehImg]];
 }
 
 ////判断密码强弱

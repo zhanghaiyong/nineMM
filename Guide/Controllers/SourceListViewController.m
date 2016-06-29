@@ -8,6 +8,7 @@
 
 #import "SourceListViewController.h"
 #import "SourceListCell.h"
+#import "SourceListHead.h"
 @interface SourceListViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
@@ -18,14 +19,10 @@
     [super viewDidLoad];
     
     self.title = @"资源清单";
+    self.tableView.backgroundColor = backgroudColor;
 }
 
 #pragma mark UITableView Delegate && DataSource
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
-    return 1;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     return 3;
@@ -33,7 +30,25 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    return 100;
+    return 110;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+
+    return 30;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+
+    return 1;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    SourceListHead *sourceListHead = [[[NSBundle mainBundle]loadNibNamed:@"SourceListHead" owner:self options:nil]lastObject];
+    sourceListHead.frame = CGRectMake(0, 0, self.tableView.width, 30);
+    return sourceListHead;
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

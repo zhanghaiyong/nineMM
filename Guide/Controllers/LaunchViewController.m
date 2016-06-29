@@ -30,15 +30,16 @@
      [IndicatorView startAnimating];//启动
 }
 
+
+
 //判断时候存储了图片
 - (void)showLaunchImage {
+    
     NSString *rootPath = [HYSandbox docPath];
     NSString *filePath = [NSString stringWithFormat:@"%@/%@",rootPath,LaunchCaches];
-    
     NSFileManager *manager = [NSFileManager defaultManager];
     if ([manager fileExistsAtPath:filePath]) {
         _launchImage.image = [UIImage imageWithContentsOfFile:filePath];
-        
     }
     [self requestHomeData];
     
@@ -47,7 +48,7 @@
 //请求主页的数据
 - (void)requestHomeData {
 
-    [KSMNetworkRequest postRequest:KHomePage params:nil success:^(NSDictionary *dataDic) {
+    [KSMNetworkRequest postRequest:KHomePageStatic params:nil success:^(NSDictionary *dataDic) {
         
         NSLog(@"dataDic = %@",dataDic);
         [IndicatorView stopAnimating];
@@ -69,12 +70,13 @@
     }];
 }
 
-- (void)hideLanch
-{
+- (void)hideLanch {
+    
     if (self.view.superview != [AppDelegate appDeg].window) {
         [self.view removeFromSuperview];
     }
     else {
+        
         [self toTabBar];
     }
 }
@@ -105,7 +107,6 @@
     [rootTabBar.tabBar insertSubview:bgView atIndex:0];
     rootTabBar.tabBar.opaque = YES;
     
-    
     for (PageInfo *pageInfo in pages) {
         
         pageController = [loginStoryB instantiateViewControllerWithIdentifier:pageInfo.ClassName];
@@ -118,7 +119,6 @@
     }
     
     rootTabBar.viewControllers = controllers;
-    
     UINavigationController *navi = rootTabBar.viewControllers[0];
     MainViewController *main = (MainViewController *)navi.topViewController;
     main.mainStaticModel = mainStaticModel;
@@ -126,8 +126,7 @@
     [AppDelegate appDeg].window.rootViewController = rootTabBar;
 }
 
-- (NSArray *)pages
-{
+- (NSArray *)pages {
     NSString *configFile = [[NSBundle mainBundle] pathForResource:@"TabBar" ofType:@"plist"];
     NSArray *pageConfigs = [NSArray arrayWithContentsOfFile:configFile];
     NSMutableArray *pages = [[NSMutableArray alloc] init];

@@ -43,10 +43,19 @@
     return (AppDelegate *)[UIApplication sharedApplication].delegate;
 }
 
-//- (void)showTabBarPage {
-//    self.window.rootViewController = [PageInfo pageControllers];
-//    [self.window makeKeyAndVisible];
-//}
+- (void)getSessionID {
+    
+    [KSMNetworkRequest postRequest:KGetSessionID params:nil success:^(NSDictionary *dataDic) {
+        
+        NSLog(@"sessionID = %@",dataDic);
+        if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
+           [Uitils setUserDefaultsObject:[dataDic objectForKey:@"sessionId"] ForKey:TOKEN];
+        }
+        
+    } failure:^(NSError *error) {
+        
+    }];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
@@ -54,6 +63,8 @@
     [[SDKKey shareSDKKey] IQKeyboard];
     
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    
+    [self getSessionID];
     
     //设置主色调
     [self configure];

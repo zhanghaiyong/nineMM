@@ -46,6 +46,7 @@
         MainProduceListParams *produceListParams = [[MainProduceListParams alloc]init];
         _produceListParams = produceListParams;
         _produceListParams.rows = @"10";
+        _produceListParams.sessionId = [Uitils getUserDefaultsForKey:TOKEN];
     }
     return _produceListParams;
 }
@@ -160,7 +161,7 @@
 
     switch (indexPath.section) {
         case 0:
-            return 370;
+            return 390;
             break;
         case 1:
             return 140;

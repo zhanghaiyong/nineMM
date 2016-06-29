@@ -11,11 +11,15 @@
 
 
 #define  BaseURLString (@"http://101.200.131.198:8090/custwine/gw?cmd=")
+#define  BaseImageURL  (@"http://101.200.131.198:8090/custwine/dimg/")
 
 #endif /* NSURLs_h */
 
-//验证成功 获取用户ID
-#define KHomePage [BaseURLString stringByAppendingString:@"appQueryIndexStaticContent"]
+//获取sessionID
+#define KGetSessionID [BaseURLString stringByAppendingString:@"hello"]
 
-//验证成功 获取用户ID
+//首页上面
+#define KHomePageStatic [BaseURLString stringByAppendingString:@"appQueryIndexStaticContent"]
+
+//验证成功 首页商品列表
 #define KHomePageProcudeList [BaseURLString stringByAppendingString:@"appQueryProductList"]

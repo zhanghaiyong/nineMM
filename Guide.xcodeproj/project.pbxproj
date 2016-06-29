@@ -97,6 +97,8 @@
 		BFEEA5921D1A399300B261BF /* UserSourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFEEA5911D1A399300B261BF /* UserSourceViewController.m */; };
 		BFEEA5A01D1A444500B261BF /* UserSourceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BFEEA59E1D1A444500B261BF /* UserSourceCell.m */; };
 		BFEEA5A11D1A444500B261BF /* UserSourceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFEEA59F1D1A444500B261BF /* UserSourceCell.xib */; };
+		BFF3DD421D2379AB00F5F9B1 /* SourceListHead.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF3DD411D2379AB00F5F9B1 /* SourceListHead.m */; };
+		BFF3DD441D2379B600F5F9B1 /* SourceListHead.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFF3DD431D2379B600F5F9B1 /* SourceListHead.xib */; };
 		BFF433A11D151ABF00D21427 /* NavigationBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF433A01D151ABF00D21427 /* NavigationBarView.m */; };
 		BFF433A31D151AC900D21427 /* NavigationBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFF433A21D151AC900D21427 /* NavigationBarView.xib */; };
 		BFF433A61D151B7800D21427 /* ControlAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF433A51D151B7800D21427 /* ControlAccount.m */; };
@@ -274,6 +276,9 @@
 		BFEEA59D1D1A444400B261BF /* UserSourceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSourceCell.h; sourceTree = "<group>"; };
 		BFEEA59E1D1A444500B261BF /* UserSourceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSourceCell.m; sourceTree = "<group>"; };
 		BFEEA59F1D1A444500B261BF /* UserSourceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSourceCell.xib; sourceTree = "<group>"; };
+		BFF3DD401D2379AB00F5F9B1 /* SourceListHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceListHead.h; sourceTree = "<group>"; };
+		BFF3DD411D2379AB00F5F9B1 /* SourceListHead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceListHead.m; sourceTree = "<group>"; };
+		BFF3DD431D2379B600F5F9B1 /* SourceListHead.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SourceListHead.xib; sourceTree = "<group>"; };
 		BFF4339F1D151ABF00D21427 /* NavigationBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationBarView.h; sourceTree = "<group>"; };
 		BFF433A01D151ABF00D21427 /* NavigationBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationBarView.m; sourceTree = "<group>"; };
 		BFF433A21D151AC900D21427 /* NavigationBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavigationBarView.xib; sourceTree = "<group>"; };
@@ -534,6 +539,9 @@
 				BFD69E841CF89C8700B50A6E /* ProduceOfCollectHead.m */,
 				BFD69E861CF89C9100B50A6E /* ProduceOfCollectHead.xib */,
 				BFF4339E1D151AAC00D21427 /* NavigationBarView */,
+				BFF3DD401D2379AB00F5F9B1 /* SourceListHead.h */,
+				BFF3DD411D2379AB00F5F9B1 /* SourceListHead.m */,
+				BFF3DD431D2379B600F5F9B1 /* SourceListHead.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -879,6 +887,7 @@
 				786B637C1CC71F9F00362DBF /* ProgressHUD.bundle in Resources */,
 				789E789A1CB60D080039AC69 /* Assets.xcassets in Resources */,
 				BFF472A91D178F6700516EE3 /* ClassityCollecteHead.xib in Resources */,
+				BFF3DD441D2379B600F5F9B1 /* SourceListHead.xib in Resources */,
 				BFEEA5A11D1A444500B261BF /* UserSourceCell.xib in Resources */,
 				BFC50EF91CFC175000CA7CD5 /* Main4Cell.xib in Resources */,
 				BFC50F081CFC1BD800CA7CD5 /* Main3Cell.xib in Resources */,
@@ -1036,6 +1045,7 @@
 				BFA2B70F1CF6E85400EB460E /* LoginViewController.m in Sources */,
 				789E78C41CB631360039AC69 /* NSDate+HYExtension.m in Sources */,
 				BFF433A11D151ABF00D21427 /* NavigationBarView.m in Sources */,
+				BFF3DD421D2379AB00F5F9B1 /* SourceListHead.m in Sources */,
 				BFD69E961CF8A5AB00B50A6E /* Produce1Model.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -71,18 +71,20 @@
         UIImageView *imageView = [[UIImageView alloc] init];
         imageView.image = [UIImage imageNamed:imageName];
         imageView.frame = CGRectMake((idx+1) * scrollViewSize.width, 0, scrollViewSize.width, scrollViewSize.height);
+        [Uitils cacheImagwWithSize:CGSizeMake(self.width, scrollViewSize.height) imageID:imageArray[idx] imageV:imageView placeholder:@"001"];
         [self.ScrollView addSubview:imageView];
     }];
     
     // 将最后一张图片弄到第一张的位置
     UIImageView *imageView = [[UIImageView alloc] init];
-    imageView.image = [UIImage imageNamed:imageArray[[imageArray count] - 1]];
     imageView.frame = CGRectMake(0, 0, scrollViewSize.width, scrollViewSize.height);
+    [Uitils cacheImagwWithSize:CGSizeMake(self.width, scrollViewSize.height) imageID:imageArray[[imageArray count] - 1] imageV:imageView placeholder:@"002"];
     [self.ScrollView addSubview:imageView];
     
     // 将第一张图片放到最后位置，造成视觉上的循环
     UIImageView *lastImageView = [[UIImageView alloc] init];
     lastImageView.image = [UIImage imageNamed:imageArray[0]];
+    [Uitils cacheImagwWithSize:CGSizeMake(self.width, scrollViewSize.height) imageID:imageArray[0] imageV:lastImageView placeholder:@"002"];
     lastImageView.frame = CGRectMake(scrollViewSize.width * ([imageArray count] + 1), 0, scrollViewSize.width, scrollViewSize.height);
     [self.ScrollView addSubview:lastImageView];
     

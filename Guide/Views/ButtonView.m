@@ -60,8 +60,8 @@
 
     [super layoutSubviews];
 
-    imageView.frame = CGRectMake(15, 5, self.width-30, self.height-35);
-    imageView.contentMode = UIViewContentModeScaleToFill;
+    imageView.frame = CGRectMake(10, 5, self.width-20, self.height-25);
+    imageView.contentMode = UIViewContentModeCenter;
     imageView.image = [UIImage imageNamed:self.imageName];
     
     self.badgeBtn.frame = CGRectMake(imageView.right-20, imageView.top+10, 20, 20);
@@ -69,7 +69,7 @@
     self.badgeBtn.clipsToBounds = YES;
     [self.badgeBtn setTitle:@"0" forState:UIControlStateNormal];
     
-    label.frame = CGRectMake(0, imageView.bottom, self.width, 30);
+    label.frame = CGRectMake(0, imageView.bottom, self.width, 20);
     label.text = self.labelTitle;
 }
 
@@ -88,6 +88,9 @@
 - (void)setImageName:(NSString *)imageName {
 
     _imageName = imageName;
+    
+    [Uitils cacheImagwWithSize:CGSizeMake(self.width-20, self.height-25) imageID:imageName imageV:imageView placeholder:@""];
+    
     imageView.image = [UIImage imageNamed:imageName];
 }
 
