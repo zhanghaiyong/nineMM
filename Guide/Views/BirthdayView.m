@@ -112,7 +112,7 @@
 
 - (IBAction)sureAction:(id)sender {
     
-    NSLog(@"%@",[NSString stringWithFormat:@"%@%@",yearStr,monthStr]);
+    FxLog(@"%@",[NSString stringWithFormat:@"%@%@",yearStr,monthStr]);
     if ([self.delegate respondsToSelector:@selector(selectedBirthday:)]) {
         
         [self.delegate selectedBirthday:[NSString stringWithFormat:@"%@%@",yearStr,monthStr]];

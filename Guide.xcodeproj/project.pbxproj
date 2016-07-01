@@ -44,6 +44,7 @@
 		BF40865C1D12EF7600E11065 /* ButtonsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF40865B1D12EF7600E11065 /* ButtonsModel.m */; };
 		BF40865F1D12EF8500E11065 /* GoodsTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF40865E1D12EF8500E11065 /* GoodsTypeModel.m */; };
 		BF4086621D12EF9500E11065 /* TopBannersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF4086611D12EF9500E11065 /* TopBannersModel.m */; };
+		BF7F92771D26937D0081578F /* BaseParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7F92761D26937D0081578F /* BaseParams.m */; };
 		BF94681E1D2279E500143B91 /* SureOrdersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF94681D1D2279E500143B91 /* SureOrdersViewController.m */; };
 		BF9468211D227F6700143B91 /* EditSourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF9468201D227F6700143B91 /* EditSourceViewController.m */; };
 		BF9468241D22849F00143B91 /* SourceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF9468231D22849F00143B91 /* SourceListViewController.m */; };
@@ -187,6 +188,8 @@
 		BF40865E1D12EF8500E11065 /* GoodsTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsTypeModel.m; sourceTree = "<group>"; };
 		BF4086601D12EF9500E11065 /* TopBannersModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopBannersModel.h; sourceTree = "<group>"; };
 		BF4086611D12EF9500E11065 /* TopBannersModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopBannersModel.m; sourceTree = "<group>"; };
+		BF7F92751D26937D0081578F /* BaseParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseParams.h; sourceTree = "<group>"; };
+		BF7F92761D26937D0081578F /* BaseParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseParams.m; sourceTree = "<group>"; };
 		BF94681C1D2279E500143B91 /* SureOrdersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SureOrdersViewController.h; sourceTree = "<group>"; };
 		BF94681D1D2279E500143B91 /* SureOrdersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SureOrdersViewController.m; sourceTree = "<group>"; };
 		BF94681F1D227F6700143B91 /* EditSourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditSourceViewController.h; sourceTree = "<group>"; };
@@ -599,6 +602,8 @@
 		BF3509891D13A3B200F2BCC5 /* Params */ = {
 			isa = PBXGroup;
 			children = (
+				BF7F92751D26937D0081578F /* BaseParams.h */,
+				BF7F92761D26937D0081578F /* BaseParams.m */,
 				BF35098A1D13A3C900F2BCC5 /* MainProduceListParams.h */,
 				BF35098B1D13A3C900F2BCC5 /* MainProduceListParams.m */,
 			);
@@ -1045,6 +1050,7 @@
 				BFA2B70F1CF6E85400EB460E /* LoginViewController.m in Sources */,
 				789E78C41CB631360039AC69 /* NSDate+HYExtension.m in Sources */,
 				BFF433A11D151ABF00D21427 /* NavigationBarView.m in Sources */,
+				BF7F92771D26937D0081578F /* BaseParams.m in Sources */,
 				BFF3DD421D2379AB00F5F9B1 /* SourceListHead.m in Sources */,
 				BFD69E961CF8A5AB00B50A6E /* Produce1Model.m in Sources */,
 			);
@@ -1149,7 +1155,7 @@
 				INFOPLIST_FILE = Guide/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.zhy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhanghaiyong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -1167,7 +1173,7 @@
 				INFOPLIST_FILE = Guide/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.zhy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhanghaiyong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

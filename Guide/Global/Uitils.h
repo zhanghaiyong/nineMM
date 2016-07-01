@@ -1,11 +1,3 @@
-//
-//  Uitils.h
-//  MouthHealth
-//
-//  Created by 张海勇 on 15/3/16.
-//  Copyright (c) 2015年 张海勇. All rights reserved.
-//
-
 #import <Foundation/Foundation.h>
 #import "AppDelegate.h"
 

@@ -15,7 +15,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TxD-c9-p5D">
-                        <rect key="frame" x="5" y="5" width="310" height="88.5"/>
+                        <rect key="frame" x="5" y="10" width="310" height="88.5"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_gender_normal_iphone" translatesAutoresizingMaskIntoConstraints="NO" id="Nvo-ch-wzA">
                                 <rect key="frame" x="5" y="32" width="25" height="25"/>
@@ -52,10 +52,10 @@
                 </subviews>
                 <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="TxD-c9-p5D" secondAttribute="bottom" constant="5" id="5hW-3W-c41"/>
+                    <constraint firstAttribute="bottom" secondItem="TxD-c9-p5D" secondAttribute="bottom" id="5hW-3W-c41"/>
                     <constraint firstAttribute="trailing" secondItem="TxD-c9-p5D" secondAttribute="trailing" constant="5" id="cZX-wL-8jl"/>
                     <constraint firstItem="TxD-c9-p5D" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="haW-3z-cRU"/>
-                    <constraint firstItem="TxD-c9-p5D" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="mZF-BA-0Do"/>
+                    <constraint firstItem="TxD-c9-p5D" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="mZF-BA-0Do"/>
                 </constraints>
             </tableViewCellContentView>
             <point key="canvasLocation" x="312" y="359.5"/>

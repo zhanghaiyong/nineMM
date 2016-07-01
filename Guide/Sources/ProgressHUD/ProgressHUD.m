@@ -247,7 +247,7 @@
 	image.center = spinner.center = CGPointMake(imagex, imagey);
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	label.frame = labelRect;
-    NSLog(@"%@",NSStringFromCGRect(labelRect));
+    FxLog(@"%@",NSStringFromCGRect(labelRect));
     if (image.hidden == YES) {
         label.frame = CGRectMake(hudWidth/2-labelRect.size.width/2, hudHeight/2-labelRect.size.height/2, labelRect.size.width, labelRect.size.height);
     }

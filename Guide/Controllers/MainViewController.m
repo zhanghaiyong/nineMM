@@ -22,6 +22,10 @@
 #import "MainProduceModel.h"
 #import "ProduceDetailViewController.h"
 @interface MainViewController ()<UITableViewDelegate,UITableViewDataSource>
+{
+
+    SearchBar *searchBar;
+}
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,strong)MainProduceListParams *produceListParams;
@@ -51,18 +55,28 @@
     return _produceListParams;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+
+    [super viewWillAppear:animated];
+    //隐藏
+    self.navigationController.navigationBar.hidden = YES;
+    self.automaticallyAdjustsScrollViewInsets = NO;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    
-    self.navigationController.navigationBar.hidden = YES;
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    self.tableView.frame = CGRectMake(0, -20, SCREEN_WIDTH, self.tableView.height);
     
-    SearchBar *search = [[[NSBundle mainBundle] loadNibNamed:@"SearchBar" owner:self options:nil] lastObject];
-    search.frame = CGRectMake(0, 20, SCREEN_WIDTH, 44);
-    search.searchTF.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:search];
+    searchBar = [[[NSBundle mainBundle] loadNibNamed:@"SearchBar" owner:self options:nil] lastObject];
+    searchBar.frame = CGRectMake(0, 0, SCREEN_WIDTH, 64);
+    searchBar.searchTF.backgroundColor = [UIColor whiteColor];
+    searchBar.backgroundColor = [UIColor clearColor];
+    
+    UIView *paddingView1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 15, searchBar.searchTF.height)];
+    searchBar.searchTF.leftView = paddingView1;
+    searchBar.searchTF.leftViewMode = UITextFieldViewModeAlways;
+    
+    [self.view addSubview:searchBar];
     
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         
@@ -75,13 +89,13 @@
 - (void)loadProduceList {
     
     [[HUDConfig shareHUD]alwaysShow];
+    
     self.produceListParams.page = [NSString stringWithFormat:@"%ld",[self.produceListParams.page integerValue]+1];
+     FxLog(@"produceListParams = %@",self.produceListParams.mj_keyValues);
     
     [KSMNetworkRequest postRequest:KHomePageProcudeList params:self.produceListParams.mj_keyValues success:^(NSDictionary *dataDic) {
-        
-        NSLog(@"produceListParams = %@",self.produceListParams.mj_keyValues);
-        NSLog(@"loadProduceList = %@",dataDic);
-        
+
+        FxLog(@"loadProduceList = %@",dataDic);
         if ([[dataDic objectForKey:@"retCode"]integerValue] == 0) {
             
             [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
@@ -91,18 +105,11 @@
                 NSArray *rows = [[dataDic objectForKey:@"retObj"] objectForKey:@"rows"];
                 [self.produces addObjectsFromArray:[MainProduceModel mj_objectArrayWithKeyValuesArray:rows]];
                 
-                NSIndexSet * nd=[[NSIndexSet alloc]initWithIndex:3];//刷新第二个section
-                 [self.tableView reloadSections:nd withRowAnimation:UITableViewRowAnimationTop];
-                
-                if (rows.count < 10) {
-                    
-                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
-                    
-                }else {
-                
-                    [self.tableView.mj_footer endRefreshing];
-                }
+                NSIndexSet *nd=[[NSIndexSet alloc]initWithIndex:3];//刷新第二个section
+                [self.tableView reloadSections:nd withRowAnimation:UITableViewRowAnimationTop];
+                [self.tableView.mj_footer endRefreshing];
             }
+            
         }else {
         
             [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
@@ -134,7 +141,7 @@
             return 1;
             break;
         case 3:
-            return self.produces.count;;
+            return 5;
             break;
             
         default:
@@ -161,7 +168,7 @@
 
     switch (indexPath.section) {
         case 0:
-            return 390;
+            return 430;
             break;
         case 1:
             return 140;
@@ -228,18 +235,18 @@
             
             Main4Cell *cell = [[[NSBundle mainBundle] loadNibNamed:@"Main4Cell" owner:self options:nil] lastObject];
             
-            MainProduceModel *model = self.produces[indexPath.row];
-            UIImageView *imagV = [cell.contentView viewWithTag:100];
-            imagV.image = [UIImage imageNamed:model.imageId];
-            
-            UILabel *label1 = [cell.contentView viewWithTag:101];
-            label1.text = model.fullName;
-            
-            UILabel *label3 = [cell.contentView viewWithTag:103];
-            label3.text = model.price;
-            
-            UILabel *label4 = [cell.contentView viewWithTag:104];
-            label4.text = model.marketPrice;
+//            MainProduceModel *model = self.produces[indexPath.row];
+//            UIImageView *imagV = [cell.contentView viewWithTag:100];
+//            imagV.image = [UIImage imageNamed:model.imageId];
+//            
+//            UILabel *label1 = [cell.contentView viewWithTag:101];
+//            label1.text = model.fullName;
+//            
+//            UILabel *label3 = [cell.contentView viewWithTag:103];
+//            label3.text = model.price;
+//            
+//            UILabel *label4 = [cell.contentView viewWithTag:104];
+//            label4.text = model.marketPrice;
             
             return cell;
         }
@@ -266,10 +273,11 @@
 
     CGFloat offSet = scrollView.contentOffset.y;
     
-    CGFloat alpha = (64 - offSet)/64;
-    self.navigationController.navigationBar.alpha = alpha;
+    CGFloat alpha = (offSet - 64)/64;
+    searchBar.backgroundColor = RGBA(231, 231, 231, alpha);
+    searchBar.bottomLine.alpha = alpha;
     
-    NSLog(@"%f",alpha);
+    FxLog(@"%f",alpha);
 }
 
 

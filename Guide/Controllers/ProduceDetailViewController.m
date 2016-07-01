@@ -35,9 +35,16 @@
     return _meumList;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    //隐藏
+    self.navigationController.navigationBar.hidden = NO;
+    self.automaticallyAdjustsScrollViewInsets = NO;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-
 
     [self setNavigationRight:@"icon_order_iphone"];
 }

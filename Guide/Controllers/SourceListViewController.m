@@ -48,7 +48,6 @@
     SourceListHead *sourceListHead = [[[NSBundle mainBundle]loadNibNamed:@"SourceListHead" owner:self options:nil]lastObject];
     sourceListHead.frame = CGRectMake(0, 0, self.tableView.width, 30);
     return sourceListHead;
-
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -1,16 +1,10 @@
-//
-//  LaunchViewController.m
-//  Guide
-//
-//  Created by 张海勇 on 16/6/15.
-//  Copyright © 2016年 ksm. All rights reserved.
-//
 
 #import "LaunchViewController.h"
 #import "MainStaticModel.h"
 #import "PageInfo.h"
 #import "TabBarViewController.h"
 #import "MainViewController.h"
+
 @interface LaunchViewController ()
 {
     UIActivityIndicatorView *IndicatorView;
@@ -23,26 +17,41 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    
-    IndicatorView = [[UIActivityIndicatorView alloc ]initWithFrame:CGRectMake(250.0,20.0,30.0,30.0)];
-    IndicatorView.center = self.view.center;
-    [self.view addSubview:IndicatorView];
-     [IndicatorView startAnimating];//启动
+
+//    IndicatorView             = [[UIActivityIndicatorView alloc ]initWithFrame:CGRectMake(250.0,20.0,30.0,30.0)];
+//    IndicatorView.center      = self.view.center;
+//    IndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+//    [self.view addSubview:IndicatorView];
+//    [IndicatorView startAnimating];//启动
+
+    [self getSessionID];
 }
 
-
-
-//判断时候存储了图片
+//判断是否存储了图片
 - (void)showLaunchImage {
     
-    NSString *rootPath = [HYSandbox docPath];
-    NSString *filePath = [NSString stringWithFormat:@"%@/%@",rootPath,LaunchCaches];
+    NSString *rootPath     = [HYSandbox docPath];
+    NSString *filePath     = [NSString stringWithFormat:@"%@/%@",rootPath,LaunchCaches];
     NSFileManager *manager = [NSFileManager defaultManager];
     if ([manager fileExistsAtPath:filePath]) {
-        _launchImage.image = [UIImage imageWithContentsOfFile:filePath];
+    _launchImage.image     = [UIImage imageWithContentsOfFile:filePath];
     }
-    [self requestHomeData];
+}
+
+- (void)getSessionID {
     
+    [KSMNetworkRequest postRequest:KGetSessionID params:nil success:^(NSDictionary *dataDic) {
+
+        FxLog(@"sessionID = %@",dataDic);
+        if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
+            [Uitils setUserDefaultsObject:[dataDic objectForKey:@"sessionId"] ForKey:TOKEN];
+        }
+
+        [self requestHomeData];
+
+    } failure:^(NSError *error) {
+
+    }];
 }
 
 //请求主页的数据
@@ -50,7 +59,7 @@
 
     [KSMNetworkRequest postRequest:KHomePageStatic params:nil success:^(NSDictionary *dataDic) {
         
-        NSLog(@"dataDic = %@",dataDic);
+        FxLog(@"dataDic = %@",dataDic);
         [IndicatorView stopAnimating];
         
         if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
@@ -59,7 +68,6 @@
                 
                 mainStaticModel = [MainStaticModel mj_objectWithKeyValues:[dataDic objectForKey:@"retObj"]];
             }
-            
             //请求成功后，进入主页
             [self hideLanch];
         }
@@ -114,7 +122,6 @@
         pageController.tabBarItem.image = [UIImage imageNamed:pageInfo.Image];
         pageController.tabBarItem.title = pageInfo.Title;
         pageController.tabBarItem.selectedImage = [UIImage imageNamed:pageInfo.SelectImage];
-        //        pageController.tabBarItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
         [controllers addObject:navPage];
     }
     

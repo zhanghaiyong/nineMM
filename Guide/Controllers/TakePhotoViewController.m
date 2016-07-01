@@ -13,7 +13,6 @@
 
     UIImagePickerController *imagePicker;
     UIActionSheet           *alertSheet;
-    
 }
 
 @end
@@ -55,7 +54,7 @@
 #pragma mark UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
 
-    NSLog(@"%ld",buttonIndex);
+    FxLog(@"%ld",buttonIndex);
     
     switch (buttonIndex) {
         case 0:
@@ -63,7 +62,6 @@
             break;
         case 1:
             [self LocalPhoto];
-            
             break;
         case 2:
              [self dismissViewControllerAnimated:YES completion:nil];

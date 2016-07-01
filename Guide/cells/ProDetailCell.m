@@ -23,10 +23,10 @@
 
 -(void)setLineIndex:(NSInteger)lineIndex {
 
-    NSLog(@"lineIndex = %ld",lineIndex);
+    FxLog(@"lineIndex = %ld",lineIndex);
     
     UIButton *button = (UIButton *)[self.contentView viewWithTag:lineIndex+100];
-     NSLog(@"buttonTitle = %@",button.currentTitle);
+     FxLog(@"buttonTitle = %@",button.currentTitle);
     self.lineView.center = CGPointMake(button.center.x, self.lineView.center.y);
 }
 
@@ -38,7 +38,7 @@
         self.lineView.center = CGPointMake(button.center.x, self.lineView.center.y);
     }];
     
-    NSLog(@"%@",NSStringFromCGPoint(self.lineView.center));
+    FxLog(@"%@",NSStringFromCGPoint(self.lineView.center));
     
     switch (button.tag) {
         case 100:

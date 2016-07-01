@@ -35,16 +35,16 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self initTableViews];
     
-    BirthdayView *birthdayView = [[[NSBundle mainBundle] loadNibNamed:@"BirthdayView" owner:self options:nil] lastObject];
-    birthdayView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    [self.view addSubview:birthdayView];
+//    BirthdayView *birthdayView = [[[NSBundle mainBundle] loadNibNamed:@"BirthdayView" owner:self options:nil] lastObject];
+//    birthdayView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+//    [self.view addSubview:birthdayView];
     
 }
 
 - (void)initTableViews {
     
     SearchBar *search = [[[NSBundle mainBundle] loadNibNamed:@"SearchBar" owner:self options:nil] lastObject];
-    search.frame = CGRectMake(0, 20, SCREEN_WIDTH, 44);
+    search.frame = CGRectMake(0, -20, SCREEN_WIDTH, 44);
     search.searchTF.backgroundColor = lineColor;
     search.searchTF.leftViewMode = UITextFieldViewModeAlways;
     UIImageView *searchIcon = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"search"]];
@@ -103,9 +103,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-//    NSLog(@"%@",NSStringFromCGPoint(cell.center));
-//    NSLog(@"%@",NSStringFromCGPoint(tableView.center));
-    
+    //将点击的cell移动到中间位置
     CGFloat offset = cell.center.y - tableView.height/2;
     
     if (offset > tableView.contentSize.height - tableView.height) {
@@ -117,8 +115,8 @@
         offset = 0;
     }
     
-    NSLog(@"offset = %f",offset);
-    NSLog(@"%f",tableView.contentSize.height - tableView.height);
+    FxLog(@"offset = %f",offset);
+    FxLog(@"%f",tableView.contentSize.height - tableView.height);
     
     [tableView setContentOffset:CGPointMake(0, offset) animated:YES];
     

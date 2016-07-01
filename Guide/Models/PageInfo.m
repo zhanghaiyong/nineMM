@@ -32,11 +32,9 @@
         [controllers addObject:navPage];
     }
     
-    rootTabBar.viewControllers = controllers;
-
-    
-    UINavigationController *navi = rootTabBar.viewControllers[0];
-    MainViewController *main = (MainViewController *)navi.topViewController;
+//    rootTabBar.viewControllers = controllers;
+//    UINavigationController *navi = rootTabBar.viewControllers[0];
+//    MainViewController *main = (MainViewController *)navi.topViewController;
     return rootTabBar;
 
 }

@@ -75,6 +75,8 @@
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
+        [[HUDConfig shareHUD] dismiss];
+        
         failureHandler(error);
         KSMLog(@"------请求失败-------%@",error);
     }];

@@ -20,7 +20,6 @@
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
         [self addGestureRecognizer:tap];
-        
         _labelTitle = title;
         _imageName = image;
         [self loadSubViews];
@@ -32,6 +31,10 @@
 {
     self = [super initWithCoder:coder];
     if (self) {
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
+        [self addGestureRecognizer:tap];
+        
         [self loadSubViews];
     }
     return self;
@@ -45,7 +48,7 @@
     label = [[UILabel alloc]init];
     label.textColor = [UIColor blackColor];
     label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont boldSystemFontOfSize:15];
+    label.font = [UIFont boldSystemFontOfSize:13];
     [self addSubview:label];
     
     self.badgeBtn = [[UIButton alloc]init];
@@ -60,16 +63,16 @@
 
     [super layoutSubviews];
 
-    imageView.frame = CGRectMake(10, 5, self.width-20, self.height-25);
+    imageView.frame = CGRectMake(self.width/2-(self.height-25)/2, 5, self.height-25, self.height-25);
     imageView.contentMode = UIViewContentModeCenter;
     imageView.image = [UIImage imageNamed:self.imageName];
     
-    self.badgeBtn.frame = CGRectMake(imageView.right-20, imageView.top+10, 20, 20);
+    self.badgeBtn.frame = CGRectMake(imageView.right-25, imageView.top+10, 20, 20);
     self.badgeBtn.layer.cornerRadius = 10;
     self.badgeBtn.clipsToBounds = YES;
     [self.badgeBtn setTitle:@"0" forState:UIControlStateNormal];
     
-    label.frame = CGRectMake(0, imageView.bottom, self.width, 20);
+    label.frame = CGRectMake(0, imageView.bottom-5, self.width, 20);
     label.text = self.labelTitle;
 }
 
@@ -89,7 +92,7 @@
 
     _imageName = imageName;
     
-    [Uitils cacheImagwWithSize:CGSizeMake(self.width-20, self.height-25) imageID:imageName imageV:imageView placeholder:@""];
+    [Uitils cacheImagwWithSize:CGSizeMake(self.height-25, self.height-25) imageID:imageName imageV:imageView placeholder:@""];
     
     imageView.image = [UIImage imageNamed:imageName];
 }

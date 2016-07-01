@@ -1,11 +1,3 @@
-//
-//  Uitils.m
-//  MouthHealth
-//
-//  Created by 张海勇 on 15/3/16.
-//  Copyright (c) 2015年 张海勇. All rights reserved.
-//
-
 #import "Uitils.h"
 #import "UIImageView+WebCache.h"
 #import "AFNetworking.h"
@@ -20,16 +12,17 @@
      AFNetworkReachabilityStatusReachableViaWiFi = 2,   // 局域网络,不花钱
      */
     // 如果要检测网络状态的变化,必须用检测管理器的单例的startMonitoring
+    
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     
     // 检测网络连接的单例,网络变化时的回调方法
     [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         switch (status) {
             case 0:
-                [ProgressHUD showError:@"请检查网络"];
+                [ProgressHUD showError:@"网络异常,请检查网络"];
                 break;
             case 1:
-                [ProgressHUD showSuccess:@"网络已连接"];
+                [ProgressHUD showSuccess:@"3G/4G网络已连接"];
                 
                 break;
             case 2:
@@ -40,7 +33,7 @@
                 break;
         }
         
-        NSLog(@"%ld",(long)status);
+        FxLog(@"%ld",(long)status);
     }];                                                                                                              
 }
 
@@ -124,7 +117,7 @@
 
     NSString *urlStr = [NSString stringWithFormat:@"%@%@_%.0f_%.0f_0.png",BaseImageURL,imageID,size.width,size.height];
     NSURL    *url = [NSURL URLWithString:urlStr];
-    NSLog(@"url = %@",url);
+    FxLog(@"url = %@",url);
     [imageV sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:placehImg]];
 }
 

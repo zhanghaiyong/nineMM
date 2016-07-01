@@ -1,13 +1,4 @@
-//
-//  AppDelegate.m
-//  Guide
-//
-//  Created by ksm on 16/4/7.
-//  Copyright © 2016年 ksm. All rights reserved.
-//
-
 #import "AppDelegate.h"
-//#import "JiPush.h"
 #import "SDKKey.h"
 #import "LaunchViewController.h"
 #import "LoginViewController.h"
@@ -34,7 +25,6 @@
     
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:lever2Color} forState:UIControlStateNormal];
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:MainColor} forState:UIControlStateSelected];
-    
 }
 
 
@@ -43,28 +33,15 @@
     return (AppDelegate *)[UIApplication sharedApplication].delegate;
 }
 
-- (void)getSessionID {
-    
-    [KSMNetworkRequest postRequest:KGetSessionID params:nil success:^(NSDictionary *dataDic) {
-        
-        NSLog(@"sessionID = %@",dataDic);
-        if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
-           [Uitils setUserDefaultsObject:[dataDic objectForKey:@"sessionId"] ForKey:TOKEN];
-        }
-        
-    } failure:^(NSError *error) {
-        
-    }];
-}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [Uitils reach];
     
     //设置键盘自动关闭
     [[SDKKey shareSDKKey] IQKeyboard];
     
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
-    
-    [self getSessionID];
     
     //设置主色调
     [self configure];

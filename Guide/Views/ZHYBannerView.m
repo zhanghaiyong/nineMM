@@ -57,7 +57,7 @@
 -(void)setImageArray:(NSArray *)imageArray {
     
     _imageArray = imageArray;
-    NSLog(@"%@",imageArray);
+    FxLog(@"%@",imageArray);
     
     self.pageControl.numberOfPages = imageArray.count;
     self.pageControl.currentPage = 0;
@@ -90,13 +90,13 @@
     
     [self.ScrollView setContentOffset:CGPointMake(scrollViewSize.width, 0)];
     
-    NSLog(@"%f",self.ScrollView.contentSize.width);
+    FxLog(@"%f",self.ScrollView.contentSize.width);
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     
     NSInteger page = scrollView.contentOffset.x / scrollView.frame.size.width;
-    NSLog(@"page = %ld",page);
+    FxLog(@"page = %ld",page);
     // 如果当前页是第0页就跳转到数组中最后一个地方进行跳转
     self.pageControl.currentPage = page-1;
     if (page == 0) {
