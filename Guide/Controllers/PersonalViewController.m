@@ -1,13 +1,6 @@
-//
-//  PersonalViewController.m
-//  Guide
-//
-//  Created by 张海勇 on 16/5/30.
-//  Copyright © 2016年 ksm. All rights reserved.
-//
-
 #import "PersonalViewController.h"
 #import "ButtonView.h"
+#import "OrderTypeTableVC.h"
 @interface PersonalViewController ()<UITableViewDelegate,UITableViewDataSource,ButtonViewDeleage>
 
 @end
@@ -22,9 +15,10 @@
     NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:0 inSection:1];
     UITableViewCell *cell2  = [self.tableView cellForRowAtIndexPath:indexPath2];
     
-    NSArray *images         = @[@"icon_guide_iphone",@"icon_me_iphone",@"icon_news_iphone",@"icon_order_iphone",@"icon_talk_iphone"];
-    NSArray *titles         = @[@"全部订单",@"等待审核",@"已经取消",@"取消中",@"申述订单"];
+    NSArray *images         = @[@"全部订单",@"待审核",@"已取消",@"执行中",@"申诉订单"];
+    NSArray *titles         = @[@"全部订单",@"待审核",@"已取消",@"执行中",@"申诉订单"];
     NSArray *iconNames      = @[@"金币",@"绿币",@"红币",@"蓝币",@"黑币"];
+    NSArray *iconImage      = @[@"图层-142",@"图层-145",@"图层-143",@"图层-146",@"图层-144"];
     
     for (int i = 0; i<5; i++) {
         
@@ -38,7 +32,7 @@
         ButtonView *coinBV = (ButtonView *)[cell2.contentView viewWithTag:i+200];
         coinBV.delegate = self;
         coinBV.labelTitle = iconNames[i];
-        coinBV.imageName  = @"icon_gender_selected_iphoe";
+        coinBV.imageName  = iconImage[i];
     }
 }
 
@@ -75,6 +69,19 @@
 - (void)buttonViewTap:(NSInteger)aFlag {
 
     FxLog(@"ButtonViewTag = %ld",aFlag);
+    
+    if (aFlag == 100 || aFlag == 101 || aFlag == 102 || aFlag == 103) {
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        OrderTypeTableVC *orderType = [mainSB instantiateViewControllerWithIdentifier:@"OrderTypeTableVC"];
+        orderType.orderType = aFlag;
+        [self.navigationController pushViewController:orderType animated:YES];
+    }
+    
+    
+    
+    
+    
 }
 
 @end

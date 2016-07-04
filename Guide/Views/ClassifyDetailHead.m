@@ -1,11 +1,3 @@
-//
-//  ClassifyDetailHead.m
-//  Guide
-//
-//  Created by 张海勇 on 16/5/27.
-//  Copyright © 2016年 ksm. All rights reserved.
-//
-
 #import "ClassifyDetailHead.h"
 
 @implementation ClassifyDetailHead
@@ -14,11 +6,18 @@
 //1000为时间 1001为折扣 1002为筛选
 - (IBAction)tapButtonAction:(id)sender {
     
-    UIButton *button = (UIButton *)sender;
-    
-    if ([self.delegate respondsToSelector:@selector(searchterm:)]) {
+    for (int i = 0; i<3; i++) {
         
-        [self.delegate searchterm:button.tag];
+        UIButton *btn =  (UIButton *)[self viewWithTag:i+1000];
+        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    }
+    
+    UIButton *button = (UIButton *)sender;
+    [button setTitleColor:MainColor forState:UIControlStateNormal];
+    
+    if ([self.delegate respondsToSelector:@selector(searchTerm:)]) {
+        
+        [self.delegate searchTerm:button.tag];
     }
 }
 

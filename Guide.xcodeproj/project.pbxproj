@@ -74,13 +74,8 @@
 		BFD1FE991CF7351B006FDDF6 /* ZHYBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD1FE981CF7351B006FDDF6 /* ZHYBannerView.m */; };
 		BFD1FEA01CF746BC006FDDF6 /* RecommendView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD1FE9F1CF746BC006FDDF6 /* RecommendView.m */; };
 		BFD1FEA31CF74925006FDDF6 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD1FEA21CF74925006FDDF6 /* MainViewController.m */; };
-		BFD69E561CF7F44200B50A6E /* ScenicLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD69E531CF7F44200B50A6E /* ScenicLayout.m */; };
-		BFD69E5F1CF7F9CD00B50A6E /* ClassifyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD69E5D1CF7F9CD00B50A6E /* ClassifyDetailViewController.m */; };
-		BFD69E601CF7F9CD00B50A6E /* ClassifyDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFD69E5E1CF7F9CD00B50A6E /* ClassifyDetailViewController.xib */; };
 		BFD69E641CF7FA7900B50A6E /* ClassifyDetailHead.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD69E631CF7FA7900B50A6E /* ClassifyDetailHead.m */; };
 		BFD69E661CF7FA8200B50A6E /* ClassifyDetailHead.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFD69E651CF7FA8200B50A6E /* ClassifyDetailHead.xib */; };
-		BFD69E6A1CF7FC3D00B50A6E /* ClassifyDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD69E681CF7FC3D00B50A6E /* ClassifyDetailCell.m */; };
-		BFD69E6B1CF7FC3D00B50A6E /* ClassifyDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFD69E691CF7FC3D00B50A6E /* ClassifyDetailCell.xib */; };
 		BFD69E6F1CF812B700B50A6E /* ClassifyDetailSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD69E6E1CF812B700B50A6E /* ClassifyDetailSearchView.m */; };
 		BFD69E711CF812C100B50A6E /* ClassifyDetailSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFD69E701CF812C100B50A6E /* ClassifyDetailSearchView.xib */; };
 		BFD69E781CF8212F00B50A6E /* ProduceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD69E771CF8212F00B50A6E /* ProduceDetailViewController.m */; };
@@ -91,6 +86,18 @@
 		BFD887CA1CF9752D00C9DF44 /* MethodBagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD887C81CF9752D00C9DF44 /* MethodBagViewController.m */; };
 		BFD887CF1CF976CF00C9DF44 /* MethodBagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD887CD1CF976CF00C9DF44 /* MethodBagCell.m */; };
 		BFD887D01CF976CF00C9DF44 /* MethodBagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFD887CE1CF976CF00C9DF44 /* MethodBagCell.xib */; };
+		BFED9B831D28FAFF000175C5 /* ClassifyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BFED9B811D28FAFF000175C5 /* ClassifyCell.m */; };
+		BFED9B841D28FAFF000175C5 /* ClassifyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFED9B821D28FAFF000175C5 /* ClassifyCell.xib */; };
+		BFED9B881D290234000175C5 /* ClassifyTerm1.m in Sources */ = {isa = PBXBuildFile; fileRef = BFED9B871D290234000175C5 /* ClassifyTerm1.m */; };
+		BFED9B8C1D29FFA6000175C5 /* Term1Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = BFED9B8A1D29FFA6000175C5 /* Term1Cell.m */; };
+		BFED9B8D1D29FFA6000175C5 /* Term1Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFED9B8B1D29FFA6000175C5 /* Term1Cell.xib */; };
+		BFED9B901D2A073A000175C5 /* ClassifyTerm2.m in Sources */ = {isa = PBXBuildFile; fileRef = BFED9B8F1D2A073A000175C5 /* ClassifyTerm2.m */; };
+		BFED9B921D2A0749000175C5 /* ClassifyTerm2.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFED9B911D2A0749000175C5 /* ClassifyTerm2.xib */; };
+		BFED9BA31D2A3E16000175C5 /* ClassifyTerm3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFED9BA11D2A3E16000175C5 /* ClassifyTerm3ViewController.m */; };
+		BFED9BA71D2A5275000175C5 /* OrderTypeTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BFED9BA61D2A5275000175C5 /* OrderTypeTableVC.m */; };
+		BFED9BAC1D2A52E4000175C5 /* OrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BFED9BAA1D2A52E4000175C5 /* OrderCell.m */; };
+		BFED9BAD1D2A52E4000175C5 /* OrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFED9BAB1D2A52E4000175C5 /* OrderCell.xib */; };
+		BFED9BB51D2A6AE0000175C5 /* OrderComplainCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = BFED9BB41D2A6AE0000175C5 /* OrderComplainCtrl.m */; };
 		BFEEA5891D198ADF00B261BF /* ProDetailCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = BFEEA5871D198ADF00B261BF /* ProDetailCell2.m */; };
 		BFEEA58A1D198ADF00B261BF /* ProDetailCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFEEA5881D198ADF00B261BF /* ProDetailCell2.xib */; };
 		BFEEA58E1D19996200B261BF /* ProDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BFEEA58C1D19996200B261BF /* ProDetailCell.m */; };
@@ -106,10 +113,6 @@
 		BFF433A91D15200200D21427 /* ModifyPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF433A81D15200200D21427 /* ModifyPassword.m */; };
 		BFF433AC1D15202800D21427 /* ModifyEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF433AB1D15202800D21427 /* ModifyEmail.m */; };
 		BFF433D51D152B9A00D21427 /* MeumList.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF433D41D152B9A00D21427 /* MeumList.m */; };
-		BFF472A81D178F6700516EE3 /* ClassityCollecteHead.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF472A61D178F6700516EE3 /* ClassityCollecteHead.m */; };
-		BFF472A91D178F6700516EE3 /* ClassityCollecteHead.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFF472A71D178F6700516EE3 /* ClassityCollecteHead.xib */; };
-		BFF472AD1D17935D00516EE3 /* ClassityCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF472AB1D17935D00516EE3 /* ClassityCollectionViewCell.m */; };
-		BFF472AE1D17935D00516EE3 /* ClassityCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFF472AC1D17935D00516EE3 /* ClassityCollectionViewCell.xib */; };
 		BFF472B21D179B2C00516EE3 /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BFF472B11D179B2C00516EE3 /* search@2x.png */; };
 		BFF472B51D17C93F00516EE3 /* MyCoinsController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF472B41D17C93F00516EE3 /* MyCoinsController.m */; };
 		BFF8D40F1D18F5740039600B /* ProDetailCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF8D40D1D18F5740039600B /* ProDetailCell1.m */; };
@@ -240,17 +243,9 @@
 		BFD1FE9E1CF746BC006FDDF6 /* RecommendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendView.h; sourceTree = "<group>"; };
 		BFD1FE9F1CF746BC006FDDF6 /* RecommendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendView.m; sourceTree = "<group>"; };
 		BFD1FEA21CF74925006FDDF6 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		BFD69E521CF7F44200B50A6E /* ScenicLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScenicLayout.h; sourceTree = "<group>"; };
-		BFD69E531CF7F44200B50A6E /* ScenicLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScenicLayout.m; sourceTree = "<group>"; };
-		BFD69E5C1CF7F9CD00B50A6E /* ClassifyDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassifyDetailViewController.h; sourceTree = "<group>"; };
-		BFD69E5D1CF7F9CD00B50A6E /* ClassifyDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassifyDetailViewController.m; sourceTree = "<group>"; };
-		BFD69E5E1CF7F9CD00B50A6E /* ClassifyDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassifyDetailViewController.xib; sourceTree = "<group>"; };
 		BFD69E621CF7FA7900B50A6E /* ClassifyDetailHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassifyDetailHead.h; sourceTree = "<group>"; };
 		BFD69E631CF7FA7900B50A6E /* ClassifyDetailHead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassifyDetailHead.m; sourceTree = "<group>"; };
 		BFD69E651CF7FA8200B50A6E /* ClassifyDetailHead.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassifyDetailHead.xib; sourceTree = "<group>"; };
-		BFD69E671CF7FC3D00B50A6E /* ClassifyDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassifyDetailCell.h; sourceTree = "<group>"; };
-		BFD69E681CF7FC3D00B50A6E /* ClassifyDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassifyDetailCell.m; sourceTree = "<group>"; };
-		BFD69E691CF7FC3D00B50A6E /* ClassifyDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassifyDetailCell.xib; sourceTree = "<group>"; };
 		BFD69E6D1CF812B700B50A6E /* ClassifyDetailSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassifyDetailSearchView.h; sourceTree = "<group>"; };
 		BFD69E6E1CF812B700B50A6E /* ClassifyDetailSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassifyDetailSearchView.m; sourceTree = "<group>"; };
 		BFD69E701CF812C100B50A6E /* ClassifyDetailSearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassifyDetailSearchView.xib; sourceTree = "<group>"; };
@@ -268,6 +263,26 @@
 		BFD887CC1CF976CF00C9DF44 /* MethodBagCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MethodBagCell.h; sourceTree = "<group>"; };
 		BFD887CD1CF976CF00C9DF44 /* MethodBagCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MethodBagCell.m; sourceTree = "<group>"; };
 		BFD887CE1CF976CF00C9DF44 /* MethodBagCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MethodBagCell.xib; sourceTree = "<group>"; };
+		BFED9B801D28FAFF000175C5 /* ClassifyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassifyCell.h; sourceTree = "<group>"; };
+		BFED9B811D28FAFF000175C5 /* ClassifyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassifyCell.m; sourceTree = "<group>"; };
+		BFED9B821D28FAFF000175C5 /* ClassifyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassifyCell.xib; sourceTree = "<group>"; };
+		BFED9B861D290234000175C5 /* ClassifyTerm1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassifyTerm1.h; sourceTree = "<group>"; };
+		BFED9B871D290234000175C5 /* ClassifyTerm1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassifyTerm1.m; sourceTree = "<group>"; };
+		BFED9B891D29FFA6000175C5 /* Term1Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Term1Cell.h; sourceTree = "<group>"; };
+		BFED9B8A1D29FFA6000175C5 /* Term1Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Term1Cell.m; sourceTree = "<group>"; };
+		BFED9B8B1D29FFA6000175C5 /* Term1Cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Term1Cell.xib; sourceTree = "<group>"; };
+		BFED9B8E1D2A073A000175C5 /* ClassifyTerm2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassifyTerm2.h; sourceTree = "<group>"; };
+		BFED9B8F1D2A073A000175C5 /* ClassifyTerm2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassifyTerm2.m; sourceTree = "<group>"; };
+		BFED9B911D2A0749000175C5 /* ClassifyTerm2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassifyTerm2.xib; sourceTree = "<group>"; };
+		BFED9BA01D2A3E16000175C5 /* ClassifyTerm3ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassifyTerm3ViewController.h; sourceTree = "<group>"; };
+		BFED9BA11D2A3E16000175C5 /* ClassifyTerm3ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassifyTerm3ViewController.m; sourceTree = "<group>"; };
+		BFED9BA51D2A5275000175C5 /* OrderTypeTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderTypeTableVC.h; sourceTree = "<group>"; };
+		BFED9BA61D2A5275000175C5 /* OrderTypeTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderTypeTableVC.m; sourceTree = "<group>"; };
+		BFED9BA91D2A52E4000175C5 /* OrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCell.h; sourceTree = "<group>"; };
+		BFED9BAA1D2A52E4000175C5 /* OrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCell.m; sourceTree = "<group>"; };
+		BFED9BAB1D2A52E4000175C5 /* OrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCell.xib; sourceTree = "<group>"; };
+		BFED9BB31D2A6AE0000175C5 /* OrderComplainCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderComplainCtrl.h; sourceTree = "<group>"; };
+		BFED9BB41D2A6AE0000175C5 /* OrderComplainCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderComplainCtrl.m; sourceTree = "<group>"; };
 		BFEEA5861D198ADF00B261BF /* ProDetailCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProDetailCell2.h; sourceTree = "<group>"; };
 		BFEEA5871D198ADF00B261BF /* ProDetailCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProDetailCell2.m; sourceTree = "<group>"; };
 		BFEEA5881D198ADF00B261BF /* ProDetailCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProDetailCell2.xib; sourceTree = "<group>"; };
@@ -293,12 +308,6 @@
 		BFF433AB1D15202800D21427 /* ModifyEmail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyEmail.m; sourceTree = "<group>"; };
 		BFF433D31D152B9A00D21427 /* MeumList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeumList.h; sourceTree = "<group>"; };
 		BFF433D41D152B9A00D21427 /* MeumList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeumList.m; sourceTree = "<group>"; };
-		BFF472A51D178F6700516EE3 /* ClassityCollecteHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassityCollecteHead.h; sourceTree = "<group>"; };
-		BFF472A61D178F6700516EE3 /* ClassityCollecteHead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassityCollecteHead.m; sourceTree = "<group>"; };
-		BFF472A71D178F6700516EE3 /* ClassityCollecteHead.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassityCollecteHead.xib; sourceTree = "<group>"; };
-		BFF472AA1D17935D00516EE3 /* ClassityCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassityCollectionViewCell.h; sourceTree = "<group>"; };
-		BFF472AB1D17935D00516EE3 /* ClassityCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassityCollectionViewCell.m; sourceTree = "<group>"; };
-		BFF472AC1D17935D00516EE3 /* ClassityCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassityCollectionViewCell.xib; sourceTree = "<group>"; };
 		BFF472B11D179B2C00516EE3 /* search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search@2x.png"; sourceTree = "<group>"; };
 		BFF472B31D17C93F00516EE3 /* MyCoinsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCoinsController.h; sourceTree = "<group>"; };
 		BFF472B41D17C93F00516EE3 /* MyCoinsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCoinsController.m; sourceTree = "<group>"; };
@@ -392,9 +401,7 @@
 		78897BAF1CC09AC900ADFCB1 /* cells */ = {
 			isa = PBXGroup;
 			children = (
-				BFD69E671CF7FC3D00B50A6E /* ClassifyDetailCell.h */,
-				BFD69E681CF7FC3D00B50A6E /* ClassifyDetailCell.m */,
-				BFD69E691CF7FC3D00B50A6E /* ClassifyDetailCell.xib */,
+				BFED9BA81D2A52CE000175C5 /* OrderCell */,
 				BFD887CC1CF976CF00C9DF44 /* MethodBagCell.h */,
 				BFD887CD1CF976CF00C9DF44 /* MethodBagCell.m */,
 				BFD887CE1CF976CF00C9DF44 /* MethodBagCell.xib */,
@@ -403,6 +410,12 @@
 				BF9468271D22852C00143B91 /* SourceListCell.xib */,
 				BFF8D40B1D18F55A0039600B /* ProduceDetailCell */,
 				BFF8D40A1D18F54E0039600B /* MainCell */,
+				BFED9B801D28FAFF000175C5 /* ClassifyCell.h */,
+				BFED9B811D28FAFF000175C5 /* ClassifyCell.m */,
+				BFED9B821D28FAFF000175C5 /* ClassifyCell.xib */,
+				BFED9B891D29FFA6000175C5 /* Term1Cell.h */,
+				BFED9B8A1D29FFA6000175C5 /* Term1Cell.m */,
+				BFED9B8B1D29FFA6000175C5 /* Term1Cell.xib */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -529,7 +542,7 @@
 				BFD887C01CF9621C00C9DF44 /* MeumList */,
 				BFD69E6C1CF812A300B50A6E /* ClassifyDetailSearch */,
 				BFD69E611CF7FA5000B50A6E /* ClassifyDetailHead */,
-				BFD69E4D1CF7F42600B50A6E /* ClassifyCollection */,
+				BFED9B851D29015A000175C5 /* ClassifyTerm */,
 				BFD1FEA11CF746C5006FDDF6 /* RecommendProduce */,
 				BFA2B7091CF6D84900EB460E /* ButtonView */,
 				BFA2B7051CF6D72000EB460E /* BannerView */,
@@ -644,6 +657,10 @@
 			children = (
 				BFC50F0A1CFC447800CA7CD5 /* PersonalViewController.h */,
 				BFC50F0B1CFC447800CA7CD5 /* PersonalViewController.m */,
+				BFED9BA51D2A5275000175C5 /* OrderTypeTableVC.h */,
+				BFED9BA61D2A5275000175C5 /* OrderTypeTableVC.m */,
+				BFED9BB31D2A6AE0000175C5 /* OrderComplainCtrl.h */,
+				BFED9BB41D2A6AE0000175C5 /* OrderComplainCtrl.m */,
 				BFF472B31D17C93F00516EE3 /* MyCoinsController.h */,
 				BFF472B41D17C93F00516EE3 /* MyCoinsController.m */,
 				BFF433A41D151B7800D21427 /* ControlAccount.h */,
@@ -690,21 +707,6 @@
 			name = RecommendProduce;
 			sourceTree = "<group>";
 		};
-		BFD69E4D1CF7F42600B50A6E /* ClassifyCollection */ = {
-			isa = PBXGroup;
-			children = (
-				BFF472AA1D17935D00516EE3 /* ClassityCollectionViewCell.h */,
-				BFF472AB1D17935D00516EE3 /* ClassityCollectionViewCell.m */,
-				BFF472AC1D17935D00516EE3 /* ClassityCollectionViewCell.xib */,
-				BFF472A51D178F6700516EE3 /* ClassityCollecteHead.h */,
-				BFF472A61D178F6700516EE3 /* ClassityCollecteHead.m */,
-				BFF472A71D178F6700516EE3 /* ClassityCollecteHead.xib */,
-				BFD69E521CF7F44200B50A6E /* ScenicLayout.h */,
-				BFD69E531CF7F44200B50A6E /* ScenicLayout.m */,
-			);
-			name = ClassifyCollection;
-			sourceTree = "<group>";
-		};
 		BFD69E611CF7FA5000B50A6E /* ClassifyDetailHead */ = {
 			isa = PBXGroup;
 			children = (
@@ -749,9 +751,6 @@
 				BFA2B71F1CF6E96000EB460E /* ClassifyViewController.h */,
 				BFA2B7201CF6E96000EB460E /* ClassifyViewController.m */,
 				BFF472B11D179B2C00516EE3 /* search@2x.png */,
-				BFD69E5C1CF7F9CD00B50A6E /* ClassifyDetailViewController.h */,
-				BFD69E5D1CF7F9CD00B50A6E /* ClassifyDetailViewController.m */,
-				BFD69E5E1CF7F9CD00B50A6E /* ClassifyDetailViewController.xib */,
 				BFD69E761CF8212F00B50A6E /* ProduceDetailViewController.h */,
 				BFD69E771CF8212F00B50A6E /* ProduceDetailViewController.m */,
 				BFEEA5901D1A399300B261BF /* UserSourceViewController.h */,
@@ -773,6 +772,30 @@
 				BF9468231D22849F00143B91 /* SourceListViewController.m */,
 			);
 			name = "购物车";
+			sourceTree = "<group>";
+		};
+		BFED9B851D29015A000175C5 /* ClassifyTerm */ = {
+			isa = PBXGroup;
+			children = (
+				BFED9B861D290234000175C5 /* ClassifyTerm1.h */,
+				BFED9B871D290234000175C5 /* ClassifyTerm1.m */,
+				BFED9B8E1D2A073A000175C5 /* ClassifyTerm2.h */,
+				BFED9B8F1D2A073A000175C5 /* ClassifyTerm2.m */,
+				BFED9B911D2A0749000175C5 /* ClassifyTerm2.xib */,
+				BFED9BA01D2A3E16000175C5 /* ClassifyTerm3ViewController.h */,
+				BFED9BA11D2A3E16000175C5 /* ClassifyTerm3ViewController.m */,
+			);
+			name = ClassifyTerm;
+			sourceTree = "<group>";
+		};
+		BFED9BA81D2A52CE000175C5 /* OrderCell */ = {
+			isa = PBXGroup;
+			children = (
+				BFED9BA91D2A52E4000175C5 /* OrderCell.h */,
+				BFED9BAA1D2A52E4000175C5 /* OrderCell.m */,
+				BFED9BAB1D2A52E4000175C5 /* OrderCell.xib */,
+			);
+			name = OrderCell;
 			sourceTree = "<group>";
 		};
 		BFF4339E1D151AAC00D21427 /* NavigationBarView */ = {
@@ -891,20 +914,20 @@
 			files = (
 				786B637C1CC71F9F00362DBF /* ProgressHUD.bundle in Resources */,
 				789E789A1CB60D080039AC69 /* Assets.xcassets in Resources */,
-				BFF472A91D178F6700516EE3 /* ClassityCollecteHead.xib in Resources */,
 				BFF3DD441D2379B600F5F9B1 /* SourceListHead.xib in Resources */,
 				BFEEA5A11D1A444500B261BF /* UserSourceCell.xib in Resources */,
 				BFC50EF91CFC175000CA7CD5 /* Main4Cell.xib in Resources */,
 				BFC50F081CFC1BD800CA7CD5 /* Main3Cell.xib in Resources */,
 				BFC50EFE1CFC1B7300CA7CD5 /* Main1Cell.xib in Resources */,
-				BFD69E601CF7F9CD00B50A6E /* ClassifyDetailViewController.xib in Resources */,
 				BF9468291D22852C00143B91 /* SourceListCell.xib in Resources */,
 				BFF433A31D151AC900D21427 /* NavigationBarView.xib in Resources */,
 				BFD69E661CF7FA8200B50A6E /* ClassifyDetailHead.xib in Resources */,
+				BFED9B841D28FAFF000175C5 /* ClassifyCell.xib in Resources */,
 				BFC687171D1185EF006524C2 /* LaunchViewController.xib in Resources */,
 				BFD69E711CF812C100B50A6E /* ClassifyDetailSearchView.xib in Resources */,
-				BFD69E6B1CF7FC3D00B50A6E /* ClassifyDetailCell.xib in Resources */,
+				BFED9B921D2A0749000175C5 /* ClassifyTerm2.xib in Resources */,
 				BFA2B7021CF6AADB00EB460E /* Login.storyboard in Resources */,
+				BFED9BAD1D2A52E4000175C5 /* OrderCell.xib in Resources */,
 				BFEEA58A1D198ADF00B261BF /* ProDetailCell2.xib in Resources */,
 				788836CE1CBC9BAB0030909E /* SelectEDU.xib in Resources */,
 				BFD69E871CF89C9100B50A6E /* ProduceOfCollectHead.xib in Resources */,
@@ -912,12 +935,12 @@
 				BFF8D4101D18F5740039600B /* ProDetailCell1.xib in Resources */,
 				BF4086561D12E59000E11065 /* SearchBar.xib in Resources */,
 				788836D41CBCC9D30030909E /* BirthdayView.xib in Resources */,
-				BFF472AE1D17935D00516EE3 /* ClassityCollectionViewCell.xib in Resources */,
 				BFC50F031CFC1BAF00CA7CD5 /* Main2Cell.xib in Resources */,
 				BFD887D01CF976CF00C9DF44 /* MethodBagCell.xib in Resources */,
 				BFF472B21D179B2C00516EE3 /* search@2x.png in Resources */,
 				BFEEA58F1D19996200B261BF /* ProDetailCell.xib in Resources */,
 				BFA2B7041CF6D33E00EB460E /* MainView.storyboard in Resources */,
+				BFED9B8D1D29FFA6000175C5 /* Term1Cell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -977,6 +1000,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFEEA58E1D19996200B261BF /* ProDetailCell.m in Sources */,
+				BFED9B831D28FAFF000175C5 /* ClassifyCell.m in Sources */,
 				BF4086591D12EE6C00E11065 /* MainStaticModel.m in Sources */,
 				BFA2B7121CF6E88200EB460E /* RepeatPwdViewController.m in Sources */,
 				BFD69E641CF7FA7900B50A6E /* ClassifyDetailHead.m in Sources */,
@@ -989,9 +1013,11 @@
 				BF4086621D12EF9500E11065 /* TopBannersModel.m in Sources */,
 				789E78E41CB63E7E0039AC69 /* BaseViewController.m in Sources */,
 				BFD887CA1CF9752D00C9DF44 /* MethodBagViewController.m in Sources */,
+				BFED9BAC1D2A52E4000175C5 /* OrderCell.m in Sources */,
 				BF3509921D13AFB300F2BCC5 /* MainProduceModel.m in Sources */,
 				BFEEA5891D198ADF00B261BF /* ProDetailCell2.m in Sources */,
 				786B637D1CC71F9F00362DBF /* ProgressHUD.m in Sources */,
+				BFED9B881D290234000175C5 /* ClassifyTerm1.m in Sources */,
 				BFA2B70C1CF6D85600EB460E /* ButtonView.m in Sources */,
 				BFF433A91D15200200D21427 /* ModifyPassword.m in Sources */,
 				BFF8D40F1D18F5740039600B /* ProDetailCell1.m in Sources */,
@@ -1000,17 +1026,16 @@
 				788A56341CB77A6200A58302 /* BaseTableViewController.m in Sources */,
 				BFD69E851CF89C8700B50A6E /* ProduceOfCollectHead.m in Sources */,
 				BFA2B7151CF6E8AD00EB460E /* FindPwdViewController.m in Sources */,
+				BFED9BA71D2A5275000175C5 /* OrderTypeTableVC.m in Sources */,
 				BFA2B7211CF6E96000EB460E /* ClassifyViewController.m in Sources */,
 				BFC50F0C1CFC447800CA7CD5 /* PersonalViewController.m in Sources */,
-				BFD69E5F1CF7F9CD00B50A6E /* ClassifyDetailViewController.m in Sources */,
-				BFF472A81D178F6700516EE3 /* ClassityCollecteHead.m in Sources */,
 				BFEEA5921D1A399300B261BF /* UserSourceViewController.m in Sources */,
+				BFED9BA31D2A3E16000175C5 /* ClassifyTerm3ViewController.m in Sources */,
 				BFA2B7181CF6E8C600EB460E /* MethodGetPwdViewController.m in Sources */,
 				BFF433D51D152B9A00D21427 /* MeumList.m in Sources */,
 				BFF433AC1D15202800D21427 /* ModifyEmail.m in Sources */,
 				BFEEA5A01D1A444500B261BF /* UserSourceCell.m in Sources */,
 				BFD887CF1CF976CF00C9DF44 /* MethodBagCell.m in Sources */,
-				BFF472AD1D17935D00516EE3 /* ClassityCollectionViewCell.m in Sources */,
 				BF35098F1D13AE1D00F2BCC5 /* HUDConfig.m in Sources */,
 				786D50B71CCF4F19001242D8 /* LDXScore.m in Sources */,
 				BF40865C1D12EF7600E11065 /* ButtonsModel.m in Sources */,
@@ -1021,15 +1046,15 @@
 				BFD1FEA01CF746BC006FDDF6 /* RecommendView.m in Sources */,
 				BF9468211D227F6700143B91 /* EditSourceViewController.m in Sources */,
 				BFD1FEA31CF74925006FDDF6 /* MainViewController.m in Sources */,
+				BFED9B8C1D29FFA6000175C5 /* Term1Cell.m in Sources */,
 				BFC687161D1185EF006524C2 /* LaunchViewController.m in Sources */,
 				789E78CD1CB631E40039AC69 /* UIView+HYExt.m in Sources */,
+				BFED9BB51D2A6AE0000175C5 /* OrderComplainCtrl.m in Sources */,
 				BFC50EFD1CFC1B7300CA7CD5 /* Main1Cell.m in Sources */,
-				BFD69E561CF7F44200B50A6E /* ScenicLayout.m in Sources */,
 				BFD69E781CF8212F00B50A6E /* ProduceDetailViewController.m in Sources */,
 				BFD69E6F1CF812B700B50A6E /* ClassifyDetailSearchView.m in Sources */,
 				BFD69E7B1CF8793D00B50A6E /* TitleView.m in Sources */,
 				789E78DA1CB632FC0039AC69 /* Uitils.m in Sources */,
-				BFD69E6A1CF7FC3D00B50A6E /* ClassifyDetailCell.m in Sources */,
 				782800801CD1BD9100F760EF /* SDKKey.m in Sources */,
 				789E78DD1CB633580039AC69 /* NSString+HYExtension.m in Sources */,
 				BF35098C1D13A3C900F2BCC5 /* MainProduceListParams.m in Sources */,
@@ -1046,6 +1071,7 @@
 				789E78BE1CB630D10039AC69 /* NSDate+Tools.m in Sources */,
 				789E78C71CB631670039AC69 /* UIButton+HYExtension.m in Sources */,
 				BF94681E1D2279E500143B91 /* SureOrdersViewController.m in Sources */,
+				BFED9B901D2A073A000175C5 /* ClassifyTerm2.m in Sources */,
 				789E788F1CB60D080039AC69 /* main.m in Sources */,
 				BFA2B70F1CF6E85400EB460E /* LoginViewController.m in Sources */,
 				789E78C41CB631360039AC69 /* NSDate+HYExtension.m in Sources */,

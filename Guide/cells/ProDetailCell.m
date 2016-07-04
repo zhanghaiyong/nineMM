@@ -1,11 +1,3 @@
-//
-//  ProDetailCell.m
-//  Guide
-//
-//  Created by 张海勇 on 16/6/21.
-//  Copyright © 2016年 ksm. All rights reserved.
-//
-
 #import "ProDetailCell.h"
 
 @implementation ProDetailCell
@@ -63,6 +55,16 @@
 
     _toUserSurBlock = block;
 }
+
+- (void)toStores:(toStoresVC)block {
+
+    _toStores = block;
+}
+- (IBAction)toStoresVCAction:(id)sender {
+    
+    self.toStores();
+}
+
 
 - (IBAction)userSourceAction:(id)sender {
     

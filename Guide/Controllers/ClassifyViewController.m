@@ -1,48 +1,64 @@
-//
-//  ClassifyViewController.m
-//  Guide
-//
-//  Created by 张海勇 on 16/5/26.
-//  Copyright © 2016年 ksm. All rights reserved.
-//
 
-#define TABLE_W 80
-#define TABLECELL_H 44
+
 #import "ClassifyViewController.h"
-#import "ScenicLayout.h"
-#import "ClassityCollectionViewCell.h"
-#import "ClassityCollecteHead.h"
-#import "ClassifyDetailViewController.h"
 #import "SearchBar.h"
-#import "BirthdayView.h"
-@interface ClassifyViewController ()<UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
+#import "ClassifyDetailHead.h"
+#import "Main4Cell.h"
+#import "ClassifyTerm1.h"
+#import "ClassifyTerm2.h"
+#import "ClassifyTerm3ViewController.h"
+#import "ProduceDetailViewController.h"
+
+@interface ClassifyViewController ()<UITableViewDataSource,UITableViewDelegate,ClassifyDetailHeadDelegate,ClassifyTerm2Delegate>
 {
     //分类列表
     UITableView *typeTableView;
     //列表内容
     NSArray *typeArray;
+    ClassifyDetailHead *head;
     
-    UICollectionView *collection;
+
 }
+@property (nonatomic,strong)ClassifyTerm1 *term1;
+@property (nonatomic,strong)ClassifyTerm2 *term2;
+
 @end
 
 @implementation ClassifyViewController
 
+-(ClassifyTerm1 *)term1 {
+
+    if (_term1 == nil) {
+        
+        ClassifyTerm1 *term1 = [[ClassifyTerm1 alloc]initWithFrame:typeTableView.frame];
+        _term1 = term1;
+    }
+    return _term1;
+}
+
+-(ClassifyTerm2 *)term2 {
+    
+    if (_term2 == nil) {
+        
+        ClassifyTerm2 *term2 = [[[NSBundle mainBundle]loadNibNamed:@"ClassifyTerm2" owner:self options:nil] lastObject];
+        term2.frame = typeTableView.frame;
+        term2.delegate = self;
+        _term2 = term2;
+    }
+    return _term2;
+}
+
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self initTableViews];
     
-//    BirthdayView *birthdayView = [[[NSBundle mainBundle] loadNibNamed:@"BirthdayView" owner:self options:nil] lastObject];
-//    birthdayView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-//    [self.view addSubview:birthdayView];
+    [super viewDidLoad];
+    [self initTableViews];
     
 }
 
 - (void)initTableViews {
     
+    //搜索框
     SearchBar *search = [[[NSBundle mainBundle] loadNibNamed:@"SearchBar" owner:self options:nil] lastObject];
     search.frame = CGRectMake(0, -20, SCREEN_WIDTH, 44);
     search.searchTF.backgroundColor = lineColor;
@@ -53,73 +69,129 @@
     searchIcon.contentMode = UIViewContentModeCenter;
     search.searchTF.leftView = searchIcon;
     self.navigationItem.titleView = search;
-
-    typeArray = [NSArray arrayWithObjects:@"网站媒体",@"手机媒体",@"门店",@"杂志",@"LED",@"策划",@"制作",@"服务",@"户外",@"电视",@"广播",@"报纸",@"网站媒体",@"手机媒体",@"门店",@"杂志",@"LED",@"策划", nil];
     
-    typeTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, TABLE_W, SCREEN_HEIGHT-49-64)];
+    //分类头部
+    head = [[[NSBundle mainBundle] loadNibNamed:@"ClassifyDetailHead" owner:self options:nil] lastObject];
+    head.frame = CGRectMake(0, 64, SCREEN_WIDTH, 44);
+    head.delegate = self;
+    [self.view addSubview:head];
+
+    //商品列表
+    typeTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, head.bottom, SCREEN_WIDTH, SCREEN_HEIGHT-64-44)];
     typeTableView.delegate = self;
     typeTableView.dataSource = self;
     typeTableView.separatorColor = backgroudColor;
     typeTableView.tableFooterView = [[UIView alloc]init];
     [self.view addSubview:typeTableView];
     
-    collection = [[UICollectionView alloc]initWithFrame:CGRectMake(TABLE_W, 0, SCREEN_WIDTH-TABLE_W, SCREEN_HEIGHT-49-64) collectionViewLayout:[[ScenicLayout alloc]init]];
-    collection.backgroundColor = backgroudColor;
-    collection.dataSource = self;
-    collection.delegate = self;
-    //注册item或cell
-    [collection registerNib:[UINib nibWithNibName:@"ClassityCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"MY_CELL"];
+}
+
+#pragma mark ClassifyDetailHeadDelegate
+- (void)searchTerm:(NSInteger)buttonTag {
+
+    switch (buttonTag) {
+        case 1000:
+            
+            if (_term1) {
+                
+                [_term1 removeFromSuperview];
+                _term1 = nil;
+                
+                UIButton *button = [head viewWithTag:1000];
+                [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                
+            }else {
+                
+                [[UIApplication sharedApplication].keyWindow addSubview:self.term1];
+            }
+            
+            break;
+        case 1001:
+            
+            if (_term2) {
+                
+                [_term2 removeFromSuperview];
+                _term2 = nil;
+                
+                UIButton *button = [head viewWithTag:1001];
+                [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                
+            }else {
+                
+                [[UIApplication sharedApplication].keyWindow addSubview:self.term2];
+            }
+            
+            break;
+        case 1002:{
+            
+            UIButton *button = [head viewWithTag:1002];
+            [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            
+            UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+            ClassifyTerm3ViewController *term3 = [mainSB instantiateViewControllerWithIdentifier:@"ClassifyTerm3ViewController"];
+            [self.navigationController pushViewController:term3 animated:YES];
+        }
+            
+            break;
+            
+        default:
+            break;
+    }
+}
+
+#pragma mark ClassifyTerm2Delegate
+- (void)classsifyTrem2SureData:(NSString *)someString {
+
+    [_term2 removeFromSuperview];
+    _term2 = nil;
     
-    [collection registerNib:[UINib nibWithNibName:@"ClassityCollecteHead" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"MY_header"];
-    collection.alwaysBounceVertical = YES;
-    [self.view addSubview:collection];
+    UIButton *button = [head viewWithTag:1001];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    
 }
 
 #pragma mark UITableViewDelegate&&dataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+
+    return 4;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return typeArray.count;
+    return 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    return TABLECELL_H;
+    return 150;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+
+    return 10;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+
+    return 0.1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     static NSString *identtifier = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identtifier];
+    Main4Cell *cell = [tableView dequeueReusableCellWithIdentifier:identtifier];
     if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identtifier];
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"Main4Cell" owner:self options:nil] lastObject];
     }
-    cell.selectedBackgroundView = [[UIView alloc]initWithFrame:cell.frame];
-    cell.selectedBackgroundView.backgroundColor = backgroudColor;
-    cell.textLabel.text = typeArray[indexPath.row];
-    cell.textLabel.font = [UIFont systemFontOfSize:12];
+    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    //将点击的cell移动到中间位置
-    CGFloat offset = cell.center.y - tableView.height/2;
-    
-    if (offset > tableView.contentSize.height - tableView.height) {
-        
-        offset = tableView.contentSize.height - tableView.height;
-    }
-    
-    if (offset < 0) {
-        offset = 0;
-    }
-    
-    FxLog(@"offset = %f",offset);
-    FxLog(@"%f",tableView.contentSize.height - tableView.height);
-    
-    [tableView setContentOffset:CGPointMake(0, offset) animated:YES];
-    
+    UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+    ProduceDetailViewController *produceDetail = [mainSB instantiateViewControllerWithIdentifier:@"ProduceDetailViewController"];
+    [self.navigationController pushViewController:produceDetail animated:YES];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -134,48 +206,5 @@
     typeTableView.separatorInset = UIEdgeInsetsZero;
     typeTableView.layoutMargins = UIEdgeInsetsZero;
 }
-
-#pragma mark  UICollectionDataSource&&delegate
-#pragma mark  CollectionViewDelegate
-//返回section数量
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
-{
-    return 1;
-}
-
-//必须实现，返回每个section中item的数量
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    return 10;
-    
-}
-
-//返回页眉和页脚
--(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-{
-    ClassityCollecteHead *scenicHead= nil;
-    if ([kind isEqual:UICollectionElementKindSectionHeader]) {
-        scenicHead = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"MY_header" forIndexPath:indexPath];
-    }
-
-    return scenicHead;
-}
-
-//必须实现，返回每个item的内容
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    ClassityCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MY_CELL" forIndexPath:indexPath];
-
-    return cell;
-}
-
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    ClassifyDetailViewController *classifyDetail = [[ClassifyDetailViewController alloc]init];
-    [self.navigationController pushViewController:classifyDetail animated:YES];
-}
-
 
 @end

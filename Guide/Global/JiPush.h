@@ -1,11 +1,3 @@
-//
-//  JiPush.h
-//  Guide
-//
-//  Created by ksm on 16/4/28.
-//  Copyright © 2016年 ksm. All rights reserved.
-//
-
 static NSString *appKey = @"5b93be623e017ad019448740";
 static NSString *channel = @"Publish channel";
 static BOOL isProduction = true;

@@ -1,11 +1,3 @@
-//
-//  LDXScore.m
-//  LDXScore
-//
-//  Created by Leen on 14-10-30.
-//  Copyright (c) 2014年 Hillsun Cloud Commerce Technology Co. Ltd. All rights reserved.
-//
-
 #import "LDXScore.h"
 
 

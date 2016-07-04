@@ -1,17 +1,10 @@
-//
-//  ProduceDetailViewController.m
-//  Guide
-//
-//  Created by 张海勇 on 16/5/27.
-//  Copyright © 2016年 ksm. All rights reserved.
-//
-
 #import "ProduceDetailViewController.h"
 #import "MeumList.h"
 #import "ProDetailCell1.h"
 #import "ProDetailCell2.h"
 #import "ProDetailCell.h"
 #import "UserSourceViewController.h"
+#import "ClassifyTerm3ViewController.h"
 @interface ProduceDetailViewController ()<UITableViewDelegate,UITableViewDataSource>{
 
     //资源 档期 样刊切换标示
@@ -62,7 +55,7 @@
         return 320;
     }else if(indexPath.row == 1){
         
-        return 84;
+        return 84+45;
         
     }else {
     
@@ -99,6 +92,7 @@
             
         }
         
+        //资源描述 档期规格 样刊案例
         [cell proDetailTypeChange:^(NSInteger flag) {
             typeFlag = flag;
             NSIndexPath *lastIndex = [NSIndexPath indexPathForRow:2 inSection:0];
@@ -107,10 +101,21 @@
             [self.tableView endUpdates];
         }];
         
+        //选择商品使用该资源
         [cell toUserSource:^{    
             UIStoryboard *SB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
             UserSourceViewController *toUSerSource = [SB instantiateViewControllerWithIdentifier:@"UserSourceViewController"];
             [self.navigationController pushViewController:toUSerSource animated:YES];
+            
+        }];
+        
+        
+        //选择区域及门店
+        [cell toStores:^{
+            
+            UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+            ClassifyTerm3ViewController *term3 = [mainSB instantiateViewControllerWithIdentifier:@"ClassifyTerm3ViewController"];
+            [self.navigationController pushViewController:term3 animated:YES];
             
         }];
         

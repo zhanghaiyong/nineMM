@@ -1,11 +1,3 @@
-//
-//  SDKKey.h
-//  Guide
-//
-//  Created by ksm on 16/4/28.
-//  Copyright © 2016年 ksm. All rights reserved.
-//
-
 static NSString *RCIMKey = @"25wehl3uwcrnw";
 
 #import <Foundation/Foundation.h>

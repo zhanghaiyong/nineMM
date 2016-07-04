@@ -1,11 +1,3 @@
-//
-//  NSDate+Tools.m
-//  XFile
-//
-//  Created by 青秀斌 on 12-9-16.
-//  Copyright (c) 2012年 深圳元度科技有限公司. All rights reserved.
-//
-
 #import "NSDate+Tools.h"
 #import "NSDate+HYExtension.h"
 

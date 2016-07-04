@@ -24,30 +24,35 @@
                                     <constraint firstAttribute="width" constant="25" id="usR-HB-k4O"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="001" translatesAutoresizingMaskIntoConstraints="NO" id="hzt-QA-tZw">
-                                <rect key="frame" x="40" y="5" width="60" height="80"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="c7D-et-tHr"/>
-                                    <constraint firstAttribute="height" constant="80" id="t5R-LZ-KWR"/>
-                                </constraints>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1919酒类直供 红花郎 十年陈酿 53度酱香型 白酒 10年 朗酒 500ml" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dhy-Ze-SdO">
-                                <rect key="frame" x="110" y="18" width="190" height="54"/>
+                                <rect key="frame" x="40" y="15" width="260" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="编码：1973465768" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m2f-67-VMF">
+                                <rect key="frame" x="40" y="62.5" width="116.5" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Dhy-Ze-SdO" firstAttribute="leading" secondItem="hzt-QA-tZw" secondAttribute="trailing" constant="10" id="DKA-kA-uHW"/>
+                            <constraint firstAttribute="bottom" secondItem="m2f-67-VMF" secondAttribute="bottom" constant="10" id="2hC-ye-RQY"/>
+                            <constraint firstAttribute="trailing" secondItem="Dhy-Ze-SdO" secondAttribute="trailing" constant="10" id="AtY-Gq-MQg"/>
+                            <constraint firstItem="Dhy-Ze-SdO" firstAttribute="leading" secondItem="Nvo-ch-wzA" secondAttribute="trailing" constant="10" id="ISe-aA-yo8"/>
                             <constraint firstItem="Nvo-ch-wzA" firstAttribute="centerY" secondItem="TxD-c9-p5D" secondAttribute="centerY" id="f56-2S-Os8"/>
+                            <constraint firstItem="m2f-67-VMF" firstAttribute="leading" secondItem="Nvo-ch-wzA" secondAttribute="trailing" constant="10" id="lHE-IC-DW7"/>
                             <constraint firstItem="Nvo-ch-wzA" firstAttribute="leading" secondItem="TxD-c9-p5D" secondAttribute="leading" constant="5" id="n7j-gL-3Lt"/>
-                            <constraint firstItem="Dhy-Ze-SdO" firstAttribute="centerY" secondItem="hzt-QA-tZw" secondAttribute="centerY" id="w5K-z8-b2C"/>
+                            <constraint firstItem="Dhy-Ze-SdO" firstAttribute="top" secondItem="TxD-c9-p5D" secondAttribute="top" constant="15" id="sJ7-Kk-2ou"/>
                             <constraint firstAttribute="trailing" secondItem="Dhy-Ze-SdO" secondAttribute="trailing" constant="10" id="wik-Ic-9ni"/>
-                            <constraint firstItem="hzt-QA-tZw" firstAttribute="centerY" secondItem="Nvo-ch-wzA" secondAttribute="centerY" id="xHX-R5-oZ0"/>
-                            <constraint firstItem="hzt-QA-tZw" firstAttribute="leading" secondItem="Nvo-ch-wzA" secondAttribute="trailing" constant="10" id="z7Q-b9-FsV"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="wik-Ic-9ni"/>
+                            </mask>
+                        </variation>
                     </view>
                 </subviews>
                 <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
@@ -62,7 +67,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="001" width="200" height="200"/>
         <image name="icon_gender_normal_iphone" width="15" height="15"/>
     </resources>
 </document>

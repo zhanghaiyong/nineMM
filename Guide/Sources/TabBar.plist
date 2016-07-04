@@ -8,9 +8,9 @@
 		<key>Title</key>
 		<string>玖妈妈</string>
 		<key>Image</key>
-		<string>icon_talk_iphone</string>
+		<string>home</string>
 		<key>SelectImage</key>
-		<string>icon_talk_selected_iphone</string>
+		<string>home1</string>
 	</dict>
 	<dict>
 		<key>ClassName</key>
@@ -18,9 +18,9 @@
 		<key>Title</key>
 		<string>分类</string>
 		<key>Image</key>
-		<string>icon_order_iphone</string>
+		<string>分类</string>
 		<key>SelectImage</key>
-		<string>icon_order_selected_iphone</string>
+		<string>分类1</string>
 	</dict>
 	<dict>
 		<key>ClassName</key>
@@ -28,9 +28,9 @@
 		<key>Title</key>
 		<string>购物车</string>
 		<key>Image</key>
-		<string>icon_talk_iphone</string>
+		<string>-购物车</string>
 		<key>SelectImage</key>
-		<string>icon_talk_selected_iphone</string>
+		<string>-购物车1</string>
 	</dict>
 	<dict>
 		<key>ClassName</key>
@@ -38,9 +38,9 @@
 		<key>Title</key>
 		<string>我的</string>
 		<key>Image</key>
-		<string>icon_talk_iphone</string>
+		<string>我的</string>
 		<key>SelectImage</key>
-		<string>icon_talk_selected_iphone</string>
+		<string>我的1</string>
 	</dict>
 </array>
 </plist>

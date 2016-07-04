@@ -12,45 +12,70 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oln-vD-24g">
-                    <rect key="frame" x="131" y="0.0" width="131" height="43"/>
-                    <state key="normal" title="折扣"/>
+                    <rect key="frame" x="98" y="0.0" width="98" height="43"/>
+                    <state key="normal" title="档期时间">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
                     <connections>
                         <action selector="tapButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="GlL-ie-ciQ"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="1002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P5W-5T-fkp">
-                    <rect key="frame" x="262" y="0.0" width="131" height="43"/>
-                    <state key="normal" title="筛选"/>
-                    <connections>
-                        <action selector="tapButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="vVd-dw-8pC"/>
-                    </connections>
-                </button>
                 <button opaque="NO" tag="1000" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="41u-py-uEz">
-                    <rect key="frame" x="0.0" y="0.0" width="131" height="43"/>
-                    <state key="normal" title="时间"/>
+                    <rect key="frame" x="0.0" y="0.0" width="98.5" height="43"/>
+                    <state key="normal" title="资源分类">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
                     <connections>
                         <action selector="tapButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="aW1-CG-I8c"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="1003" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z7V-o1-eSE">
+                    <rect key="frame" x="295" y="0.0" width="98" height="43"/>
+                    <state key="normal" title="更多...">
+                        <color key="titleColor" red="0.58823529409999997" green="0.58823529409999997" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="tapButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="RL9-xs-3FY"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="1002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P5W-5T-fkp">
+                    <rect key="frame" x="197" y="0.0" width="98.5" height="43"/>
+                    <state key="normal" title="区域范围">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="tapButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="vVd-dw-8pC"/>
                     </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="P5W-5T-fkp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="167-vP-zvk"/>
+                <constraint firstItem="z7V-o1-eSE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="4Ie-h3-boK"/>
                 <constraint firstAttribute="bottom" secondItem="41u-py-uEz" secondAttribute="bottom" id="7jf-9M-TeU"/>
                 <constraint firstItem="Oln-vD-24g" firstAttribute="leading" secondItem="41u-py-uEz" secondAttribute="trailing" id="IUm-hX-AIT"/>
                 <constraint firstItem="P5W-5T-fkp" firstAttribute="leading" secondItem="Oln-vD-24g" secondAttribute="trailing" id="M3Z-0x-kp0"/>
                 <constraint firstItem="Oln-vD-24g" firstAttribute="height" secondItem="41u-py-uEz" secondAttribute="height" id="MPu-cy-tfi"/>
+                <constraint firstAttribute="trailing" secondItem="z7V-o1-eSE" secondAttribute="trailing" id="NHP-iJ-zBs"/>
+                <constraint firstAttribute="bottom" secondItem="z7V-o1-eSE" secondAttribute="bottom" id="Oha-4s-tF6"/>
                 <constraint firstItem="Oln-vD-24g" firstAttribute="width" secondItem="41u-py-uEz" secondAttribute="width" id="PSP-cU-twj"/>
+                <constraint firstItem="z7V-o1-eSE" firstAttribute="leading" secondItem="P5W-5T-fkp" secondAttribute="trailing" id="Tps-21-TCj"/>
                 <constraint firstAttribute="bottom" secondItem="P5W-5T-fkp" secondAttribute="bottom" id="TyQ-PE-deq"/>
                 <constraint firstItem="Oln-vD-24g" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="UnC-SH-FXf"/>
                 <constraint firstItem="41u-py-uEz" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Zcj-Pr-WbN"/>
                 <constraint firstAttribute="bottom" secondItem="Oln-vD-24g" secondAttribute="bottom" id="c9x-Sh-7hb"/>
+                <constraint firstItem="z7V-o1-eSE" firstAttribute="width" secondItem="P5W-5T-fkp" secondAttribute="width" id="cyN-zs-BRg"/>
                 <constraint firstAttribute="trailing" secondItem="P5W-5T-fkp" secondAttribute="trailing" id="hXm-Ay-uZv"/>
                 <constraint firstItem="P5W-5T-fkp" firstAttribute="height" secondItem="41u-py-uEz" secondAttribute="height" id="p6g-jo-2NJ"/>
                 <constraint firstItem="P5W-5T-fkp" firstAttribute="width" secondItem="41u-py-uEz" secondAttribute="width" id="pKv-QR-W8D"/>
                 <constraint firstItem="41u-py-uEz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="pzV-UW-Ldr"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="hXm-Ay-uZv"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="81.5" y="385.5"/>
         </view>
     </objects>

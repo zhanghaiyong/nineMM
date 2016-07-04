@@ -1,11 +1,3 @@
-//
-//  Defaults.h
-//  有车生活
-//
-//  Created by ksm on 15/11/2.
-//  Copyright © 2015年 ksm. All rights reserved.
-//
-
 #ifndef Defaults_h
 #define Defaults_h
 
@@ -26,8 +18,9 @@
 
 #define TintColor        RGB(255, 255, 255)
 #define MainColor        RGB(215, 158, 9)
+
 #define DeepMainColor    RGB(248, 195, 49)
-#define backgroudColor   RGB(240, 242, 245)
+#define backgroudColor   RGB(237, 236, 236)
 #define lever1Color      RGB(74, 74, 74)
 #define lever2Color      RGB(166, 166, 166)
 #define lever3Color      RGB(212, 212, 212)
@@ -39,6 +32,13 @@
 #define lever2Font         [UIFont systemFontOfSize:14]
 #define lever3Font         [UIFont systemFontOfSize:12]
 #define lever4Font         [UIFont systemFontOfSize:10]
+
+#define ORDERTYPE1 @"全部订单"
+#define ORDERTYPE2 @"待审核"
+#define ORDERTYPE3 @"已取消"
+#define ORDERTYPE4 @"执行中"
+#define ORDERTYPE5 @"申诉订单"
+
 
 
 
