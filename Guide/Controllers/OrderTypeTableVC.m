@@ -8,7 +8,7 @@
 
 #import "OrderTypeTableVC.h"
 #import "OrderCell.h"
-#import "OrderComplainCtrl.h"
+#import "OrderDetailTabViewCtrl.h"
 @interface OrderTypeTableVC ()<UITableViewDelegate,UITableViewDataSource>
 {
 
@@ -18,11 +18,11 @@
 
 @implementation OrderTypeTableVC
 
-- (void)viewWillAppear:(BOOL)animated {
-    
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = NO;
-}
+//- (void)viewWillAppear:(BOOL)animated {
+//    
+//    [super viewWillAppear:animated];
+//    self.navigationController.navigationBar.hidden = NO;
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -62,9 +62,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if ([_showDic objectForKey:[NSString stringWithFormat:@"%ld",indexPath.section]]) {
-        return 190+160;
+        return 180+160;
     }
-    return 190;
+    return 180;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -95,8 +95,8 @@
     [cell tapToChechOrderDetail:^{
         
         UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
-        OrderComplainCtrl *OrderComplain = [mainSB instantiateViewControllerWithIdentifier:@"OrderComplainCtrl"];
-        [self.navigationController pushViewController:OrderComplain animated:YES];
+        OrderDetailTabViewCtrl *orderDetail = [mainSB instantiateViewControllerWithIdentifier:@"OrderDetailTabViewCtrl"];
+        [self.navigationController pushViewController:orderDetail animated:YES];
     }];
     
     return cell;

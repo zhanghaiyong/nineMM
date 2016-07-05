@@ -1,13 +1,20 @@
 #import "MethodBagViewController.h"
 #import "MethodBagCell.h"
-#import "EditSourceViewController.h"
+
 @interface MethodBagViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableV;
+@property (weak, nonatomic) IBOutlet UIButton *checkoutOrDelete;
+@property (weak, nonatomic) IBOutlet UIButton *collect;
+@property (weak, nonatomic) IBOutlet UILabel *totalPrice;
+@property (weak, nonatomic) IBOutlet UIButton *selectAll;
 
 @end
 
 @implementation MethodBagViewController
+{
 
+    BOOL isEdit;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -36,6 +43,16 @@
 //        cell = [[[NSBundle mainBundle] loadNibNamed:@"MethodBagCell" owner:nil options:nil] lastObject];
 //    }
     MethodBagCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"MethodBagCell" owner:self options:nil] lastObject];
+    if (isEdit) {
+        
+        cell.isSelected.hidden = NO;
+        cell.selectedBtnWidth.constant = 19;
+        
+    }else {
+        
+        cell.isSelected.hidden = YES;
+        cell.selectedBtnWidth.constant = 0;
+    }
     cell.tag = 100+indexPath.row;
     return cell;
 }
@@ -55,9 +72,21 @@
 
 - (void)doRight:(UIButton *)sender {
     
-    UIStoryboard *SB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
-    EditSourceViewController *editSourceList = [SB instantiateViewControllerWithIdentifier:@"EditSourceViewController"];
-    [self.navigationController pushViewController:editSourceList animated:YES];
+    if (isEdit) {
+        
+        self.collect.hidden = YES;
+        [self.checkoutOrDelete setTitle:@"去结算" forState:UIControlStateNormal];
+        isEdit = NO;
+    }else {
+    
+        isEdit = YES;
+        self.collect.hidden = NO;
+        [self.checkoutOrDelete setTitle:@"删除" forState:UIControlStateNormal];
+    }
+    
+    
+    [self.tableV reloadData];
+
 }
 
 @end

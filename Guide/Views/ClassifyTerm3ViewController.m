@@ -69,14 +69,14 @@
     line2.backgroundColor = lineColor;
     [self.view addSubview:line2];
 
-    UIView *line3 = [[UIView alloc]initWithFrame:CGRectMake(0, tableV2.bottom, self.view.width, 1)];
+    UIView *line3 = [[UIView alloc]initWithFrame:CGRectMake(0, tableV2.bottom, self.view.width, 0.8)];
     line3.backgroundColor = lineColor;
     [self.view addSubview:line3];
     
-    UITextField *searchBar = [[UITextField alloc]initWithFrame:CGRectMake(20, tableV2.bottom+10, SCREEN_WIDTH-40, 36)];
+    UITextField *searchBar = [[UITextField alloc]initWithFrame:CGRectMake(20, tableV2.bottom+10, SCREEN_WIDTH-40, 34)];
     searchBar.backgroundColor = lineColor;
     searchBar.placeholder = @"请输入门店关键字";
-    searchBar.layer.cornerRadius = 18;
+    searchBar.layer.cornerRadius = 17;
     searchBar.layer.masksToBounds = YES;
     searchBar.leftViewMode = UITextFieldViewModeAlways;
     UIImageView *searchIcon = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"search"]];

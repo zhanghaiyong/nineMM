@@ -1,6 +1,7 @@
 #import "PersonalViewController.h"
 #import "ButtonView.h"
 #import "OrderTypeTableVC.h"
+#import "OrderComplainCtrl.h"
 @interface PersonalViewController ()<UITableViewDelegate,UITableViewDataSource,ButtonViewDeleage>
 
 @end
@@ -45,6 +46,12 @@
     self.tableView.frame = CGRectMake(0, -20, SCREEN_WIDTH, self.tableView.height);
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
@@ -76,6 +83,11 @@
         OrderTypeTableVC *orderType = [mainSB instantiateViewControllerWithIdentifier:@"OrderTypeTableVC"];
         orderType.orderType = aFlag;
         [self.navigationController pushViewController:orderType animated:YES];
+    }else if (aFlag == 104) {
+    
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        OrderComplainCtrl *OrderComplain = [mainSB instantiateViewControllerWithIdentifier:@"OrderComplainCtrl"];
+        [self.navigationController pushViewController:OrderComplain animated:YES];
     }
     
     

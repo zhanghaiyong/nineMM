@@ -9,7 +9,6 @@
 #import "MainViewController.h"
 #import "ButtonView.h"
 #import "ZHYBannerView.h"
-#import "RecommendView.h"
 #import "Main1Cell.h"
 #import "Main2Cell.h"
 #import "Main3Cell.h"

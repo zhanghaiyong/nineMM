@@ -30,7 +30,7 @@
 
     if (_term1 == nil) {
         
-        ClassifyTerm1 *term1 = [[ClassifyTerm1 alloc]initWithFrame:typeTableView.frame];
+        ClassifyTerm1 *term1 = [[ClassifyTerm1 alloc]initWithFrame:CGRectMake(0, head.bottom, SCREEN_WIDTH, SCREEN_HEIGHT-64-44)];
         _term1 = term1;
     }
     return _term1;
@@ -41,7 +41,7 @@
     if (_term2 == nil) {
         
         ClassifyTerm2 *term2 = [[[NSBundle mainBundle]loadNibNamed:@"ClassifyTerm2" owner:self options:nil] lastObject];
-        term2.frame = typeTableView.frame;
+        term2.frame = CGRectMake(0, head.bottom, SCREEN_WIDTH, SCREEN_HEIGHT-64-44);
         term2.delegate = self;
         _term2 = term2;
     }
@@ -77,7 +77,7 @@
     [self.view addSubview:head];
 
     //商品列表
-    typeTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, head.bottom, SCREEN_WIDTH, SCREEN_HEIGHT-64-44)];
+    typeTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, head.bottom, SCREEN_WIDTH, SCREEN_HEIGHT-64-44-49)];
     typeTableView.delegate = self;
     typeTableView.dataSource = self;
     typeTableView.separatorColor = backgroudColor;
@@ -89,37 +89,34 @@
 #pragma mark ClassifyDetailHeadDelegate
 - (void)searchTerm:(NSInteger)buttonTag {
 
+    if (_term1) {
+        
+        [_term1 removeFromSuperview];
+        _term1 = nil;
+        
+        UIButton *button = [head viewWithTag:1000];
+        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    }
+    
+    if (_term2) {
+        
+        [_term2 removeFromSuperview];
+        _term2 = nil;
+        
+        UIButton *button = [head viewWithTag:1001];
+        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    }
+    
+    
     switch (buttonTag) {
         case 1000:
             
-            if (_term1) {
-                
-                [_term1 removeFromSuperview];
-                _term1 = nil;
-                
-                UIButton *button = [head viewWithTag:1000];
-                [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-                
-            }else {
-                
                 [[UIApplication sharedApplication].keyWindow addSubview:self.term1];
-            }
             
             break;
         case 1001:
-            
-            if (_term2) {
-                
-                [_term2 removeFromSuperview];
-                _term2 = nil;
-                
-                UIButton *button = [head viewWithTag:1001];
-                [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-                
-            }else {
                 
                 [[UIApplication sharedApplication].keyWindow addSubview:self.term2];
-            }
             
             break;
         case 1002:{

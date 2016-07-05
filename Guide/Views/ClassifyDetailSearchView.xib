@@ -327,7 +327,7 @@
                             </state>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DDo-py-T9k">
-                            <rect key="frame" x="190" y="211" width="50" height="200"/>
+                            <rect key="frame" x="190" y="27" width="50" height="568"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="50" id="xiA-8d-axV"/>
                             </constraints>

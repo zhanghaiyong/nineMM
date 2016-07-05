@@ -1,5 +1,6 @@
 #import "BaseViewController.h"
 
-@interface SureOrdersViewController : BaseViewController
+@interface SureOrdersViewController : BaseTableViewController
+
 
 @end

@@ -14,16 +14,25 @@
 
 @implementation OrderComplainCtrl
 
+//- (void)viewWillAppear:(BOOL)animated {
+//    
+//    [super viewWillAppear:animated];
+//    self.navigationController.navigationBar.hidden = NO;
+//}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.title = @"发起申诉";
 }
-
 
 #pragma mark UITableViewDelegate&&UITableViewDataSource
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 
-    return 10;
+    if (section == 0) {
+        return 10;
+    }
+    return 0.1;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
 
