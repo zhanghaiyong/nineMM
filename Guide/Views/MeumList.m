@@ -1,11 +1,15 @@
-#import "MeumList.h"
 
-@implementation MeumList
-{
+
+
+#import "MeumList.h"
+#import "Term1Cell.h"
+@implementation MeumList {
+    
     UITableView *tableV;
+    
 }
-- (id)initWithFrame:(CGRect)frame
-{
+
+- (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         [self setBackgroundColor:[UIColor clearColor]];
@@ -19,42 +23,52 @@
 
 - (void)initTableV {
 
-    tableV = [[UITableView alloc]initWithFrame:CGRectMake(0, 10, self.frame.size.width, 40*4)];
+    tableV = [[UITableView alloc]initWithFrame:CGRectMake(0, 10, self.frame.size.width, MEUM_CELL_H*5)];
     tableV.delegate = self;
     tableV.dataSource = self;
     tableV.backgroundColor = [UIColor clearColor];
-//    tableV.layer.borderColor = lever3Color.CGColor;
-//    tableV.layer.borderWidth = 1;
-//    tableV.layer.cornerRadius = 4;
-    //    tableV.separatorColor = catOffColor;
+    tableV.separatorColor = [UIColor clearColor];
     tableV.scrollEnabled = NO;
     [self addSubview:tableV];
+}
+
+-(void)setTitleArr:(NSArray *)titleArr {
+
+    _titleArr = titleArr;
+
+}
+
+- (void)setImageArr:(NSArray *)imageArr {
+
+    _imageArr = imageArr;
+    [tableV reloadData];
+    
 }
 
 #pragma mark UITableVIewDelegate------------
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 4;
+    return self.titleArr.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return 40;
+    return MEUM_CELL_H;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *identifier = @"cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    Term1Cell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
     if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell = [[[NSBundle mainBundle]loadNibNamed:@"Term1Cell" owner:self options:nil]lastObject];
     }
-    //    cell.textLabel.font = MediumFont;
-    //    cell.textLabel.textColor = deepGray;
     cell.backgroundColor = [UIColor clearColor];
-    cell.textLabel.text = @"测试";
+    cell.meumNameLabel.text = self.titleArr[indexPath.row];
+    [cell.logoBtn setImage:[UIImage imageNamed:self.imageArr[indexPath.row]] forState:UIControlStateNormal];
+    
     return cell;
 }
 
@@ -62,10 +76,7 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-//    if ([self.delegate respondsToSelector:@selector(closeTableV)]) {
-//        
-//        [self.delegate closeTableV];
-//    }
+
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPat {

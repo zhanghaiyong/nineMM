@@ -10,10 +10,12 @@
         
         UIButton *btn =  (UIButton *)[self viewWithTag:i+1000];
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        btn.selected = NO;
     }
     
     UIButton *button = (UIButton *)sender;
     [button setTitleColor:MainColor forState:UIControlStateNormal];
+    button.selected = YES;
     
     if ([self.delegate respondsToSelector:@selector(searchTerm:)]) {
         

@@ -59,16 +59,21 @@
 - (void)initTableViews {
     
     //搜索框
-    SearchBar *search = [[[NSBundle mainBundle] loadNibNamed:@"SearchBar" owner:self options:nil] lastObject];
-    search.frame = CGRectMake(0, -20, SCREEN_WIDTH, 44);
-    search.searchTF.backgroundColor = lineColor;
-    search.searchTF.leftViewMode = UITextFieldViewModeAlways;
-    UIImageView *searchIcon = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"search"]];
+    SearchBar *searchBar = [[[NSBundle mainBundle] loadNibNamed:@"SearchBar" owner:self options:nil] lastObject];
+    searchBar.frame = CGRectMake(0, -20, SCREEN_WIDTH, 44);
+    searchBar.searchTF.backgroundColor = backgroudColor;
+    
+    searchBar.searchTF.leftViewMode = UITextFieldViewModeAlways;
+    UIImageView *searchIcon = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"iconfont-fangdajing"]];
     //将左边的图片向右移动一定距离
     searchIcon.width +=10;
     searchIcon.contentMode = UIViewContentModeCenter;
-    search.searchTF.leftView = searchIcon;
-    self.navigationItem.titleView = search;
+    searchBar.searchTF.leftView = searchIcon;
+    
+    [searchBar.msgFlagButton setImage:[UIImage imageNamed:@"消息"] forState:UIControlStateNormal];
+    [searchBar.msgFlagButton setImage:[UIImage imageNamed:@"消息有提示"] forState:UIControlStateSelected];
+    
+    self.navigationItem.titleView = searchBar;
     
     //分类头部
     head = [[[NSBundle mainBundle] loadNibNamed:@"ClassifyDetailHead" owner:self options:nil] lastObject];
@@ -88,40 +93,84 @@
 
 #pragma mark ClassifyDetailHeadDelegate
 - (void)searchTerm:(NSInteger)buttonTag {
-
-    if (_term1) {
-        
-        [_term1 removeFromSuperview];
-        _term1 = nil;
-        
-        UIButton *button = [head viewWithTag:1000];
-        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    }
-    
-    if (_term2) {
-        
-        [_term2 removeFromSuperview];
-        _term2 = nil;
-        
-        UIButton *button = [head viewWithTag:1001];
-        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    }
-    
     
     switch (buttonTag) {
         case 1000:
             
+            if (_term2) {
+                
+                [_term2 removeFromSuperview];
+                _term2 = nil;
+                
+                UIButton *button = [head viewWithTag:1001];
+                button.selected = NO;
+                [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            }
+            
+            if (_term1) {
+                
+                [_term1 removeFromSuperview];
+                _term1 = nil;
+                
+                UIButton *button = [head viewWithTag:1000];
+                button.selected = NO;
+                [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            }else {
                 [[UIApplication sharedApplication].keyWindow addSubview:self.term1];
+            }
             
             break;
         case 1001:
+            
+            if (_term1) {
+                
+                [_term1 removeFromSuperview];
+                _term1 = nil;
+                
+                UIButton *button = [head viewWithTag:1000];
+                button.selected = NO;
+                [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            }
+            
+            if (_term2) {
+                
+                [_term2 removeFromSuperview];
+                _term2 = nil;
+                
+                UIButton *button = [head viewWithTag:1001];
+                button.selected = NO;
+                [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                
+            }else {
                 
                 [[UIApplication sharedApplication].keyWindow addSubview:self.term2];
+            }
             
             break;
         case 1002:{
             
+            if (_term1) {
+                
+                [_term1 removeFromSuperview];
+                _term1 = nil;
+                
+                UIButton *button = [head viewWithTag:1000];
+                button.selected = NO;
+                [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            }
+            
+            if (_term2) {
+                
+                [_term2 removeFromSuperview];
+                _term2 = nil;
+                
+                UIButton *button = [head viewWithTag:1001];
+                button.selected = NO;
+                [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            }
+            
             UIButton *button = [head viewWithTag:1002];
+            button.selected = NO;
             [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             
             UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
@@ -160,7 +209,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    return 150;
+    return 170;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

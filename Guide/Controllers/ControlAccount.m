@@ -29,7 +29,7 @@
     if (section == 1) {
         return 0.1;
     }
-    return 15;
+    return 11;
 }
 
 

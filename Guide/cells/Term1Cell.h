@@ -10,4 +10,6 @@
 
 @interface Term1Cell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIButton *logoBtn;
+@property (weak, nonatomic) IBOutlet UILabel *meumNameLabel;
 @end

@@ -11,7 +11,10 @@
     NSInteger typeFlag;
 }
 @property (nonatomic,strong)MeumList *meumList;
+@property (nonatomic,strong)NSArray *meumTitles;
+@property (nonatomic,strong)NSArray *meumLogos;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 
 @end
 
@@ -20,12 +23,29 @@
 - (MeumList *)meumList {
     
     if (_meumList == nil) {
-        MeumList *meumList = [[MeumList alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-110, 60, 90,4*40+10)];
-//        categoryList.delegate = self;
+        MeumList *meumList = [[MeumList alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-120, 60, 100,5*MEUM_CELL_H+10)];
         _meumList = meumList;
        
     }
     return _meumList;
+}
+
+- (NSArray *)meumTitles {
+
+    if (_meumTitles == nil) {
+        NSArray *meumTitles = [NSArray arrayWithObjects:@"消息",@"首页",@"搜索",@"我的收藏",@"浏览记录", nil];
+        _meumTitles = meumTitles;
+    }
+    return _meumTitles;
+}
+
+- (NSArray *)meumLogos {
+    
+    if (_meumLogos == nil) {
+        NSArray *meumLogos = [NSArray arrayWithObjects:@"消息",@"下载(5)-1",@"搜素o",@"收藏",@"下载(8)", nil];
+        _meumLogos = meumLogos;
+    }
+    return _meumLogos;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -39,7 +59,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self setNavigationRight:@"icon_order_iphone"];
+    self.title = @"资源详情";
+    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn sizeToFit];
+    [btn setImage:[UIImage imageNamed:@"更多"] forState:UIControlStateNormal];
+    [btn setImage:[UIImage imageNamed:@"组-22"] forState:UIControlStateSelected];
+    [btn addTarget:self action:@selector(showMeumList) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    self.navigationItem.rightBarButtonItem = item;
+    
+    
 }
 
 #pragma mark  UITableViewDataSource&&delegate
@@ -52,7 +82,7 @@
     
     if (indexPath.row == 0) {
         
-        return 320;
+        return 310;
     }else if(indexPath.row == 1){
         
         return 84+45;
@@ -131,10 +161,12 @@
     }
 }
 
-- (void)doRight:(UIButton *)sender
+- (void)showMeumList
 {
     if (_meumList == nil) {
         
+        self.meumList.titleArr = self.meumTitles;
+        self.meumList.imageArr = self.meumLogos;
        [self.navigationController.view addSubview:self.meumList];
         
     }else {

@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="5" width="320" height="79.5"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ayU-iF-j0J">
-                                <rect key="frame" x="5" y="29.5" width="19" height="19"/>
+                                <rect key="frame" x="5" y="30" width="19" height="19"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="19" id="NYO-52-Pee"/>
@@ -31,41 +31,41 @@
                                 </connections>
                             </button>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WLL-3a-N5k">
-                                <rect key="frame" x="210" y="47.5" width="100" height="28"/>
+                                <rect key="frame" x="210" y="49" width="100" height="25"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4D-0k-zGd">
-                                        <rect key="frame" x="30" y="0.0" width="40" height="28"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4D-0k-zGd">
+                                        <rect key="frame" x="30" y="0.0" width="40" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="o50-aP-6T4"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorWithUIColor ">
                                                 <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="1"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="0.5"/>
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gbz-ho-E5A">
-                                        <rect key="frame" x="0.0" y="0.0" width="30" height="28"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="+">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="addAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="nN1-Fo-Dal"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g2g-n7-keE">
-                                        <rect key="frame" x="70" y="0.0" width="30" height="28"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="25"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" title="-">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="reduceAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="6Wo-l8-euI"/>
+                                            <action selector="reduceAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="N38-L6-fCs"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g2g-n7-keE">
+                                        <rect key="frame" x="70" y="0.0" width="30" height="25"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" title="+">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="addAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="YRH-16-MRl"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -85,11 +85,11 @@
                                     <constraint firstItem="g2g-n7-keE" firstAttribute="leading" secondItem="P4D-0k-zGd" secondAttribute="trailing" id="gPd-II-1yq"/>
                                     <constraint firstAttribute="trailing" secondItem="g2g-n7-keE" secondAttribute="trailing" id="hln-GU-oBO"/>
                                     <constraint firstItem="P4D-0k-zGd" firstAttribute="centerY" secondItem="WLL-3a-N5k" secondAttribute="centerY" id="iX6-kz-5yh"/>
-                                    <constraint firstAttribute="height" constant="28" id="lBH-pg-h9h"/>
+                                    <constraint firstAttribute="height" constant="25" id="lBH-pg-h9h"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="qQi-4a-K9i"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="1"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="0.5"/>
                                     <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorWithUIColor ">
                                         <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
@@ -107,11 +107,11 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="测试数据测试数据测试数据测试数据测试数据测试数据测试数据测试数据" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ax-uI-q79">
                                 <rect key="frame" x="34" y="10" width="276" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="酒币 779674" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kML-vn-hFh">
-                                <rect key="frame" x="34" y="53.5" width="81" height="17"/>
+                                <rect key="frame" x="34" y="53" width="81" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="1" green="0.1345214673" blue="0.1072103278" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -155,12 +155,12 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
-                <outlet property="addButton" destination="Gbz-ho-E5A" id="xug-OT-uAF"/>
+                <outlet property="addButton" destination="g2g-n7-keE" id="Nte-ir-W8d"/>
                 <outlet property="count" destination="P4D-0k-zGd" id="xsP-pf-SxD"/>
                 <outlet property="isSelected" destination="ayU-iF-j0J" id="vtw-FE-V73"/>
                 <outlet property="price" destination="kML-vn-hFh" id="iS8-tq-ZXQ"/>
                 <outlet property="produceName" destination="1Ax-uI-q79" id="4Hb-xM-9Pl"/>
-                <outlet property="reduceButton" destination="g2g-n7-keE" id="0UN-Sv-EGf"/>
+                <outlet property="reduceButton" destination="Gbz-ho-E5A" id="4jm-iS-YaH"/>
                 <outlet property="selectedBtnWidth" destination="NYO-52-Pee" id="CBS-kV-9Lo"/>
             </connections>
             <point key="canvasLocation" x="200" y="216"/>

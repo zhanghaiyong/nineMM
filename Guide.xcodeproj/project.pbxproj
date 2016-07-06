@@ -114,7 +114,6 @@
 		BFF433A91D15200200D21427 /* ModifyPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF433A81D15200200D21427 /* ModifyPassword.m */; };
 		BFF433AC1D15202800D21427 /* ModifyEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF433AB1D15202800D21427 /* ModifyEmail.m */; };
 		BFF433D51D152B9A00D21427 /* MeumList.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF433D41D152B9A00D21427 /* MeumList.m */; };
-		BFF472B21D179B2C00516EE3 /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BFF472B11D179B2C00516EE3 /* search@2x.png */; };
 		BFF472B51D17C93F00516EE3 /* MyCoinsController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF472B41D17C93F00516EE3 /* MyCoinsController.m */; };
 		BFF8D40F1D18F5740039600B /* ProDetailCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF8D40D1D18F5740039600B /* ProDetailCell1.m */; };
 		BFF8D4101D18F5740039600B /* ProDetailCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFF8D40E1D18F5740039600B /* ProDetailCell1.xib */; };
@@ -311,7 +310,6 @@
 		BFF433AB1D15202800D21427 /* ModifyEmail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyEmail.m; sourceTree = "<group>"; };
 		BFF433D31D152B9A00D21427 /* MeumList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeumList.h; sourceTree = "<group>"; };
 		BFF433D41D152B9A00D21427 /* MeumList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeumList.m; sourceTree = "<group>"; };
-		BFF472B11D179B2C00516EE3 /* search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search@2x.png"; sourceTree = "<group>"; };
 		BFF472B31D17C93F00516EE3 /* MyCoinsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCoinsController.h; sourceTree = "<group>"; };
 		BFF472B41D17C93F00516EE3 /* MyCoinsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCoinsController.m; sourceTree = "<group>"; };
 		BFF8D40C1D18F5740039600B /* ProDetailCell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProDetailCell1.h; sourceTree = "<group>"; };
@@ -747,7 +745,6 @@
 			children = (
 				BFA2B71F1CF6E96000EB460E /* ClassifyViewController.h */,
 				BFA2B7201CF6E96000EB460E /* ClassifyViewController.m */,
-				BFF472B11D179B2C00516EE3 /* search@2x.png */,
 				BFD69E761CF8212F00B50A6E /* ProduceDetailViewController.h */,
 				BFD69E771CF8212F00B50A6E /* ProduceDetailViewController.m */,
 				BFEEA5901D1A399300B261BF /* UserSourceViewController.h */,
@@ -942,7 +939,6 @@
 				788836D41CBCC9D30030909E /* BirthdayView.xib in Resources */,
 				BFC50F031CFC1BAF00CA7CD5 /* Main2Cell.xib in Resources */,
 				BFD887D01CF976CF00C9DF44 /* MethodBagCell.xib in Resources */,
-				BFF472B21D179B2C00516EE3 /* search@2x.png in Resources */,
 				BFEEA58F1D19996200B261BF /* ProDetailCell.xib in Resources */,
 				BFA2B7041CF6D33E00EB460E /* MainView.storyboard in Resources */,
 				BFED9B8D1D29FFA6000175C5 /* Term1Cell.xib in Resources */,

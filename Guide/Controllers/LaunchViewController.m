@@ -18,11 +18,11 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
 
-//    IndicatorView             = [[UIActivityIndicatorView alloc ]initWithFrame:CGRectMake(250.0,20.0,30.0,30.0)];
-//    IndicatorView.center      = self.view.center;
-//    IndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-//    [self.view addSubview:IndicatorView];
-//    [IndicatorView startAnimating];//启动
+    IndicatorView             = [[UIActivityIndicatorView alloc ]initWithFrame:CGRectMake(250.0,20.0,30.0,30.0)];
+    IndicatorView.center      = self.view.center;
+    IndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+    [self.view addSubview:IndicatorView];
+    [IndicatorView startAnimating];//启动
 
     [self getSessionID];
 }

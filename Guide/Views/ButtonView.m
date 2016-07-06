@@ -38,7 +38,7 @@
     [self addSubview:imageView];
     
     label = [[UILabel alloc]init];
-    label.textColor = [UIColor blackColor];
+    label.textColor = lever1Color;
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont boldSystemFontOfSize:13];
     [self addSubview:label];

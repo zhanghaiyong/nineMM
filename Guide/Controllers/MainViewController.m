@@ -67,19 +67,21 @@
     [super viewDidLoad];
     
     searchBar = [[[NSBundle mainBundle] loadNibNamed:@"SearchBar" owner:self options:nil] lastObject];
-    searchBar.frame = CGRectMake(0, 0, SCREEN_WIDTH, 64);
+    searchBar.frame = CGRectMake(0, 20, SCREEN_WIDTH, 44);
     searchBar.searchTF.backgroundColor = [UIColor whiteColor];
     searchBar.backgroundColor = [UIColor clearColor];
     
-    UIView *paddingView1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 15, searchBar.searchTF.height)];
-    searchBar.searchTF.leftView = paddingView1;
     searchBar.searchTF.leftViewMode = UITextFieldViewModeAlways;
-    
+    UIImageView *searchIcon = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"iconfont-fangdajing"]];
+    //将左边的图片向右移动一定距离
+    searchIcon.width +=10;
+    searchIcon.contentMode = UIViewContentModeCenter;
+    searchBar.searchTF.leftView = searchIcon;
     [self.view addSubview:searchBar];
     
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         
-        [self loadProduceList];
+//        [self loadProduceList];
     }];
     [self.tableView.mj_footer beginRefreshing];
     
@@ -167,16 +169,16 @@
 
     switch (indexPath.section) {
         case 0:
-            return 430;
+            return 370;
             break;
         case 1:
-            return 140;
+            return 150;
             break;
         case 2:
-            return 90;
+            return 126;
             break;
         case 3:
-            return 150;
+            return 170;
             break;
         default:
             break;
@@ -190,14 +192,19 @@
         case 0: {
             
             Main1Cell *cell = [[[NSBundle mainBundle] loadNibNamed:@"Main1Cell" owner:self options:nil] lastObject];
-            //滚动试图
-            ZHYBannerView *bannerView = [cell.contentView viewWithTag:100];
-            NSMutableArray *topImages = [NSMutableArray array];
-            for (TopBannersModel *bannerModel in self.mainStaticModel.topBanners) {
+            
+            if (self.mainStaticModel.topBanners.count > 0) {
                 
-                [topImages addObject:bannerModel.imageId];
+                //滚动试图
+                ZHYBannerView *bannerView = [cell.contentView viewWithTag:100];
+                NSMutableArray *topImages = [NSMutableArray array];
+                for (TopBannersModel *bannerModel in self.mainStaticModel.topBanners) {
+                    
+                    [topImages addObject:bannerModel.imageId];
+                }
+                bannerView.imageArray = topImages;
             }
-            bannerView.imageArray = topImages;
+            
             //按钮
             for (int i = 0; i<self.mainStaticModel.buttons.count; i++) {
                 ButtonView *buttonView = [cell viewWithTag:i+101];
@@ -260,6 +267,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     if (indexPath.section == 3) {
         
         UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];

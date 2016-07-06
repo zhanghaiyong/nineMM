@@ -86,7 +86,7 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineCap(context, kCGLineCapRound);
     CGContextSetLineWidth(context, 1);  //线宽
-    CGContextSetRGBStrokeColor(context, 217 / 255.0, 217 / 255.0, 217 / 255.0, 1.0);  //线的颜色
+    CGContextSetRGBStrokeColor(context, 216 / 255.0, 216 / 255.0, 217 / 216, 1.0);  //线的颜色
     CGContextBeginPath(context);
     
     CGContextMoveToPoint(context, TableWidth*2, 10);  //起点坐标
@@ -160,11 +160,11 @@
         [tableView setContentOffset:CGPointMake(0, offset) animated:YES];
     
     
-//    if (tableView == tableV1) {
-//        
-//        cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
-//        cell.selectedBackgroundView.backgroundColor = [UIColor whiteColor];
-//    }
+    if (tableView == tableV1) {
+        
+        cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
+        cell.selectedBackgroundView.backgroundColor = [UIColor whiteColor];
+    }
     
 }
 

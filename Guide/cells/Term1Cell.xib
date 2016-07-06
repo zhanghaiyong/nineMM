@@ -14,17 +14,18 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QyG-MQ-S05">
-                        <rect key="frame" x="0.0" y="6" width="30" height="30"/>
+                    <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QyG-MQ-S05">
+                        <rect key="frame" x="5" y="6" width="30" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="4ZC-6e-JFN"/>
                             <constraint firstAttribute="width" constant="30" id="OFe-G3-8r2"/>
                         </constraints>
-                        <state key="normal" image="图层-142"/>
+                        <state key="normal" image="圆角矩形-9"/>
+                        <state key="selected" image="组-1"/>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OIr-ua-l53">
-                        <rect key="frame" x="35" y="12.5" width="37.5" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <rect key="frame" x="35" y="13" width="33" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -32,13 +33,18 @@
                 <constraints>
                     <constraint firstItem="OIr-ua-l53" firstAttribute="centerY" secondItem="QyG-MQ-S05" secondAttribute="centerY" id="3yq-AF-qCh"/>
                     <constraint firstItem="QyG-MQ-S05" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="8wB-ab-DOK"/>
-                    <constraint firstItem="QyG-MQ-S05" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="KcZ-PI-EhU"/>
-                    <constraint firstItem="OIr-ua-l53" firstAttribute="leading" secondItem="QyG-MQ-S05" secondAttribute="trailing" constant="5" id="c6O-mg-zdD"/>
+                    <constraint firstItem="QyG-MQ-S05" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="KcZ-PI-EhU"/>
+                    <constraint firstItem="OIr-ua-l53" firstAttribute="leading" secondItem="QyG-MQ-S05" secondAttribute="trailing" id="c6O-mg-zdD"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="logoBtn" destination="QyG-MQ-S05" id="699-ik-DBg"/>
+                <outlet property="meumNameLabel" destination="OIr-ua-l53" id="Der-4e-QhD"/>
+            </connections>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="图层-142" width="27" height="27"/>
+        <image name="圆角矩形-9" width="14" height="13"/>
+        <image name="组-1" width="14" height="13"/>
     </resources>
 </document>

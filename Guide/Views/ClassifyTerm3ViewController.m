@@ -36,6 +36,7 @@
     tableV1.delegate = self;
     tableV1.dataSource = self;
     tableV1.bounces = NO;
+    tableV1.separatorColor = lineColor;
     tableV1.showsVerticalScrollIndicator = NO;
     tableV1.showsHorizontalScrollIndicator = NO;
     [tableV1 setSeparatorInset:UIEdgeInsetsMake(0, -8, 0, 0)];
@@ -47,6 +48,7 @@
     tableV2.bounces = NO;
     tableV2.showsVerticalScrollIndicator = NO;
     tableV2.showsHorizontalScrollIndicator = NO;
+    tableV2.separatorColor = lineColor;
     [self.view addSubview:tableV2];
     
     tableV3 = [[UITableView alloc]initWithFrame:CGRectMake(tableV2.right, tableV1.top, TableWidth*3, TableHeight)];
@@ -55,6 +57,7 @@
     tableV3.bounces = NO;
     tableV3.showsVerticalScrollIndicator = NO;
     tableV3.showsHorizontalScrollIndicator = NO;
+    tableV3.separatorColor = lineColor;
     [self.view addSubview:tableV3];
     
     UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 10, self.view.width, 1)];
@@ -73,8 +76,9 @@
     line3.backgroundColor = lineColor;
     [self.view addSubview:line3];
     
-    UITextField *searchBar = [[UITextField alloc]initWithFrame:CGRectMake(20, tableV2.bottom+10, SCREEN_WIDTH-40, 34)];
-    searchBar.backgroundColor = lineColor;
+    UITextField *searchBar = [[UITextField alloc]initWithFrame:CGRectMake(20, tableV2.bottom+10, SCREEN_WIDTH-40, 30)];
+    searchBar.font = lever2Font;
+    searchBar.backgroundColor = backgroudColor;
     searchBar.placeholder = @"请输入门店关键字";
     searchBar.layer.cornerRadius = 17;
     searchBar.layer.masksToBounds = YES;
@@ -100,7 +104,7 @@
     [self.view addSubview:storeTable];
     
     
-    UIButton *sender = [[UIButton alloc]initWithFrame:CGRectMake(10, storeTable.bottom+10, self.view.width-20, 40)];
+    UIButton *sender = [[UIButton alloc]initWithFrame:CGRectMake(10, storeTable.bottom+10, self.view.width-20, 44)];
     [sender setTitle:@"确定" forState:UIControlStateNormal];
     [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     sender.backgroundColor = MainColor;
@@ -157,9 +161,10 @@
         if (!cell) {
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         }
-        
+        cell.textLabel.font = lever2Font;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.textLabel.text = @"测试";
+        
         if (tableView == tableV1) {
             cell.backgroundColor = backgroudColor;
         }

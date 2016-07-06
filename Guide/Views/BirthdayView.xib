@@ -14,30 +14,14 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qF4-l1-bDY">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ctb-Pi-KpD">
-                            <rect key="frame" x="220" y="0.0" width="50" height="40"/>
-                            <color key="backgroundColor" red="0.91764705879999997" green="0.73725490199999999" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="40" id="YJm-ov-kDY"/>
-                                <constraint firstAttribute="width" constant="50" id="aJ2-GG-ieF"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal" title="取消">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="cancleAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="yjr-kx-uBX"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUx-61-HGQ">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUx-61-HGQ">
                             <rect key="frame" x="270" y="0.0" width="50" height="40"/>
                             <color key="backgroundColor" red="0.91764705879999997" green="0.73725490199999999" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="50" id="YaQ-NO-WNL"/>
                                 <constraint firstAttribute="height" constant="40" id="hle-ca-9Yq"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <state key="normal" title="确定 ">
+                            <state key="normal" image="正确">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -57,6 +41,20 @@
                         <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MBw-K1-DK0">
                             <rect key="frame" x="0.0" y="40" width="320" height="528"/>
                         </pickerView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ctb-Pi-KpD">
+                            <rect key="frame" x="220" y="0.0" width="50" height="40"/>
+                            <color key="backgroundColor" red="0.91764705879999997" green="0.73725490199999999" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="YJm-ov-kDY"/>
+                                <constraint firstAttribute="width" constant="50" id="aJ2-GG-ieF"/>
+                            </constraints>
+                            <state key="normal" image="错误">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="cancleAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="yjr-kx-uBX"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -99,4 +97,8 @@
             </connections>
         </view>
     </objects>
+    <resources>
+        <image name="正确" width="21" height="21"/>
+        <image name="错误" width="21" height="21"/>
+    </resources>
 </document>

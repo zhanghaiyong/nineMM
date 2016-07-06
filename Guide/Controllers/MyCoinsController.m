@@ -42,12 +42,12 @@
 #pragma mark UITableView Delegate &&DataSource
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 
-    return 5;
+    return 10;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
 
-    return 5;
+    return 0.1;
 }
 
 - (void)viewDidLayoutSubviews {

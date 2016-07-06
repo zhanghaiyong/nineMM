@@ -19,14 +19,11 @@
 #define TintColor        RGB(255, 255, 255)
 #define MainColor        RGB(215, 158, 9)
 
-#define DeepMainColor    RGB(248, 195, 49)
-#define backgroudColor   RGB(237, 236, 236)
-#define lever1Color      RGB(74, 74, 74)
-#define lever2Color      RGB(166, 166, 166)
-#define lever3Color      RGB(212, 212, 212)
-#define specialRed       RGB(255, 100, 136)
-#define specialGreed     RGB(47, 176, 130)
-#define lineColor        RGB(217, 217, 217)
+#define backgroudColor   RGB(244, 244, 244)  //f4f4f4
+#define lever1Color      RGB(53, 53, 53)     //353535
+#define lineColor        RGB(216, 216, 216)  //d8d8d8
+#define riceRedColor      RGB(249, 70, 78)   //ea5858
+
 
 #define lever1Font         [UIFont systemFontOfSize:17]
 #define lever2Font         [UIFont systemFontOfSize:14]
@@ -39,6 +36,7 @@
 #define ORDERTYPE4 @"执行中"
 #define ORDERTYPE5 @"申诉订单"
 
+#define MEUM_CELL_H 35
 
 
 

@@ -21,7 +21,18 @@
     self.title = @"购物车";
     self.tableV.delegate = self;
     self.tableV.dataSource = self;
-    [self setNavigationRightTitle:@"编辑"];
+    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(0, 0, 60, 44);
+//    [btn sizeToFit];
+    [btn setTitleColor:lever1Color forState:UIControlStateNormal];
+    btn.titleLabel.font = lever2Font;
+    [btn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
+    [btn setTitle:@"编辑" forState:UIControlStateNormal];
+    [btn setImage:[UIImage imageNamed:@"编辑"] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(edit:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    self.navigationItem.rightBarButtonItem = item;
 }
 
 #pragma mark UITableViewDelegate&&DataSource
@@ -43,16 +54,16 @@
 //        cell = [[[NSBundle mainBundle] loadNibNamed:@"MethodBagCell" owner:nil options:nil] lastObject];
 //    }
     MethodBagCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"MethodBagCell" owner:self options:nil] lastObject];
-    if (isEdit) {
-        
-        cell.isSelected.hidden = NO;
-        cell.selectedBtnWidth.constant = 19;
-        
-    }else {
-        
-        cell.isSelected.hidden = YES;
-        cell.selectedBtnWidth.constant = 0;
-    }
+//    if (isEdit) {
+//        
+//        cell.isSelected.hidden = NO;
+//        cell.selectedBtnWidth.constant = 19;
+//        
+//    }else {
+//        
+//        cell.isSelected.hidden = YES;
+//        cell.selectedBtnWidth.constant = 0;
+//    }
     cell.tag = 100+indexPath.row;
     return cell;
 }
@@ -70,12 +81,12 @@
     self.tableV.layoutMargins = UIEdgeInsetsZero;
 }
 
-- (void)doRight:(UIButton *)sender {
+- (void)edit:(UIButton *)sender {
     
     if (isEdit) {
         
         self.collect.hidden = YES;
-        [self.checkoutOrDelete setTitle:@"去结算" forState:UIControlStateNormal];
+        [self.checkoutOrDelete setTitle:@"立即购买" forState:UIControlStateNormal];
         isEdit = NO;
     }else {
     
