@@ -15,8 +15,10 @@
 #import "Main4Cell.h"
 #import "SearchBar.h"
 #import "TopBannersModel.h"
-#import "ButtonsModel.h"
-#import "GoodsTypeModel.h"
+#import "ShortcutsModel.h"
+#import "NewsModel.h"
+#import "GroupButtonsModel.h"
+#import "SecondBannerModel.h"
 #import "MainProduceListParams.h"
 #import "MainProduceModel.h"
 #import "ProduceDetailViewController.h"
@@ -49,7 +51,7 @@
         MainProduceListParams *produceListParams = [[MainProduceListParams alloc]init];
         _produceListParams = produceListParams;
         _produceListParams.rows = @"10";
-        _produceListParams.sessionId = [Uitils getUserDefaultsForKey:TOKEN];
+
     }
     return _produceListParams;
 }
@@ -62,14 +64,28 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     searchBar = [[[NSBundle mainBundle] loadNibNamed:@"SearchBar" owner:self options:nil] lastObject];
-    searchBar.frame = CGRectMake(0, 20, SCREEN_WIDTH, 44);
+    searchBar.frame = CGRectMake(0, 0, SCREEN_WIDTH, 64);
     searchBar.searchTF.backgroundColor = [UIColor whiteColor];
     searchBar.backgroundColor = [UIColor clearColor];
+    
+    [searchBar connectTwoBlock:^{
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        MsgCenterViewController *produceDetail = [mainSB instantiateViewControllerWithIdentifier:@"MsgCenterViewController"];
+        [self.navigationController pushViewController:produceDetail animated:YES];
+        
+    }];
     
     searchBar.searchTF.leftViewMode = UITextFieldViewModeAlways;
     UIImageView *searchIcon = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"iconfont-fangdajing"]];
@@ -81,7 +97,7 @@
     
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         
-//        [self loadProduceList];
+        [self loadProduceList];
     }];
     [self.tableView.mj_footer beginRefreshing];
     
@@ -106,14 +122,23 @@
                 NSArray *rows = [[dataDic objectForKey:@"retObj"] objectForKey:@"rows"];
                 [self.produces addObjectsFromArray:[MainProduceModel mj_objectArrayWithKeyValuesArray:rows]];
                 
-                NSIndexSet *nd=[[NSIndexSet alloc]initWithIndex:3];//刷新第二个section
+                NSIndexSet *nd=[[NSIndexSet alloc]initWithIndex:3];//刷新第3个section
                 [self.tableView reloadSections:nd withRowAnimation:UITableViewRowAnimationTop];
-                [self.tableView.mj_footer endRefreshing];
+                
+                if (rows.count < 10) {
+                    
+                     [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                    
+                }else {
+                
+                    [self.tableView.mj_footer endRefreshing];
+                }
             }
             
         }else {
         
             [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
         }
         
     } failure:^(NSError *error) {
@@ -169,7 +194,7 @@
 
     switch (indexPath.section) {
         case 0:
-            return 370;
+            return 375;
             break;
         case 1:
             return 150;
@@ -206,18 +231,18 @@
             }
             
             //按钮
-            for (int i = 0; i<self.mainStaticModel.buttons.count; i++) {
-                ButtonView *buttonView = [cell viewWithTag:i+101];
-                ButtonsModel *buttonModel = self.mainStaticModel.buttons[i];
-                buttonView.labelTitle = buttonModel.imageId;
+            for (int i = 0; i<self.mainStaticModel.shortcuts.count; i++) {
+                ButtonView *buttonView = [cell.contentView viewWithTag:i+101];
+                ShortcutsModel *buttonModel = self.mainStaticModel.shortcuts[i];
+                buttonView.labelTitle = buttonModel.title;
                 buttonView.imageName = buttonModel.imageId;
             }
             
             //新资源
-            for (int i = 0; i<self.mainStaticModel.goodsTypes.count; i++) {
-                UILabel *label = [cell viewWithTag:i+111];
-                GoodsTypeModel *goodType = self.mainStaticModel.goodsTypes[i];
-                label.text = goodType.title;
+            for (int i = 0; i<self.mainStaticModel.news.count; i++) {
+                UILabel *label = [cell.contentView viewWithTag:i+112];
+                NewsModel *goodType = self.mainStaticModel.news[i];
+//                label.text = goodType.title;
             }
             return cell;
         }
@@ -226,6 +251,13 @@
         case 1:{
             
             Main2Cell *cell = [[[NSBundle mainBundle] loadNibNamed:@"Main2Cell" owner:self options:nil] lastObject];
+            for (int i = 0; i<self.mainStaticModel.groupButtons.count; i++) {
+                UIImageView *imageV = [cell.contentView viewWithTag:i+200];
+                GroupButtonsModel *groupButton = self.mainStaticModel.groupButtons[i];
+                [Uitils cacheImagwWithSize:imageV.size imageID:groupButton.imageId imageV:imageV placeholder:@""];
+            }
+            
+            
             return cell;
         }
             
@@ -233,6 +265,14 @@
         case 2:{
             
             Main3Cell *cell = [[[NSBundle mainBundle] loadNibNamed:@"Main3Cell" owner:self options:nil] lastObject];
+            
+            
+            for (int i = 0; i<self.mainStaticModel.secondBanner.count; i++) {
+                UIImageView *imageV = [cell.contentView viewWithTag:i+100];
+                SecondBannerModel *groupButton = self.mainStaticModel.secondBanner[i];
+                [Uitils cacheImagwWithSize:imageV.size imageID:groupButton.imageId imageV:imageV placeholder:@""];
+            }
+            
             return cell;
         }
             
@@ -241,18 +281,36 @@
             
             Main4Cell *cell = [[[NSBundle mainBundle] loadNibNamed:@"Main4Cell" owner:self options:nil] lastObject];
             
-//            MainProduceModel *model = self.produces[indexPath.row];
-//            UIImageView *imagV = [cell.contentView viewWithTag:100];
-//            imagV.image = [UIImage imageNamed:model.imageId];
-//            
-//            UILabel *label1 = [cell.contentView viewWithTag:101];
-//            label1.text = model.fullName;
-//            
-//            UILabel *label3 = [cell.contentView viewWithTag:103];
-//            label3.text = model.price;
-//            
-//            UILabel *label4 = [cell.contentView viewWithTag:104];
-//            label4.text = model.marketPrice;
+            MainProduceModel *model = self.produces[indexPath.row];
+            cell.NameLabel.text     = model.name;
+            cell.CoinsLabel.text    = model.price;
+            cell.timeLabel.text     = [NSString stringWithFormat:@"档期时间：%@",model.scheduleDesc];
+            cell.termsLabel.text    = [NSString stringWithFormat:@"资源限制说明：%@",model.terms];
+            cell.StockLabel.text    = [NSString stringWithFormat:@"库存 %@",model.stock];
+            
+            //是否收藏
+            if ([model.favorite integerValue] != 0) {
+                
+                cell.collectBtn.selected = YES;
+                
+            }else {
+            
+                cell.collectBtn.selected = NO;
+            }
+            
+            for (int i = 0; i<model.acceptableCoinTypes.count; i++) {
+                
+                UIImageView *coinImg = (UIImageView *)[cell.contentView viewWithTag:i+100];
+                coinImg.hidden       = NO;
+                coinImg.image        = [UIImage imageNamed:[Uitils toImageName:model.acceptableCoinTypes[i]]];
+            }
+            
+            for (int i = 0; i<model.tags.count; i++) {
+                
+                UIButton *tagsButton = (UIButton *)[cell.contentView viewWithTag:i+200];
+                tagsButton.hidden    = NO;
+                [tagsButton setTitle:model.tags[i] forState:UIControlStateNormal];
+            }
             
             return cell;
         }

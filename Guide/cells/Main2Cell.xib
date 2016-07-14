@@ -22,7 +22,7 @@
                             <constraint firstAttribute="width" constant="1" id="saF-sC-1TG"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pic_cicada_iphone" translatesAutoresizingMaskIntoConstraints="NO" id="kzI-Tv-lyx">
+                    <imageView userInteractionEnabled="NO" tag="200" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kzI-Tv-lyx">
                         <rect key="frame" x="0.0" y="0.0" width="159.5" height="139.5"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="66" id="E55-W0-kfn"/>
@@ -40,7 +40,7 @@
                             <constraint firstAttribute="height" constant="1" id="pGH-dv-Q9j"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pic_cicada_iphone" translatesAutoresizingMaskIntoConstraints="NO" id="oUP-t6-p1W">
+                    <imageView userInteractionEnabled="NO" tag="201" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oUP-t6-p1W">
                         <rect key="frame" x="160.5" y="0.0" width="159.5" height="69"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="52" id="shu-Tr-Lm6"/>
@@ -51,7 +51,7 @@
                             </mask>
                         </variation>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pic_cicada_iphone" translatesAutoresizingMaskIntoConstraints="NO" id="BDP-DZ-M77">
+                    <imageView userInteractionEnabled="NO" tag="202" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BDP-DZ-M77">
                         <rect key="frame" x="160.5" y="70" width="159.5" height="69.5"/>
                     </imageView>
                 </subviews>
@@ -106,7 +106,4 @@
             </tableViewCellContentView>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="pic_cicada_iphone" width="83" height="100"/>
-    </resources>
 </document>

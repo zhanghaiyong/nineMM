@@ -34,9 +34,33 @@
 }
 
 
+- (void)getSessionID {
+    
+    NSMutableDictionary *params = [[NSMutableDictionary alloc]init];;
+    if ([Uitils getUserDefaultsForKey:TOKEN]) {
+        
+        [params setObject:[Uitils getUserDefaultsForKey:TOKEN] forKey:@"sessionId"];
+    }
+    
+    [KSMNetworkRequest postRequest:KGetSessionID params:params success:^(NSDictionary *dataDic) {
+        
+        FxLog(@"sessionID = %@",dataDic);
+        if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
+            [Uitils setUserDefaultsObject:[dataDic objectForKey:@"sessionId"] ForKey:TOKEN];
+        }
+//        [self requestHomeData];
+        
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [Uitils reach];
+    
+    [self getSessionID];
     
     //设置键盘自动关闭
     [[SDKKey shareSDKKey] IQKeyboard];
@@ -46,14 +70,14 @@
     //设置主色调
     [self configure];
     
-    LaunchViewController *launchVC = [[LaunchViewController alloc]initWithNibName:@"LaunchViewController" bundle:nil];
-    [launchVC showLaunchImage];
-    self.window.rootViewController = launchVC;
+//    LaunchViewController *launchVC = [[LaunchViewController alloc]initWithNibName:@"LaunchViewController" bundle:nil];
+//    [launchVC showLaunchImage];
+//    self.window.rootViewController = launchVC;
     
-//    UIStoryboard *SB = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
-//    LoginViewController *loginVC = [SB instantiateViewControllerWithIdentifier:@"LoginViewController"];
-//    UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:loginVC];
-//    self.window.rootViewController = navi;
+    UIStoryboard *SB = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+    LoginViewController *loginVC = [SB instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:loginVC];
+    self.window.rootViewController = navi;
     
     [self.window makeKeyAndVisible];
     

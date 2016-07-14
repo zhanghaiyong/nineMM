@@ -5,12 +5,14 @@
 #import "ProDetailCell.h"
 #import "UserSourceViewController.h"
 #import "ClassifyTerm3ViewController.h"
+#import "ProduceDetailParams.h"
 @interface ProduceDetailViewController ()<UITableViewDelegate,UITableViewDataSource>{
 
     //资源 档期 样刊切换标示
     NSInteger typeFlag;
 }
 @property (nonatomic,strong)MeumList *meumList;
+@property (nonatomic,strong)ProduceDetailParams *produceDetailParams;
 @property (nonatomic,strong)NSArray *meumTitles;
 @property (nonatomic,strong)NSArray *meumLogos;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -19,6 +21,17 @@
 @end
 
 @implementation ProduceDetailViewController
+
+-(ProduceDetailParams *)produceDetailParams {
+
+    if (_produceDetailParams == nil) {
+        
+        ProduceDetailParams *produceDetailParams = [[ProduceDetailParams alloc]init];
+        produceDetailParams.id = self.produceID;
+        _produceDetailParams = produceDetailParams;
+    }
+    return _produceDetailParams;
+}
 
 - (MeumList *)meumList {
     
@@ -69,8 +82,55 @@
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.navigationItem.rightBarButtonItem = item;
     
+    [self produceDetailData];
     
 }
+
+- (void)produceDetailData {
+
+    [[HUDConfig shareHUD]alwaysShow];
+    
+    FxLog(@"produceDetailParams = %@",self.produceDetailParams.mj_keyValues);
+    
+    [KSMNetworkRequest postRequest:KProduceDetail params:self.produceDetailParams.mj_keyValues success:^(NSDictionary *dataDic) {
+        
+        FxLog(@"produceDetailData = %@",dataDic);
+        
+        if ([[dataDic objectForKey:@"retCode"]integerValue] == 0) {
+            
+            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            
+            if (![[dataDic objectForKey:@"retObj"] isEqual:[NSNull null]]) {
+                
+                NSArray *rows = [[dataDic objectForKey:@"retObj"] objectForKey:@"rows"];
+//                [self.produces addObjectsFromArray:[MainProduceModel mj_objectArrayWithKeyValuesArray:rows]];
+                
+//                NSIndexSet *nd=[[NSIndexSet alloc]initWithIndex:3];//刷新第3个section
+//                [self.tableView reloadSections:nd withRowAnimation:UITableViewRowAnimationTop];
+                
+//                if (rows.count < 10) {
+//                    
+//                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+//                    
+//                }else {
+//                    
+//                    [self.tableView.mj_footer endRefreshing];
+//                }
+            }
+            
+        }else {
+            
+            [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+//            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        }
+        
+    } failure:^(NSError *error) {
+        
+        [[HUDConfig shareHUD]Tips :error.localizedDescription delay:DELAY];
+//        [self.tableView.mj_footer endRefreshing];
+    }];
+}
+
 
 #pragma mark  UITableViewDataSource&&delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

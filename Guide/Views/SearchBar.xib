@@ -19,6 +19,9 @@
                     </constraints>
                     <state key="normal" image="信息"/>
                     <state key="selected" image="消息有提示"/>
+                    <connections>
+                        <action selector="buttonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="jF0-WZ-xpi"/>
+                    </connections>
                 </button>
                 <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OU5-JR-ZF5">
                     <rect key="frame" x="0.0" y="43" width="341" height="1"/>
@@ -70,12 +73,12 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <variation key="default">
                 <mask key="constraints">
+                    <exclude reference="BO1-E6-g9M"/>
+                    <exclude reference="FKK-RT-OiA"/>
                     <exclude reference="3Pp-1r-rUo"/>
                     <exclude reference="UTh-Z1-dLu"/>
                     <exclude reference="ZGc-HH-Ftz"/>
                     <exclude reference="oGJ-Ue-K8b"/>
-                    <exclude reference="BO1-E6-g9M"/>
-                    <exclude reference="FKK-RT-OiA"/>
                     <exclude reference="V2v-gW-nvT"/>
                     <exclude reference="Z7V-jY-4fr"/>
                     <exclude reference="g4k-FY-zWq"/>

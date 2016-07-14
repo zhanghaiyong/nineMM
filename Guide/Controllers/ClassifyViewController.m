@@ -63,6 +63,14 @@
     searchBar.frame = CGRectMake(0, -20, SCREEN_WIDTH, 44);
     searchBar.searchTF.backgroundColor = backgroudColor;
     
+    [searchBar connectTwoBlock:^{
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        MsgCenterViewController *produceDetail = [mainSB instantiateViewControllerWithIdentifier:@"MsgCenterViewController"];
+        [self.navigationController pushViewController:produceDetail animated:YES];
+        
+    }];
+    
     searchBar.searchTF.leftViewMode = UITextFieldViewModeAlways;
     UIImageView *searchIcon = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"iconfont-fangdajing"]];
     //将左边的图片向右移动一定距离

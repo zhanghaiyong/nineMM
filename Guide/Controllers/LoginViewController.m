@@ -10,6 +10,8 @@
 #import "MethodGetPwdViewController.h"
 #import "TabBarViewController.h"
 #import "PageInfo.h"
+#import "LoginParams.h"
+
 @interface LoginViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *accountTF;
@@ -32,18 +34,65 @@
     [super viewDidLoad];
     
     self.visualView.hidden = YES;
-//    
-//    [_accountTF setValue:lever3Color forKeyPath:@"_placeholderLabel.textColor"];
-//    [_accountTF setValue:[UIFont boldSystemFontOfSize:14] forKeyPath:@"_placeholderLabel.font"];
-//    
-//    [_pwdTF setValue:lever3Color forKeyPath:@"_placeholderLabel.textColor"];
-//    [_pwdTF setValue:[UIFont boldSystemFontOfSize:14] forKeyPath:@"_placeholderLabel.font"];
+    [_accountTF setValue:@5 forKey:@"paddingLeft"];
+    [_pwdTF setValue:@5 forKey:@"paddingLeft"];
 }
 
+- (IBAction)showPwdAction:(id)sender {
+    
+    UIButton *button = (UIButton *)sender;
+    if (button.selected == NO) {
+        
+        button.selected = YES;
+        _pwdTF.secureTextEntry = NO;
+    }else {
+    
+        button.selected = NO;
+        _pwdTF.secureTextEntry = YES;
+    }
+}
 
 - (IBAction)loginAction:(id)sender {
     
 //    [self presentViewController:[PageInfo pageControllers] animated:YES completion:nil];
+    
+    if (_accountTF.text.length == 0) {
+        
+        [[HUDConfig shareHUD]Tips:@"请输入帐号" delay:DELAY];
+        return;
+    }
+    
+    if (_pwdTF.text.length == 0) {
+        
+        [[HUDConfig shareHUD]Tips:@"请输入密码" delay:DELAY];
+        return;
+        
+    }
+    
+    [[HUDConfig shareHUD] alwaysShow];
+    LoginParams *params = [[LoginParams alloc]init];
+    params.username     = _accountTF.text;
+    params.password     = _pwdTF.text;
+    
+    
+    NSLog(@"params = %@  %@",params.mj_keyValues,KLogin);
+    
+    [KSMNetworkRequest postRequest:KLogin params:params.mj_keyValues success:^(NSDictionary *dataDic) {
+        
+        NSLog(@"dataDic = %@",dataDic);
+        
+        if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
+            
+            [[HUDConfig shareHUD] SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            
+        }else {
+        
+            [[HUDConfig shareHUD] ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+        }
+        
+    } failure:^(NSError *error) {
+         
+    }];
 }
 
 @end

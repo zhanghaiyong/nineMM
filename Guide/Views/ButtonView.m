@@ -41,6 +41,7 @@
     label.textColor = lever1Color;
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont boldSystemFontOfSize:13];
+    label.adjustsFontSizeToFitWidth = YES;
     [self addSubview:label];
     
     self.badgeBtn = [[UIButton alloc]init];
@@ -55,16 +56,15 @@
 
     [super layoutSubviews];
 
-    imageView.frame = CGRectMake(self.width/2-(self.height-25)/2, 5, self.height-25, self.height-25);
+    imageView.frame = CGRectMake(self.width/2-20, 5, 40, 40);
     imageView.contentMode = UIViewContentModeCenter;
-    imageView.image = [UIImage imageNamed:self.imageName];
     
     self.badgeBtn.frame = CGRectMake(imageView.right-25, imageView.top+10, 20, 20);
     self.badgeBtn.layer.cornerRadius = 10;
     self.badgeBtn.clipsToBounds = YES;
     [self.badgeBtn setTitle:@"0" forState:UIControlStateNormal];
     
-    label.frame = CGRectMake(0, imageView.bottom-5, self.width, 20);
+    label.frame = CGRectMake(0, imageView.bottom-3, self.width, 20);
     label.text = self.labelTitle;
 }
 
@@ -84,9 +84,9 @@
 
     _imageName = imageName;
     
-    [Uitils cacheImagwWithSize:CGSizeMake(self.height-25, self.height-25) imageID:imageName imageV:imageView placeholder:@""];
+    [Uitils cacheImagwWithSize:CGSizeMake(38, 38) imageID:imageName imageV:imageView placeholder:@"下载(5)"];
     
-    imageView.image = [UIImage imageNamed:imageName];
+//    imageView.image = [UIImage imageNamed:imageName];
 }
 
 //添加的手势方法

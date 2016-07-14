@@ -25,3 +25,4 @@
 #import "HYSandbox.h"
 #import "MJRefresh.h"
 #import "HUDConfig.h"
+#import "MsgCenterViewController.h"

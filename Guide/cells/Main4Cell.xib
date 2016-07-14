@@ -40,7 +40,7 @@
                             <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="6"/>
                         </userDefinedRuntimeAttributes>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cv1-wY-ET7">
+                    <button hidden="YES" opaque="NO" clearsContextBeforeDrawing="NO" tag="202" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cv1-wY-ET7">
                         <rect key="frame" x="151" y="124" width="60" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="QQm-db-PYk"/>
@@ -75,7 +75,7 @@
                         <color key="textColor" red="0.25882352939999997" green="0.25882352939999997" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IXf-Zf-Q2r">
+                    <button hidden="YES" opaque="NO" clearsContextBeforeDrawing="NO" tag="201" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IXf-Zf-Q2r">
                         <rect key="frame" x="83" y="124" width="60" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="NKZ-MG-U7t"/>
@@ -116,7 +116,7 @@
                         <color key="textColor" red="0.25882352939999997" green="0.25882352939999997" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="REq-Mo-0kv">
+                    <button hidden="YES" opaque="NO" clearsContextBeforeDrawing="NO" tag="200" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="REq-Mo-0kv">
                         <rect key="frame" x="15" y="124" width="60" height="25"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="60" id="1yH-iS-bwl"/>
@@ -148,21 +148,21 @@
                         <color key="textColor" red="0.91764705882352937" green="0.34509803921568627" blue="0.34509803921568627" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="图层-144" translatesAutoresizingMaskIntoConstraints="NO" id="Kup-9q-lZX">
+                    <imageView hidden="YES" userInteractionEnabled="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="图层-144" translatesAutoresizingMaskIntoConstraints="NO" id="Kup-9q-lZX">
                         <rect key="frame" x="285" y="50" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="20" id="Oc6-Qz-8lu"/>
                             <constraint firstAttribute="height" constant="20" id="h6L-xY-wTg"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="图层-143" translatesAutoresizingMaskIntoConstraints="NO" id="5RN-D8-9yf">
+                    <imageView hidden="YES" userInteractionEnabled="NO" tag="101" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="图层-143" translatesAutoresizingMaskIntoConstraints="NO" id="5RN-D8-9yf">
                         <rect key="frame" x="262" y="50" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="LTM-46-kDO"/>
                             <constraint firstAttribute="width" constant="20" id="Q5V-LK-8Ou"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="图层-142" translatesAutoresizingMaskIntoConstraints="NO" id="TCv-Oo-2Gf">
+                    <imageView hidden="YES" userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="图层-142" translatesAutoresizingMaskIntoConstraints="NO" id="TCv-Oo-2Gf">
                         <rect key="frame" x="239" y="50" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="20" id="Xrh-q7-etw"/>
@@ -224,6 +224,14 @@
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="CoinsLabel" destination="8bk-BC-qTW" id="imH-kg-We0"/>
+                <outlet property="NameLabel" destination="bUg-V8-yUk" id="cGc-9d-WTQ"/>
+                <outlet property="StockLabel" destination="cpk-rQ-vfA" id="cS9-5L-KdZ"/>
+                <outlet property="collectBtn" destination="aRx-6y-JSH" id="2dX-Qs-V9b"/>
+                <outlet property="termsLabel" destination="8Ig-2e-WfA" id="iOu-0Y-U3f"/>
+                <outlet property="timeLabel" destination="1pB-Pl-yFk" id="Aeu-Yx-LsZ"/>
+            </connections>
             <point key="canvasLocation" x="191" y="234"/>
         </tableViewCell>
     </objects>

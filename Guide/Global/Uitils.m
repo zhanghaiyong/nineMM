@@ -121,6 +121,40 @@
     [imageV sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:placehImg]];
 }
 
++ (NSString *)toImageName:(NSString *)dataString {
+
+    NSString *imageName;
+    
+    //红币
+    if ([dataString isEqualToString:@"red"]) {
+        
+        imageName = @"图层-143";
+    //蓝币
+    }else if ([dataString isEqualToString:@"blue"]) {
+        
+        imageName = @"图层-146";
+    
+    //绿币
+    }else if ([dataString isEqualToString:@"green"]) {
+        
+        imageName = @"图层-145";
+        
+    //黑币
+    }else if ([dataString isEqualToString:@"black"]) {
+        
+        imageName = @"图层-144";
+        
+     //金币
+    }else {
+    
+        imageName = @"图层-142";
+    }
+    
+    
+    return imageName;
+    
+}
+
 ////判断密码强弱
 //+ (BOOL) judgeRange:(NSArray*) _termArray Password:(NSString*) _password
 //{

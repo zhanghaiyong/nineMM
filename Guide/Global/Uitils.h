@@ -29,6 +29,8 @@
 + (NSString*)weekdayStringFromDate:(NSDate*)inputDate;
 
 
++ (NSString *)toImageName:(NSString *)dataString;
+
 @end
 
              

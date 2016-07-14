@@ -59,19 +59,19 @@
     }
     
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-    session.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/html",@"text/json", @"text/javascript", nil];
-    session.requestSerializer= [AFHTTPRequestSerializer serializer];
-    session.responseSerializer= [AFHTTPResponseSerializer serializer];
-    session.requestSerializer.timeoutInterval = 50;
-    session.securityPolicy.allowInvalidCertificates = YES;
+//    session.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/html",@"text/json", @"text/javascript", nil];
+//    session.requestSerializer= [AFHTTPRequestSerializer serializer];
+//    session.responseSerializer= [AFHTTPResponseSerializer serializer];
+//    session.requestSerializer.timeoutInterval = 50;
+//    session.securityPolicy.allowInvalidCertificates = YES;
     [session POST:url parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
 
     } progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
-        successHandler(dic);
+//        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+        successHandler(responseObject);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         

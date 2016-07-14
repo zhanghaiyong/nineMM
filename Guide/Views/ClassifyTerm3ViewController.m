@@ -162,11 +162,14 @@
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         }
         cell.textLabel.font = lever2Font;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         cell.textLabel.text = @"测试";
         
         if (tableView == tableV1) {
             cell.backgroundColor = backgroudColor;
+        }else {
+        
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         return cell;
     }
@@ -174,23 +177,50 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    //将点击的cell移动到中间位置
-    CGFloat offset = cell.center.y - tableView.height/2;
-    if (offset > tableView.contentSize.height - tableView.height) {
+    if (tableView != storeTable) {
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        //将点击的cell移动到中间位置
+        CGFloat offset = cell.center.y - tableView.height/2;
+        if (offset > tableView.contentSize.height - tableView.height) {
+            
+            offset = tableView.contentSize.height - tableView.height;
+        }
+        if (offset < 0) {
+            offset = 0;
+        }
+        [tableView setContentOffset:CGPointMake(0, offset) animated:YES];
+        cell.textLabel.textColor = MainColor;
+    }else {
+        Term1Cell *cell = (Term1Cell *)[tableView cellForRowAtIndexPath:indexPath];
+        //将点击的cell移动到中间位置
+        CGFloat offset = cell.center.y - tableView.height/2;
+        if (offset > tableView.contentSize.height - tableView.height) {
+            
+            offset = tableView.contentSize.height - tableView.height;
+        }
+        if (offset < 0) {
+            offset = 0;
+        }
+        [tableView setContentOffset:CGPointMake(0, offset) animated:YES];
+        cell.logoBtn.selected = YES;
+        cell.meumNameLabel.textColor = MainColor;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (tableView != storeTable) {
+       
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        cell.textLabel.textColor = [UIColor blackColor];
         
-        offset = tableView.contentSize.height - tableView.height;
+    }else {
+
+        Term1Cell *cell = (Term1Cell *)[tableView cellForRowAtIndexPath:indexPath];
+        cell.logoBtn.selected = NO;
+        cell.textLabel.textColor = [UIColor blackColor];
     }
-    if (offset < 0) {
-        offset = 0;
-    }
-    [tableView setContentOffset:CGPointMake(0, offset) animated:YES];
-    
-    if (tableView == tableV1) {
-        cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
-        cell.selectedBackgroundView.backgroundColor = [UIColor whiteColor];
-    }
-    
+
 }
 
 

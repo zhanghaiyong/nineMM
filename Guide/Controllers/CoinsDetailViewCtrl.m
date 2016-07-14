@@ -51,8 +51,8 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     SourceListHead *sourceListHead = [[[NSBundle mainBundle]loadNibNamed:@"SourceListHead" owner:self options:nil]lastObject];
+    sourceListHead.backgroundColor = backgroudColor;
     sourceListHead.frame = CGRectMake(0, 0, self.tableView.width, 30);
-
     sourceListHead.titleLabel.text = @"我的酒币";
     return sourceListHead;
 }

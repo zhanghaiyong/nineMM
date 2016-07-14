@@ -24,7 +24,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self setUp];
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
         
     }
     return self;
@@ -32,7 +32,7 @@
 
 - (void)setUp {
 
-    tableV1 = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, TableWidth*2, self.height-80)];
+    tableV1 = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, TableWidth*2, self.height/3*2)];
     tableV1.delegate = self;
     tableV1.dataSource = self;
     tableV1.bounces = NO;
@@ -42,7 +42,7 @@
     tableV1.backgroundColor = [UIColor whiteColor];
     [self addSubview:tableV1];
     
-    tableV2 = [[UITableView alloc]initWithFrame:CGRectMake(tableV1.right+1, 0, TableWidth*3, self.height-80)];
+    tableV2 = [[UITableView alloc]initWithFrame:CGRectMake(tableV1.right, 0, TableWidth*3, self.height/3*2)];
     tableV2.delegate = self;
     tableV2.dataSource = self;
     tableV2.bounces = NO;
@@ -51,7 +51,7 @@
     tableV2.backgroundColor = [UIColor whiteColor];
     [self addSubview:tableV2];
     
-    tableV3 = [[UITableView alloc]initWithFrame:CGRectMake(tableV2.right+2, 0, TableWidth*3, self.height-80)];
+    tableV3 = [[UITableView alloc]initWithFrame:CGRectMake(tableV2.right, 0, TableWidth*3, self.height/3*2)];
     tableV3.delegate = self;
     tableV3.dataSource = self;
     tableV3.bounces = NO;
@@ -60,47 +60,39 @@
     tableV3.backgroundColor = [UIColor whiteColor];
     [self addSubview:tableV3];
     
-    UIButton *sender = [[UIButton alloc]initWithFrame:CGRectMake(10, tableV1.bottom+20, self.width-20, 44)];
-    [sender setTitle:@"搜索" forState:UIControlStateNormal];
-    [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    sender.backgroundColor = MainColor;
-    sender.layer.cornerRadius = 5;
-    [self addSubview:sender];
+    UIView *line1 = [[UIView alloc]initWithFrame:CGRectMake(TableWidth*2, 10, 1, self.height/3*2-10)];
+    line1.backgroundColor = lineColor;
+    [self addSubview:line1];
     
-//    
-//    UIView *line1 = [[UIView alloc]initWithFrame:CGRectMake(TableWidth*2, 10, 1, self.height-90)];
-//    line1.backgroundColor = lineColor;
-//    [self addSubview:line1];
-//    
-//    UIView *line2 = [[UIView alloc]initWithFrame:CGRectMake(TableWidth*5, 10, 1, self.height-90)];
-//    line2.backgroundColor = lineColor;
-//    [self addSubview:line2];
+    UIView *line2 = [[UIView alloc]initWithFrame:CGRectMake(TableWidth*5, 10, 1, self.height/3*2-10)];
+    line2.backgroundColor = lineColor;
+    [self addSubview:line2];
 //    
 //    UIView *line3 = [[UIView alloc]initWithFrame:CGRectMake(0, self.height-80, self.width, 1)];
 //    line3.backgroundColor = lineColor;
 //    [self addSubview:line3];
 }
-
-- (void)drawRect:(CGRect)rect {
-
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetLineCap(context, kCGLineCapRound);
-    CGContextSetLineWidth(context, 1);  //线宽
-    CGContextSetRGBStrokeColor(context, 216 / 255.0, 216 / 255.0, 217 / 216, 1.0);  //线的颜色
-    CGContextBeginPath(context);
-    
-    CGContextMoveToPoint(context, TableWidth*2, 10);  //起点坐标
-    CGContextAddLineToPoint(context, TableWidth*2, self.height-80);   //终点坐标
-    
-    CGContextMoveToPoint(context, TableWidth*5+1, 10);  //起点坐标
-    CGContextAddLineToPoint(context, TableWidth*5+1, self.height-80);   //终点坐标
-    
-    CGContextMoveToPoint(context, 0, self.height-80);  //起点坐标
-    CGContextAddLineToPoint(context, self.width, self.height-80);   //终点坐标
-    
-    CGContextStrokePath(context);
-    
-}
+//
+//- (void)drawRect:(CGRect)rect {
+//
+//    CGContextRef context = UIGraphicsGetCurrentContext();
+//    CGContextSetLineCap(context, kCGLineCapRound);
+//    CGContextSetLineWidth(context, 1);  //线宽
+//    CGContextSetRGBStrokeColor(context, 255 / 255.0, 255 / 255.0, 255 / 255, 1.0);  //线的颜色
+//    CGContextBeginPath(context);
+//    
+//    CGContextMoveToPoint(context, TableWidth*2, 10);  //起点坐标
+//    CGContextAddLineToPoint(context, TableWidth*2, self.height/3*2);   //终点坐标
+//    
+//    CGContextMoveToPoint(context, TableWidth*5+1, 10);  //起点坐标
+//    CGContextAddLineToPoint(context, TableWidth*5+1, self.height/3*2);   //终点坐标
+//    
+//    CGContextMoveToPoint(context, 0, self.height/3*2);  //起点坐标
+//    CGContextAddLineToPoint(context, self.width, self.height/3*2);   //终点坐标
+//    
+//    CGContextStrokePath(context);
+//    
+//}
 
 #pragma mark UITableViewDelegate &&UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -137,17 +129,23 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"Term1Cell" owner:self options:nil] lastObject];
     }
     
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
     if (tableView == tableV1) {
-        cell.backgroundColor = backgroudColor;
+       UIView *cellBackView = [[UIView alloc] initWithFrame:cell.frame];
+       cellBackView.backgroundColor = RGB(216, 216, 216);
+       cell.selectedBackgroundView = cellBackView;
+
+    }else {
+    
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        Term1Cell *cell = (Term1Cell *)[tableView cellForRowAtIndexPath:indexPath];
+        cell.logoBtn.selected = YES;
+        cell.meumNameLabel.textColor = MainColor;
         //将点击的cell移动到中间位置
         CGFloat offset = cell.center.y - tableView.height/2;
         if (offset > tableView.contentSize.height - tableView.height) {
@@ -159,13 +157,14 @@
         }
         [tableView setContentOffset:CGPointMake(0, offset) animated:YES];
     
+}
+
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (tableView == tableV1) {
-        
-        cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
-        cell.selectedBackgroundView.backgroundColor = [UIColor whiteColor];
-    }
-    
+    Term1Cell *cell = (Term1Cell *)[tableView cellForRowAtIndexPath:indexPath];
+    cell.logoBtn.selected = NO;
+    cell.meumNameLabel.textColor = [UIColor blackColor];
 }
 
 
