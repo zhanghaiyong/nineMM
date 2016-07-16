@@ -17,6 +17,9 @@
     UITableView *tableV1;
     UITableView *tableV2;
     UITableView *tableV3;
+    NSMutableArray *dataArr1;
+    NSMutableArray *dataArr2;
+    NSMutableArray *dataArr3;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -31,6 +34,10 @@
 }
 
 - (void)setUp {
+    
+    dataArr1 = [NSMutableArray array];
+    dataArr2 = [NSMutableArray array];
+    dataArr3 = [NSMutableArray array];
 
     tableV1 = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, TableWidth*2, self.height/3*2)];
     tableV1.delegate = self;
@@ -102,7 +109,20 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 9;
+    
+    if (tableView == tableV1) {
+        
+        return dataArr1.count;
+        
+    }else if (tableView == tableV2) {
+    
+        return dataArr2.count;
+        
+    }else {
+        
+        return dataArr3.count;
+        
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -128,6 +148,24 @@
     if (!cell) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"Term1Cell" owner:self options:nil] lastObject];
     }
+    
+    
+    if (tableView == tableV1) {
+        NSDictionary *dic = dataArr1[indexPath.row];
+        cell.meumNameLabel.text = [dic objectForKey:@"text"];
+        
+    }else if (tableView == tableV2) {
+        
+        NSDictionary *dic = dataArr2[indexPath.row];
+        cell.meumNameLabel.text = [dic objectForKey:@"text"];
+        
+    }else {
+        
+        NSDictionary *dic = dataArr3[indexPath.row];
+        cell.meumNameLabel.text = [dic objectForKey:@"text"];
+        
+    }
+    
     
     if (tableView == tableV1) {
        UIView *cellBackView = [[UIView alloc] initWithFrame:cell.frame];
@@ -157,6 +195,39 @@
         }
         [tableView setContentOffset:CGPointMake(0, offset) animated:YES];
     
+    
+    
+    if (tableView == tableV1) {
+        
+        [dataArr2 removeAllObjects];
+        [dataArr3 removeAllObjects];
+        if ([((NSDictionary *)dataArr1[indexPath.row]).allKeys containsObject:@"children"]) {
+            
+            [dataArr2 addObjectsFromArray:[dataArr1[indexPath.row] objectForKey:@"children"]];
+            
+            if ([((NSDictionary *)dataArr2[0]).allKeys containsObject:@"children"]) {
+                
+                [dataArr3 addObjectsFromArray:[dataArr2[0] objectForKey:@"children"]];
+            }
+        }
+        
+        [tableV2 reloadData];
+        [tableV3 reloadData];
+        
+    }else if (tableView == tableV2) {
+    
+        [dataArr3 removeAllObjects];
+        if ([((NSDictionary *)dataArr2[indexPath.row]).allKeys containsObject:@"children"]) {
+            [dataArr3 addObjectsFromArray:[dataArr2[indexPath.row] objectForKey:@"children"]];
+            
+        }
+        [tableV3 reloadData];
+    }
+    
+    
+    
+    
+    
 }
 
 
@@ -167,31 +238,30 @@
     cell.meumNameLabel.textColor = [UIColor blackColor];
 }
 
+-(void)setProduceSource:(NSArray *)produceSource {
 
-//- (void)viewDidLayoutSubviews {
-//    
-//    tableV1.separatorInset = UIEdgeInsetsZero;
-//    tableV1.layoutMargins = UIEdgeInsetsZero;
-//    
-//    tableV2.separatorInset = UIEdgeInsetsZero;
-//    tableV2.layoutMargins = UIEdgeInsetsZero;
-//    
-//    tableV3.separatorInset = UIEdgeInsetsZero;
-//    tableV3.layoutMargins = UIEdgeInsetsZero;
-//}
-//
-//- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-//    
-//    tableV1.separatorInset = UIEdgeInsetsZero;
-//    tableV1.layoutMargins = UIEdgeInsetsZero;
-//    
-//    tableV2.separatorInset = UIEdgeInsetsZero;
-//    tableV2.layoutMargins = UIEdgeInsetsZero;
-//    
-//    tableV3.separatorInset = UIEdgeInsetsZero;
-//    tableV3.layoutMargins = UIEdgeInsetsZero;
-//}
-
+    _produceSource = produceSource;
+    [dataArr1 addObjectsFromArray:produceSource];
+    
+    if ([((NSDictionary *)dataArr1[0]).allKeys containsObject:@"children"]) {
+        [dataArr2 addObjectsFromArray:[dataArr1[0] objectForKey:@"children"]];
+    }
+    
+    if ([((NSDictionary *)dataArr2[0]).allKeys containsObject:@"children"]) {
+        [dataArr3 addObjectsFromArray:[dataArr2[0] objectForKey:@"children"]];
+    }
+    
+    NSLog(@"dataArr1 = %@",dataArr1);
+    NSLog(@"dataArr2 = %@",dataArr2);
+    NSLog(@"dataArr3 = %@",dataArr3);
+    
+    
+    [tableV1 reloadData];
+    [tableV2 reloadData];
+    [tableV3 reloadData];
+    
+    
+}
 
 
 @end

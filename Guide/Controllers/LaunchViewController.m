@@ -25,6 +25,7 @@
     [IndicatorView startAnimating];//启动
 
     [self getSessionID];
+
 }
 
 //判断是否存储了图片
@@ -36,28 +37,108 @@
     if ([manager fileExistsAtPath:filePath]) {
     _launchImage.image     = [UIImage imageWithContentsOfFile:filePath];
     }
+    
 }
 
-- (void)getSessionID {
+#pragma mark 获取区域树
+- (void)getAreasTreeJson:(NSString *)sessionId {
     
-    [KSMNetworkRequest postRequest:KGetSessionID params:nil success:^(NSDictionary *dataDic) {
-
-        FxLog(@"sessionID = %@",dataDic);
-        if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
-            [Uitils setUserDefaultsObject:[dataDic objectForKey:@"sessionId"] ForKey:TOKEN];
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    // app版本
+    NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    FxLog(@"app_Version = %@",app_Version);
+    
+    NSMutableDictionary *params = [[NSMutableDictionary alloc]init];
+    [params setObject:sessionId forKey:@"sessionId"];
+    
+    if (![[Uitils getUserDefaultsForKey:APPVERSION] isEqualToString:app_Version]) {
+        
+        if ([Uitils getUserDefaultsForKey:APPVERSION]) {
+            [params setObject:[Uitils getUserDefaultsForKey:APPVERSION] forKey:@"areaTreeVer"];
+        }else {
+        
+            [params setObject:@"0" forKey:@"areaTreeVer"];
         }
+        [Uitils setUserDefaultsObject:app_Version ForKey:APPVERSION];
+        
+        
+        [KSMNetworkRequest postRequest:KGetAreasTreeJson params:nil success:^(NSDictionary *dataDic) {
+            
+            FxLog(@"获取区域树 = %@",dataDic);
+            NSString *rootPath = [HYSandbox docPath];
+            NSString *filePath = [NSString stringWithFormat:@"%@/%@",rootPath,ARESTREE];
+            if ([[[dataDic objectForKey:@"retObj"] objectForKey:@"areaTree"] writeToFile:filePath atomically:YES]) {
+    
+                FxLog(@"区域树数据写入成功");
+            }else {
+    
+                FxLog(@"区域树数据写入失败");
+            }
+            
+        } failure:^(NSError *error) {
+            
+        }];
+        
+    }
 
-        [self requestHomeData];
+}
 
+
+#pragma mark 获取资源分类
+- (void)getProductCategoryTree:(NSString *)sessionId {
+
+    [KSMNetworkRequest postRequest:KGetProductCategoryTree params:@{@"sessionId":sessionId} success:^(NSDictionary *dataDic) {
+        
+        FxLog(@"资源分类 = %@",dataDic);
+        NSString *rootPath = [HYSandbox docPath];
+        NSString *filePath = [NSString stringWithFormat:@"%@/%@",rootPath,CategoryTree];
+        if ([[[dataDic objectForKey:@"retObj"] objectForKey:@"tree"] writeToFile:filePath atomically:YES]) {
+            
+            FxLog(@"资源分类数据写入成功");
+        }else {
+        
+            FxLog(@"资源分类数据写入失败");
+        }
+        
     } failure:^(NSError *error) {
-
+        
     }];
 }
 
-//请求主页的数据
-- (void)requestHomeData {
+#pragma mark 获取sessionId
+- (void)getSessionID {
+    
+    NSMutableDictionary *params = [[NSMutableDictionary alloc]init];;
+    if ([Uitils getUserDefaultsForKey:TOKEN]) {
+        
+        [params setObject:[Uitils getUserDefaultsForKey:TOKEN] forKey:@"sessionId"];
+    }
+    
+    [KSMNetworkRequest postRequest:KGetSessionID params:params success:^(NSDictionary *dataDic) {
+        
+        FxLog(@"sessionID = %@",dataDic);
+        if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
+            
+            [Uitils setUserDefaultsObject:[dataDic objectForKey:@"sessionId"] ForKey:TOKEN];
+            
+            [self getProductCategoryTree:[dataDic objectForKey:@"sessionId"]];
+            
+            [self getAreasTreeJson:[dataDic objectForKey:@"sessionId"]];
+            
+        }
+        [self requestHomeData:[dataDic objectForKey:@"sessionId"]];
+        
+    } failure:^(NSError *error) {
+        
+    }];
+}
 
-    [KSMNetworkRequest postRequest:KHomePageStatic params:nil success:^(NSDictionary *dataDic) {
+/**
+ *  请求主页的数据
+ */
+- (void)requestHomeData:(NSString *)sessionId {
+
+    [KSMNetworkRequest postRequest:KHomePageStatic params:@{@"sessionId":sessionId} success:^(NSDictionary *dataDic) {
         
         FxLog(@"dataDic = %@",dataDic);
         [IndicatorView stopAnimating];
@@ -78,6 +159,7 @@
     }];
 }
 
+#pragma mark 进入主界面
 - (void)hideLanch {
     
     if (self.view.superview != [AppDelegate appDeg].window) {
@@ -100,6 +182,7 @@
 //        [data writeToFile:filePath atomically:YES];
 //    }
 //}
+
 
 - (void)toTabBar {
 

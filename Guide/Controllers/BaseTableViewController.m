@@ -42,6 +42,9 @@
 //    navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
     
     self.tableView.tableFooterView = [[UIView alloc]init];
+    
+    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
 }
 
 //- (UIImageView *)findHairlineImageViewUnder:(UIView *)view {

@@ -31,6 +31,11 @@
     if (_term1 == nil) {
         
         ClassifyTerm1 *term1 = [[ClassifyTerm1 alloc]initWithFrame:CGRectMake(0, head.bottom, SCREEN_WIDTH, SCREEN_HEIGHT-64-44)];
+        
+        NSString *rootPath = [HYSandbox docPath];
+        NSString *filePath = [NSString stringWithFormat:@"%@/%@",rootPath,CategoryTree];
+        NSArray *array = [NSArray arrayWithContentsOfFile:filePath];
+        term1.produceSource = array;
         _term1 = term1;
     }
     return _term1;
@@ -63,6 +68,7 @@
     searchBar.frame = CGRectMake(0, -20, SCREEN_WIDTH, 44);
     searchBar.searchTF.backgroundColor = backgroudColor;
     
+    //进入消息中心
     [searchBar connectTwoBlock:^{
         
         UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];

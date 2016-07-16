@@ -22,3 +22,25 @@
 
 //商品详情
 #define KProduceDetail [BaseURLString stringByAppendingString:@"appProductDetail"]
+
+
+//获取资源分类
+#define KGetProductCategoryTree [BaseURLString stringByAppendingString:@"getProductCategoryTree"]
+
+
+//获取区域树
+#define KGetAreasTreeJson [BaseURLString stringByAppendingString:@"getAreasTreeJson"]
+
+//个人中心
+#define KPersionCenter [BaseURLString stringByAppendingString:@"appMemberCenterIndex"]
+
+//APP可见酒币套餐列表
+#define KCoinRechargePackageList [BaseURLString stringByAppendingString:@"getAppCoinRechargePackageList"]
+
+
+//计算酒币充值套餐人民币与酒币的换算
+#define KRMBtoCoins [BaseURLString stringByAppendingString:@"calculateCoinPackageRecharge"]
+
+
+//获取登录用户账户明细
+#define KCoinsDetail [BaseURLString stringByAppendingString:@"getLoginMemberCoinAccountLog"]

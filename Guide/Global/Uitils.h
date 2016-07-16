@@ -31,6 +31,8 @@
 
 + (NSString *)toImageName:(NSString *)dataString;
 
+//+ (NSString *)toChinses:(NSString *)dataString;
+
 @end
 
              

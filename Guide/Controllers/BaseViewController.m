@@ -41,6 +41,14 @@
     [super viewDidLoad];
     self.view.backgroundColor = backgroudColor;
     
+    //设置barButton的颜色
+//    self.navigationController?.navigationBar.tintColor = UIColor.grayColor()
+    //将barButton默认的文字隐藏，只剩下返回箭头
+//    UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffsetMake(0, -60), forBarMetrics: .Default)
+    
+    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
+    
     
 //    navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
 

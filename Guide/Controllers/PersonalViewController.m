@@ -2,8 +2,17 @@
 #import "ButtonView.h"
 #import "OrderTypeTableVC.h"
 #import "OrderComplainCtrl.h"
+#import "PersionModel.h"
+#import "MyCoinsController.h"
 @interface PersonalViewController ()<UITableViewDelegate,UITableViewDataSource,ButtonViewDeleage>
-
+{
+    PersionModel *persionModel;
+}
+@property (weak, nonatomic) IBOutlet UIImageView *avatar;
+@property (weak, nonatomic) IBOutlet UILabel *userName;
+@property (weak, nonatomic) IBOutlet UILabel *userType;
+@property (weak, nonatomic) IBOutlet UILabel *collectCount;
+@property (weak, nonatomic) IBOutlet UILabel *browseCount;
 @end
 
 @implementation PersonalViewController
@@ -22,7 +31,6 @@
     NSArray *iconImage      = @[@"图层-142",@"图层-145",@"图层-143",@"图层-146",@"图层-144"];
     
     for (int i = 0; i<5; i++) {
-        
         //订单
         ButtonView *orderBV = (ButtonView *)[cell1.contentView viewWithTag:i+100];
         orderBV.delegate = self;
@@ -44,6 +52,11 @@
     self.navigationController.navigationBar.hidden = YES;
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.tableView.frame = CGRectMake(0, -20, SCREEN_WIDTH, self.tableView.height);
+    
+    if (!persionModel) {
+        [self loadPersionData];
+
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -52,8 +65,49 @@
     self.navigationController.navigationBar.hidden = NO;
 }
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+}
+
+- (void)loadPersionData {
+
+    [[HUDConfig shareHUD]alwaysShow];
+    
+    BaseParams *params = [[BaseParams alloc]init];
+    [KSMNetworkRequest postRequest:KPersionCenter params:params.mj_keyValues success:^(NSDictionary *dataDic) {
+        
+        FxLog(@"PersionData = %@",dataDic);
+        
+        if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
+            
+            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            
+            if (![[dataDic objectForKey:@"retObj"] isEqual:[NSNull null]]) {
+                
+                persionModel = [PersionModel mj_objectWithKeyValues:[dataDic objectForKey:@"retObj"]];
+                
+                //头像
+                [Uitils cacheImagwWithSize:_avatar.size imageID:[persionModel.memberInfo objectForKey:@"avatarImgId"] imageV:_avatar placeholder:nil];
+                //用户名
+                _userName.text = [persionModel.memberInfo objectForKey:@"departmentName"];
+                _userType.text = [persionModel.memberInfo objectForKey:@"nick"];
+                //收藏
+                _collectCount.text = [NSString stringWithFormat:@"%@",[persionModel.data objectForKey:@"favoriteCount"]];
+                //浏览
+                _browseCount.text = [NSString stringWithFormat:@"%@",[persionModel.data objectForKey:@"noticeCount"]];
+                
+            }
+            
+        }else {
+            
+            [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+        }
+        
+    } failure:^(NSError *error) {
+       
+         [[HUDConfig shareHUD]ErrorHUD:error.localizedDescription delay:DELAY];
+    }];
 }
 
 
@@ -89,11 +143,15 @@
         OrderComplainCtrl *OrderComplain = [mainSB instantiateViewControllerWithIdentifier:@"OrderComplainCtrl"];
         [self.navigationController pushViewController:OrderComplain animated:YES];
     }
-    
-    
-    
-    
-    
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+
+    if ([segue.identifier isEqualToString:@"toCoinDetail"]) {
+        
+        MyCoinsController *destination = (MyCoinsController *)segue.destinationViewController;
+        destination.persionModel = persionModel;
+    }
 }
 
 @end

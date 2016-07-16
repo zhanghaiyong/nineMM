@@ -42,6 +42,21 @@
 		BF3C3C061D3732B8000E3027 /* SecondBannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3C3C051D3732B8000E3027 /* SecondBannerModel.m */; };
 		BF3C3C091D375121000E3027 /* ProduceDetailParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3C3C081D375121000E3027 /* ProduceDetailParams.m */; };
 		BF3C3C0C1D376A47000E3027 /* LoginParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3C3C0B1D376A47000E3027 /* LoginParams.m */; };
+		BF3C3C0F1D378D9D000E3027 /* ProduceDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3C3C0E1D378D9D000E3027 /* ProduceDetailModel.m */; };
+		BF3C3C131D38AC51000E3027 /* PersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3C3C121D38AC51000E3027 /* PersionModel.m */; };
+		BF3C3C161D38EF71000E3027 /* CoinRechargePackageParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3C3C151D38EF71000E3027 /* CoinRechargePackageParams.m */; };
+		BF3C3C191D38F11D000E3027 /* PackageListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3C3C181D38F11D000E3027 /* PackageListModel.m */; };
+		BF3C3C1E1D38F66D000E3027 /* CoinRechargeCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3C3C1C1D38F66D000E3027 /* CoinRechargeCell1.m */; };
+		BF3C3C1F1D38F66D000E3027 /* CoinRechargeCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF3C3C1D1D38F66D000E3027 /* CoinRechargeCell1.xib */; };
+		BF3C3C231D39CEA1000E3027 /* CoinRechargeCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3C3C211D39CEA1000E3027 /* CoinRechargeCell2.m */; };
+		BF3C3C241D39CEA1000E3027 /* CoinRechargeCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF3C3C221D39CEA1000E3027 /* CoinRechargeCell2.xib */; };
+		BF3C3C281D39CEE1000E3027 /* CoinRechargeCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3C3C261D39CEE1000E3027 /* CoinRechargeCell3.m */; };
+		BF3C3C291D39CEE1000E3027 /* CoinRechargeCell3.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF3C3C271D39CEE1000E3027 /* CoinRechargeCell3.xib */; };
+		BF3C3C2D1D39E448000E3027 /* PackageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3C3C2B1D39E448000E3027 /* PackageCell.m */; };
+		BF3C3C2E1D39E448000E3027 /* PackageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF3C3C2C1D39E448000E3027 /* PackageCell.xib */; };
+		BF3C3C311D39F66C000E3027 /* CalculateCoinParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3C3C301D39F66C000E3027 /* CalculateCoinParams.m */; };
+		BF3C3C341D39F95E000E3027 /* CalculateCoinModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3C3C331D39F95E000E3027 /* CalculateCoinModel.m */; };
+		BF3C3C371D3A16C0000E3027 /* ChosePayTypeController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3C3C361D3A16C0000E3027 /* ChosePayTypeController.m */; };
 		BF4086541D12E58100E11065 /* SearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = BF4086531D12E58100E11065 /* SearchBar.m */; };
 		BF4086561D12E59000E11065 /* SearchBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF4086551D12E59000E11065 /* SearchBar.xib */; };
 		BF4086591D12EE6C00E11065 /* MainStaticModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF4086581D12EE6C00E11065 /* MainStaticModel.m */; };
@@ -49,6 +64,9 @@
 		BF40865F1D12EF8500E11065 /* GroupButtonsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF40865E1D12EF8500E11065 /* GroupButtonsModel.m */; };
 		BF4086621D12EF9500E11065 /* TopBannersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF4086611D12EF9500E11065 /* TopBannersModel.m */; };
 		BF7F92771D26937D0081578F /* BaseParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7F92761D26937D0081578F /* BaseParams.m */; };
+		BF8600C31D3A263000BCA60A /* PayAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8600C21D3A263000BCA60A /* PayAlertViewController.m */; };
+		BF8600C61D3A29B800BCA60A /* CoinsDetailParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8600C51D3A29B800BCA60A /* CoinsDetailParams.m */; };
+		BF8600C91D3A2B4400BCA60A /* CoinsDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8600C81D3A2B4400BCA60A /* CoinsDetailModel.m */; };
 		BF94681E1D2279E500143B91 /* SureOrdersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF94681D1D2279E500143B91 /* SureOrdersViewController.m */; };
 		BF9468241D22849F00143B91 /* SourceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF9468231D22849F00143B91 /* SourceListViewController.m */; };
 		BF9468281D22852C00143B91 /* SourceListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF9468261D22852C00143B91 /* SourceListCell.m */; };
@@ -199,6 +217,32 @@
 		BF3C3C081D375121000E3027 /* ProduceDetailParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProduceDetailParams.m; sourceTree = "<group>"; };
 		BF3C3C0A1D376A47000E3027 /* LoginParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginParams.h; sourceTree = "<group>"; };
 		BF3C3C0B1D376A47000E3027 /* LoginParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginParams.m; sourceTree = "<group>"; };
+		BF3C3C0D1D378D9D000E3027 /* ProduceDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProduceDetailModel.h; sourceTree = "<group>"; };
+		BF3C3C0E1D378D9D000E3027 /* ProduceDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProduceDetailModel.m; sourceTree = "<group>"; };
+		BF3C3C111D38AC51000E3027 /* PersionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersionModel.h; sourceTree = "<group>"; };
+		BF3C3C121D38AC51000E3027 /* PersionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersionModel.m; sourceTree = "<group>"; };
+		BF3C3C141D38EF71000E3027 /* CoinRechargePackageParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinRechargePackageParams.h; sourceTree = "<group>"; };
+		BF3C3C151D38EF71000E3027 /* CoinRechargePackageParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinRechargePackageParams.m; sourceTree = "<group>"; };
+		BF3C3C171D38F11D000E3027 /* PackageListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PackageListModel.h; sourceTree = "<group>"; };
+		BF3C3C181D38F11D000E3027 /* PackageListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PackageListModel.m; sourceTree = "<group>"; };
+		BF3C3C1B1D38F66D000E3027 /* CoinRechargeCell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinRechargeCell1.h; sourceTree = "<group>"; };
+		BF3C3C1C1D38F66D000E3027 /* CoinRechargeCell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinRechargeCell1.m; sourceTree = "<group>"; };
+		BF3C3C1D1D38F66D000E3027 /* CoinRechargeCell1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CoinRechargeCell1.xib; sourceTree = "<group>"; };
+		BF3C3C201D39CEA1000E3027 /* CoinRechargeCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinRechargeCell2.h; sourceTree = "<group>"; };
+		BF3C3C211D39CEA1000E3027 /* CoinRechargeCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinRechargeCell2.m; sourceTree = "<group>"; };
+		BF3C3C221D39CEA1000E3027 /* CoinRechargeCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CoinRechargeCell2.xib; sourceTree = "<group>"; };
+		BF3C3C251D39CEE1000E3027 /* CoinRechargeCell3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinRechargeCell3.h; sourceTree = "<group>"; };
+		BF3C3C261D39CEE1000E3027 /* CoinRechargeCell3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinRechargeCell3.m; sourceTree = "<group>"; };
+		BF3C3C271D39CEE1000E3027 /* CoinRechargeCell3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CoinRechargeCell3.xib; sourceTree = "<group>"; };
+		BF3C3C2A1D39E448000E3027 /* PackageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PackageCell.h; sourceTree = "<group>"; };
+		BF3C3C2B1D39E448000E3027 /* PackageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PackageCell.m; sourceTree = "<group>"; };
+		BF3C3C2C1D39E448000E3027 /* PackageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PackageCell.xib; sourceTree = "<group>"; };
+		BF3C3C2F1D39F66C000E3027 /* CalculateCoinParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculateCoinParams.h; sourceTree = "<group>"; };
+		BF3C3C301D39F66C000E3027 /* CalculateCoinParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculateCoinParams.m; sourceTree = "<group>"; };
+		BF3C3C321D39F95E000E3027 /* CalculateCoinModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculateCoinModel.h; sourceTree = "<group>"; };
+		BF3C3C331D39F95E000E3027 /* CalculateCoinModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculateCoinModel.m; sourceTree = "<group>"; };
+		BF3C3C351D3A16C0000E3027 /* ChosePayTypeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChosePayTypeController.h; sourceTree = "<group>"; };
+		BF3C3C361D3A16C0000E3027 /* ChosePayTypeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChosePayTypeController.m; sourceTree = "<group>"; };
 		BF4086521D12E58100E11065 /* SearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBar.h; sourceTree = "<group>"; };
 		BF4086531D12E58100E11065 /* SearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchBar.m; sourceTree = "<group>"; };
 		BF4086551D12E59000E11065 /* SearchBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchBar.xib; sourceTree = "<group>"; };
@@ -212,6 +256,12 @@
 		BF4086611D12EF9500E11065 /* TopBannersModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopBannersModel.m; sourceTree = "<group>"; };
 		BF7F92751D26937D0081578F /* BaseParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseParams.h; sourceTree = "<group>"; };
 		BF7F92761D26937D0081578F /* BaseParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseParams.m; sourceTree = "<group>"; };
+		BF8600C11D3A263000BCA60A /* PayAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayAlertViewController.h; sourceTree = "<group>"; };
+		BF8600C21D3A263000BCA60A /* PayAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayAlertViewController.m; sourceTree = "<group>"; };
+		BF8600C41D3A29B800BCA60A /* CoinsDetailParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinsDetailParams.h; sourceTree = "<group>"; };
+		BF8600C51D3A29B800BCA60A /* CoinsDetailParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinsDetailParams.m; sourceTree = "<group>"; };
+		BF8600C71D3A2B4400BCA60A /* CoinsDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinsDetailModel.h; sourceTree = "<group>"; };
+		BF8600C81D3A2B4400BCA60A /* CoinsDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinsDetailModel.m; sourceTree = "<group>"; };
 		BF94681C1D2279E500143B91 /* SureOrdersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SureOrdersViewController.h; sourceTree = "<group>"; };
 		BF94681D1D2279E500143B91 /* SureOrdersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SureOrdersViewController.m; sourceTree = "<group>"; };
 		BF9468221D22849F00143B91 /* SourceListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceListViewController.h; sourceTree = "<group>"; };
@@ -437,7 +487,7 @@
 			isa = PBXGroup;
 			children = (
 				BFF578A41D2F59AC00EC9400 /* 购物车 */,
-				BFED9BBC1D2B8501000175C5 /* 酒币明细 */,
+				BFED9BBC1D2B8501000175C5 /* 酒币 */,
 				BFED9BA81D2A52CE000175C5 /* OrderCell */,
 				BFF8D40B1D18F55A0039600B /* ProduceDetailCell */,
 				BFF8D40A1D18F54E0039600B /* MainCell */,
@@ -524,6 +574,7 @@
 		789E78A81CB62B510039AC69 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				BF3C3C101D38AC25000E3027 /* 个人中心 */,
 				BFA2B7241CF6EE3600EB460E /* PageInfo.h */,
 				BFA2B7221CF6EE1B00EB460E /* PageInfo.m */,
 				BFD69E941CF8A5AB00B50A6E /* Produce1Model.h */,
@@ -542,6 +593,8 @@
 				BF3C3C051D3732B8000E3027 /* SecondBannerModel.m */,
 				BF3509901D13AFB300F2BCC5 /* MainProduceModel.h */,
 				BF3509911D13AFB300F2BCC5 /* MainProduceModel.m */,
+				BF3C3C0D1D378D9D000E3027 /* ProduceDetailModel.h */,
+				BF3C3C0E1D378D9D000E3027 /* ProduceDetailModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -657,9 +710,30 @@
 				BF3C3C081D375121000E3027 /* ProduceDetailParams.m */,
 				BF35098A1D13A3C900F2BCC5 /* MainProduceListParams.h */,
 				BF35098B1D13A3C900F2BCC5 /* MainProduceListParams.m */,
+				BF3C3C141D38EF71000E3027 /* CoinRechargePackageParams.h */,
+				BF3C3C151D38EF71000E3027 /* CoinRechargePackageParams.m */,
+				BF3C3C2F1D39F66C000E3027 /* CalculateCoinParams.h */,
+				BF3C3C301D39F66C000E3027 /* CalculateCoinParams.m */,
+				BF8600C41D3A29B800BCA60A /* CoinsDetailParams.h */,
+				BF8600C51D3A29B800BCA60A /* CoinsDetailParams.m */,
 			);
 			name = Params;
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		BF3C3C101D38AC25000E3027 /* 个人中心 */ = {
+			isa = PBXGroup;
+			children = (
+				BF3C3C111D38AC51000E3027 /* PersionModel.h */,
+				BF3C3C121D38AC51000E3027 /* PersionModel.m */,
+				BF3C3C171D38F11D000E3027 /* PackageListModel.h */,
+				BF3C3C181D38F11D000E3027 /* PackageListModel.m */,
+				BF3C3C321D39F95E000E3027 /* CalculateCoinModel.h */,
+				BF3C3C331D39F95E000E3027 /* CalculateCoinModel.m */,
+				BF8600C71D3A2B4400BCA60A /* CoinsDetailModel.h */,
+				BF8600C81D3A2B4400BCA60A /* CoinsDetailModel.m */,
+			);
+			name = "个人中心";
 			sourceTree = "<group>";
 		};
 		BF4086511D12E56E00E11065 /* SearchBAr */ = {
@@ -705,6 +779,10 @@
 				BFF472B41D17C93F00516EE3 /* MyCoinsController.m */,
 				BFED9BC21D2BAD7F000175C5 /* CoinsRechargeViewController.h */,
 				BFED9BC31D2BAD7F000175C5 /* CoinsRechargeViewController.m */,
+				BF3C3C351D3A16C0000E3027 /* ChosePayTypeController.h */,
+				BF3C3C361D3A16C0000E3027 /* ChosePayTypeController.m */,
+				BF8600C11D3A263000BCA60A /* PayAlertViewController.h */,
+				BF8600C21D3A263000BCA60A /* PayAlertViewController.m */,
 				BFED9BB91D2B84BD000175C5 /* CoinsDetailViewCtrl.h */,
 				BFED9BBA1D2B84BD000175C5 /* CoinsDetailViewCtrl.m */,
 				BFF433A41D151B7800D21427 /* ControlAccount.h */,
@@ -830,14 +908,26 @@
 			name = OrderCell;
 			sourceTree = "<group>";
 		};
-		BFED9BBC1D2B8501000175C5 /* 酒币明细 */ = {
+		BFED9BBC1D2B8501000175C5 /* 酒币 */ = {
 			isa = PBXGroup;
 			children = (
 				BFED9BBD1D2B8523000175C5 /* CoinsDetailCell.h */,
 				BFED9BBE1D2B8523000175C5 /* CoinsDetailCell.m */,
 				BFED9BBF1D2B8523000175C5 /* CoinsDetailCell.xib */,
+				BF3C3C1B1D38F66D000E3027 /* CoinRechargeCell1.h */,
+				BF3C3C1C1D38F66D000E3027 /* CoinRechargeCell1.m */,
+				BF3C3C1D1D38F66D000E3027 /* CoinRechargeCell1.xib */,
+				BF3C3C201D39CEA1000E3027 /* CoinRechargeCell2.h */,
+				BF3C3C211D39CEA1000E3027 /* CoinRechargeCell2.m */,
+				BF3C3C221D39CEA1000E3027 /* CoinRechargeCell2.xib */,
+				BF3C3C251D39CEE1000E3027 /* CoinRechargeCell3.h */,
+				BF3C3C261D39CEE1000E3027 /* CoinRechargeCell3.m */,
+				BF3C3C271D39CEE1000E3027 /* CoinRechargeCell3.xib */,
+				BF3C3C2A1D39E448000E3027 /* PackageCell.h */,
+				BF3C3C2B1D39E448000E3027 /* PackageCell.m */,
+				BF3C3C2C1D39E448000E3027 /* PackageCell.xib */,
 			);
-			name = "酒币明细";
+			name = "酒币";
 			sourceTree = "<group>";
 		};
 		BFF4339E1D151AAC00D21427 /* NavigationBarView */ = {
@@ -995,8 +1085,11 @@
 				BFC50F081CFC1BD800CA7CD5 /* Main3Cell.xib in Resources */,
 				BFC50EFE1CFC1B7300CA7CD5 /* Main1Cell.xib in Resources */,
 				BF9468291D22852C00143B91 /* SourceListCell.xib in Resources */,
+				BF3C3C291D39CEE1000E3027 /* CoinRechargeCell3.xib in Resources */,
 				BFF433A31D151AC900D21427 /* NavigationBarView.xib in Resources */,
+				BF3C3C1F1D38F66D000E3027 /* CoinRechargeCell1.xib in Resources */,
 				BFD69E661CF7FA8200B50A6E /* ClassifyDetailHead.xib in Resources */,
+				BF3C3C2E1D39E448000E3027 /* PackageCell.xib in Resources */,
 				BFED9B841D28FAFF000175C5 /* ClassifyCell.xib in Resources */,
 				BFC687171D1185EF006524C2 /* LaunchViewController.xib in Resources */,
 				BFD69E711CF812C100B50A6E /* ClassifyDetailSearchView.xib in Resources */,
@@ -1006,6 +1099,7 @@
 				BFEEA58A1D198ADF00B261BF /* ProDetailCell2.xib in Resources */,
 				788836CE1CBC9BAB0030909E /* SelectEDU.xib in Resources */,
 				BFED9BC11D2B8523000175C5 /* CoinsDetailCell.xib in Resources */,
+				BF3C3C241D39CEA1000E3027 /* CoinRechargeCell2.xib in Resources */,
 				788A56471CB7907E00A58302 /* TabBar.plist in Resources */,
 				BFF8D4101D18F5740039600B /* ProDetailCell1.xib in Resources */,
 				BF4086561D12E59000E11065 /* SearchBar.xib in Resources */,
@@ -1077,12 +1171,14 @@
 				BFED9B831D28FAFF000175C5 /* ClassifyCell.m in Sources */,
 				BFED9BC41D2BAD7F000175C5 /* CoinsRechargeViewController.m in Sources */,
 				BF4086591D12EE6C00E11065 /* MainStaticModel.m in Sources */,
+				BF3C3C2D1D39E448000E3027 /* PackageCell.m in Sources */,
 				BFA2B7121CF6E88200EB460E /* RepeatPwdViewController.m in Sources */,
 				BFD69E641CF7FA7900B50A6E /* ClassifyDetailHead.m in Sources */,
 				BF4086541D12E58100E11065 /* SearchBar.m in Sources */,
 				788836CC1CBC9BA30030909E /* SelectEDU.m in Sources */,
 				BFA2B7231CF6EE1B00EB460E /* PageInfo.m in Sources */,
 				7828007D1CD1B89600F760EF /* JiPush.m in Sources */,
+				BF3C3C281D39CEE1000E3027 /* CoinRechargeCell3.m in Sources */,
 				BF3C3C031D373147000E3027 /* NewsModel.m in Sources */,
 				789E78D41CB6328E0039AC69 /* HYSystem.m in Sources */,
 				BFF578BB1D2F79AE00EC9400 /* MsgCenterViewController.m in Sources */,
@@ -1098,6 +1194,7 @@
 				BFF578B71D2F6C4C00EC9400 /* ZZPhotoPickerCell.m in Sources */,
 				BFEEA5891D198ADF00B261BF /* ProDetailCell2.m in Sources */,
 				786B637D1CC71F9F00362DBF /* ProgressHUD.m in Sources */,
+				BF8600C91D3A2B4400BCA60A /* CoinsDetailModel.m in Sources */,
 				BFED9B881D290234000175C5 /* ClassifyTerm1.m in Sources */,
 				BFA2B70C1CF6D85600EB460E /* ButtonView.m in Sources */,
 				BFF433A91D15200200D21427 /* ModifyPassword.m in Sources */,
@@ -1111,20 +1208,27 @@
 				BFA2B7211CF6E96000EB460E /* ClassifyViewController.m in Sources */,
 				BFC50F0C1CFC447800CA7CD5 /* PersonalViewController.m in Sources */,
 				BFEEA5921D1A399300B261BF /* UserSourceViewController.m in Sources */,
+				BF3C3C191D38F11D000E3027 /* PackageListModel.m in Sources */,
+				BF3C3C1E1D38F66D000E3027 /* CoinRechargeCell1.m in Sources */,
 				BFED9BA31D2A3E16000175C5 /* ClassifyTerm3ViewController.m in Sources */,
 				BFA2B7181CF6E8C600EB460E /* MethodGetPwdViewController.m in Sources */,
 				BFF433D51D152B9A00D21427 /* MeumList.m in Sources */,
+				BF3C3C0F1D378D9D000E3027 /* ProduceDetailModel.m in Sources */,
+				BF3C3C161D38EF71000E3027 /* CoinRechargePackageParams.m in Sources */,
 				BFF433AC1D15202800D21427 /* ModifyEmail.m in Sources */,
 				BFEEA5A01D1A444500B261BF /* UserSourceCell.m in Sources */,
 				BFD887CF1CF976CF00C9DF44 /* MethodBagCell.m in Sources */,
 				BF35098F1D13AE1D00F2BCC5 /* HUDConfig.m in Sources */,
+				BF8600C61D3A29B800BCA60A /* CoinsDetailParams.m in Sources */,
 				786D50B71CCF4F19001242D8 /* LDXScore.m in Sources */,
+				BF3C3C371D3A16C0000E3027 /* ChosePayTypeController.m in Sources */,
 				BF40865C1D12EF7600E11065 /* ShortcutsModel.m in Sources */,
 				BF3C3C061D3732B8000E3027 /* SecondBannerModel.m in Sources */,
 				BF40865F1D12EF8500E11065 /* GroupButtonsModel.m in Sources */,
 				BFA2B71B1CF6E92E00EB460E /* TabBarViewController.m in Sources */,
 				788836D21CBCC9C20030909E /* BirthdayView.m in Sources */,
 				BFF578B31D2F6C4C00EC9400 /* ZZPhotoController.m in Sources */,
+				BF3C3C311D39F66C000E3027 /* CalculateCoinParams.m in Sources */,
 				789E78921CB60D080039AC69 /* AppDelegate.m in Sources */,
 				BFED9BB81D2A9E92000175C5 /* OrderDetailTabViewCtrl.m in Sources */,
 				BFF578B41D2F6C4C00EC9400 /* ZZPhotoDatas.m in Sources */,
@@ -1133,6 +1237,8 @@
 				BFF578B51D2F6C4C00EC9400 /* ZZPhotoListCell.m in Sources */,
 				BFC687161D1185EF006524C2 /* LaunchViewController.m in Sources */,
 				789E78CD1CB631E40039AC69 /* UIView+HYExt.m in Sources */,
+				BF8600C31D3A263000BCA60A /* PayAlertViewController.m in Sources */,
+				BF3C3C231D39CEA1000E3027 /* CoinRechargeCell2.m in Sources */,
 				BFED9BBB1D2B84BE000175C5 /* CoinsDetailViewCtrl.m in Sources */,
 				BFED9BB51D2A6AE0000175C5 /* OrderComplainCtrl.m in Sources */,
 				BFF578B61D2F6C4C00EC9400 /* ZZPhotoListViewController.m in Sources */,
@@ -1146,6 +1252,7 @@
 				BF35098C1D13A3C900F2BCC5 /* MainProduceListParams.m in Sources */,
 				789E78CA1CB631700039AC69 /* UIColor+HYExtension.m in Sources */,
 				BFF433A61D151B7800D21427 /* ControlAccount.m in Sources */,
+				BF3C3C341D39F95E000E3027 /* CalculateCoinModel.m in Sources */,
 				BFD1FE991CF7351B006FDDF6 /* ZHYBannerView.m in Sources */,
 				BFC50EF81CFC175000CA7CD5 /* Main4Cell.m in Sources */,
 				7871FC2B1CBF6E0500E2608C /* CALayer+TextFieldBoardColor.m in Sources */,
@@ -1160,6 +1267,7 @@
 				BFED9B901D2A073A000175C5 /* ClassifyTerm2.m in Sources */,
 				789E788F1CB60D080039AC69 /* main.m in Sources */,
 				BFA2B70F1CF6E85400EB460E /* LoginViewController.m in Sources */,
+				BF3C3C131D38AC51000E3027 /* PersionModel.m in Sources */,
 				789E78C41CB631360039AC69 /* NSDate+HYExtension.m in Sources */,
 				BFF433A11D151ABF00D21427 /* NavigationBarView.m in Sources */,
 				BF7F92771D26937D0081578F /* BaseParams.m in Sources */,

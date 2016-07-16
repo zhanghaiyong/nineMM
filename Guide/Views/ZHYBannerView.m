@@ -37,6 +37,8 @@
     [self addSubview:self.ScrollView];
     
     self.pageControl = [[UIPageControl alloc]init];
+    self.pageControl.pageIndicatorTintColor = [UIColor whiteColor];
+    self.pageControl.currentPageIndicatorTintColor = [UIColor redColor];
     [self addSubview:self.pageControl];
 }
 
@@ -49,7 +51,7 @@
 -(void)setImageArray:(NSArray *)imageArray {
     
     _imageArray = imageArray;
-    FxLog(@"%@",imageArray);
+    FxLog(@"imageArray = %@",imageArray);
     
     self.pageControl.numberOfPages = imageArray.count;
     self.pageControl.currentPage = 0;

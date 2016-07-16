@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface CoinsDetailCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *dataLabel;
+@property (weak, nonatomic) IBOutlet UILabel *logIdLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *coinCountLabel;
 @end

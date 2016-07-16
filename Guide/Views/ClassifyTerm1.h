@@ -10,4 +10,6 @@
 
 @interface ClassifyTerm1 : UIView<UITableViewDelegate,UITableViewDataSource>
 
+@property (nonatomic,strong)NSArray *produceSource;
+
 @end

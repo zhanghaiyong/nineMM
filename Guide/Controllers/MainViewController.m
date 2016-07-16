@@ -234,16 +234,22 @@
             for (int i = 0; i<self.mainStaticModel.shortcuts.count; i++) {
                 ButtonView *buttonView = [cell.contentView viewWithTag:i+101];
                 ShortcutsModel *buttonModel = self.mainStaticModel.shortcuts[i];
+                buttonView.isNetImage = YES;
                 buttonView.labelTitle = buttonModel.title;
                 buttonView.imageName = buttonModel.imageId;
             }
             
             //新资源
-            for (int i = 0; i<self.mainStaticModel.news.count; i++) {
-                UILabel *label = [cell.contentView viewWithTag:i+112];
-                NewsModel *goodType = self.mainStaticModel.news[i];
-//                label.text = goodType.title;
+            if (self.mainStaticModel.news.count > 0) {
+               
+                NewsModel *newsModel = self.mainStaticModel.news[0];
+                UILabel *title = [cell.contentView viewWithTag:112];
+                title.text = newsModel.title;
+                
+                UILabel *subTitle = [cell.contentView viewWithTag:113];
+                subTitle.text = newsModel.subtitle;
             }
+
             return cell;
         }
             
@@ -281,37 +287,40 @@
             
             Main4Cell *cell = [[[NSBundle mainBundle] loadNibNamed:@"Main4Cell" owner:self options:nil] lastObject];
             
-            MainProduceModel *model = self.produces[indexPath.row];
-            cell.NameLabel.text     = model.name;
-            cell.CoinsLabel.text    = model.price;
-            cell.timeLabel.text     = [NSString stringWithFormat:@"档期时间：%@",model.scheduleDesc];
-            cell.termsLabel.text    = [NSString stringWithFormat:@"资源限制说明：%@",model.terms];
-            cell.StockLabel.text    = [NSString stringWithFormat:@"库存 %@",model.stock];
-            
-            //是否收藏
-            if ([model.favorite integerValue] != 0) {
+            if (self.produces.count > 0) {
+             
+                MainProduceModel *model = self.produces[indexPath.row];
+                cell.NameLabel.text     = model.name;
+                cell.CoinsLabel.text    = model.price;
+                cell.timeLabel.text     = [NSString stringWithFormat:@"档期时间：%@",model.scheduleDesc];
+                cell.termsLabel.text    = [NSString stringWithFormat:@"资源限制说明：%@",model.terms];
+                cell.StockLabel.text    = [NSString stringWithFormat:@"库存 %@",model.stock];
                 
-                cell.collectBtn.selected = YES;
+                //是否收藏
+                if ([model.favorite integerValue] != 0) {
+                    
+                    cell.collectBtn.selected = YES;
+                    
+                }else {
+                    
+                    cell.collectBtn.selected = NO;
+                }
                 
-            }else {
-            
-                cell.collectBtn.selected = NO;
+                for (int i = 0; i<model.acceptableCoinTypes.count; i++) {
+                    
+                    UIImageView *coinImg = (UIImageView *)[cell.contentView viewWithTag:i+100];
+                    coinImg.hidden       = NO;
+                    coinImg.image        = [UIImage imageNamed:[Uitils toImageName:model.acceptableCoinTypes[i]]];
+                }
+                
+                for (int i = 0; i<model.tags.count; i++) {
+                    
+                    UIButton *tagsButton = (UIButton *)[cell.contentView viewWithTag:i+200];
+                    tagsButton.hidden    = NO;
+                    [tagsButton setTitle:model.tags[i] forState:UIControlStateNormal];
+                }
+                
             }
-            
-            for (int i = 0; i<model.acceptableCoinTypes.count; i++) {
-                
-                UIImageView *coinImg = (UIImageView *)[cell.contentView viewWithTag:i+100];
-                coinImg.hidden       = NO;
-                coinImg.image        = [UIImage imageNamed:[Uitils toImageName:model.acceptableCoinTypes[i]]];
-            }
-            
-            for (int i = 0; i<model.tags.count; i++) {
-                
-                UIButton *tagsButton = (UIButton *)[cell.contentView viewWithTag:i+200];
-                tagsButton.hidden    = NO;
-                [tagsButton setTitle:model.tags[i] forState:UIControlStateNormal];
-            }
-            
             return cell;
         }
             
@@ -329,8 +338,11 @@
     
     if (indexPath.section == 3) {
         
+        MainProduceModel *model = self.produces[indexPath.row];
+        
         UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
         ProduceDetailViewController *produceDetail = [mainSB instantiateViewControllerWithIdentifier:@"ProduceDetailViewController"];
+        produceDetail.produceID = model.id;
         [self.navigationController pushViewController:produceDetail animated:YES];
     }
 }

@@ -83,10 +83,16 @@
 - (void)setImageName:(NSString *)imageName {
 
     _imageName = imageName;
+    if (_isNetImage) {
+       [Uitils cacheImagwWithSize:CGSizeMake(38, 38) imageID:imageName imageV:imageView placeholder:nil];
+    }else {
+    imageView.image = [UIImage imageNamed:imageName];
+        
+    }
     
-    [Uitils cacheImagwWithSize:CGSizeMake(38, 38) imageID:imageName imageV:imageView placeholder:@"下载(5)"];
     
-//    imageView.image = [UIImage imageNamed:imageName];
+    
+    
 }
 
 //添加的手势方法

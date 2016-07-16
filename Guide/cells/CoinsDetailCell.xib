@@ -42,6 +42,11 @@
                     <constraint firstItem="AV0-vG-Uz8" firstAttribute="top" secondItem="Lvs-yf-quV" secondAttribute="bottom" id="ubb-Bp-s9l"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="coinCountLabel" destination="WCQ-qS-TcL" id="Eh4-AA-SKi"/>
+                <outlet property="dataLabel" destination="Lvs-yf-quV" id="t02-xs-Li8"/>
+                <outlet property="logIdLabel" destination="AV0-vG-Uz8" id="p6t-jC-SiW"/>
+            </connections>
             <point key="canvasLocation" x="397" y="345.5"/>
         </tableViewCell>
     </objects>

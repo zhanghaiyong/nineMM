@@ -10,12 +10,15 @@
 
 #import "ClassifyTerm3ViewController.h"
 #import "Term1Cell.h"
-@interface ClassifyTerm3ViewController ()<UITableViewDelegate,UITableViewDataSource>
-{
+@interface ClassifyTerm3ViewController ()<UITableViewDelegate,UITableViewDataSource> {
     
     UITableView *tableV1;
     UITableView *tableV2;
     UITableView *tableV3;
+    NSMutableArray *dataArr1;
+    NSMutableArray *dataArr2;
+    NSMutableArray *dataArr3;
+    
     UITableView *storeTable;
 }
 @end
@@ -28,6 +31,36 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.title = @"区域选择";
     [self initSubViews];
+    
+    
+    dataArr1 = [NSMutableArray array];
+    dataArr2 = [NSMutableArray array];
+    dataArr3 = [NSMutableArray array];
+    
+    NSString *rootPath = [HYSandbox docPath];
+    NSString *filePath = [NSString stringWithFormat:@"%@/%@",rootPath,ARESTREE];
+    NSArray *areaTree = [NSArray arrayWithContentsOfFile:filePath];
+    FxLog(@"areaTree = %@",areaTree);
+    [dataArr1 addObjectsFromArray:areaTree];
+    
+    if ([((NSDictionary *)dataArr1[0]).allKeys containsObject:@"c"]) {
+        [dataArr2 addObjectsFromArray:[dataArr1[0] objectForKey:@"c"]];
+    }
+    
+    if ([((NSDictionary *)dataArr2[0]).allKeys containsObject:@"c"]) {
+        [dataArr3 addObjectsFromArray:[dataArr2[0] objectForKey:@"c"]];
+    }
+    
+    NSLog(@"dataArr1 = %@",dataArr1);
+    NSLog(@"dataArr2 = %@",dataArr2);
+    NSLog(@"dataArr3 = %@",dataArr3);
+    
+    
+    [tableV1 reloadData];
+    [tableV2 reloadData];
+    [tableV3 reloadData];
+    
+    
 }
 
 - (void)initSubViews {
@@ -121,7 +154,19 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 9;
+    if (tableView == tableV1) {
+        
+        return dataArr1.count;
+        
+    }else if (tableView == tableV2) {
+        
+        return dataArr2.count;
+        
+    }else {
+        
+        return dataArr3.count;
+        
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -162,8 +207,23 @@
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         }
         cell.textLabel.font = lever2Font;
+        cell.textLabel.adjustsFontSizeToFitWidth = YES;
         
-        cell.textLabel.text = @"测试";
+        if (tableView == tableV1) {
+            NSDictionary *dic = dataArr1[indexPath.row];
+            cell.textLabel.text = [dic objectForKey:@"n"];
+            
+        }else if (tableView == tableV2) {
+            
+            NSDictionary *dic = dataArr2[indexPath.row];
+            cell.textLabel.text = [dic objectForKey:@"n"];
+            
+        }else {
+            
+            NSDictionary *dic = dataArr3[indexPath.row];
+            cell.textLabel.text = [dic objectForKey:@"n"];
+            
+        }
         
         if (tableView == tableV1) {
             cell.backgroundColor = backgroudColor;
@@ -190,6 +250,36 @@
         }
         [tableView setContentOffset:CGPointMake(0, offset) animated:YES];
         cell.textLabel.textColor = MainColor;
+        
+        
+        if (tableView == tableV1) {
+            
+            [dataArr2 removeAllObjects];
+            [dataArr3 removeAllObjects];
+            if ([((NSDictionary *)dataArr1[indexPath.row]).allKeys containsObject:@"c"]) {
+                
+                [dataArr2 addObjectsFromArray:[dataArr1[indexPath.row] objectForKey:@"c"]];
+                
+                if ([((NSDictionary *)dataArr2[0]).allKeys containsObject:@"c"]) {
+                    
+                    [dataArr3 addObjectsFromArray:[dataArr2[0] objectForKey:@"c"]];
+                }
+            }
+            
+            [tableV2 reloadData];
+            [tableV3 reloadData];
+            
+        }else if (tableView == tableV2) {
+            
+            [dataArr3 removeAllObjects];
+            if ([((NSDictionary *)dataArr2[indexPath.row]).allKeys containsObject:@"c"]) {
+                [dataArr3 addObjectsFromArray:[dataArr2[indexPath.row] objectForKey:@"c"]];
+                
+            }
+            [tableV3 reloadData];
+        }
+        
+        
     }else {
         Term1Cell *cell = (Term1Cell *)[tableView cellForRowAtIndexPath:indexPath];
         //将点击的cell移动到中间位置

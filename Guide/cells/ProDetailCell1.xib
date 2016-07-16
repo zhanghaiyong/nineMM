@@ -14,7 +14,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="332.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aHm-vk-hy0">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aHm-vk-hy0" customClass="ZHYBannerView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                         <color key="backgroundColor" red="0.70196078429999997" green="0.93333333330000001" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -73,12 +73,6 @@
                         <color key="textColor" red="0.52156862749999999" green="0.52156862749999999" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="库存：2件" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sug-Uj-M46">
-                        <rect key="frame" x="250" y="276" width="60" height="16"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" red="0.52156862749999999" green="0.52156862749999999" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jz6-8K-caI">
                         <rect key="frame" x="0.0" y="322" width="320" height="10"/>
                         <color key="backgroundColor" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
@@ -86,6 +80,12 @@
                             <constraint firstAttribute="height" constant="10" id="wc7-Wm-sRn"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="库存：2件" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sug-Uj-M46">
+                        <rect key="frame" x="250" y="276" width="60" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.52156862749999999" green="0.52156862749999999" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="gqA-n0-Q0z" firstAttribute="centerY" secondItem="zAU-Go-e35" secondAttribute="centerY" id="4oK-Yp-jK6"/>
@@ -117,6 +117,15 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="Banner" destination="aHm-vk-hy0" id="ZDP-0j-DVd"/>
+                <outlet property="explainLabel" destination="s37-nw-Lg1" id="key-2S-9m9"/>
+                <outlet property="nameLabel" destination="RKx-8F-4Ud" id="r9M-zU-czu"/>
+                <outlet property="otherInfo" destination="kgB-bk-LIt" id="dH7-oQ-Bb6"/>
+                <outlet property="priceLabel" destination="gqA-n0-Q0z" id="N5T-Yc-cOL"/>
+                <outlet property="tagLabel" destination="hHu-cz-tbm" id="gmb-UZ-98v"/>
+                <outlet property="termLabel" destination="Sug-Uj-M46" id="zv1-Fz-eYr"/>
+            </connections>
             <point key="canvasLocation" x="211" y="251.5"/>
         </tableViewCell>
     </objects>

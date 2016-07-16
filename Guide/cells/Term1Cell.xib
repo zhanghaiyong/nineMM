@@ -15,16 +15,16 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QyG-MQ-S05">
-                        <rect key="frame" x="5" y="6" width="30" height="30"/>
+                        <rect key="frame" x="5" y="13.5" width="15" height="15"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" id="4ZC-6e-JFN"/>
-                            <constraint firstAttribute="width" constant="30" id="OFe-G3-8r2"/>
+                            <constraint firstAttribute="height" constant="15" id="4ZC-6e-JFN"/>
+                            <constraint firstAttribute="width" constant="15" id="OFe-G3-8r2"/>
                         </constraints>
                         <state key="normal" image="圆角矩形-9"/>
                         <state key="selected" image="组-1"/>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OIr-ua-l53">
-                        <rect key="frame" x="35" y="13" width="33" height="16"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="OIr-ua-l53">
+                        <rect key="frame" x="23" y="13" width="33" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -33,7 +33,7 @@
                     <constraint firstItem="OIr-ua-l53" firstAttribute="centerY" secondItem="QyG-MQ-S05" secondAttribute="centerY" id="3yq-AF-qCh"/>
                     <constraint firstItem="QyG-MQ-S05" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="8wB-ab-DOK"/>
                     <constraint firstItem="QyG-MQ-S05" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="KcZ-PI-EhU"/>
-                    <constraint firstItem="OIr-ua-l53" firstAttribute="leading" secondItem="QyG-MQ-S05" secondAttribute="trailing" id="c6O-mg-zdD"/>
+                    <constraint firstItem="OIr-ua-l53" firstAttribute="leading" secondItem="QyG-MQ-S05" secondAttribute="trailing" constant="3" id="c6O-mg-zdD"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

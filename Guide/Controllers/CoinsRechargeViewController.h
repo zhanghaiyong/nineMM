@@ -8,6 +8,6 @@
 
 #import "BaseTableViewController.h"
 
-@interface CoinsRechargeViewController : BaseTableViewController
+@interface CoinsRechargeViewController : BaseViewController
 
 @end

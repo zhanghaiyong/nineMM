@@ -43,6 +43,9 @@
 //#define LaunchImage (@"LaunchImage")
 #define LaunchCaches  (@"LaunchCaches")
 #define TOKEN         (@"SessionID")
+#define CategoryTree  (@"CategoryTree")
+#define ARESTREE      (@"AreasTree")
+#define APPVERSION    (@"appVersion")
 #define DELAY 2
 
 

@@ -9,8 +9,13 @@
 #import "CoinsDetailViewCtrl.h"
 #import "CoinsDetailCell.h"
 #import "SourceListHead.h"
-@interface CoinsDetailViewCtrl ()<UITableViewDelegate,UITableViewDataSource>
+#import "CoinsDetailParams.h"
+#import "CoinsDetailModel.h"
+@interface CoinsDetailViewCtrl ()<UITableViewDelegate,UITableViewDataSource>{
 
+    NSMutableArray *coinsDetailMsgArr;
+}
+@property (nonatomic,strong)CoinsDetailParams *params;
 @end
 
 @implementation CoinsDetailViewCtrl
@@ -21,9 +26,56 @@
 //    self.navigationController.navigationBar.hidden = NO;
 //}
 
+-(CoinsDetailParams *)params {
+
+    if (_params == nil) {
+        CoinsDetailParams *params = [[CoinsDetailParams alloc]init];
+        params.rows = 20;
+        params.page = 0;
+        _params = params;
+    }
+    return _params;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    coinsDetailMsgArr = [NSMutableArray array];
+    
+    [self getCoinsDetail];
+    
+}
+
+- (void)getCoinsDetail {
+
+    [[HUDConfig shareHUD]alwaysShow];
+    
+    self.params.page += 1;
+    
+    [KSMNetworkRequest postRequest:KCoinsDetail params:self.params.mj_keyValues success:^(NSDictionary *dataDic) {
+        
+        FxLog(@"getCoinsDetail = %@",dataDic);
+        
+        if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
+            
+            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            
+            if (![[dataDic objectForKey:@"retObj"] isEqual:[NSNull null]]) {
+
+                coinsDetailMsgArr = [CoinsDetailModel mj_objectArrayWithKeyValuesArray:[dataDic objectForKey:@"retObj"]];
+                
+                [self.tableView reloadData];
+            }
+            
+        }else {
+            
+            [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+        }
+        
+    } failure:^(NSError *error) {
+        
+        [[HUDConfig shareHUD]ErrorHUD:error.localizedDescription delay:DELAY];
+    }];
 }
 
 
@@ -65,7 +117,15 @@
         
         cell = [[[NSBundle mainBundle]loadNibNamed:@"CoinsDetailCell" owner:self options:nil] lastObject];
     }
+    
+    CoinsDetailModel *model = coinsDetailMsgArr[indexPath.row];
+    cell.dataLabel.text = model.createDate;
+    cell.logIdLabel.text = model.logId;
+    cell.coinCountLabel.text = [NSString stringWithFormat:@"+%@%@",model.amount,model.coinTypeName];
+    
     return cell;
 }
+
+
 
 @end

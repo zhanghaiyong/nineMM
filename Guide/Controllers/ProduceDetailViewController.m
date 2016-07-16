@@ -6,10 +6,12 @@
 #import "UserSourceViewController.h"
 #import "ClassifyTerm3ViewController.h"
 #import "ProduceDetailParams.h"
+#import "ProduceDetailModel.h"
 @interface ProduceDetailViewController ()<UITableViewDelegate,UITableViewDataSource>{
 
     //资源 档期 样刊切换标示
     NSInteger typeFlag;
+    ProduceDetailModel *produceDetail;
 }
 @property (nonatomic,strong)MeumList *meumList;
 @property (nonatomic,strong)ProduceDetailParams *produceDetailParams;
@@ -102,32 +104,20 @@
             
             if (![[dataDic objectForKey:@"retObj"] isEqual:[NSNull null]]) {
                 
-                NSArray *rows = [[dataDic objectForKey:@"retObj"] objectForKey:@"rows"];
-//                [self.produces addObjectsFromArray:[MainProduceModel mj_objectArrayWithKeyValuesArray:rows]];
+                NSDictionary *retObj = [dataDic objectForKey:@"retObj"];
+                produceDetail = [ProduceDetailModel mj_objectWithKeyValues:retObj];
                 
-//                NSIndexSet *nd=[[NSIndexSet alloc]initWithIndex:3];//刷新第3个section
-//                [self.tableView reloadSections:nd withRowAnimation:UITableViewRowAnimationTop];
-                
-//                if (rows.count < 10) {
-//                    
-//                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
-//                    
-//                }else {
-//                    
-//                    [self.tableView.mj_footer endRefreshing];
-//                }
+                [self.tableView reloadData];
             }
             
         }else {
             
             [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
-//            [self.tableView.mj_footer endRefreshingWithNoMoreData];
         }
         
     } failure:^(NSError *error) {
         
-        [[HUDConfig shareHUD]Tips :error.localizedDescription delay:DELAY];
-//        [self.tableView.mj_footer endRefreshing];
+        [[HUDConfig shareHUD]ErrorHUD :error.localizedDescription delay:DELAY];
     }];
 }
 
@@ -170,6 +160,23 @@
     if (indexPath.row == 0) {
         
         ProDetailCell1 *cell = [[[NSBundle mainBundle] loadNibNamed:@"ProDetailCell1" owner:self options:nil] lastObject];
+        
+        if (produceDetail.images.count > 0) {
+            //滚动试图
+            NSMutableArray *topImages = [NSMutableArray array];
+            for (NSString *imageName in produceDetail.images) {
+                
+                [topImages addObject:[NSString stringWithFormat:@"%@",imageName]];
+            }
+            cell.Banner.imageArray = topImages;
+        }
+        cell.nameLabel.text = produceDetail.name;
+        cell.priceLabel.text = produceDetail.marketPrice;
+        cell.tagLabel.text = produceDetail.tags[0];
+        cell.otherInfo.text = produceDetail.otherInfo;
+        cell.termLabel.text = [NSString stringWithFormat:@"库存 %@",produceDetail.itemsCount];
+        cell.explainLabel.text = produceDetail.terms;
+        
         return cell;
         
     }else if (indexPath.row == 1){
@@ -181,6 +188,18 @@
             cell = [[[NSBundle mainBundle] loadNibNamed:@"ProDetailCell" owner:self options:nil] lastObject];
             
         }
+        
+        NSArray *tabs = produceDetail.tabs;
+        
+        if (tabs.count > 0) {
+           
+            for (int i = 0; i<3; i++) {
+                NSDictionary *dic = tabs[i];
+                UIButton *sender = (UIButton *)[cell.contentView viewWithTag:100+i];
+                [sender setTitle:[dic objectForKey:@"name"] forState:UIControlStateNormal];
+            }
+        }
+
         
         //资源描述 档期规格 样刊案例
         [cell proDetailTypeChange:^(NSInteger flag) {
@@ -198,7 +217,6 @@
             [self.navigationController pushViewController:toUSerSource animated:YES];
             
         }];
-        
         
         //选择区域及门店
         [cell toStores:^{

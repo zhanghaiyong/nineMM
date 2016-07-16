@@ -155,6 +155,40 @@
     
 }
 
++ (NSString *)toChinses:(NSString *)dataString {
+    
+    NSString *chinese;
+    
+    //红币
+    if ([dataString isEqualToString:@"red"]) {
+        
+        chinese = @"红币";
+        //蓝币
+    }else if ([dataString isEqualToString:@"blue"]) {
+        
+        chinese = @"蓝币";
+        
+        //绿币
+    }else if ([dataString isEqualToString:@"green"]) {
+        
+        chinese = @"绿币";
+        
+        //黑币
+    }else if ([dataString isEqualToString:@"black"]) {
+        
+        chinese = @"黑币";
+        
+        //金币
+    }else {
+        
+        chinese = @"金币";
+    }
+    
+    
+    return chinese;
+    
+}
+
 ////判断密码强弱
 //+ (BOOL) judgeRange:(NSArray*) _termArray Password:(NSString*) _password
 //{
