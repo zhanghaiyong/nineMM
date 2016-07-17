@@ -85,6 +85,8 @@
             
             [[HUDConfig shareHUD] SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
             
+            [self dismissViewControllerAnimated:YES completion:nil];
+            
         }else {
         
             [[HUDConfig shareHUD] ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];

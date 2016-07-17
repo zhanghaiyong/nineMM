@@ -41,6 +41,7 @@
     [super viewDidLoad];
     
     coinsDetailMsgArr = [NSMutableArray array];
+    self.title = @"酒币明细";
     
     [self getCoinsDetail];
     
@@ -62,7 +63,7 @@
             
             if (![[dataDic objectForKey:@"retObj"] isEqual:[NSNull null]]) {
 
-                coinsDetailMsgArr = [CoinsDetailModel mj_objectArrayWithKeyValuesArray:[dataDic objectForKey:@"retObj"]];
+                coinsDetailMsgArr = [CoinsDetailModel mj_objectArrayWithKeyValuesArray:[[dataDic objectForKey:@"retObj"] objectForKey:@"rows"]];
                 
                 [self.tableView reloadData];
             }
@@ -82,7 +83,7 @@
 #pragma mark UITableViewDelegate&&DataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 10;
+    return coinsDetailMsgArr.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -118,11 +119,10 @@
         cell = [[[NSBundle mainBundle]loadNibNamed:@"CoinsDetailCell" owner:self options:nil] lastObject];
     }
     
-    CoinsDetailModel *model = coinsDetailMsgArr[indexPath.row];
-    cell.dataLabel.text = model.createDate;
-    cell.logIdLabel.text = model.logId;
-    cell.coinCountLabel.text = [NSString stringWithFormat:@"+%@%@",model.amount,model.coinTypeName];
-    
+        CoinsDetailModel *model = coinsDetailMsgArr[indexPath.row];
+        cell.dataLabel.text = model.createDate;
+        cell.logIdLabel.text = [NSString stringWithFormat:@"操作流水 %@",model.logId];
+        cell.coinCountLabel.text = [NSString stringWithFormat:@"+%@%@",model.amount,model.coinTypeName];
     return cell;
 }
 
