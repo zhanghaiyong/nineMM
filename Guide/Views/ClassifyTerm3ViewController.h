@@ -10,4 +10,6 @@
 
 @interface ClassifyTerm3ViewController : UIViewController
 
+@property (nonatomic,strong)NSString *produceId;
+
 @end

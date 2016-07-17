@@ -44,3 +44,15 @@
 
 //获取登录用户账户明细
 #define KCoinsDetail [BaseURLString stringByAppendingString:@"getLoginMemberCoinAccountLog"]
+
+//订单列表
+#define KOrderList [BaseURLString stringByAppendingString:@"appOrderHistory"]
+
+//获取用户可选酒品列表
+#define KUserSource [BaseURLString stringByAppendingString:@"appGetMemberWineList"]
+
+//获取商品区域ID列表
+#define KGetProductAreaIds [BaseURLString stringByAppendingString:@"getProductAreaIds"]
+
+//检索资源商品所绑定门店
+#define KSearchProductStores [BaseURLString stringByAppendingString:@"searchProductStores"]

@@ -67,8 +67,8 @@
     
     [super viewWillAppear:animated];
     //隐藏
-    self.navigationController.navigationBar.hidden = NO;
-    self.automaticallyAdjustsScrollViewInsets = NO;
+//    self.navigationController.navigationBar.hidden = NO;
+//    self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
 - (void)viewDidLoad {
@@ -118,7 +118,7 @@
             UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:loginVC];
             [self presentViewController:navi animated:YES completion:^{
                 
-                [self.navigationController popViewControllerAnimated:YES];
+            [self.navigationController popViewControllerAnimated:YES];
                 
             }];
         }
@@ -231,6 +231,7 @@
             
             UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
             ClassifyTerm3ViewController *term3 = [mainSB instantiateViewControllerWithIdentifier:@"ClassifyTerm3ViewController"];
+            term3.produceId = self.produceID;
             [self.navigationController pushViewController:term3 animated:YES];
             
         }];
@@ -261,5 +262,13 @@
         _meumList = nil;
     }
 }
+- (IBAction)collectAction:(id)sender {
+}
+- (IBAction)packageAction:(id)sender {
+}
+- (IBAction)addPackageAction:(id)sender {
+}
 
+- (IBAction)buyNowAction:(id)sender {
+}
 @end

@@ -12,4 +12,5 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *logoBtn;
 @property (weak, nonatomic) IBOutlet UILabel *meumNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dataLabel;
 @end

@@ -46,6 +46,7 @@
 #define CategoryTree  (@"CategoryTree")
 #define ARESTREE      (@"AreasTree")
 #define APPVERSION    (@"appVersion")
+#define USERSOURCE    (@"userSource")
 #define DELAY 2
 
 

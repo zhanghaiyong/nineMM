@@ -139,18 +139,19 @@
 
     FxLog(@"ButtonViewTag = %ld",aFlag);
     
-    if (aFlag == 100 || aFlag == 101 || aFlag == 102 || aFlag == 103) {
+    if (aFlag == 100 || aFlag == 101 || aFlag == 102 || aFlag == 103 || aFlag == 104) {
         
         UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
         OrderTypeTableVC *orderType = [mainSB instantiateViewControllerWithIdentifier:@"OrderTypeTableVC"];
         orderType.orderType = aFlag;
         [self.navigationController pushViewController:orderType animated:YES];
-    }else if (aFlag == 104) {
-    
-        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
-        OrderComplainCtrl *OrderComplain = [mainSB instantiateViewControllerWithIdentifier:@"OrderComplainCtrl"];
-        [self.navigationController pushViewController:OrderComplain animated:YES];
     }
+//    else if () {
+//    
+//        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+//        OrderComplainCtrl *OrderComplain = [mainSB instantiateViewControllerWithIdentifier:@"OrderComplainCtrl"];
+//        [self.navigationController pushViewController:OrderComplain animated:YES];
+//    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

@@ -9,11 +9,16 @@
 #import "OrderTypeTableVC.h"
 #import "OrderCell.h"
 #import "OrderDetailTabViewCtrl.h"
+#import "OrderListParams.h"
+#import "OrderModel.h"
 @interface OrderTypeTableVC ()<UITableViewDelegate,UITableViewDataSource>
 {
 
     NSMutableDictionary *_showDic;//用来判断分组展开和关闭
+    NSMutableArray *orderListArr;
 }
+@property (nonatomic,strong)OrderListParams *params;
+
 @end
 
 @implementation OrderTypeTableVC
@@ -24,8 +29,47 @@
 //    self.navigationController.navigationBar.hidden = NO;
 //}
 
+
+-(OrderListParams *)params {
+
+    if (_params == nil) {
+        
+        OrderListParams *params = [[OrderListParams alloc]init];
+        params.rows = 20;
+        params.page = 0;
+        
+        switch (self.orderType) {
+            case 100:
+
+                break;
+            case 101: //待审核
+                params.orderStatus = @"unconfirmed";
+                break;
+            case 102: //已取消
+                params.orderStatus = @"cancelled";
+                break;
+            case 103: //执行中
+                params.orderStatus = @"shipping";
+                break;
+            case 104: //申诉订单
+                params.orderStatus = @"complained";
+                break;
+                
+            default:
+                break;
+        }
+        
+        
+        _params = params;
+    }
+    
+    return _params;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    orderListArr = [NSMutableArray array];
     
     switch (self.orderType) {
         case 100:
@@ -41,10 +85,49 @@
             
             self.title = ORDERTYPE4;
             break;
+        case 104:
+            
+            self.title = ORDERTYPE5;
+            break;
             
         default:
             break;
     }
+    
+    [self getOrderList];
+    
+}
+
+- (void)getOrderList {
+
+    [[HUDConfig shareHUD]alwaysShow];
+    
+    self.params.page += 1;
+    
+    [KSMNetworkRequest postRequest:KOrderList params:self.params.mj_keyValues success:^(NSDictionary *dataDic) {
+        
+        FxLog(@"getOrderList = %@",dataDic);
+        
+        if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
+            
+            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            
+            if (![[dataDic objectForKey:@"retObj"] isEqual:[NSNull null]]) {
+                
+                orderListArr = [OrderModel mj_objectArrayWithKeyValuesArray:[[dataDic objectForKey:@"retObj"] objectForKey:@"rows"]];
+                
+                [self.tableView reloadData];
+            }
+            
+        }else {
+            
+            [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+        }
+        
+    } failure:^(NSError *error) {
+        
+        [[HUDConfig shareHUD]ErrorHUD:error.localizedDescription delay:DELAY];
+    }];
 }
 
 
@@ -90,6 +173,8 @@
     
         cell.detailViewHeight.constant = 0;
     }
+    
+    
     
     //进入详情
     [cell tapToChechOrderDetail:^{
