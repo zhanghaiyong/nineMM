@@ -193,7 +193,7 @@
 
 - (IBAction)sureAction:(id)sender {
     
-    [[HUDConfig shareHUD]alwaysShow];
+//    [[HUDConfig shareHUD]alwaysShow];
     
     if (selectArr.count == 0) {
         
@@ -201,24 +201,33 @@
         return;
     }
     
-    NSData *cacheData = [NSKeyedArchiver archivedDataWithRootObject:selectArr];
-    //NSMutableArray *teA = [NSKeyedUnarchiver unarchiveObjectWithData:teD]; 
     
-    NSString *rootPath = [HYSandbox docPath];
-    NSString *filePath = [NSString stringWithFormat:@"%@/%@",rootPath,USERSOURCE];
-    NSLog(@"%@",filePath);
-    if ([cacheData writeToFile:filePath atomically:YES]) {
+    if ([self.delegate respondsToSelector:@selector(chosedUserSource:)]) {
         
-        FxLog(@"用户资源数据写入成功");
-        [[HUDConfig shareHUD]Tips:@"成功" delay:DELAY];
+        [self.delegate chosedUserSource:selectArr];
         
-        [self performSelector:@selector(backAction:) withObject:self afterDelay:DELAY];
         
-    }else {
-        
-        FxLog(@"用户资源数据写入失败");
-        [[HUDConfig shareHUD]Tips:@"失败" delay:DELAY];
+        [self.navigationController popViewControllerAnimated:YES];
     }
+    
+//    NSData *cacheData = [NSKeyedArchiver archivedDataWithRootObject:selectArr];
+//    //NSMutableArray *teA = [NSKeyedUnarchiver unarchiveObjectWithData:teD]; 
+//    
+//    NSString *rootPath = [HYSandbox docPath];
+//    NSString *filePath = [NSString stringWithFormat:@"%@/%@",rootPath,USERSOURCE];
+//    NSLog(@"%@",filePath);
+//    if ([cacheData writeToFile:filePath atomically:YES]) {
+//        
+//        FxLog(@"用户资源数据写入成功");
+//        [[HUDConfig shareHUD]Tips:@"成功" delay:DELAY];
+//        
+//        [self performSelector:@selector(backAction:) withObject:self afterDelay:DELAY];
+//        
+//    }else {
+//        
+//        FxLog(@"用户资源数据写入失败");
+//        [[HUDConfig shareHUD]Tips:@"失败" delay:DELAY];
+//    }
 }
 
 - (IBAction)repeatAction:(id)sender {

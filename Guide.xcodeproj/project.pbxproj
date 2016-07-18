@@ -74,6 +74,15 @@
 		BF8600DC1D3B7FFF00BCA60A /* ProduceAreaIDParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8600DB1D3B7FFF00BCA60A /* ProduceAreaIDParams.m */; };
 		BF8600DF1D3BD75900BCA60A /* ProduceStoresParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8600DE1D3BD75900BCA60A /* ProduceStoresParams.m */; };
 		BF8600E21D3BDA4800BCA60A /* ProduceStoresModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8600E11D3BDA4800BCA60A /* ProduceStoresModel.m */; };
+		BF8600E51D3D3D0900BCA60A /* ProPriceByStoreParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8600E41D3D3D0900BCA60A /* ProPriceByStoreParams.m */; };
+		BF8600EA1D3D46AC00BCA60A /* sureOrdercell1.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8600E81D3D46AC00BCA60A /* sureOrdercell1.m */; };
+		BF8600EB1D3D46AC00BCA60A /* sureOrdercell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF8600E91D3D46AC00BCA60A /* sureOrdercell1.xib */; };
+		BF8600EF1D3D46EA00BCA60A /* sureOrderCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8600ED1D3D46EA00BCA60A /* sureOrderCell2.m */; };
+		BF8600F01D3D46EA00BCA60A /* sureOrderCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF8600EE1D3D46EA00BCA60A /* sureOrderCell2.xib */; };
+		BF8600F41D3D472F00BCA60A /* sureOrderCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8600F21D3D472F00BCA60A /* sureOrderCell3.m */; };
+		BF8600F51D3D472F00BCA60A /* sureOrderCell3.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF8600F31D3D472F00BCA60A /* sureOrderCell3.xib */; };
+		BF8600F81D3D48D300BCA60A /* sureOrderFoorView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8600F71D3D48D300BCA60A /* sureOrderFoorView.m */; };
+		BF8600FA1D3D490700BCA60A /* sureOrderFoorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF8600F91D3D490700BCA60A /* sureOrderFoorView.xib */; };
 		BF94681E1D2279E500143B91 /* SureOrdersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF94681D1D2279E500143B91 /* SureOrdersViewController.m */; };
 		BF9468241D22849F00143B91 /* SourceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF9468231D22849F00143B91 /* SourceListViewController.m */; };
 		BF9468281D22852C00143B91 /* SourceListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF9468261D22852C00143B91 /* SourceListCell.m */; };
@@ -283,6 +292,20 @@
 		BF8600DE1D3BD75900BCA60A /* ProduceStoresParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProduceStoresParams.m; sourceTree = "<group>"; };
 		BF8600E01D3BDA4800BCA60A /* ProduceStoresModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProduceStoresModel.h; sourceTree = "<group>"; };
 		BF8600E11D3BDA4800BCA60A /* ProduceStoresModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProduceStoresModel.m; sourceTree = "<group>"; };
+		BF8600E31D3D3D0900BCA60A /* ProPriceByStoreParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProPriceByStoreParams.h; sourceTree = "<group>"; };
+		BF8600E41D3D3D0900BCA60A /* ProPriceByStoreParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProPriceByStoreParams.m; sourceTree = "<group>"; };
+		BF8600E71D3D46AC00BCA60A /* sureOrdercell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sureOrdercell1.h; sourceTree = "<group>"; };
+		BF8600E81D3D46AC00BCA60A /* sureOrdercell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = sureOrdercell1.m; sourceTree = "<group>"; };
+		BF8600E91D3D46AC00BCA60A /* sureOrdercell1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = sureOrdercell1.xib; sourceTree = "<group>"; };
+		BF8600EC1D3D46EA00BCA60A /* sureOrderCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sureOrderCell2.h; sourceTree = "<group>"; };
+		BF8600ED1D3D46EA00BCA60A /* sureOrderCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = sureOrderCell2.m; sourceTree = "<group>"; };
+		BF8600EE1D3D46EA00BCA60A /* sureOrderCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = sureOrderCell2.xib; sourceTree = "<group>"; };
+		BF8600F11D3D472F00BCA60A /* sureOrderCell3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sureOrderCell3.h; sourceTree = "<group>"; };
+		BF8600F21D3D472F00BCA60A /* sureOrderCell3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = sureOrderCell3.m; sourceTree = "<group>"; };
+		BF8600F31D3D472F00BCA60A /* sureOrderCell3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = sureOrderCell3.xib; sourceTree = "<group>"; };
+		BF8600F61D3D48D300BCA60A /* sureOrderFoorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sureOrderFoorView.h; sourceTree = "<group>"; };
+		BF8600F71D3D48D300BCA60A /* sureOrderFoorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = sureOrderFoorView.m; sourceTree = "<group>"; };
+		BF8600F91D3D490700BCA60A /* sureOrderFoorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = sureOrderFoorView.xib; sourceTree = "<group>"; };
 		BF94681C1D2279E500143B91 /* SureOrdersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SureOrdersViewController.h; sourceTree = "<group>"; };
 		BF94681D1D2279E500143B91 /* SureOrdersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SureOrdersViewController.m; sourceTree = "<group>"; };
 		BF9468221D22849F00143B91 /* SourceListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceListViewController.h; sourceTree = "<group>"; };
@@ -507,6 +530,7 @@
 		78897BAF1CC09AC900ADFCB1 /* cells */ = {
 			isa = PBXGroup;
 			children = (
+				BF8600E61D3D468800BCA60A /* SureOrder */,
 				BFF578A41D2F59AC00EC9400 /* 购物车 */,
 				BFED9BBC1D2B8501000175C5 /* 酒币 */,
 				BFED9BA81D2A52CE000175C5 /* OrderCell */,
@@ -729,6 +753,8 @@
 				BF8600DB1D3B7FFF00BCA60A /* ProduceAreaIDParams.m */,
 				BF8600DD1D3BD75900BCA60A /* ProduceStoresParams.h */,
 				BF8600DE1D3BD75900BCA60A /* ProduceStoresParams.m */,
+				BF8600E31D3D3D0900BCA60A /* ProPriceByStoreParams.h */,
+				BF8600E41D3D3D0900BCA60A /* ProPriceByStoreParams.m */,
 			);
 			name = Params;
 			path = Controllers;
@@ -803,6 +829,25 @@
 				BFF3DD431D2379B600F5F9B1 /* SourceListHead.xib */,
 			);
 			name = CellHead;
+			sourceTree = "<group>";
+		};
+		BF8600E61D3D468800BCA60A /* SureOrder */ = {
+			isa = PBXGroup;
+			children = (
+				BF8600E71D3D46AC00BCA60A /* sureOrdercell1.h */,
+				BF8600E81D3D46AC00BCA60A /* sureOrdercell1.m */,
+				BF8600E91D3D46AC00BCA60A /* sureOrdercell1.xib */,
+				BF8600EC1D3D46EA00BCA60A /* sureOrderCell2.h */,
+				BF8600ED1D3D46EA00BCA60A /* sureOrderCell2.m */,
+				BF8600EE1D3D46EA00BCA60A /* sureOrderCell2.xib */,
+				BF8600F11D3D472F00BCA60A /* sureOrderCell3.h */,
+				BF8600F21D3D472F00BCA60A /* sureOrderCell3.m */,
+				BF8600F31D3D472F00BCA60A /* sureOrderCell3.xib */,
+				BF8600F61D3D48D300BCA60A /* sureOrderFoorView.h */,
+				BF8600F71D3D48D300BCA60A /* sureOrderFoorView.m */,
+				BF8600F91D3D490700BCA60A /* sureOrderFoorView.xib */,
+			);
+			name = SureOrder;
 			sourceTree = "<group>";
 		};
 		BFA2B7051CF6D72000EB460E /* BannerView */ = {
@@ -1136,15 +1181,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF8600F01D3D46EA00BCA60A /* sureOrderCell2.xib in Resources */,
 				786B637C1CC71F9F00362DBF /* ProgressHUD.bundle in Resources */,
 				789E789A1CB60D080039AC69 /* Assets.xcassets in Resources */,
 				BFF3DD441D2379B600F5F9B1 /* SourceListHead.xib in Resources */,
 				BFEEA5A11D1A444500B261BF /* UserSourceCell.xib in Resources */,
 				BFC50EF91CFC175000CA7CD5 /* Main4Cell.xib in Resources */,
 				BFC50F081CFC1BD800CA7CD5 /* Main3Cell.xib in Resources */,
+				BF8600F51D3D472F00BCA60A /* sureOrderCell3.xib in Resources */,
 				BFC50EFE1CFC1B7300CA7CD5 /* Main1Cell.xib in Resources */,
 				BF9468291D22852C00143B91 /* SourceListCell.xib in Resources */,
 				BF3C3C291D39CEE1000E3027 /* CoinRechargeCell3.xib in Resources */,
+				BF8600EB1D3D46AC00BCA60A /* sureOrdercell1.xib in Resources */,
 				BFF433A31D151AC900D21427 /* NavigationBarView.xib in Resources */,
 				BF3C3C1F1D38F66D000E3027 /* CoinRechargeCell1.xib in Resources */,
 				BFD69E661CF7FA8200B50A6E /* ClassifyDetailHead.xib in Resources */,
@@ -1155,6 +1203,7 @@
 				BFED9B921D2A0749000175C5 /* ClassifyTerm2.xib in Resources */,
 				BFA2B7021CF6AADB00EB460E /* Login.storyboard in Resources */,
 				BFED9BAD1D2A52E4000175C5 /* OrderCell.xib in Resources */,
+				BF8600FA1D3D490700BCA60A /* sureOrderFoorView.xib in Resources */,
 				BFEEA58A1D198ADF00B261BF /* ProDetailCell2.xib in Resources */,
 				788836CE1CBC9BAB0030909E /* SelectEDU.xib in Resources */,
 				BFED9BC11D2B8523000175C5 /* CoinsDetailCell.xib in Resources */,
@@ -1276,6 +1325,7 @@
 				BF3C3C1E1D38F66D000E3027 /* CoinRechargeCell1.m in Sources */,
 				BFED9BA31D2A3E16000175C5 /* ClassifyTerm3ViewController.m in Sources */,
 				BFA2B7181CF6E8C600EB460E /* MethodGetPwdViewController.m in Sources */,
+				BF8600E51D3D3D0900BCA60A /* ProPriceByStoreParams.m in Sources */,
 				BFF433D51D152B9A00D21427 /* MeumList.m in Sources */,
 				BF3C3C0F1D378D9D000E3027 /* ProduceDetailModel.m in Sources */,
 				BF3C3C161D38EF71000E3027 /* CoinRechargePackageParams.m in Sources */,
@@ -1307,6 +1357,7 @@
 				BFED9BBB1D2B84BE000175C5 /* CoinsDetailViewCtrl.m in Sources */,
 				BFED9BB51D2A6AE0000175C5 /* OrderComplainCtrl.m in Sources */,
 				BFF578B61D2F6C4C00EC9400 /* ZZPhotoListViewController.m in Sources */,
+				BF8600EA1D3D46AC00BCA60A /* sureOrdercell1.m in Sources */,
 				BFC50EFD1CFC1B7300CA7CD5 /* Main1Cell.m in Sources */,
 				BFD69E781CF8212F00B50A6E /* ProduceDetailViewController.m in Sources */,
 				BFD69E6F1CF812B700B50A6E /* ClassifyDetailSearchView.m in Sources */,
@@ -1320,6 +1371,7 @@
 				BF3C3C341D39F95E000E3027 /* CalculateCoinModel.m in Sources */,
 				BFD1FE991CF7351B006FDDF6 /* ZHYBannerView.m in Sources */,
 				BFC50EF81CFC175000CA7CD5 /* Main4Cell.m in Sources */,
+				BF8600F41D3D472F00BCA60A /* sureOrderCell3.m in Sources */,
 				7871FC2B1CBF6E0500E2608C /* CALayer+TextFieldBoardColor.m in Sources */,
 				BF9468281D22852C00143B91 /* SourceListCell.m in Sources */,
 				789E78D71CB632950039AC69 /* HYSandbox.m in Sources */,
@@ -1327,11 +1379,13 @@
 				BFC50F071CFC1BD800CA7CD5 /* Main3Cell.m in Sources */,
 				BF9468241D22849F00143B91 /* SourceListViewController.m in Sources */,
 				789E78BE1CB630D10039AC69 /* NSDate+Tools.m in Sources */,
+				BF8600F81D3D48D300BCA60A /* sureOrderFoorView.m in Sources */,
 				789E78C71CB631670039AC69 /* UIButton+HYExtension.m in Sources */,
 				BF94681E1D2279E500143B91 /* SureOrdersViewController.m in Sources */,
 				BF8600DF1D3BD75900BCA60A /* ProduceStoresParams.m in Sources */,
 				BFED9B901D2A073A000175C5 /* ClassifyTerm2.m in Sources */,
 				789E788F1CB60D080039AC69 /* main.m in Sources */,
+				BF8600EF1D3D46EA00BCA60A /* sureOrderCell2.m in Sources */,
 				BFA2B70F1CF6E85400EB460E /* LoginViewController.m in Sources */,
 				BF3C3C131D38AC51000E3027 /* PersionModel.m in Sources */,
 				789E78C41CB631360039AC69 /* NSDate+HYExtension.m in Sources */,

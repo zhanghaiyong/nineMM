@@ -1,6 +1,8 @@
 #import "SourceListViewController.h"
-#import "SourceListCell.h"
+//#import "SourceListCell.h"
 #import "SourceListHead.h"
+#import "UserSourceCell.h"
+#import "UserSourceModel.h"
 @interface SourceListViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
@@ -17,7 +19,7 @@
 #pragma mark UITableView Delegate && DataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 3;
+    return self.userSourceArr.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -38,6 +40,8 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     SourceListHead *sourceListHead = [[[NSBundle mainBundle]loadNibNamed:@"SourceListHead" owner:self options:nil]lastObject];
+    sourceListHead.titleLabel.text = @"已选资源";
+    sourceListHead.countLabel.text = [NSString stringWithFormat:@"共%ld件",self.userSourceArr.count];
     sourceListHead.frame = CGRectMake(0, 0, self.tableView.width, 30);
     return sourceListHead;
 }
@@ -45,10 +49,20 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     static NSString *ideitifier = @"cell";
-    SourceListCell *cell = [tableView dequeueReusableCellWithIdentifier:ideitifier];
+    UserSourceCell *cell = [tableView dequeueReusableCellWithIdentifier:ideitifier];
     if (!cell) {
-        cell = [[[NSBundle mainBundle] loadNibNamed:@"SourceListCell" owner:nil options:nil] lastObject];
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"UserSourceCell" owner:nil options:nil] lastObject];
     }
+    
+    UserSourceModel *model = self.userSourceArr[indexPath.row];
+    
+//    if ([selectArr containsObject:model]) {
+    
+        cell.isSelect.hidden = YES;
+//    }
+    cell.titleLabel.text = model.name;
+    cell.numLabel.text = model.code;
+    
     return cell;
 }
 

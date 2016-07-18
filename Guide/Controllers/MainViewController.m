@@ -342,7 +342,7 @@
         
         UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
         ProduceDetailViewController *produceDetail = [mainSB instantiateViewControllerWithIdentifier:@"ProduceDetailViewController"];
-        produceDetail.produceID = model.id;
+        produceDetail.produceModel = model;
         [self.navigationController pushViewController:produceDetail animated:YES];
     }
 }

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="80" id="1jh-Fe-0DK" customClass="sureOrderCell2">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1jh-Fe-0DK" id="EiZ-pK-S5P">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择可用币种" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cI6-Ju-b9W">
+                        <rect key="frame" x="10" y="10" width="90" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="图层-142" translatesAutoresizingMaskIntoConstraints="NO" id="WFe-V5-fQg">
+                        <rect key="frame" x="48" y="38" width="27.5" height="27"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="27" id="NmO-CB-6lW"/>
+                            <constraint firstAttribute="height" constant="27" id="cK7-GZ-l6i"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="NmO-CB-6lW"/>
+                            </mask>
+                        </variation>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="图层-146" translatesAutoresizingMaskIntoConstraints="NO" id="wMM-rb-bEE">
+                        <rect key="frame" x="120.5" y="38" width="27" height="27"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="27" id="6Qi-n2-kWl"/>
+                            <constraint firstAttribute="height" constant="27" id="E9W-5s-AK3"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="6Qi-n2-kWl"/>
+                            </mask>
+                        </variation>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="图层-143" translatesAutoresizingMaskIntoConstraints="NO" id="Dgu-Wc-KmJ">
+                        <rect key="frame" x="192.5" y="38" width="27.5" height="27"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="27" id="nmk-vQ-Hzd"/>
+                            <constraint firstAttribute="width" constant="27" id="qDQ-5g-fJp"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="qDQ-5g-fJp"/>
+                            </mask>
+                        </variation>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="图层-144" translatesAutoresizingMaskIntoConstraints="NO" id="Ui2-IW-c4V">
+                        <rect key="frame" x="265" y="38" width="27" height="27"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="27" id="vEx-E0-6se"/>
+                            <constraint firstAttribute="height" constant="27" id="wYU-cX-nBq"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="vEx-E0-6se"/>
+                            </mask>
+                        </variation>
+                    </imageView>
+                    <button opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999999" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4x-5Z-gWK">
+                        <rect key="frame" x="24" y="42" width="19" height="19"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="19" id="6aX-pZ-bWi"/>
+                            <constraint firstAttribute="width" constant="19" id="886-gr-BZQ"/>
+                        </constraints>
+                        <state key="normal" title="Button" image="椭圆-6"/>
+                        <state key="selected" image="组-17"/>
+                        <connections>
+                            <action selector="coinTypeAction:" destination="1jh-Fe-0DK" eventType="touchUpInside" id="bdN-nb-I8E"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999999" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="54J-Aa-iEx">
+                        <rect key="frame" x="96.5" y="42" width="19" height="19"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="19" id="6f4-ur-o6N"/>
+                            <constraint firstAttribute="height" constant="19" id="lZl-KU-8c0"/>
+                        </constraints>
+                        <state key="normal" title="Button" image="椭圆-6"/>
+                        <state key="selected" image="组-17"/>
+                        <connections>
+                            <action selector="coinTypeAction:" destination="1jh-Fe-0DK" eventType="touchUpInside" id="XA3-Ko-AQE"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999999" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="20B-Tl-cEq">
+                        <rect key="frame" x="168.5" y="42" width="19" height="19"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="19" id="M8e-4N-8xc"/>
+                            <constraint firstAttribute="width" constant="19" id="OWU-6j-4gZ"/>
+                        </constraints>
+                        <state key="normal" title="Button" image="椭圆-6"/>
+                        <state key="selected" image="组-17"/>
+                        <connections>
+                            <action selector="coinTypeAction:" destination="1jh-Fe-0DK" eventType="touchUpInside" id="GBU-c0-jlO"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999999" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0gJ-nb-ysH">
+                        <rect key="frame" x="241" y="42" width="19" height="19"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="19" id="6ny-yt-4m0"/>
+                            <constraint firstAttribute="height" constant="19" id="7tc-dM-fG4"/>
+                        </constraints>
+                        <state key="normal" title="Button" image="椭圆-6"/>
+                        <state key="selected" image="组-17"/>
+                        <connections>
+                            <action selector="coinTypeAction:" destination="1jh-Fe-0DK" eventType="touchUpInside" id="BPf-p2-GI8"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="0gJ-nb-ysH" firstAttribute="centerY" secondItem="Ui2-IW-c4V" secondAttribute="centerY" id="0NZ-C2-MKi"/>
+                    <constraint firstItem="54J-Aa-iEx" firstAttribute="centerY" secondItem="wMM-rb-bEE" secondAttribute="centerY" id="5Uj-ED-P8A"/>
+                    <constraint firstItem="cI6-Ju-b9W" firstAttribute="top" secondItem="EiZ-pK-S5P" secondAttribute="top" constant="10" id="8fB-QP-d0u"/>
+                    <constraint firstItem="20B-Tl-cEq" firstAttribute="centerY" secondItem="Dgu-Wc-KmJ" secondAttribute="centerY" id="9mv-lm-Wrl"/>
+                    <constraint firstItem="Dgu-Wc-KmJ" firstAttribute="leading" secondItem="wMM-rb-bEE" secondAttribute="trailing" constant="45" id="DJn-Oh-wee"/>
+                    <constraint firstItem="WFe-V5-fQg" firstAttribute="leading" secondItem="EiZ-pK-S5P" secondAttribute="leadingMargin" constant="40" id="DfY-wJ-sjZ"/>
+                    <constraint firstItem="wMM-rb-bEE" firstAttribute="top" secondItem="WFe-V5-fQg" secondAttribute="top" id="EoC-bT-22h"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Ui2-IW-c4V" secondAttribute="trailing" constant="20" id="HiU-u8-bXR"/>
+                    <constraint firstItem="Dgu-Wc-KmJ" firstAttribute="top" secondItem="wMM-rb-bEE" secondAttribute="top" id="KKa-Dd-p5c"/>
+                    <constraint firstItem="Ui2-IW-c4V" firstAttribute="leading" secondItem="Dgu-Wc-KmJ" secondAttribute="trailing" constant="45" id="MX4-Ic-sAQ"/>
+                    <constraint firstItem="cI6-Ju-b9W" firstAttribute="leading" secondItem="EiZ-pK-S5P" secondAttribute="leading" constant="10" id="Q5P-oh-hcp"/>
+                    <constraint firstItem="Dgu-Wc-KmJ" firstAttribute="width" secondItem="WFe-V5-fQg" secondAttribute="width" id="QNI-c1-fWs"/>
+                    <constraint firstItem="wMM-rb-bEE" firstAttribute="width" secondItem="WFe-V5-fQg" secondAttribute="width" id="SGv-OV-Tbr"/>
+                    <constraint firstItem="Dgu-Wc-KmJ" firstAttribute="leading" secondItem="20B-Tl-cEq" secondAttribute="trailing" constant="5" id="ZaU-Ii-dDb"/>
+                    <constraint firstItem="d4x-5Z-gWK" firstAttribute="centerY" secondItem="WFe-V5-fQg" secondAttribute="centerY" id="aCX-GM-vmV"/>
+                    <constraint firstItem="Ui2-IW-c4V" firstAttribute="leading" secondItem="0gJ-nb-ysH" secondAttribute="trailing" constant="5" id="aue-B7-GmA"/>
+                    <constraint firstItem="Ui2-IW-c4V" firstAttribute="width" secondItem="WFe-V5-fQg" secondAttribute="width" id="dMr-ph-VYf"/>
+                    <constraint firstItem="wMM-rb-bEE" firstAttribute="leading" secondItem="WFe-V5-fQg" secondAttribute="trailing" constant="45" id="fNZ-Y7-IUh"/>
+                    <constraint firstItem="WFe-V5-fQg" firstAttribute="top" secondItem="cI6-Ju-b9W" secondAttribute="bottom" constant="10" id="ioS-51-rIC"/>
+                    <constraint firstItem="Ui2-IW-c4V" firstAttribute="top" secondItem="Dgu-Wc-KmJ" secondAttribute="top" id="w6j-H8-h9R"/>
+                    <constraint firstItem="wMM-rb-bEE" firstAttribute="leading" secondItem="54J-Aa-iEx" secondAttribute="trailing" constant="5" id="x5G-Rf-koZ"/>
+                    <constraint firstItem="WFe-V5-fQg" firstAttribute="leading" secondItem="d4x-5Z-gWK" secondAttribute="trailing" constant="5" id="zrl-e4-ezo"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="button1" destination="d4x-5Z-gWK" id="ZOb-uG-y6C"/>
+                <outlet property="button2" destination="54J-Aa-iEx" id="Pdr-4a-o8P"/>
+                <outlet property="button3" destination="20B-Tl-cEq" id="3Lm-lI-E8O"/>
+                <outlet property="button4" destination="0gJ-nb-ysH" id="ZYZ-e7-yCY"/>
+                <outlet property="firstBtn" destination="d4x-5Z-gWK" id="yh2-WX-pnr"/>
+                <outlet property="image1" destination="WFe-V5-fQg" id="FeT-Di-mAT"/>
+                <outlet property="image2" destination="wMM-rb-bEE" id="HL8-6t-rRi"/>
+                <outlet property="image3" destination="Dgu-Wc-KmJ" id="ifN-Rm-A0q"/>
+                <outlet property="image4" destination="Ui2-IW-c4V" id="U5P-Lg-B5G"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="图层-142" width="27" height="27"/>
+        <image name="图层-143" width="27" height="27"/>
+        <image name="图层-144" width="27" height="27"/>
+        <image name="图层-146" width="27" height="27"/>
+        <image name="椭圆-6" width="19" height="19"/>
+        <image name="组-17" width="20" height="20"/>
+    </resources>
+</document>

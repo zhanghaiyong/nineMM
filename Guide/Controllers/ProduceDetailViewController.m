@@ -7,14 +7,18 @@
 #import "ClassifyTerm3ViewController.h"
 #import "ProduceDetailParams.h"
 #import "ProduceDetailModel.h"
-@interface ProduceDetailViewController ()<UITableViewDelegate,UITableViewDataSource>{
+#import "ProPriceByStoreParams.h"
+#import "SureOrdersViewController.h"
+@interface ProduceDetailViewController ()<UITableViewDelegate,UITableViewDataSource,Term3Delegate,UserSourceDelegate>{
 
     //资源 档期 样刊切换标示
     NSInteger typeFlag;
     ProduceDetailModel *produceDetail;
+    NSString    *areaOrStore;
+    NSArray     *userSource;
 }
 @property (nonatomic,strong)MeumList *meumList;
-@property (nonatomic,strong)ProduceDetailParams *produceDetailParams;
+@property (nonatomic,strong)ProPriceByStoreParams *proPriceByStoreParams;
 @property (nonatomic,strong)NSArray *meumTitles;
 @property (nonatomic,strong)NSArray *meumLogos;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -24,15 +28,15 @@
 
 @implementation ProduceDetailViewController
 
--(ProduceDetailParams *)produceDetailParams {
+-(ProPriceByStoreParams *)proPriceByStoreParams {
 
-    if (_produceDetailParams == nil) {
+    if (_proPriceByStoreParams == nil) {
         
-        ProduceDetailParams *produceDetailParams = [[ProduceDetailParams alloc]init];
-        produceDetailParams.id = self.produceID;
-        _produceDetailParams = produceDetailParams;
+        ProPriceByStoreParams *proPriceByStoreParams = [[ProPriceByStoreParams alloc]init];
+        proPriceByStoreParams.productId = self.produceModel.id;
+        _proPriceByStoreParams = proPriceByStoreParams;
     }
-    return _produceDetailParams;
+    return _proPriceByStoreParams;
 }
 
 - (MeumList *)meumList {
@@ -92,9 +96,12 @@
 
     [[HUDConfig shareHUD]alwaysShow];
     
-    FxLog(@"produceDetailParams = %@",self.produceDetailParams.mj_keyValues);
+    ProduceDetailParams *params = [[ProduceDetailParams alloc]init];
+    params.id = self.produceModel.id;
     
-    [KSMNetworkRequest postRequest:KProduceDetail params:self.produceDetailParams.mj_keyValues success:^(NSDictionary *dataDic) {
+    FxLog(@"produceDetailParams = %@",params.mj_keyValues);
+    
+    [KSMNetworkRequest postRequest:KProduceDetail params:params.mj_keyValues success:^(NSDictionary *dataDic) {
         
         FxLog(@"produceDetailData = %@",dataDic);
         
@@ -222,6 +229,7 @@
         [cell toUserSource:^{    
             UIStoryboard *SB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
             UserSourceViewController *toUSerSource = [SB instantiateViewControllerWithIdentifier:@"UserSourceViewController"];
+            toUSerSource.delegate = self;
             [self.navigationController pushViewController:toUSerSource animated:YES];
             
         }];
@@ -231,7 +239,8 @@
             
             UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
             ClassifyTerm3ViewController *term3 = [mainSB instantiateViewControllerWithIdentifier:@"ClassifyTerm3ViewController"];
-            term3.produceId = self.produceID;
+            term3.produceModel = self.produceModel;
+            term3.delegate = self;
             [self.navigationController pushViewController:term3 animated:YES];
             
         }];
@@ -270,5 +279,69 @@
 }
 
 - (IBAction)buyNowAction:(id)sender {
+    
+    
+    if (userSource.count == 0) {
+        
+        [[HUDConfig shareHUD]Tips:@"请选择商品资源" delay:DELAY];
+        return;
+    }
+    
+    if (areaOrStore.length == 0) {
+        
+        [[HUDConfig shareHUD]Tips:@"请选择门店及区域" delay:DELAY];
+        return;
+    }
+    
+    
+    [[HUDConfig shareHUD]alwaysShow];
+    
+    FxLog(@"buyNowAction = %@",self.proPriceByStoreParams.mj_keyValues);
+    
+    [KSMNetworkRequest postRequest:KGetProductPriceByStoreSelection params:self.proPriceByStoreParams.mj_keyValues success:^(NSDictionary *dataDic) {
+        
+        FxLog(@"buyNowAction = %@",dataDic);
+        
+        if ([[dataDic objectForKey:@"retCode"]integerValue] == 0) {
+            
+            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            
+            UIStoryboard *SB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+            SureOrdersViewController *sureOrder = [SB instantiateViewControllerWithIdentifier:@"SureOrdersViewController"];
+            sureOrder.userSourceArr = userSource;
+            sureOrder.produceModel = self.produceModel;
+            sureOrder.proPrice = [NSString stringWithFormat:@"%@",[[dataDic objectForKey:@"retObj"] objectForKey:@"price"]];
+            [self.navigationController pushViewController:sureOrder animated:YES];
+            
+        }else {
+            [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+        }
+        
+    } failure:^(NSError *error) {
+        
+        [[HUDConfig shareHUD]ErrorHUD :error.localizedDescription delay:DELAY];
+    }];
+
 }
+
+#pragma mark UserSourceViewController Delegate
+- (void)chosedUserSource:(NSArray *)array {
+
+    userSource = [NSArray arrayWithArray:array];
+}
+
+#pragma mark Term3Delegate
+- (void)areaIdOrStoresId:(NSString *)ids type:(NSString *)type {
+
+    areaOrStore = ids;
+    if ([type isEqualToString:@"storeId"]) {
+        self.proPriceByStoreParams.storeIds = ids;
+        self.proPriceByStoreParams.storeSelectingType = @"store";
+    }else {
+        self.proPriceByStoreParams.storeSelectingType = @"area";
+        self.proPriceByStoreParams.areaIds = ids;
+    }
+}
+
+
 @end

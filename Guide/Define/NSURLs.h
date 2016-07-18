@@ -56,3 +56,8 @@
 
 //检索资源商品所绑定门店
 #define KSearchProductStores [BaseURLString stringByAppendingString:@"searchProductStores"]
+
+
+//根据门店或区域选择计算资源商品价格
+#define KGetProductPriceByStoreSelection [BaseURLString stringByAppendingString:@"getProductPriceByStoreSelection"]
+

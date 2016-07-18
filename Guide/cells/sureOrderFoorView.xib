@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="sureOrderFoorView">
+            <rect key="frame" x="0.0" y="0.0" width="350" height="80"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a6y-LQ-jLS">
+                    <rect key="frame" x="250" y="10" width="100" height="70"/>
+                    <color key="backgroundColor" red="1" green="0.1345214673" blue="0.1072103278" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="qOk-Tb-F3I"/>
+                    </constraints>
+                    <state key="normal" title="立即购买">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="nowBuyAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="7nW-iU-0mb"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c7A-hW-QSf">
+                    <rect key="frame" x="240" y="45" width="0.0" height="0.0"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" red="1" green="0.1345214673" blue="0.1072103278" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="合计：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xg2-Oj-Cth">
+                    <rect key="frame" x="192" y="35" width="48" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oPA-fB-efM">
+                    <rect key="frame" x="0.0" y="0.0" width="350" height="10"/>
+                    <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="oPA-fB-efM" secondAttribute="trailing" id="2wD-Mc-ZJ8"/>
+                <constraint firstAttribute="trailing" secondItem="a6y-LQ-jLS" secondAttribute="trailing" id="8Fd-kX-uip"/>
+                <constraint firstItem="a6y-LQ-jLS" firstAttribute="top" secondItem="oPA-fB-efM" secondAttribute="bottom" id="B4c-Cc-Lfh"/>
+                <constraint firstItem="c7A-hW-QSf" firstAttribute="leading" secondItem="xg2-Oj-Cth" secondAttribute="trailing" id="FsC-ZK-eEK"/>
+                <constraint firstItem="oPA-fB-efM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Gb9-ZM-7Qw"/>
+                <constraint firstItem="a6y-LQ-jLS" firstAttribute="leading" secondItem="c7A-hW-QSf" secondAttribute="trailing" constant="10" id="QHS-hI-JFS"/>
+                <constraint firstItem="oPA-fB-efM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="XMW-Kl-dow"/>
+                <constraint firstItem="c7A-hW-QSf" firstAttribute="centerY" secondItem="a6y-LQ-jLS" secondAttribute="centerY" id="moS-wB-PJd"/>
+                <constraint firstItem="a6y-LQ-jLS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="tfc-o7-hcv"/>
+                <constraint firstItem="xg2-Oj-Cth" firstAttribute="centerY" secondItem="c7A-hW-QSf" secondAttribute="centerY" id="xrn-8l-CXM"/>
+                <constraint firstAttribute="bottom" secondItem="a6y-LQ-jLS" secondAttribute="bottom" id="y7J-pf-egd"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="totalPrice" destination="c7A-hW-QSf" id="Wnn-fa-pR1"/>
+            </connections>
+            <point key="canvasLocation" x="-12" y="649"/>
+        </view>
+    </objects>
+</document>
