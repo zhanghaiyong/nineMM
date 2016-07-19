@@ -310,6 +310,7 @@
             SureOrdersViewController *sureOrder = [SB instantiateViewControllerWithIdentifier:@"SureOrdersViewController"];
             sureOrder.userSourceArr = userSource;
             sureOrder.produceModel = self.produceModel;
+            sureOrder.proPriceByStoreParams = self.proPriceByStoreParams;
             sureOrder.proPrice = [NSString stringWithFormat:@"%@",[[dataDic objectForKey:@"retObj"] objectForKey:@"price"]];
             [self.navigationController pushViewController:sureOrder animated:YES];
             

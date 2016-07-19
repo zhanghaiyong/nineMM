@@ -83,6 +83,12 @@
 		BF8600F51D3D472F00BCA60A /* sureOrderCell3.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF8600F31D3D472F00BCA60A /* sureOrderCell3.xib */; };
 		BF8600F81D3D48D300BCA60A /* sureOrderFoorView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8600F71D3D48D300BCA60A /* sureOrderFoorView.m */; };
 		BF8600FA1D3D490700BCA60A /* sureOrderFoorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF8600F91D3D490700BCA60A /* sureOrderFoorView.xib */; };
+		BF8600FD1D3DD8F700BCA60A /* AppSubOrderParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8600FC1D3DD8F700BCA60A /* AppSubOrderParams.m */; };
+		BF8601001D3DD9BC00BCA60A /* SubOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8600FF1D3DD9BC00BCA60A /* SubOrderModel.m */; };
+		BF8601031D3DDA2100BCA60A /* itemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8601021D3DDA2100BCA60A /* itemModel.m */; };
+		BF8601061D3E2FAF00BCA60A /* OrderDetailParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8601051D3E2FAF00BCA60A /* OrderDetailParams.m */; };
+		BF8601091D3E765E00BCA60A /* OrderDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8601081D3E765E00BCA60A /* OrderDetailModel.m */; };
+		BF86010C1D3E83E800BCA60A /* balanceCoinModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF86010B1D3E83E800BCA60A /* balanceCoinModel.m */; };
 		BF94681E1D2279E500143B91 /* SureOrdersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF94681D1D2279E500143B91 /* SureOrdersViewController.m */; };
 		BF9468241D22849F00143B91 /* SourceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF9468231D22849F00143B91 /* SourceListViewController.m */; };
 		BF9468281D22852C00143B91 /* SourceListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF9468261D22852C00143B91 /* SourceListCell.m */; };
@@ -306,6 +312,18 @@
 		BF8600F61D3D48D300BCA60A /* sureOrderFoorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sureOrderFoorView.h; sourceTree = "<group>"; };
 		BF8600F71D3D48D300BCA60A /* sureOrderFoorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = sureOrderFoorView.m; sourceTree = "<group>"; };
 		BF8600F91D3D490700BCA60A /* sureOrderFoorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = sureOrderFoorView.xib; sourceTree = "<group>"; };
+		BF8600FB1D3DD8F700BCA60A /* AppSubOrderParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSubOrderParams.h; sourceTree = "<group>"; };
+		BF8600FC1D3DD8F700BCA60A /* AppSubOrderParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSubOrderParams.m; sourceTree = "<group>"; };
+		BF8600FE1D3DD9BC00BCA60A /* SubOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubOrderModel.h; sourceTree = "<group>"; };
+		BF8600FF1D3DD9BC00BCA60A /* SubOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubOrderModel.m; sourceTree = "<group>"; };
+		BF8601011D3DDA2100BCA60A /* itemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = itemModel.h; sourceTree = "<group>"; };
+		BF8601021D3DDA2100BCA60A /* itemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = itemModel.m; sourceTree = "<group>"; };
+		BF8601041D3E2FAF00BCA60A /* OrderDetailParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailParams.h; sourceTree = "<group>"; };
+		BF8601051D3E2FAF00BCA60A /* OrderDetailParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailParams.m; sourceTree = "<group>"; };
+		BF8601071D3E765E00BCA60A /* OrderDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailModel.h; sourceTree = "<group>"; };
+		BF8601081D3E765E00BCA60A /* OrderDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailModel.m; sourceTree = "<group>"; };
+		BF86010A1D3E83E800BCA60A /* balanceCoinModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = balanceCoinModel.h; sourceTree = "<group>"; };
+		BF86010B1D3E83E800BCA60A /* balanceCoinModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = balanceCoinModel.m; sourceTree = "<group>"; };
 		BF94681C1D2279E500143B91 /* SureOrdersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SureOrdersViewController.h; sourceTree = "<group>"; };
 		BF94681D1D2279E500143B91 /* SureOrdersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SureOrdersViewController.m; sourceTree = "<group>"; };
 		BF9468221D22849F00143B91 /* SourceListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceListViewController.h; sourceTree = "<group>"; };
@@ -627,6 +645,8 @@
 				BFA2B7221CF6EE1B00EB460E /* PageInfo.m */,
 				BFD69E941CF8A5AB00B50A6E /* Produce1Model.h */,
 				BFD69E951CF8A5AB00B50A6E /* Produce1Model.m */,
+				BF8601071D3E765E00BCA60A /* OrderDetailModel.h */,
+				BF8601081D3E765E00BCA60A /* OrderDetailModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -755,6 +775,14 @@
 				BF8600DE1D3BD75900BCA60A /* ProduceStoresParams.m */,
 				BF8600E31D3D3D0900BCA60A /* ProPriceByStoreParams.h */,
 				BF8600E41D3D3D0900BCA60A /* ProPriceByStoreParams.m */,
+				BF8600FB1D3DD8F700BCA60A /* AppSubOrderParams.h */,
+				BF8600FC1D3DD8F700BCA60A /* AppSubOrderParams.m */,
+				BF8601011D3DDA2100BCA60A /* itemModel.h */,
+				BF8601021D3DDA2100BCA60A /* itemModel.m */,
+				BF8600FE1D3DD9BC00BCA60A /* SubOrderModel.h */,
+				BF8600FF1D3DD9BC00BCA60A /* SubOrderModel.m */,
+				BF8601041D3E2FAF00BCA60A /* OrderDetailParams.h */,
+				BF8601051D3E2FAF00BCA60A /* OrderDetailParams.m */,
 			);
 			name = Params;
 			path = Controllers;
@@ -773,6 +801,8 @@
 				BF8600C81D3A2B4400BCA60A /* CoinsDetailModel.m */,
 				BF8600CE1D3B26F900BCA60A /* OrderModel.h */,
 				BF8600CF1D3B26F900BCA60A /* OrderModel.m */,
+				BF86010A1D3E83E800BCA60A /* balanceCoinModel.h */,
+				BF86010B1D3E83E800BCA60A /* balanceCoinModel.m */,
 			);
 			name = "个人中心";
 			sourceTree = "<group>";
@@ -1296,6 +1326,7 @@
 				BFF472B51D17C93F00516EE3 /* MyCoinsController.m in Sources */,
 				BF4086621D12EF9500E11065 /* TopBannersModel.m in Sources */,
 				789E78E41CB63E7E0039AC69 /* BaseViewController.m in Sources */,
+				BF8601061D3E2FAF00BCA60A /* OrderDetailParams.m in Sources */,
 				BFD887CA1CF9752D00C9DF44 /* MethodBagViewController.m in Sources */,
 				BF8600CD1D3B243F00BCA60A /* OrderListParams.m in Sources */,
 				BFED9BAC1D2A52E4000175C5 /* OrderCell.m in Sources */,
@@ -1311,7 +1342,9 @@
 				BFF433A91D15200200D21427 /* ModifyPassword.m in Sources */,
 				BF8600E21D3BDA4800BCA60A /* ProduceStoresModel.m in Sources */,
 				BF8600D01D3B26F900BCA60A /* OrderModel.m in Sources */,
+				BF8601091D3E765E00BCA60A /* OrderDetailModel.m in Sources */,
 				BFF8D40F1D18F5740039600B /* ProDetailCell1.m in Sources */,
+				BF8600FD1D3DD8F700BCA60A /* AppSubOrderParams.m in Sources */,
 				BFC50F021CFC1BAF00CA7CD5 /* Main2Cell.m in Sources */,
 				787226EC1CC5D53500BFB45F /* TakePhotoViewController.m in Sources */,
 				788A56341CB77A6200A58302 /* BaseTableViewController.m in Sources */,
@@ -1341,12 +1374,15 @@
 				BF40865F1D12EF8500E11065 /* GroupButtonsModel.m in Sources */,
 				BFA2B71B1CF6E92E00EB460E /* TabBarViewController.m in Sources */,
 				788836D21CBCC9C20030909E /* BirthdayView.m in Sources */,
+				BF86010C1D3E83E800BCA60A /* balanceCoinModel.m in Sources */,
 				BFF578B31D2F6C4C00EC9400 /* ZZPhotoController.m in Sources */,
 				BF3C3C311D39F66C000E3027 /* CalculateCoinParams.m in Sources */,
+				BF8601031D3DDA2100BCA60A /* itemModel.m in Sources */,
 				789E78921CB60D080039AC69 /* AppDelegate.m in Sources */,
 				BFED9BB81D2A9E92000175C5 /* OrderDetailTabViewCtrl.m in Sources */,
 				BFF578B41D2F6C4C00EC9400 /* ZZPhotoDatas.m in Sources */,
 				BFD1FEA31CF74925006FDDF6 /* MainViewController.m in Sources */,
+				BF8601001D3DD9BC00BCA60A /* SubOrderModel.m in Sources */,
 				BFED9B8C1D29FFA6000175C5 /* Term1Cell.m in Sources */,
 				BF8600D31D3B325600BCA60A /* UserSourceParams.m in Sources */,
 				BFF578B51D2F6C4C00EC9400 /* ZZPhotoListCell.m in Sources */,

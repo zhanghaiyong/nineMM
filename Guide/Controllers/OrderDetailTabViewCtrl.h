@@ -10,4 +10,6 @@
 
 @interface OrderDetailTabViewCtrl : BaseTableViewController
 
+@property (nonnull,strong)NSString *orderId;
+
 @end

@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "OrderModel.h"
 @interface OrderComplainCtrl : BaseTableViewController
+
+@property (nonatomic,strong)OrderModel *orderModel;
 
 @end

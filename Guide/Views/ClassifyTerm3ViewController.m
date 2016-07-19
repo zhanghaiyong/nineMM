@@ -137,7 +137,7 @@
                     NSMutableArray *array = [NSMutableArray array];
                     [produceAreas enumerateObjectsUsingBlock:^(NSString *ids, NSUInteger idx, BOOL * _Nonnull stop)
                      {
-//if ([first.allKeys containsObject:@"c"]) {
+                        if ([first.allKeys containsObject:@"c"]) {
                             NSMutableArray *middle  = [NSMutableArray arrayWithArray:[first objectForKey:@"c"]];
                             [middle enumerateObjectsUsingBlock:^(NSDictionary *second, NSUInteger idTwo, BOOL * _Nonnull stop)
                              {
@@ -147,12 +147,12 @@
                                     [array addObject:second];
                                 }
                             }];
-//  }
+                          }
                     }];
                     [Filter2[idOne] setObject:array forKey:@"c"];
                 }];
                 
-                FxLog(@"areaTree1 = %ld",((NSArray *)([Filter2[0] objectForKey:@"c"])).count);
+//                FxLog(@"areaTree1 = %ld",((NSArray *)([Filter2[0] objectForKey:@"c"])).count);
                 
                 //筛选三级
                 NSMutableArray *Filter3 = [Filter2 mutableCopy];
@@ -160,18 +160,20 @@
                  {
                     
                      NSMutableArray *array = [NSMutableArray array];
-//                    if ([first.allKeys containsObject:@"c"]) {
+                    if ([first.allKeys containsObject:@"c"]) {
                          NSMutableArray *middle1 = [NSMutableArray arrayWithArray:[first objectForKey:@"c"]];
                      
                         [middle1 enumerateObjectsUsingBlock:^(NSDictionary *second, NSUInteger idTwo, BOOL * _Nonnull stop)
                          {
+                             
+                            if ([second.allKeys containsObject:@"c"]) {
                             NSMutableArray *middle2 = [NSMutableArray arrayWithArray:[second objectForKey:@"c"]];
                             
                             [middle2 enumerateObjectsUsingBlock:^(NSDictionary *finall, NSUInteger idThree, BOOL * _Nonnull stop)
                              {
                             
                             [produceAreas enumerateObjectsUsingBlock:^(NSString *ids, NSUInteger idx, BOOL * _Nonnull stop) {
-//                                if ([second.allKeys containsObject:@"c"]) {
+//
                                 if ([[NSString stringWithFormat:@"%@",[finall objectForKey:@"i"]] isEqualToString:[NSString stringWithFormat:@"%@",ids]])
                                 {
 //                                    [[[Filter3[idOne] objectForKey:@"c"][idTwo] objectForKey:@"c"] removeObject:finall];
@@ -181,13 +183,14 @@
                             }];
 //                                }
                             }];
+                            }
                              
                              [[Filter3[idOne] objectForKey:@"c"][idTwo] setObject:array forKey:@"c"];
                             
                         }];
                      
                      
-//                    }
+                    }
                 }];
 
                 NSLog(@"dataArr1 = %@",Filter3);

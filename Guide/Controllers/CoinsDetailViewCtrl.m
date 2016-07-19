@@ -43,15 +43,30 @@
     coinsDetailMsgArr = [NSMutableArray array];
     self.title = @"酒币明细";
     
-    [self getCoinsDetail];
+    //刷新
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        self.params.page = 1;
+        
+        [self getCoinsDetail];
+        
+    }];
+    
+    //加载
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        
+        self.params.page += 1;
+        
+        [self getCoinsDetail];
+    }];
+    
+    [self.tableView.mj_header beginRefreshing];
     
 }
 
 - (void)getCoinsDetail {
 
     [[HUDConfig shareHUD]alwaysShow];
-    
-    self.params.page += 1;
     
     [KSMNetworkRequest postRequest:KCoinsDetail params:self.params.mj_keyValues success:^(NSDictionary *dataDic) {
         
@@ -62,8 +77,26 @@
             [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
             
             if (![[dataDic objectForKey:@"retObj"] isEqual:[NSNull null]]) {
-
-                coinsDetailMsgArr = [CoinsDetailModel mj_objectArrayWithKeyValuesArray:[[dataDic objectForKey:@"retObj"] objectForKey:@"rows"]];
+                
+                NSArray *sourceData = [[dataDic objectForKey:@"retObj"] objectForKey:@"rows"];
+                //等于1，说明是刷新
+                if (self.params.page == 1) {
+                    
+                    coinsDetailMsgArr = [CoinsDetailModel mj_objectArrayWithKeyValuesArray:sourceData];
+                    [self.tableView.mj_header endRefreshing];
+                    
+                }else {
+                    
+                    NSArray *array = [CoinsDetailModel mj_objectArrayWithKeyValuesArray:sourceData];
+                    [coinsDetailMsgArr addObjectsFromArray:array];
+                    
+                    if (array.count < self.params.rows) {
+                        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                    }else {
+                        
+                        [self.tableView.mj_footer endRefreshing];
+                    }
+                }
                 
                 [self.tableView reloadData];
             }

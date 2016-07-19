@@ -10,18 +10,17 @@
 
 @interface OrderModel : NSObject
 
-@property (nonatomic,strong)NSArray *buttons;
-@property (nonatomic,strong)NSString *customImageId;
 @property (nonatomic,strong)NSString *goodsName;
 @property (nonatomic,strong)NSString *orderCreateDate;
 @property (nonatomic,strong)NSString *orderId;
 @property (nonatomic,strong)NSString *orderOrderStatus;
 @property (nonatomic,strong)NSString *orderSn;
-@property (nonatomic,strong)NSString *orderStatusName;
-@property (nonatomic,strong)NSString *orderStatusTextColor;
+@property (nonatomic,strong)NSString *orderStepCode;
+@property (nonatomic,strong)NSString *orderStepName;
+@property (nonatomic,strong)NSString *orderStepTextColor;
 @property (nonatomic,strong)NSString *paymentTime;
 @property (nonatomic,strong)NSString *price;
-@property (nonatomic,strong)NSString *productId;
+@property (nonatomic,strong)NSString *productId;;
 @property (nonatomic,strong)NSString *productImageId;
 @property (nonatomic,strong)NSString *productName;
 @property (nonatomic,strong)NSString *quantity;

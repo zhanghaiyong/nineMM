@@ -9,8 +9,32 @@
 #import "OrderComplainCtrl.h"
 #import "ZZPhotoController.h"
 
-@interface OrderComplainCtrl ()<UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface OrderComplainCtrl ()<UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate>
 
+/**
+ *  商品名称
+ */
+@property (weak, nonatomic) IBOutlet UILabel *goodsName;
+/**
+ *  酒币
+ */
+@property (weak, nonatomic) IBOutlet UILabel *wineCoin;
+/**
+ *  库存
+ */
+@property (weak, nonatomic) IBOutlet UILabel *stock;
+/**
+ *  合计
+ */
+@property (weak, nonatomic) IBOutlet UILabel *totalWinecoin;
+/**
+ *  申诉原因
+ */
+@property (weak, nonatomic) IBOutlet UITextView *textV;
+/**
+ *  订单号
+ */
+@property (weak, nonatomic) IBOutlet UILabel *orderCode;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView1;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView2;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView3;
@@ -57,20 +81,25 @@
     
     UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(selectImage:)];
     [self.imageView1 addGestureRecognizer:tap1];
-    
+
     UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(selectImage:)];
     [self.imageView2 addGestureRecognizer:tap2];
-    
+
     UITapGestureRecognizer *tap3 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(selectImage:)];
     [self.imageView3 addGestureRecognizer:tap3];
-    
+
     UITapGestureRecognizer *tap4 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(selectImage:)];
     [self.imageView4 addGestureRecognizer:tap4];
-    
+
     UITapGestureRecognizer *tap5 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(selectImage:)];
     [self.imageView5 addGestureRecognizer:tap5];
+    
+    self.goodsName.text     = self.orderModel.goodsName;
+    self.wineCoin.text      = self.orderModel.price;
+    self.stock.text         = self.orderModel.quantity;
+    self.totalWinecoin.text = self.orderModel.totalPrice;
+    self.orderCode.text     = self.orderModel.orderSn;
 }
-
 #pragma mark UITableViewDelegate&&UITableViewDataSource
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 

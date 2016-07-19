@@ -10,14 +10,15 @@
 
 @implementation sureOrderFoorView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
-
 - (IBAction)nowBuyAction:(id)sender {
+    
+    self.block();
+    
 }
+
+- (void)nowBuyProduce:(sureOrderFootBlock)block {
+
+    _block = block;
+}
+
 @end

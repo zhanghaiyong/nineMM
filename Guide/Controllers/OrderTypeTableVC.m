@@ -11,6 +11,7 @@
 #import "OrderDetailTabViewCtrl.h"
 #import "OrderListParams.h"
 #import "OrderModel.h"
+#import "OrderComplainCtrl.h"
 @interface OrderTypeTableVC ()<UITableViewDelegate,UITableViewDataSource>
 {
 
@@ -94,15 +95,33 @@
             break;
     }
     
-    [self getOrderList];
+//    [self getOrderList];
+    
+    
+    //刷新
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        self.params.page = 1;
+        
+        [self getOrderList];
+        
+    }];
+    
+    //加载
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        
+        self.params.page += 1;
+        
+        [self getOrderList];
+    }];
+    
+    [self.tableView.mj_header beginRefreshing];
     
 }
 
 - (void)getOrderList {
 
     [[HUDConfig shareHUD]alwaysShow];
-    
-    self.params.page += 1;
     
     [KSMNetworkRequest postRequest:KOrderList params:self.params.mj_keyValues success:^(NSDictionary *dataDic) {
         
@@ -114,7 +133,27 @@
             
             if (![[dataDic objectForKey:@"retObj"] isEqual:[NSNull null]]) {
                 
-                orderListArr = [OrderModel mj_objectArrayWithKeyValuesArray:[[dataDic objectForKey:@"retObj"] objectForKey:@"rows"]];
+                NSArray *sourceData = [[dataDic objectForKey:@"retObj"] objectForKey:@"rows"];
+                
+                if (self.params.page == 1) {
+                    
+                    orderListArr = [OrderModel mj_objectArrayWithKeyValuesArray:sourceData];
+                    [self.tableView.mj_header endRefreshing];
+                    
+                }else {
+                
+                    NSArray *array = [OrderModel mj_objectArrayWithKeyValuesArray:sourceData];
+                    [orderListArr addObjectsFromArray:array];
+                    
+                    if (array.count < self.params.rows) {
+                        
+                        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                    }else {
+                        
+                        [self.tableView.mj_footer endRefreshing];
+                    }
+                }
+                
                 
                 [self.tableView reloadData];
             }
@@ -134,7 +173,7 @@
 #pragma  makk UITableViewDelegate&&DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    return 3;
+    return orderListArr.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -152,12 +191,17 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 
+    if (section == 0) {
+        
+        return 0;
+    }
+    
     return 10;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
 
-    return 0.1;
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -174,13 +218,31 @@
         cell.detailViewHeight.constant = 0;
     }
     
+    OrderModel *model = orderListArr[indexPath.section];
     
+    cell.orderIDLabel.text = model.orderSn;
+    [cell.orderStatusButton setTitle:[NSString stringWithFormat:@"  %@  ",model.orderStepName] forState:UIControlStateNormal];
+    [cell.orderStatusButton setTitleColor:HEX_RGB((unsigned long)model.orderStepTextColor) forState:UIControlStateNormal];
+    cell.produceName.text = model.goodsName;
+    cell.nowPriceLabel.text = model.price;
+    cell.collectLabel.text = model.quantity;
+    cell.nowPriceRed.text = model.price;
+    cell.oriPrice.text = model.totalPrice;
+    
+    [cell tapDealOrder:^{
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        OrderComplainCtrl *dealOrder = [mainSB instantiateViewControllerWithIdentifier:@"OrderComplainCtrl"];
+        dealOrder.orderModel = model;
+        [self.navigationController pushViewController:dealOrder animated:YES];
+    }];
     
     //进入详情
     [cell tapToChechOrderDetail:^{
         
         UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
         OrderDetailTabViewCtrl *orderDetail = [mainSB instantiateViewControllerWithIdentifier:@"OrderDetailTabViewCtrl"];
+        orderDetail.orderId = model.orderId;
         [self.navigationController pushViewController:orderDetail animated:YES];
     }];
     

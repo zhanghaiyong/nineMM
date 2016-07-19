@@ -105,7 +105,7 @@
             [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
         }
         
-//        [self endRefresh];
+
         
     } failure:^(NSError *error) {
         
@@ -113,11 +113,6 @@
     }];
 }
 
-//-(void)endRefresh {
-//    
-//    [self.tableView.mj_header endRefreshing];
-//    [self.tableView.mj_footer endRefreshing];
-//}
 
 #pragma mark UITableView Delegate&DataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

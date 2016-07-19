@@ -5,12 +5,20 @@
 #import "sureOrderFoorView.h"
 #import "SourceListViewController.h"
 #import "sureOrderFoorView.h"
+
+#import "AppSubOrderParams.h"
+#import "itemModel.h"
+#import "SubOrderModel.h"
+#import "UserSourceModel.h"
+#import "OrderDetailTabViewCtrl.h"
 @interface SureOrdersViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     NSString *coin;
     sureOrderCell3 *cell3;
 }
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) AppSubOrderParams *params;
 
 @end
 
@@ -30,11 +38,56 @@
 //    self.hidesBottomBarWhenPushed = NO;
 //}
 
+
+
+
+-(AppSubOrderParams *)params {
+
+    if (_params == nil) {
+        
+        AppSubOrderParams *params = [[AppSubOrderParams alloc]init];
+        params.amount = [self.proPrice intValue];
+        params.paymentMethod = coin;
+        _params = params;
+        
+    }
+    return _params;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.title = @"确认下单";
     self.edgesForExtendedLayout = UIRectEdgeNone;
+}
+
+- (void)subOrder {
+
+    [[HUDConfig shareHUD]alwaysShow];
+    
+    [KSMNetworkRequest postRequest:KAppSubOrder params:self.params.mj_keyValues success:^(NSDictionary *dataDic) {
+        
+        FxLog(@"buyNowAction = %@",dataDic);
+        
+        if ([[dataDic objectForKey:@"retCode"]integerValue] == 0) {
+            
+            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            
+            UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+            OrderDetailTabViewCtrl *orderDetail = [mainSB instantiateViewControllerWithIdentifier:@"OrderDetailTabViewCtrl"];
+            orderDetail.orderId = [[dataDic objectForKey:@"retObj"] objectForKey:@"orderId"][0];
+            [self.navigationController pushViewController:orderDetail animated:YES];
+            
+        }else {
+            [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+        }
+        
+    } failure:^(NSError *error) {
+        
+        [[HUDConfig shareHUD]ErrorHUD :error.localizedDescription delay:DELAY];
+    }];
+    
+
     
 }
 
@@ -65,6 +118,36 @@
         
         sureOrderFoorView *footer = [[[NSBundle mainBundle]loadNibNamed:@"sureOrderFoorView" owner:self options:nil]lastObject];
         footer.frame = CGRectMake(0, 0, self.tableView.width, 60);
+        
+        [footer nowBuyProduce:^{
+            
+            SubOrderModel *subOrderModel     = [[SubOrderModel alloc]init];
+            subOrderModel.productId          = [self.produceModel.id intValue];
+            subOrderModel.quantity           = 1;
+            subOrderModel.storeSelectingType = self.proPriceByStoreParams.storeSelectingType;
+            subOrderModel.stores             = self.proPriceByStoreParams.storeIds;
+            subOrderModel.areas              = self.proPriceByStoreParams.areaIds;
+            NSMutableArray *userSourceId     = [NSMutableArray array];
+            for (UserSourceModel *model in self.userSourceArr) {
+                
+                [userSourceId addObject:model.id];
+            }
+            subOrderModel.items   = [userSourceId componentsJoinedByString:@","];
+            NSLog(@"subOrderModel = %@",subOrderModel.mj_keyValues);
+
+            itemModel *itemM      = [[itemModel alloc]init];
+            NSArray *itemArr      = [NSArray arrayWithObject:subOrderModel.mj_keyValues];
+            itemM.items           = itemArr;
+            NSLog(@"itemM         = %@",itemM.mj_keyValues);
+            NSArray *array        = [NSArray arrayWithObject:itemM.mj_keyValues];
+
+            NSString *jsonString  = [array mj_JSONString];
+            self.params.orders = jsonString;
+            NSLog(@"self.params = %@",self.params.mj_keyValues);
+            
+            [self subOrder];
+            
+        }];
         return footer;
     }
     return nil;
@@ -209,3 +292,25 @@
 }
 
 @end
+
+
+
+//{
+//    amount = 387;
+//    orders = "[
+//    {
+//        "items" :
+//        [
+//            {
+//                "quantity" : 1,
+//                "items" : "11",
+//                "produceId" : 198,
+//                "storeSelectingType" : "store",
+//                "stores" : "5"
+//            }
+//         ]
+//    }
+//    ]";
+//    paymentMethod = blackCoin;
+//    sessionId = "4ecb7ae1-3798-4a76-a4f6-113a59fa849f";
+//}

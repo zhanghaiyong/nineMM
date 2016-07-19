@@ -121,6 +121,7 @@
             
         }else {
             
+            coinRechargeCell1.priceLabel.text = @"";
             [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
         }
         

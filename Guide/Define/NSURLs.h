@@ -34,6 +34,9 @@
 //个人中心
 #define KPersionCenter [BaseURLString stringByAppendingString:@"appMemberCenterIndex"]
 
+//获取登录用户全部酒币余额
+#define KGetLoginMemberCoinBalance [BaseURLString stringByAppendingString:@"getLoginMemberCoinBalance"]
+
 //APP可见酒币套餐列表
 #define KCoinRechargePackageList [BaseURLString stringByAppendingString:@"getAppCoinRechargePackageList"]
 
@@ -48,6 +51,9 @@
 //订单列表
 #define KOrderList [BaseURLString stringByAppendingString:@"appOrderHistory"]
 
+//订单详情
+#define KAppOrderDetail [BaseURLString stringByAppendingString:@"appOrderDetail"]
+
 //获取用户可选酒品列表
 #define KUserSource [BaseURLString stringByAppendingString:@"appGetMemberWineList"]
 
@@ -60,4 +66,8 @@
 
 //根据门店或区域选择计算资源商品价格
 #define KGetProductPriceByStoreSelection [BaseURLString stringByAppendingString:@"getProductPriceByStoreSelection"]
+
+
+//下单
+#define KAppSubOrder [BaseURLString stringByAppendingString:@"appSubOrder"]
 

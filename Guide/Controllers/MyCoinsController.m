@@ -1,13 +1,22 @@
 #import "MyCoinsController.h"
 //#import "TitleView.h"
+#import "balanceCoinModel.h"
 #import "CoinsDetailViewCtrl.h"
 @interface MyCoinsController ()
 
+//可用
 @property (weak, nonatomic) IBOutlet UILabel *golden;
 @property (weak, nonatomic) IBOutlet UILabel *black;
 @property (weak, nonatomic) IBOutlet UILabel *red;
 @property (weak, nonatomic) IBOutlet UILabel *blue;
 @property (weak, nonatomic) IBOutlet UILabel *green;
+
+//冻结
+@property (weak, nonatomic) IBOutlet UILabel *FreezeGolden;
+@property (weak, nonatomic) IBOutlet UILabel *FreezeBlack;
+@property (weak, nonatomic) IBOutlet UILabel *FreezeRed;
+@property (weak, nonatomic) IBOutlet UILabel *FreezeBlue;
+@property (weak, nonatomic) IBOutlet UILabel *FreezeGreen;
 @end
 
 @implementation MyCoinsController
@@ -40,7 +49,7 @@
     UILabel *userName = [cell1.contentView viewWithTag:101];
     userName.text = [self.persionModel.memberInfo objectForKey:@"departmentName"];
     UILabel *userType = [cell1.contentView viewWithTag:102];
-    userType.text = [self.persionModel.memberInfo objectForKey:@"nick"];
+    userType.text = [NSString stringWithFormat:@"ID：%@",[self.persionModel.memberInfo objectForKey:@"id"]];
     
     //金币
     for (NSDictionary *coinDic in self.persionModel.coins) {
@@ -65,10 +74,60 @@
         
             self.green.text = [NSString stringWithFormat:@"%@",[coinDic objectForKey:@"green"]];
         }
-        
-        
     }
     
+    
+    [self balanceData];
+
+}
+
+- (void)balanceData {
+
+    [[HUDConfig shareHUD]alwaysShow];
+    
+    BaseParams *params = [[BaseParams alloc]init];
+    
+    
+    FxLog(@"orderDetail = %@",params.mj_keyValues);
+    
+    [KSMNetworkRequest postRequest:KGetLoginMemberCoinBalance params:params.mj_keyValues success:^(NSDictionary *dataDic) {
+        
+        FxLog(@"balanceData = %@",dataDic);
+        
+        if ([[dataDic objectForKey:@"retCode"]integerValue] == 0) {
+            
+            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            
+            if (![[dataDic objectForKey:@"retObj"] isEqual:[NSNull null]]) {
+                
+                NSDictionary *retObj = [dataDic objectForKey:@"retObj"];
+                balanceCoinModel *model = [balanceCoinModel mj_objectWithKeyValues:retObj];
+                self.black.text = model.black;
+                self.blue.text = model.blue;
+                self.golden.text = model.golden;
+                self.green.text = model.green;
+                self.red.text = model.red;
+            }
+            
+        }else {
+            //            if ([[dataDic objectForKey:@"retCode"]integerValue] == -2){
+            
+            [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            //            UIStoryboard *SB = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+            //            LoginViewController *loginVC = [SB instantiateViewControllerWithIdentifier:@"LoginViewController"];
+            //            UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:loginVC];
+            //            [self presentViewController:navi animated:YES completion:^{
+            //
+            //                [self.navigationController popViewControllerAnimated:YES];
+            //
+            //            }];
+        }
+        
+    } failure:^(NSError *error) {
+        
+        [[HUDConfig shareHUD]ErrorHUD :error.localizedDescription delay:DELAY];
+    }];
+
     
 }
 
