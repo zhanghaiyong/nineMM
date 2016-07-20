@@ -118,6 +118,14 @@
     }];
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    if (indexPath.section == 2) {
+        
+        [[HUDConfig shareHUD]Tips:@"即将上线，敬请期待" delay:DELAY];
+    }
+}
+
 
 #pragma mark UITableViewDelegate&&DataSource
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
@@ -128,6 +136,14 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 
     return 0.1;
+}
+- (IBAction)personCenterAction:(id)sender {
+    
+     [[HUDConfig shareHUD]Tips:@"即将上线，敬请期待" delay:DELAY];
+}
+- (IBAction)msgCenterAction:(id)sender {
+    
+     [[HUDConfig shareHUD]Tips:@"即将上线，敬请期待" delay:DELAY];
 }
 
 /**

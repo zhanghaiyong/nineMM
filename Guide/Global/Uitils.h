@@ -33,6 +33,8 @@
 
 //+ (NSString *)toChinses:(NSString *)dataString;
 
++ (NSInteger)dayCountWithYear:(NSInteger)year month:(NSInteger)month;
+
 @end
 
              

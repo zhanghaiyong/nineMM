@@ -49,7 +49,7 @@
     UILabel *userName = [cell1.contentView viewWithTag:101];
     userName.text = [self.persionModel.memberInfo objectForKey:@"departmentName"];
     UILabel *userType = [cell1.contentView viewWithTag:102];
-    userType.text = [NSString stringWithFormat:@"ID：%@",[self.persionModel.memberInfo objectForKey:@"id"]];
+    userType.text = [self.persionModel.memberInfo objectForKey:@"nick"];
     
     //金币
     for (NSDictionary *coinDic in self.persionModel.coins) {
@@ -141,6 +141,51 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
 
     return 0.1;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    if (indexPath.section == 2) {
+        
+        NSString *coinTypeCode;
+        
+        switch (indexPath.row) {
+            case 0:
+                
+                coinTypeCode = @"golden";
+                
+                break;
+            case 1:
+                
+                coinTypeCode = @"black";
+                
+                break;
+            case 2:
+                
+                coinTypeCode = @"red";
+                
+                break;
+            case 3:
+                
+                coinTypeCode = @"blue";
+                
+                break;
+            case 4:
+                
+                coinTypeCode = @"green";
+                
+                break;
+                
+            default:
+                break;
+        }
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        CoinsDetailViewCtrl *coinDetailVC = [mainSB instantiateViewControllerWithIdentifier:@"CoinsDetailViewCtrl"];
+        coinDetailVC.coinTypeCode = coinTypeCode;
+        [self.navigationController pushViewController:coinDetailVC animated:YES];
+        
+    }
 }
 
 - (void)viewDidLayoutSubviews {

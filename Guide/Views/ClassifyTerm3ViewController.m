@@ -550,7 +550,6 @@
                     if ([((NSDictionary *)dataArr1[indexPath.row]).allKeys containsObject:@"c"]) {
                         
                         [dataArr2 addObjectsFromArray:[dataArr1[indexPath.row] objectForKey:@"c"]];
-                        
                     }
                 }
             }
@@ -624,6 +623,7 @@
         [finalAreaId addObjectsFromArray:TableAreaId3];
         
         NSString *areaIds = [finalAreaId componentsJoinedByString:@","];
+        self.storesParams.areaIds = areaIds;
         
         NSLog(@"%@",finalAreaId);
         NSLog(@"%@",areaIds);
@@ -674,6 +674,7 @@
             
             ids = [storeIds componentsJoinedByString:@","];
             type = @"storeId";
+            
         }else {
         
             ids = self.storesParams.areaIds;
@@ -685,7 +686,6 @@
         
     }
     
-
 }
 
 

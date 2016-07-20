@@ -80,13 +80,13 @@
 
     self.title = @"资源详情";
     
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn sizeToFit];
-    [btn setImage:[UIImage imageNamed:@"更多"] forState:UIControlStateNormal];
-    [btn setImage:[UIImage imageNamed:@"组-22"] forState:UIControlStateSelected];
-    [btn addTarget:self action:@selector(showMeumList) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    self.navigationItem.rightBarButtonItem = item;
+//    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [btn sizeToFit];
+//    [btn setImage:[UIImage imageNamed:@"更多"] forState:UIControlStateNormal];
+//    [btn setImage:[UIImage imageNamed:@"组-22"] forState:UIControlStateSelected];
+//    [btn addTarget:self action:@selector(showMeumList) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
+//    self.navigationItem.rightBarButtonItem = item;
     
     [self produceDetailData];
     

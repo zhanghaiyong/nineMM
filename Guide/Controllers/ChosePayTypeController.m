@@ -7,7 +7,8 @@
 //
 
 #import "ChosePayTypeController.h"
-
+#import "WineCoinsRechargeParams.h"
+#import "PayAlertViewController.h"
 @interface ChosePayTypeController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIButton *firstBtn;
@@ -51,6 +52,42 @@
         self.firstBtn = button;
         button.selected = YES;
     }
+}
+
+
+- (IBAction)surePayAction:(id)sender {
+    
+    [[HUDConfig shareHUD]alwaysShow];
+    
+    WineCoinsRechargeParams *params = [[WineCoinsRechargeParams alloc]init];
+    params.packageId = self.packageId;
+    params.rmb = [self.calculateCoinModel.rmb intValue];
+    params.paymentMethodCode = @"offline";
+    
+    FxLog(@"surePayAction = %@",params.mj_keyValues);
+    
+    [KSMNetworkRequest postRequest:KInitiatePackageCoinRecharge params:params.mj_keyValues success:^(NSDictionary *dataDic) {
+        
+        FxLog(@"surePayAction = %@",dataDic);
+        
+        if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
+            
+            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            
+        }else {
+            
+            [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+        }
+        
+        UIStoryboard *SB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        PayAlertViewController *paySuccessALert = [SB instantiateViewControllerWithIdentifier:@"PayAlertViewController"];
+        [self.navigationController pushViewController:paySuccessALert animated:YES];
+        
+    } failure:^(NSError *error) {
+        
+        [[HUDConfig shareHUD]ErrorHUD:error.localizedDescription delay:DELAY];
+    }];
+
 }
 
 

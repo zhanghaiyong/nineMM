@@ -2,7 +2,7 @@
 
 @protocol BirthdayViewDelegate <NSObject>
 
-- (void)selectedBirthday:(NSString *)birthdayString;
+- (void)selectedYear:(NSString *)year month:(NSString *)month;
 
 @end
 

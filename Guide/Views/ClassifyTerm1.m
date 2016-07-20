@@ -20,6 +20,7 @@
     NSMutableArray *dataArr1;
     NSMutableArray *dataArr2;
     NSMutableArray *dataArr3;
+    NSString    *categoryId;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -74,10 +75,7 @@
     UIView *line2 = [[UIView alloc]initWithFrame:CGRectMake(TableWidth*5, 10, 1, self.height/3*2-10)];
     line2.backgroundColor = lineColor;
     [self addSubview:line2];
-//    
-//    UIView *line3 = [[UIView alloc]initWithFrame:CGRectMake(0, self.height-80, self.width, 1)];
-//    line3.backgroundColor = lineColor;
-//    [self addSubview:line3];
+
 }
 //
 //- (void)drawRect:(CGRect)rect {
@@ -112,17 +110,26 @@
     
     if (tableView == tableV1) {
         
-        return dataArr1.count;
+        if (dataArr1.count > 0) {
+            
+            return dataArr1.count+1;
+        }
         
     }else if (tableView == tableV2) {
     
-        return dataArr2.count;
+        if (dataArr2.count > 0) {
+            
+            return dataArr2.count+1;
+        }
         
     }else {
         
-        return dataArr3.count;
-        
+        if (dataArr3.count > 0) {
+            
+            return dataArr3.count+1;
+        }
     }
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -149,20 +156,32 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"Term1Cell" owner:self options:nil] lastObject];
     }
     
-    
     if (tableView == tableV1) {
-        NSDictionary *dic = dataArr1[indexPath.row];
-        cell.meumNameLabel.text = [dic objectForKey:@"text"];
+        
+        if (indexPath.row == 0) {
+            cell.meumNameLabel.text = @"全部";
+        }else {
+            NSDictionary *dic = dataArr1[indexPath.row-1];
+            cell.meumNameLabel.text = [dic objectForKey:@"text"];
+        }
         
     }else if (tableView == tableV2) {
         
-        NSDictionary *dic = dataArr2[indexPath.row];
-        cell.meumNameLabel.text = [dic objectForKey:@"text"];
+        if (indexPath.row == 0) {
+            cell.meumNameLabel.text = @"全部";
+        }else {
+            NSDictionary *dic = dataArr2[indexPath.row-1];
+            cell.meumNameLabel.text = [dic objectForKey:@"text"];
+        }
         
     }else {
         
-        NSDictionary *dic = dataArr3[indexPath.row];
-        cell.meumNameLabel.text = [dic objectForKey:@"text"];
+        if (indexPath.row == 0) {
+            cell.meumNameLabel.text = @"全部";
+        }else {
+            NSDictionary *dic = dataArr3[indexPath.row-1];
+            cell.meumNameLabel.text = [dic objectForKey:@"text"];
+        }
         
     }
     
@@ -195,39 +214,102 @@
         }
         [tableView setContentOffset:CGPointMake(0, offset) animated:YES];
     
-    
-    
     if (tableView == tableV1) {
         
-        [dataArr2 removeAllObjects];
-        [dataArr3 removeAllObjects];
-        if ([((NSDictionary *)dataArr1[indexPath.row]).allKeys containsObject:@"children"]) {
+        if (indexPath.row > 0) {
             
-            [dataArr2 addObjectsFromArray:[dataArr1[indexPath.row] objectForKey:@"children"]];
+            NSDictionary *dic = dataArr1[indexPath.row-1];
+            categoryId = [dic objectForKey:@"id"];
             
-            if ([((NSDictionary *)dataArr2[0]).allKeys containsObject:@"children"]) {
+            [dataArr2 removeAllObjects];
+            [dataArr3 removeAllObjects];
+            if ([dic.allKeys containsObject:@"children"]) {
                 
-                [dataArr3 addObjectsFromArray:[dataArr2[0] objectForKey:@"children"]];
+                [dataArr2 addObjectsFromArray:[dataArr1[indexPath.row-1] objectForKey:@"children"]];
+                
+                if ([((NSDictionary *)dataArr2[0]).allKeys containsObject:@"children"]) {
+                    
+                    [dataArr3 addObjectsFromArray:[dataArr2[0] objectForKey:@"children"]];
+                }
             }
+            [tableV2 reloadData];
+            [tableV3 reloadData];
+            
+        }else {
+            
+            categoryId = @"";
+            
+            for (int i=0; i<dataArr1.count; i++) {
+                
+                NSIndexPath *moreIndex = [NSIndexPath indexPathForRow:i+1 inSection:0];
+                Term1Cell *moreCell = [tableView cellForRowAtIndexPath:moreIndex];
+                moreCell.logoBtn.selected = YES;
+                moreCell.meumNameLabel.textColor = MainColor;
+                UIView *cellBackView = [[UIView alloc] initWithFrame:cell.frame];
+                cellBackView.backgroundColor = RGB(216, 216, 216);
+                moreCell.selectedBackgroundView = cellBackView;
+            }
+            
+            self.userInteractionEnabled = NO;
+            [self performSelector:@selector(delayBlock) withObject:self afterDelay:1];
         }
-        
-        [tableV2 reloadData];
-        [tableV3 reloadData];
         
     }else if (tableView == tableV2) {
     
-        [dataArr3 removeAllObjects];
-        if ([((NSDictionary *)dataArr2[indexPath.row]).allKeys containsObject:@"children"]) {
-            [dataArr3 addObjectsFromArray:[dataArr2[indexPath.row] objectForKey:@"children"]];
+        if (indexPath.row > 0) {
             
+            NSDictionary *dic = dataArr2[indexPath.row-1];
+            categoryId = [dic objectForKey:@"id"];
+         
+            [dataArr3 removeAllObjects];
+            if ([dic.allKeys containsObject:@"children"]) {
+                [dataArr3 addObjectsFromArray:[dataArr2[indexPath.row-1] objectForKey:@"children"]];
+                
+            }
+            [tableV3 reloadData];
+            
+        } else {
+        
+            for (int i=0; i<dataArr2.count; i++) {
+                
+                NSIndexPath *moreIndex = [NSIndexPath indexPathForRow:i+1 inSection:0];
+                Term1Cell *moreCell = [tableView cellForRowAtIndexPath:moreIndex];
+                moreCell.logoBtn.selected = YES;
+                moreCell.meumNameLabel.textColor = MainColor;
+            }
+            
+            self.userInteractionEnabled = NO;
+            [self performSelector:@selector(delayBlock) withObject:self afterDelay:1];
         }
-        [tableV3 reloadData];
+    }else {
+    
+        if (indexPath.row > 0) {
+            
+            NSDictionary *dic = dataArr3[indexPath.row-1];
+            categoryId = [dic objectForKey:@"id"];
+            [self performSelector:@selector(delayBlock) withObject:self afterDelay:1];
+            
+        }else {
+        
+            for (int i=0; i<dataArr3.count; i++) {
+                
+                NSIndexPath *moreIndex = [NSIndexPath indexPathForRow:i+1 inSection:0];
+                Term1Cell *moreCell = [tableView cellForRowAtIndexPath:moreIndex];
+                moreCell.logoBtn.selected = YES;
+                moreCell.meumNameLabel.textColor = MainColor;
+            }
+            
+            self.userInteractionEnabled = NO;
+            [self performSelector:@selector(delayBlock) withObject:self afterDelay:1];
+        }
     }
     
-    
-    
-    
-    
+    NSLog(@"categoryId = %@",categoryId);;
+}
+
+- (void)delayBlock {
+
+    self.block(categoryId);
 }
 
 
@@ -238,22 +320,27 @@
     cell.meumNameLabel.textColor = [UIColor blackColor];
 }
 
+- (void)selectedCategoryId:(ClassifyTerm1Block)block {
+
+    _block = block;
+}
+
 -(void)setProduceSource:(NSArray *)produceSource {
 
     _produceSource = produceSource;
     [dataArr1 addObjectsFromArray:produceSource];
     
-    if ([((NSDictionary *)dataArr1[0]).allKeys containsObject:@"children"]) {
-        [dataArr2 addObjectsFromArray:[dataArr1[0] objectForKey:@"children"]];
-    }
-    
-    if ([((NSDictionary *)dataArr2[0]).allKeys containsObject:@"children"]) {
-        [dataArr3 addObjectsFromArray:[dataArr2[0] objectForKey:@"children"]];
-    }
-    
-    NSLog(@"dataArr1 = %@",dataArr1);
-    NSLog(@"dataArr2 = %@",dataArr2);
-    NSLog(@"dataArr3 = %@",dataArr3);
+//    if ([((NSDictionary *)dataArr1[0]).allKeys containsObject:@"children"]) {
+//        [dataArr2 addObjectsFromArray:[dataArr1[0] objectForKey:@"children"]];
+//    }
+//    
+//    if ([((NSDictionary *)dataArr2[0]).allKeys containsObject:@"children"]) {
+//        [dataArr3 addObjectsFromArray:[dataArr2[0] objectForKey:@"children"]];
+//    }
+//    
+//    NSLog(@"dataArr1 = %@",dataArr1);
+//    NSLog(@"dataArr2 = %@",dataArr2);
+//    NSLog(@"dataArr3 = %@",dataArr3);
     
     
     [tableV1 reloadData];

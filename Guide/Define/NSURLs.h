@@ -40,10 +40,11 @@
 //APP可见酒币套餐列表
 #define KCoinRechargePackageList [BaseURLString stringByAppendingString:@"getAppCoinRechargePackageList"]
 
-
 //计算酒币充值套餐人民币与酒币的换算
 #define KRMBtoCoins [BaseURLString stringByAppendingString:@"calculateCoinPackageRecharge"]
 
+//app发起酒币套餐充值
+#define KInitiatePackageCoinRecharge [BaseURLString stringByAppendingString:@"appInitiatePackageCoinRecharge"]
 
 //获取登录用户账户明细
 #define KCoinsDetail [BaseURLString stringByAppendingString:@"getLoginMemberCoinAccountLog"]

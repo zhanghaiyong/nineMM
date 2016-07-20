@@ -14,6 +14,7 @@ typedef void(^toChosePayMethodBlock)(void);
 
 - (IBAction)toChosePayMethod:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
+@property (weak, nonatomic) IBOutlet UIButton *sureRechargeBtn;
 
 @property (nonatomic,copy)toChosePayMethodBlock block;
 

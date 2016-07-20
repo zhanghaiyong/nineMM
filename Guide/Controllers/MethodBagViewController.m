@@ -92,6 +92,7 @@
     
         isEdit = YES;
         self.collect.hidden = NO;
+        self.collect.backgroundColor = [UIColor whiteColor];
         [self.checkoutOrDelete setTitle:@"删除" forState:UIControlStateNormal];
     }
     

@@ -8,8 +8,8 @@
 #import "ClassifyTerm2.h"
 #import "ClassifyTerm3ViewController.h"
 #import "ProduceDetailViewController.h"
-
-@interface ClassifyViewController ()<UITableViewDataSource,UITableViewDelegate,ClassifyDetailHeadDelegate,ClassifyTerm2Delegate>
+#import "MainProduceListParams.h"
+@interface ClassifyViewController ()<UITableViewDataSource,UITableViewDelegate,ClassifyDetailHeadDelegate,ClassifyTerm2Delegate,Term3Delegate>
 {
     //分类列表
     UITableView *typeTableView;
@@ -19,12 +19,37 @@
     
 
 }
+
+@property (nonatomic,strong)NSMutableArray *produces;
+@property (nonatomic,strong)MainProduceListParams *produceParams;
 @property (nonatomic,strong)ClassifyTerm1 *term1;
 @property (nonatomic,strong)ClassifyTerm2 *term2;
 
 @end
 
 @implementation ClassifyViewController
+-(NSMutableArray *)produces {
+    
+    if (_produces == nil) {
+        
+        NSMutableArray *produces = [NSMutableArray array];
+        _produces = produces;
+    }
+    return _produces;
+}
+
+-(MainProduceListParams *)produceParams {
+    
+    if (_produceParams == nil) {
+        
+        MainProduceListParams *produceParams = [[MainProduceListParams alloc]init];
+        _produceParams = produceParams;
+        _produceParams.rows = 20;
+        
+    }
+    return _produceParams;
+}
+
 
 -(ClassifyTerm1 *)term1 {
 
@@ -35,6 +60,19 @@
         NSString *filePath = [NSString stringWithFormat:@"%@/%@",rootPath,CategoryTree];
         NSArray *array = [NSArray arrayWithContentsOfFile:filePath];
         term1.produceSource = array;
+        
+        [term1 selectedCategoryId:^(NSString *qryCategoryId) {
+            
+            [term1 removeFromSuperview];
+            UIButton *button = [head viewWithTag:1000];
+            button.selected = NO;
+            [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            
+            self.produceParams.qryCategoryId = qryCategoryId;
+            
+            [typeTableView.mj_header beginRefreshing];
+        }];
+        
         _term1 = term1;
     }
     return _term1;
@@ -102,6 +140,103 @@
     typeTableView.tableFooterView = [[UIView alloc]init];
     [self.view addSubview:typeTableView];
     
+    //刷新
+    typeTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        self.produceParams.page = 1;
+        
+        [self loadProduceList];
+        
+    }];
+    
+    //加载
+    typeTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        
+        self.produceParams.page += 1;
+        
+        [self loadProduceList];
+    }];
+    
+    [typeTableView.mj_header beginRefreshing];
+    
+}
+
+- (void)loadProduceList {
+    
+    [[HUDConfig shareHUD]alwaysShow];
+    
+    FxLog(@"produceListParams = %@",self.produceParams.mj_keyValues);
+    
+    [KSMNetworkRequest postRequest:KHomePageProcudeList params:self.produceParams.mj_keyValues success:^(NSDictionary *dataDic) {
+        
+        FxLog(@"loadProduceList = %@",dataDic);
+        if ([[dataDic objectForKey:@"retCode"]integerValue] == 0) {
+            
+            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            
+            if (![[dataDic objectForKey:@"retObj"] isEqual:[NSNull null]]) {
+                
+                NSArray *rows = [[dataDic objectForKey:@"retObj"] objectForKey:@"rows"];
+                
+                //等于1，说明是刷新
+                if (self.produceParams.page == 1) {
+                    
+                    self.produces = [MainProduceModel mj_objectArrayWithKeyValuesArray:rows];
+                    [typeTableView.mj_header endRefreshing];
+                    
+                }else {
+                    
+                    NSArray *array = [MainProduceModel mj_objectArrayWithKeyValuesArray:rows];
+                    [self.produces addObjectsFromArray:array];
+                    
+                    if (array.count < self.produceParams.rows) {
+                        
+                        [typeTableView.mj_footer endRefreshingWithNoMoreData];
+                    }else {
+                        
+                        [typeTableView.mj_footer endRefreshing];
+                    }
+                }
+                [typeTableView reloadData];
+            }
+            
+        }else {
+            
+            [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            [typeTableView.mj_footer endRefreshingWithNoMoreData];
+        }
+        
+    } failure:^(NSError *error) {
+        
+        [[HUDConfig shareHUD]Tips :error.localizedDescription delay:DELAY];
+        [typeTableView.mj_footer endRefreshing];
+    }];
+}
+
+
+#pragma mark ClassifyTerm2Delegate
+- (void)classsifyTrem2Start:(NSString *)start end:(NSString *)end {
+
+    [_term2 removeFromSuperview];
+    _term2 = nil;
+    UIButton *button = [head viewWithTag:1001];
+    button.selected = NO;
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    
+    self.produceParams.qryScheduleDateFrom = start;
+    self.produceParams.qryScheduleDateTo = end;
+    [typeTableView.mj_header beginRefreshing];
+}
+
+#pragma mark Term3Delegate
+- (void)areaIdOrStoresId:(NSString *)ids type:(NSString *)type {
+
+    UIButton *button = [head viewWithTag:1002];
+    button.selected = NO;
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    NSLog(@"SFASf = %@",ids);
+    self.produceParams.qryAreaIds = ids;
+    [typeTableView.mj_header beginRefreshing];
 }
 
 #pragma mark ClassifyDetailHeadDelegate
@@ -188,6 +323,7 @@
             
             UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
             ClassifyTerm3ViewController *term3 = [mainSB instantiateViewControllerWithIdentifier:@"ClassifyTerm3ViewController"];
+            term3.delegate = self;
             [self.navigationController pushViewController:term3 animated:YES];
         }
             
@@ -212,7 +348,7 @@
 #pragma mark UITableViewDelegate&&dataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    return 4;
+    return self.produces.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -243,13 +379,51 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"Main4Cell" owner:self options:nil] lastObject];
     }
     
+    if (self.produces.count > 0) {
+        
+        MainProduceModel *model = self.produces[indexPath.row];
+        cell.NameLabel.text     = model.name;
+        cell.CoinsLabel.text    = model.price;
+        cell.timeLabel.text     = model.scheduleDesc;
+        cell.termsLabel.text    = [NSString stringWithFormat:@"资源限制说明：%@",model.terms];
+        cell.StockLabel.text    = [NSString stringWithFormat:@"库存 %@",model.stock];
+        
+        //是否收藏
+        if ([model.favorite integerValue] != 0) {
+            
+            cell.collectBtn.selected = YES;
+            
+        }else {
+            
+            cell.collectBtn.selected = NO;
+        }
+        
+        for (int i = 0; i<model.acceptableCoinTypes.count; i++) {
+            
+            UIImageView *coinImg = (UIImageView *)[cell.contentView viewWithTag:i+100];
+            coinImg.hidden       = NO;
+            coinImg.image        = [UIImage imageNamed:[Uitils toImageName:model.acceptableCoinTypes[i]]];
+        }
+        
+        for (int i = 0; i<model.tags.count; i++) {
+            
+            UIButton *tagsButton = (UIButton *)[cell.contentView viewWithTag:i+200];
+            tagsButton.hidden    = NO;
+            [tagsButton setTitle:model.tags[i] forState:UIControlStateNormal];
+        }
+        
+    }
+
+    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
+    MainProduceModel *model = self.produces[indexPath.row];
     UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
     ProduceDetailViewController *produceDetail = [mainSB instantiateViewControllerWithIdentifier:@"ProduceDetailViewController"];
+    produceDetail.produceModel = model;
     [self.navigationController pushViewController:produceDetail animated:YES];
 }
 

@@ -104,6 +104,8 @@
     
     [[HUDConfig shareHUD]alwaysShow];
     
+    FxLog(@"calculateCoinPackageRecharge = %@",self.calculateCoinParams.mj_keyValues);
+    
     [KSMNetworkRequest postRequest:KRMBtoCoins params:self.calculateCoinParams.mj_keyValues success:^(NSDictionary *dataDic) {
         
         FxLog(@"计算酒币充值套餐人民币与酒币的换算 = %@",dataDic);
@@ -117,12 +119,25 @@
                 calculateCoinModel = [CalculateCoinModel mj_objectWithKeyValues:[dataDic objectForKey:@"retObj"]];
                 NSIndexSet *section1=[[NSIndexSet alloc]initWithIndexesInRange:NSMakeRange(1, 2)];
                 [self.bigTableView reloadSections:section1 withRowAnimation:UITableViewRowAnimationTop];
+                
+                coinRechargeCell3.sureRechargeBtn.alpha = 1;
+                coinRechargeCell3.sureRechargeBtn.userInteractionEnabled = YES;
+                [coinRechargeCell1.priceLabel resignFirstResponder];
             }
             
         }else {
             
             coinRechargeCell1.priceLabel.text = @"";
-            [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            [[HUDConfig shareHUD] dismiss];
+            coinRechargeCell1.tipsLabel.text = [dataDic objectForKey:@"retMsg"];
+                [UIView animateWithDuration:1.5 animations:^{
+                    
+                    coinRechargeCell1.tipsLabel.alpha = 1;
+                    
+                } completion:^(BOOL finished) {
+                    
+                    coinRechargeCell1.tipsLabel.alpha = 0;
+                }];
         }
         
     } failure:^(NSError *error) {
@@ -215,18 +230,26 @@
                 //确认充值
                 [coinRechargeCell1 sureRechargeBlock:^{
                     
-                    [coinRechargeCell1.priceLabel resignFirstResponder];
+//                    if (coinRechargeCell1.priceLabel.text.length == 0) {
+//                        
+//                        [[HUDConfig shareHUD]Tips:@"请输入充值金额" delay:DELAY];
+//                        
+//                        return;
+//                    }
                     
-                    if (coinRechargeCell1.priceLabel.text.length == 0) {
-                        
-                        [[HUDConfig shareHUD]Tips:@"请输入充值金额" delay:DELAY];
-                        
-                        return;
-                    }
-                    
-                    PackageListModel *model = packageArr[packageIndex];
-                    self.calculateCoinParams.packageId = [model.id intValue];
+                    //充值金额
                     self.calculateCoinParams.rmb = [coinRechargeCell1.priceLabel.text intValue];
+                    
+                    //选择了
+                    if (packageIndex < packageArr.count) {
+                     
+                        PackageListModel *model = packageArr[packageIndex];
+                        self.calculateCoinParams.packageId = [model.id intValue];
+                    }
+//                    else {
+//                    
+//                        [[HUDConfig shareHUD]Tips:@"请选择充值套餐" delay:DELAY];
+//                    }
                     
                     [self calculateCoinPackageRecharge];
                     
@@ -257,26 +280,10 @@
                 
                 if (calculateCoinModel) {
                     //金额
-                    coinRechargeCell3.moneyLabel.text = calculateCoinModel.rmb;
+                    coinRechargeCell3.moneyLabel.text = [NSString stringWithFormat:@"%@元人民币",calculateCoinModel.rmb];
                 }
                 
-                
                 [coinRechargeCell3 userBlockToVC:^{
-                  
-                    //进入支付方式界面
-                    if (coinRechargeCell1.priceLabel.text.length == 0) {
-                        
-                        [UIView animateWithDuration:2 animations:^{
-                            
-                            coinRechargeCell1.tipsLabel.alpha = 1;
-                            
-                        } completion:^(BOOL finished) {
-                            
-                            coinRechargeCell1.tipsLabel.alpha = 0;
-                        }];
-                        
-                        return;
-                    }
                     
                     UIStoryboard *SB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
                     ChosePayTypeController *payType = [SB instantiateViewControllerWithIdentifier:@"ChosePayTypeController"];

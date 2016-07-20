@@ -89,6 +89,7 @@
 		BF8601061D3E2FAF00BCA60A /* OrderDetailParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8601051D3E2FAF00BCA60A /* OrderDetailParams.m */; };
 		BF8601091D3E765E00BCA60A /* OrderDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8601081D3E765E00BCA60A /* OrderDetailModel.m */; };
 		BF86010C1D3E83E800BCA60A /* balanceCoinModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF86010B1D3E83E800BCA60A /* balanceCoinModel.m */; };
+		BF86010F1D3FD8B700BCA60A /* WineCoinsRechargeParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BF86010E1D3FD8B700BCA60A /* WineCoinsRechargeParams.m */; };
 		BF94681E1D2279E500143B91 /* SureOrdersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF94681D1D2279E500143B91 /* SureOrdersViewController.m */; };
 		BF9468241D22849F00143B91 /* SourceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF9468231D22849F00143B91 /* SourceListViewController.m */; };
 		BF9468281D22852C00143B91 /* SourceListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF9468261D22852C00143B91 /* SourceListCell.m */; };
@@ -324,6 +325,8 @@
 		BF8601081D3E765E00BCA60A /* OrderDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailModel.m; sourceTree = "<group>"; };
 		BF86010A1D3E83E800BCA60A /* balanceCoinModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = balanceCoinModel.h; sourceTree = "<group>"; };
 		BF86010B1D3E83E800BCA60A /* balanceCoinModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = balanceCoinModel.m; sourceTree = "<group>"; };
+		BF86010D1D3FD8B700BCA60A /* WineCoinsRechargeParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WineCoinsRechargeParams.h; sourceTree = "<group>"; };
+		BF86010E1D3FD8B700BCA60A /* WineCoinsRechargeParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WineCoinsRechargeParams.m; sourceTree = "<group>"; };
 		BF94681C1D2279E500143B91 /* SureOrdersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SureOrdersViewController.h; sourceTree = "<group>"; };
 		BF94681D1D2279E500143B91 /* SureOrdersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SureOrdersViewController.m; sourceTree = "<group>"; };
 		BF9468221D22849F00143B91 /* SourceListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceListViewController.h; sourceTree = "<group>"; };
@@ -783,6 +786,8 @@
 				BF8600FF1D3DD9BC00BCA60A /* SubOrderModel.m */,
 				BF8601041D3E2FAF00BCA60A /* OrderDetailParams.h */,
 				BF8601051D3E2FAF00BCA60A /* OrderDetailParams.m */,
+				BF86010D1D3FD8B700BCA60A /* WineCoinsRechargeParams.h */,
+				BF86010E1D3FD8B700BCA60A /* WineCoinsRechargeParams.m */,
 			);
 			name = Params;
 			path = Controllers;
@@ -1371,6 +1376,7 @@
 				BF3C3C371D3A16C0000E3027 /* ChosePayTypeController.m in Sources */,
 				BF40865C1D12EF7600E11065 /* ShortcutsModel.m in Sources */,
 				BF3C3C061D3732B8000E3027 /* SecondBannerModel.m in Sources */,
+				BF86010F1D3FD8B700BCA60A /* WineCoinsRechargeParams.m in Sources */,
 				BF40865F1D12EF8500E11065 /* GroupButtonsModel.m in Sources */,
 				BFA2B71B1CF6E92E00EB460E /* TabBarViewController.m in Sources */,
 				788836D21CBCC9C20030909E /* BirthdayView.m in Sources */,

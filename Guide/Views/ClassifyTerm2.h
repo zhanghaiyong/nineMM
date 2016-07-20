@@ -11,11 +11,11 @@
 
 @protocol ClassifyTerm2Delegate <NSObject>
 
-- (void)classsifyTrem2SureData:(NSString *)someString;
+- (void)classsifyTrem2Start:(NSString *)start end:(NSString *)end;
 
 @end
 
-@interface ClassifyTerm2 : UIView<BirthdayViewDelegate>
+@interface ClassifyTerm2 : UIView<BirthdayViewDelegate,UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *dateButton;
 @property (weak, nonatomic) IBOutlet UITextField *startDayLabel;

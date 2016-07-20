@@ -239,6 +239,8 @@
 
 static NSDateFormatter *dateFormatter = nil;
 - (NSDate *)dateWithFormate:(NSString *)formate{
+    NSTimeZone *timeZone = [NSTimeZone localTimeZone];
+    [dateFormatter setTimeZone:timeZone];
     if (!dateFormatter) {
         dateFormatter = [[NSDateFormatter alloc] init];
     }

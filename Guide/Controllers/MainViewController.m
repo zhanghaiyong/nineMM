@@ -50,8 +50,7 @@
         
         MainProduceListParams *produceListParams = [[MainProduceListParams alloc]init];
         _produceListParams = produceListParams;
-        _produceListParams.rows = @"10";
-
+        _produceListParams.rows = 20;
     }
     return _produceListParams;
 }
@@ -95,11 +94,30 @@
     searchBar.searchTF.leftView = searchIcon;
     [self.view addSubview:searchBar];
     
+//    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+//        
+//        [self loadProduceList];
+//    }];
+//    [self.tableView.mj_footer beginRefreshing];
+    
+    //刷新
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        self.produceListParams.page = 1;
+        
+        [self loadProduceList];
+        
+    }];
+    
+    //加载
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        
+        self.produceListParams.page += 1;
         
         [self loadProduceList];
     }];
-    [self.tableView.mj_footer beginRefreshing];
+    
+    [self.tableView.mj_header beginRefreshing];
     
 }
 
@@ -107,7 +125,6 @@
     
     [[HUDConfig shareHUD]alwaysShow];
     
-    self.produceListParams.page = [NSString stringWithFormat:@"%ld",[self.produceListParams.page integerValue]+1];
      FxLog(@"produceListParams = %@",self.produceListParams.mj_keyValues);
     
     [KSMNetworkRequest postRequest:KHomePageProcudeList params:self.produceListParams.mj_keyValues success:^(NSDictionary *dataDic) {
@@ -120,19 +137,28 @@
             if (![[dataDic objectForKey:@"retObj"] isEqual:[NSNull null]]) {
                 
                 NSArray *rows = [[dataDic objectForKey:@"retObj"] objectForKey:@"rows"];
-                [self.produces addObjectsFromArray:[MainProduceModel mj_objectArrayWithKeyValuesArray:rows]];
                 
-                NSIndexSet *nd=[[NSIndexSet alloc]initWithIndex:3];//刷新第3个section
-                [self.tableView reloadSections:nd withRowAnimation:UITableViewRowAnimationTop];
-                
-                if (rows.count < 10) {
+                //等于1，说明是刷新
+                if (self.produceListParams.page == 1) {
                     
-                     [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                    self.produces = [MainProduceModel mj_objectArrayWithKeyValuesArray:rows];
+                    [self.tableView.mj_header endRefreshing];
                     
                 }else {
                 
-                    [self.tableView.mj_footer endRefreshing];
+                    NSArray *array = [MainProduceModel mj_objectArrayWithKeyValuesArray:rows];
+                    [self.produces addObjectsFromArray:array];
+                    
+                    if (array.count < self.produceListParams.rows) {
+                        
+                        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                    }else {
+                        
+                        [self.tableView.mj_footer endRefreshing];
+                    }
                 }
+                NSIndexSet *nd=[[NSIndexSet alloc]initWithIndex:3];//刷新第3个section
+                [self.tableView reloadSections:nd withRowAnimation:UITableViewRowAnimationTop];
             }
             
         }else {
@@ -167,7 +193,7 @@
             return 1;
             break;
         case 3:
-            return 5;
+            return self.produces.count;
             break;
             
         default:
@@ -292,7 +318,7 @@
                 MainProduceModel *model = self.produces[indexPath.row];
                 cell.NameLabel.text     = model.name;
                 cell.CoinsLabel.text    = model.price;
-                cell.timeLabel.text     = [NSString stringWithFormat:@"档期时间：%@",model.scheduleDesc];
+                cell.timeLabel.text     = model.scheduleDesc;
                 cell.termsLabel.text    = [NSString stringWithFormat:@"资源限制说明：%@",model.terms];
                 cell.StockLabel.text    = [NSString stringWithFormat:@"库存 %@",model.stock];
                 

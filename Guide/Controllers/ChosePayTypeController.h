@@ -11,4 +11,5 @@
 
 @interface ChosePayTypeController : BaseTableViewController
 @property (nonatomic,strong)CalculateCoinModel *calculateCoinModel;
+@property (nonatomic,assign)int packageId;
 @end

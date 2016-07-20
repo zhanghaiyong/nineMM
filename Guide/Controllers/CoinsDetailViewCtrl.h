@@ -10,4 +10,6 @@
 
 @interface CoinsDetailViewCtrl : BaseTableViewController
 
+@property (nonatomic,strong)NSString *coinTypeCode;
+
 @end

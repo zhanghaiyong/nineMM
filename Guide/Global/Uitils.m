@@ -186,8 +186,34 @@
     
     
     return chinese;
-    
 }
+
++ (NSInteger)dayCountWithYear:(NSInteger)year month:(NSInteger)month {
+
+    NSInteger count = 0;
+    
+        if (month == 2) {
+            if((year % 4 == 0 && year % 100!=0) || year % 400 == 0) //是闰年
+            {
+                count = 29;
+            }
+            else
+            {
+                count = 28;
+            }
+            
+        }else if (month == 4 || month == 6 || month == 9 || month == 11){
+            count = 30;
+            
+        }else{
+            
+            count = 31;
+        }
+    
+    return count;
+}
+
+
 
 ////判断密码强弱
 //+ (BOOL) judgeRange:(NSArray*) _termArray Password:(NSString*) _password

@@ -32,6 +32,7 @@
         CoinsDetailParams *params = [[CoinsDetailParams alloc]init];
         params.rows = 20;
         params.page = 0;
+        params.coinTypeCode = self.coinTypeCode;
         _params = params;
     }
     return _params;
@@ -139,7 +140,35 @@
     SourceListHead *sourceListHead = [[[NSBundle mainBundle]loadNibNamed:@"SourceListHead" owner:self options:nil]lastObject];
     sourceListHead.backgroundColor = backgroudColor;
     sourceListHead.frame = CGRectMake(0, 0, self.tableView.width, 30);
-    sourceListHead.titleLabel.text = @"我的酒币";
+    
+    sourceListHead.countLabel.text = [NSString stringWithFormat:@"共%ld件",coinsDetailMsgArr.count];
+    
+    if (self.coinTypeCode.length == 0) {
+        sourceListHead.titleLabel.text = @"我的酒币(全部)";
+    }else {
+    
+        if ([self.coinTypeCode isEqualToString:@"golden"]) {
+            
+            sourceListHead.titleLabel.text = @"我的酒币(金币)";
+            
+        }else if ([self.coinTypeCode isEqualToString:@"black"]) {
+            
+            sourceListHead.titleLabel.text = @"我的酒币(黑币)";
+            
+        }else if ([self.coinTypeCode isEqualToString:@"red"]) {
+            
+            sourceListHead.titleLabel.text = @"我的酒币(红币)";
+            
+        }else if ([self.coinTypeCode isEqualToString:@"blue"]) {
+            
+            sourceListHead.titleLabel.text = @"我的酒币(蓝币)";
+            
+        }else {
+        
+            sourceListHead.titleLabel.text = @"我的酒币(绿币)";
+        }
+    }
+    
     return sourceListHead;
 }
 

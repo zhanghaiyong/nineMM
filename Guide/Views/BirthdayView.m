@@ -25,18 +25,18 @@
     
     //设置月份数据
     for (int i = 0; i<12; i++) {
-        [monthArr addObject:[NSString stringWithFormat:@"%d月",i+1]];
+        [monthArr addObject:[NSString stringWithFormat:@"%d",i+1]];
         if (i+1 == month) {
-            monthStr = [NSString stringWithFormat:@"%d月",i+1];
+            monthStr = [NSString stringWithFormat:@"%d",i+1];
             MonthRow = i;
         }
         
     }
     //设置年份数据
     for (int i =0; i < 70; i++) {
-        [yearArr addObject:[NSString stringWithFormat:@"%d年",i+1970]];
+        [yearArr addObject:[NSString stringWithFormat:@"%d",i+1970]];
         if ((i+1970) == year) {
-            yearStr = [NSString stringWithFormat:@"%d年",i+1970];
+            yearStr = [NSString stringWithFormat:@"%d",i+1970];
             YearRow = i;
         }
     }
@@ -80,9 +80,9 @@
 
     if (component == 0) {
         
-        return yearArr[row];
+        return [NSString stringWithFormat:@"%@年",yearArr[row]];
     }else
-        return monthArr[row];
+        return [NSString stringWithFormat:@"%@年",monthArr[row]];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
@@ -95,8 +95,6 @@
     }
 }
 
-
-
 - (IBAction)cancleAction:(id)sender {
     
     [self removeFromSuperview];
@@ -105,9 +103,8 @@
 - (IBAction)sureAction:(id)sender {
     
     FxLog(@"%@",[NSString stringWithFormat:@"%@%@",yearStr,monthStr]);
-    if ([self.delegate respondsToSelector:@selector(selectedBirthday:)]) {
-        
-        [self.delegate selectedBirthday:[NSString stringWithFormat:@"%@%@",yearStr,monthStr]];
+    if ([self.delegate respondsToSelector:@selector(selectedYear:month:)]) {
+        [self.delegate selectedYear:yearStr month:monthStr];
         [self removeFromSuperview];
     }
 }
