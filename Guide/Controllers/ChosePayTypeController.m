@@ -94,6 +94,11 @@
 #pragma mark UITableViewDelegate && UITableViewDataSource
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 
+    if (section == 2) {
+        
+       return SCREEN_HEIGHT-260-64-80;
+    }
+    
     return 15;
 }
 

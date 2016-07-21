@@ -44,7 +44,7 @@
         
         BirthdayView *birthdayView = [[[NSBundle mainBundle] loadNibNamed:@"BirthdayView" owner:self options:nil] lastObject];
         birthdayView.delegate = self;
-        birthdayView.frame = CGRectMake(0, self.height-250, self.width, 250);
+        birthdayView.frame = CGRectMake(0, self.height/2, self.width, self.height/2);
         _birthdayView = birthdayView;
         
     }

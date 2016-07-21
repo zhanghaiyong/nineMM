@@ -19,7 +19,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ktu-hV-mhE">
                                 <rect key="frame" x="0.0" y="0.0" width="1000" height="278.5"/>
-                                <color key="backgroundColor" red="0.70196078429999997" green="0.93333333330000001" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="1000" id="JKv-6n-ipG"/>
                                 </constraints>

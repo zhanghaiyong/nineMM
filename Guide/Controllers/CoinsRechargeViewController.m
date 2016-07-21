@@ -177,7 +177,7 @@
                 return 390;
                 break;
             case 1:
-                return 150;
+                return 180;
                 break;
             case 2:
                 return 50;
