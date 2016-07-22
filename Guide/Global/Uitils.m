@@ -115,7 +115,9 @@
 
 + (void)cacheImagwWithSize:(CGSize)size imageID:(NSString *)imageID imageV:(UIImageView *)imageV placeholder:(NSString *)placehImg {
 
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@_%.0f_%.0f_0.png",BaseImageURL,imageID,size.width,size.height];
+    NSLog(@"%f,,   %f",size.width,size.height);
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@_%.0f_%.0f_1.png",BaseImageURL,imageID,size.width,size.height];
     NSURL    *url = [NSURL URLWithString:urlStr];
     FxLog(@"url = %@",url);
     [imageV sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:placehImg]];

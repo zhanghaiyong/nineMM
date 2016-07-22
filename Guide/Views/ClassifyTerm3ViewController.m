@@ -114,43 +114,53 @@
                 NSString *rootPath = [HYSandbox docPath];
                 NSString *filePath = [NSString stringWithFormat:@"%@/%@",rootPath,ARESTREE];
                 NSArray *areaTree  = [NSArray arrayWithContentsOfFile:filePath];
-                
+//                NSLog(@"areaTreeareaTree = %@",areaTree);
                 //筛选一级
                 NSMutableArray *Filter1 = [NSMutableArray array];
+                FxLog(@"areaTree1 = %ld",Filter1.count);
                 [produceAreas enumerateObjectsUsingBlock:^(NSString *str, NSUInteger idx, BOOL * _Nonnull stop) {
-                    
                     [areaTree enumerateObjectsUsingBlock:^(NSDictionary *dic, NSUInteger idx, BOOL * _Nonnull stop) {
                         
                         if ([[[NSString stringWithFormat:@"%@",[dic objectForKey:@"i"]] substringToIndex:2] isEqualToString:[[NSString stringWithFormat:@"%@",str] substringToIndex:2]]) {
-                            [Filter1 addObject:dic];
+                            
+                            if (![Filter1 containsObject:dic]) {
+                                [Filter1 addObject:dic];
+                            }
+                            
+                            
+                            FxLog(@"areaTree1 = %ld",Filter1.count);
                         }
                     }];
                 }];
-                FxLog(@"areaTree1 = %ld",Filter1.count);
                 
+
                 //筛选二级
                 NSMutableArray *Filter2 = [Filter1 mutableCopy];
-                
-                [Filter1 enumerateObjectsUsingBlock:^(NSDictionary *first, NSUInteger idOne, BOOL * _Nonnull stop)
-                {
-                    
-                    NSMutableArray *array = [NSMutableArray array];
-                    [produceAreas enumerateObjectsUsingBlock:^(NSString *ids, NSUInteger idx, BOOL * _Nonnull stop)
-                     {
-                        if ([first.allKeys containsObject:@"c"]) {
-                            NSMutableArray *middle  = [NSMutableArray arrayWithArray:[first objectForKey:@"c"]];
-                            [middle enumerateObjectsUsingBlock:^(NSDictionary *second, NSUInteger idTwo, BOOL * _Nonnull stop)
-                             {
-                                
-                                if ([[[NSString stringWithFormat:@"%@",[second objectForKey:@"i"]] substringToIndex:4] isEqualToString:[[NSString stringWithFormat:@"%@",ids] substringToIndex:4]])
-                                {
-                                    [array addObject:second];
+                [Filter1 enumerateObjectsUsingBlock:^(NSDictionary *firstDic, NSUInteger idOne, BOOL * _Nonnull stop) {
+                    if ([firstDic.allKeys containsObject:@"c"]) {
+
+                        NSMutableArray *array = [NSMutableArray array];
+                        NSMutableArray *middle  = [NSMutableArray arrayWithArray:[firstDic objectForKey:@"c"]];
+                        [produceAreas enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                            
+                            [middle enumerateObjectsUsingBlock:^(NSDictionary *twoDic, NSUInteger idTwo, BOOL * _Nonnull stop) {
+                            
+                            if ([[[NSString stringWithFormat:@"%@",[twoDic objectForKey:@"i"]] substringToIndex:4] isEqualToString:[[NSString stringWithFormat:@"%@",obj] substringToIndex:4]]) {
+                            
+                                if (![array containsObject:twoDic]) {
+                                    [array addObject:twoDic];
                                 }
+                                *stop = YES;
+                            }
                             }];
-                          }
+                            
+                            }];
+                        
+                        NSLog(@"dddddd= =%ld",array.count);
+                            [Filter2[idOne] setObject:array forKey:@"c"];
+                        }
                     }];
-                    [Filter2[idOne] setObject:array forKey:@"c"];
-                }];
+                    
                 
 //                FxLog(@"areaTree1 = %ld",((NSArray *)([Filter2[0] objectForKey:@"c"])).count);
                 
@@ -159,36 +169,37 @@
                 [Filter2 enumerateObjectsUsingBlock:^(NSDictionary *first, NSUInteger idOne, BOOL * _Nonnull stop)
                  {
                     
-                     NSMutableArray *array = [NSMutableArray array];
                     if ([first.allKeys containsObject:@"c"]) {
+                        
                          NSMutableArray *middle1 = [NSMutableArray arrayWithArray:[first objectForKey:@"c"]];
                      
                         [middle1 enumerateObjectsUsingBlock:^(NSDictionary *second, NSUInteger idTwo, BOOL * _Nonnull stop)
                          {
                              
                             if ([second.allKeys containsObject:@"c"]) {
+                            NSMutableArray *array = [NSMutableArray array];
                             NSMutableArray *middle2 = [NSMutableArray arrayWithArray:[second objectForKey:@"c"]];
-                            
+                            [produceAreas enumerateObjectsUsingBlock:^(NSString *ids, NSUInteger idx, BOOL * _Nonnull stop) {
+                                 
                             [middle2 enumerateObjectsUsingBlock:^(NSDictionary *finall, NSUInteger idThree, BOOL * _Nonnull stop)
                              {
-                            
-                            [produceAreas enumerateObjectsUsingBlock:^(NSString *ids, NSUInteger idx, BOOL * _Nonnull stop) {
-//
                                 if ([[NSString stringWithFormat:@"%@",[finall objectForKey:@"i"]] isEqualToString:[NSString stringWithFormat:@"%@",ids]])
                                 {
-//                                    [[[Filter3[idOne] objectForKey:@"c"][idTwo] objectForKey:@"c"] removeObject:finall];
-                                    [array addObject:finall];
+                                    if (![array containsObject:finall]) {
+                                        [array addObject:finall];
+                                    }
+                                     *stop = YES;
                                 }
                                 
                             }];
-//                                }
-                            }];
+                                }];
+                                [[Filter3[idOne] objectForKey:@"c"][idTwo] setObject:array forKey:@"c"];
+                           
                             }
                              
-                             [[Filter3[idOne] objectForKey:@"c"][idTwo] setObject:array forKey:@"c"];
+                             
                             
                         }];
-                     
                      
                     }
                 }];

@@ -73,6 +73,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
     searchBar = [[[NSBundle mainBundle] loadNibNamed:@"SearchBar" owner:self options:nil] lastObject];
     searchBar.frame = CGRectMake(0, 0, SCREEN_WIDTH, 64);
     searchBar.searchTF.backgroundColor = [UIColor whiteColor];
@@ -248,6 +249,7 @@
                 
                 //滚动试图
                 ZHYBannerView *bannerView = [cell.contentView viewWithTag:100];
+                bannerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 180);
                 NSMutableArray *topImages = [NSMutableArray array];
                 for (TopBannersModel *bannerModel in self.mainStaticModel.topBanners) {
                     

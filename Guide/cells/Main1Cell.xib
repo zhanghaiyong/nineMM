@@ -18,7 +18,7 @@
                 <subviews>
                     <view tag="100" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OCg-NM-8Pp" customClass="ZHYBannerView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
-                        <color key="backgroundColor" red="0.85098039219999999" green="0.62352941179999999" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="OCg-NM-8Pp" secondAttribute="height" multiplier="5:3" id="kk1-fg-d3y"/>
                             <constraint firstAttribute="height" constant="180" id="pGd-0v-6Al"/>
@@ -327,8 +327,8 @@
                         <exclude reference="n28-Ez-bhi"/>
                         <exclude reference="wD3-4V-efn"/>
                         <exclude reference="ykt-tt-xBA"/>
-                        <exclude reference="tlG-Uz-w52"/>
                         <exclude reference="2bD-Fa-N2H"/>
+                        <exclude reference="tlG-Uz-w52"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
