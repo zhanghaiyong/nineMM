@@ -14,6 +14,7 @@
 @property (nonatomic,strong)NSString *coinTypeCode;
 @property (nonatomic,strong)NSString *coinTypeId;
 @property (nonatomic,strong)NSString *coinTypeName;
+@property (nonatomic,strong)NSString *expiryDate;
 @property (nonatomic,strong)NSString *rmb;
 
 @end

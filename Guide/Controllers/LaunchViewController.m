@@ -194,7 +194,7 @@
     
     UIStoryboard *loginStoryB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
     TabBarViewController *rootTabBar = [loginStoryB instantiateViewControllerWithIdentifier:@"TabBarViewController"];
-    UIView *bgView = [[UIView alloc] initWithFrame:rootTabBar.tabBar.bounds];
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 49)];
     bgView.backgroundColor = [UIColor whiteColor];
     [rootTabBar.tabBar insertSubview:bgView atIndex:0];
     rootTabBar.tabBar.opaque = YES;

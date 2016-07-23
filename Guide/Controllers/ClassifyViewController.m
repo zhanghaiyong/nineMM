@@ -68,9 +68,13 @@
             button.selected = NO;
             [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             
-            self.produceParams.qryCategoryId = qryCategoryId;
-            
-            [typeTableView.mj_header beginRefreshing];
+            if (![qryCategoryId isEqual:@"YES"]) {
+                
+                self.produceParams.qryCategoryId = qryCategoryId;
+                
+                [typeTableView.mj_header beginRefreshing];
+            }
+
         }];
         
         _term1 = term1;
@@ -100,31 +104,22 @@
 
 - (void)initTableViews {
     
+    [self setNavigationRightTitle:@"清除选择"];
     //搜索框
-    SearchBar *searchBar = [[[NSBundle mainBundle] loadNibNamed:@"SearchBar" owner:self options:nil] lastObject];
-    searchBar.frame = CGRectMake(0, -20, SCREEN_WIDTH, 44);
-    searchBar.searchTF.backgroundColor = backgroudColor;
+    UITextField *searchBar = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-100, 30)];
+    searchBar.layer.cornerRadius = 15;
+    searchBar.placeholder = @"输入商品名字，编号";
+    searchBar.font = lever2Font;
+    searchBar.layer.borderColor = lineColor.CGColor;
+    searchBar.layer.borderWidth = 0.8;
+    self.navigationItem.titleView = searchBar;
     
-    //进入消息中心
-    [searchBar connectTwoBlock:^{
-        
-        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
-        MsgCenterViewController *produceDetail = [mainSB instantiateViewControllerWithIdentifier:@"MsgCenterViewController"];
-        [self.navigationController pushViewController:produceDetail animated:YES];
-        
-    }];
-    
-    searchBar.searchTF.leftViewMode = UITextFieldViewModeAlways;
+    searchBar.leftViewMode = UITextFieldViewModeAlways;
     UIImageView *searchIcon = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"iconfont-fangdajing"]];
     //将左边的图片向右移动一定距离
     searchIcon.width +=10;
     searchIcon.contentMode = UIViewContentModeCenter;
-    searchBar.searchTF.leftView = searchIcon;
-    
-    [searchBar.msgFlagButton setImage:[UIImage imageNamed:@"消息"] forState:UIControlStateNormal];
-    [searchBar.msgFlagButton setImage:[UIImage imageNamed:@"消息有提示"] forState:UIControlStateSelected];
-    
-    self.navigationItem.titleView = searchBar;
+    searchBar.leftView = searchIcon;
     
     //分类头部
     head = [[[NSBundle mainBundle] loadNibNamed:@"ClassifyDetailHead" owner:self options:nil] lastObject];
@@ -226,6 +221,15 @@
     self.produceParams.qryScheduleDateFrom = start;
     self.produceParams.qryScheduleDateTo = end;
     [typeTableView.mj_header beginRefreshing];
+}
+
+- (void)closeTerm2View {
+
+    [_term2 removeFromSuperview];
+    _term2 = nil;
+    UIButton *button = [head viewWithTag:1001];
+    button.selected = NO;
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 }
 
 #pragma mark Term3Delegate
@@ -342,7 +346,6 @@
     
     UIButton *button = [head viewWithTag:1001];
     [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    
 }
 
 #pragma mark UITableViewDelegate&&dataSource
@@ -383,7 +386,7 @@
         
         MainProduceModel *model = self.produces[indexPath.row];
         cell.NameLabel.text     = model.name;
-        cell.CoinsLabel.text    = model.price;
+        cell.CoinsLabel.text    = model.marketPrice;
         cell.timeLabel.text     = model.scheduleDesc;
         cell.termsLabel.text    = [NSString stringWithFormat:@"资源限制说明：%@",model.terms];
         cell.StockLabel.text    = [NSString stringWithFormat:@"库存 %@",model.stock];
@@ -438,6 +441,15 @@
 
     typeTableView.separatorInset = UIEdgeInsetsZero;
     typeTableView.layoutMargins = UIEdgeInsetsZero;
+}
+
+- (void)doRight:(UIButton *)sender
+{
+    if (_produceParams) {
+        _produceParams = nil;
+    }
+    
+    [typeTableView.mj_header beginRefreshing];
 }
 
 @end

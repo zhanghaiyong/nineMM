@@ -319,7 +319,7 @@
              
                 MainProduceModel *model = self.produces[indexPath.row];
                 cell.NameLabel.text     = model.name;
-                cell.CoinsLabel.text    = model.price;
+                cell.CoinsLabel.text    = model.marketPrice;
                 cell.timeLabel.text     = model.scheduleDesc;
                 cell.termsLabel.text    = [NSString stringWithFormat:@"资源限制说明：%@",model.terms];
                 cell.StockLabel.text    = [NSString stringWithFormat:@"库存 %@",model.stock];

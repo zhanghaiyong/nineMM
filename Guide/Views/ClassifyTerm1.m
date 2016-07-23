@@ -300,7 +300,7 @@
             }
             
             self.userInteractionEnabled = NO;
-            [self performSelector:@selector(delayBlock) withObject:self afterDelay:1];
+            [self performSelector:@selector(delayBlock) withObject:self afterDelay:0.5];
         }
     }
     
@@ -348,6 +348,11 @@
     [tableV3 reloadData];
     
     
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    
+    self.block(@"YES");
 }
 
 

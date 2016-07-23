@@ -184,7 +184,14 @@
         CoinsDetailModel *model = coinsDetailMsgArr[indexPath.row];
         cell.dataLabel.text = model.createDate;
         cell.logIdLabel.text = [NSString stringWithFormat:@"操作流水 %@",model.logId];
+    if ([model.amount integerValue] > 0) {
+        
         cell.coinCountLabel.text = [NSString stringWithFormat:@"+%@%@",model.amount,model.coinTypeName];
+        
+    }else {
+        
+        cell.coinCountLabel.text = [NSString stringWithFormat:@"%@%@",model.amount,model.coinTypeName];
+    }
     return cell;
 }
 

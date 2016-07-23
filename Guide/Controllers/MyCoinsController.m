@@ -10,6 +10,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *red;
 @property (weak, nonatomic) IBOutlet UILabel *blue;
 @property (weak, nonatomic) IBOutlet UILabel *green;
+//过期
+@property (weak, nonatomic) IBOutlet UILabel *expiryLabel;
 
 //冻结
 @property (weak, nonatomic) IBOutlet UILabel *FreezeGolden;
@@ -107,20 +109,21 @@
                 self.golden.text = model.golden;
                 self.green.text = model.green;
                 self.red.text = model.red;
+                
+                
+                //过期信息
+                if (![[retObj objectForKey:@"expiryInfo"] isEqual:[NSNull null]]) {
+                    
+                    NSDictionary *expiryInfo = [retObj objectForKey:@"expiryInfo"];
+                    
+                    self.expiryLabel.hidden = NO;
+                    self.expiryLabel.text = [NSString stringWithFormat:@"%@到%@过期",[expiryInfo objectForKey:@"amount"],[[expiryInfo objectForKey:@"expiryDate"] substringToIndex:10]];
+                }
             }
             
         }else {
-            //            if ([[dataDic objectForKey:@"retCode"]integerValue] == -2){
             
             [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
-            //            UIStoryboard *SB = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
-            //            LoginViewController *loginVC = [SB instantiateViewControllerWithIdentifier:@"LoginViewController"];
-            //            UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:loginVC];
-            //            [self presentViewController:navi animated:YES completion:^{
-            //
-            //                [self.navigationController popViewControllerAnimated:YES];
-            //
-            //            }];
         }
         
     } failure:^(NSError *error) {

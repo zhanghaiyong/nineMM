@@ -20,5 +20,6 @@
 @property (nonatomic,strong) NSString *rangeRmbMin;
 @property (nonatomic,strong) NSString *ratioCoin;
 @property (nonatomic,strong) NSString *ratioRmb;
+@property (nonatomic,strong) NSString *expiryDate;
 
 @end

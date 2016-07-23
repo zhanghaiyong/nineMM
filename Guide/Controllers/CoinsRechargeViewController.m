@@ -229,14 +229,6 @@
                 
                 //确认充值
                 [coinRechargeCell1 sureRechargeBlock:^{
-                    
-//                    if (coinRechargeCell1.priceLabel.text.length == 0) {
-//                        
-//                        [[HUDConfig shareHUD]Tips:@"请输入充值金额" delay:DELAY];
-//                        
-//                        return;
-//                    }
-                    
                     //充值金额
                     self.calculateCoinParams.rmb = [coinRechargeCell1.priceLabel.text intValue];
                     
@@ -268,6 +260,14 @@
                     coinRechargeCell2.coins.text = [NSString stringWithFormat:@"%@%@",calculateCoinModel.coin,coinRechargeCell2.coinType.text];
                     //金额
                     coinRechargeCell2.rmbLabel.text = calculateCoinModel.rmb;
+                    
+                    if ([calculateCoinModel.expiryDate integerValue] > 0) {
+                        
+                        coinRechargeCell2.validDate.text = calculateCoinModel.expiryDate;
+                    }else {
+                    
+                        coinRechargeCell2.validDate.text = @"永久";
+                    }
                 }
                 
                 return coinRechargeCell2;
@@ -313,7 +313,14 @@
     }
     
     PackageListModel *model = packageArr[indexPath.row];
-    cell.label1.text = [NSString stringWithFormat:@"比例:%@,充值金额范围:%@~%@",model.ratioRmb,model.rangeRmbMin,model.rangeRmbMax];
+    
+    if ([self.packageParams.coinTypeCode isEqualToString:@"red"]) {
+        
+       cell.label1.text = [NSString stringWithFormat:@"有效期:%@,范围:%@~%@",model.expiryDate,model.rangeRmbMin,model.rangeRmbMax];
+        
+    }else {
+        cell.label1.text = [NSString stringWithFormat:@"比例:%@,充值金额范围:%@~%@",model.ratioRmb,model.rangeRmbMin,model.rangeRmbMax];
+    }
     cell.label2.text = [NSString stringWithFormat:@"(%@)",model.name];
     
     return cell;

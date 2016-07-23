@@ -12,6 +12,7 @@
 @protocol ClassifyTerm2Delegate <NSObject>
 
 - (void)classsifyTrem2Start:(NSString *)start end:(NSString *)end;
+- (void)closeTerm2View;
 
 @end
 

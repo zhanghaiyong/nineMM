@@ -31,7 +31,7 @@
 
 + (NSString *)toImageName:(NSString *)dataString;
 
-//+ (NSString *)toChinses:(NSString *)dataString;
++ (NSString *)toChinses:(NSString *)dataString;
 
 + (NSInteger)dayCountWithYear:(NSInteger)year month:(NSInteger)month;
 
