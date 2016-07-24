@@ -34,4 +34,9 @@
  */
 @property (nonatomic,strong) NSString           *qryPriceRangeTo;
 
+/**
+ *  筛选条件-tag名
+ */
+@property (nonatomic,strong) NSString           *qryTagName;
+
 @end

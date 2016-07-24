@@ -50,6 +50,13 @@
 #define DELAY 2
 
 
+#define queryGoodsFeature    (@"queryGoodsFeature")
+#define openUri              (@"openUri")
+#define showGoodsListByTag   (@"showGoodsListByTag")
+#define openCoinRechargePage (@"openCoinRechargePage")
+
+
+
 #if (DEBUG || TESTCASE)
 #define FxLog(format, ...) NSLog(format, ## __VA_ARGS__)
 #else

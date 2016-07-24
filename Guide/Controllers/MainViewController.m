@@ -22,7 +22,12 @@
 #import "MainProduceListParams.h"
 #import "MainProduceModel.h"
 #import "ProduceDetailViewController.h"
-@interface MainViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "CoinsRechargeViewController.h"
+#import "URLViewController.h"
+#import "FeatureViewController.h"
+#import "GoodsViewController.h"
+
+@interface MainViewController ()<UITableViewDelegate,UITableViewDataSource,ButtonViewDeleage,ZHYBannerViewDelegte,Main2CellDelegate,Main3CellDelegate>
 {
 
     SearchBar *searchBar;
@@ -49,8 +54,8 @@
     if (_produceListParams == nil) {
         
         MainProduceListParams *produceListParams = [[MainProduceListParams alloc]init];
-        _produceListParams = produceListParams;
         _produceListParams.rows = 20;
+        _produceListParams = produceListParams;
     }
     return _produceListParams;
 }
@@ -94,12 +99,6 @@
     searchIcon.contentMode = UIViewContentModeCenter;
     searchBar.searchTF.leftView = searchIcon;
     [self.view addSubview:searchBar];
-    
-//    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-//        
-//        [self loadProduceList];
-//    }];
-//    [self.tableView.mj_footer beginRefreshing];
     
     //刷新
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -249,6 +248,7 @@
                 
                 //滚动试图
                 ZHYBannerView *bannerView = [cell.contentView viewWithTag:100];
+                bannerView.delegate = self;
                 bannerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 180);
                 NSMutableArray *topImages = [NSMutableArray array];
                 for (TopBannersModel *bannerModel in self.mainStaticModel.topBanners) {
@@ -263,6 +263,7 @@
                 ButtonView *buttonView = [cell.contentView viewWithTag:i+101];
                 ShortcutsModel *buttonModel = self.mainStaticModel.shortcuts[i];
                 buttonView.isNetImage = YES;
+                buttonView.delegate = self;
                 buttonView.labelTitle = buttonModel.title;
                 buttonView.imageName = buttonModel.imageId;
             }
@@ -285,10 +286,12 @@
         case 1:{
             
             Main2Cell *cell = [[[NSBundle mainBundle] loadNibNamed:@"Main2Cell" owner:self options:nil] lastObject];
+            cell.delegate = self;
+            cell.userInteractionEnabled = YES;
             for (int i = 0; i<self.mainStaticModel.groupButtons.count; i++) {
                 UIImageView *imageV = [cell.contentView viewWithTag:i+200];
                 GroupButtonsModel *groupButton = self.mainStaticModel.groupButtons[i];
-                [Uitils cacheImagwWithSize:imageV.size imageID:groupButton.imageId imageV:imageV placeholder:@""];
+                [Uitils cacheImagwWithSize:CGSizeMake(imageV.size.width*2, imageV.size.height*2) imageID:groupButton.imageId imageV:imageV placeholder:@""];
             }
             
             
@@ -299,8 +302,7 @@
         case 2:{
             
             Main3Cell *cell = [[[NSBundle mainBundle] loadNibNamed:@"Main3Cell" owner:self options:nil] lastObject];
-            
-            
+            cell.delegate = self;
             for (int i = 0; i<self.mainStaticModel.secondBanner.count; i++) {
                 UIImageView *imageV = [cell.contentView viewWithTag:i+100];
                 SecondBannerModel *groupButton = self.mainStaticModel.secondBanner[i];
@@ -319,7 +321,15 @@
              
                 MainProduceModel *model = self.produces[indexPath.row];
                 cell.NameLabel.text     = model.name;
-                cell.CoinsLabel.text    = model.marketPrice;
+                
+                if ([model.isPackagePrice integerValue] == 1) {
+                    
+                    cell.CoinsLabel.text    = model.marketPrice;
+                }else {
+                
+                    cell.CoinsLabel.text    = [NSString stringWithFormat:@"%@~%@",model.minPrice,model.maxPrice];
+                }
+                
                 cell.timeLabel.text     = model.scheduleDesc;
                 cell.termsLabel.text    = [NSString stringWithFormat:@"资源限制说明：%@",model.terms];
                 cell.StockLabel.text    = [NSString stringWithFormat:@"库存 %@",model.stock];
@@ -383,8 +393,170 @@
     searchBar.backgroundColor = RGBA(231, 231, 231, alpha);
     searchBar.bottomLine.alpha = alpha;
     
-    FxLog(@"%f",alpha);
+//    FxLog(@"%f",alpha);
 }
 
+
+#pragma mark ButtonViewDelegate
+- (void)buttonViewTap:(NSInteger)aFlag {
+
+    ShortcutsModel *model = self.mainStaticModel.shortcuts[aFlag-101];
+    NSArray *array = [model.linkAction componentsSeparatedByString:@":"];
+    
+    if ([array containsObject:openCoinRechargePage]) {
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        CoinsRechargeViewController *CoinsRechargeVC = [mainSB instantiateViewControllerWithIdentifier:@"CoinsRechargeViewController"];
+        [self.navigationController pushViewController:CoinsRechargeVC animated:YES];
+        
+    }else if ([array containsObject:openUri]) {
+      
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        URLViewController *URLVC = [mainSB instantiateViewControllerWithIdentifier:@"URLViewController"];
+        URLVC.title = model.title;
+        URLVC.urlString = [NSString stringWithFormat:@"%@:%@",array[2],array[3]];
+        [self.navigationController pushViewController:URLVC animated:YES];
+        
+    }else if ([array containsObject:queryGoodsFeature]) {
+    
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        FeatureViewController *FeatureVC = [mainSB instantiateViewControllerWithIdentifier:@"FeatureViewController"];
+        FeatureVC.feature = array.lastObject;
+        FeatureVC.title = model.title;
+        [self.navigationController pushViewController:FeatureVC animated:YES];
+        
+    }else if ([array containsObject:showGoodsListByTag]) {
+    
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        GoodsViewController *GoodsVC = [mainSB instantiateViewControllerWithIdentifier:@"GoodsViewController"];
+        GoodsVC.tag = array.lastObject;
+        GoodsVC.title = model.title;
+        [self.navigationController pushViewController:GoodsVC animated:YES];
+    }
+    
+    NSLog(@"%@",array);
+}
+
+
+#pragma  mark ZHYBannerViewDelegte
+- (void)tapBannerImage:(NSInteger)imageTag {
+
+    TopBannersModel *model = self.mainStaticModel.topBanners[imageTag-1000];
+    NSArray *array = [model.linkAction componentsSeparatedByString:@":"];
+    
+    if ([array containsObject:openCoinRechargePage]) {
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        CoinsRechargeViewController *CoinsRechargeVC = [mainSB instantiateViewControllerWithIdentifier:@"CoinsRechargeViewController"];
+        [self.navigationController pushViewController:CoinsRechargeVC animated:YES];
+        
+    }else if ([array containsObject:openUri]) {
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        URLViewController *URLVC = [mainSB instantiateViewControllerWithIdentifier:@"URLViewController"];
+        URLVC.title = model.title;
+        URLVC.urlString = [NSString stringWithFormat:@"%@:%@",array[2],array[3]];
+        [self.navigationController pushViewController:URLVC animated:YES];
+        
+    }else if ([array containsObject:queryGoodsFeature]) {
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        FeatureViewController *FeatureVC = [mainSB instantiateViewControllerWithIdentifier:@"FeatureViewController"];
+        FeatureVC.feature = array.lastObject;
+        FeatureVC.title = model.title;
+        [self.navigationController pushViewController:FeatureVC animated:YES];
+        
+    }else if ([array containsObject:showGoodsListByTag]) {
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        GoodsViewController *GoodsVC = [mainSB instantiateViewControllerWithIdentifier:@"GoodsViewController"];
+        GoodsVC.tag = array.lastObject;
+        GoodsVC.title = model.title;
+        [self.navigationController pushViewController:GoodsVC animated:YES];
+    }
+    
+    NSLog(@"%@",array);
+    
+}
+
+#pragma mark Main2CelleDelegate
+- (void)main2CellTapImage:(NSInteger)imageTag {
+
+    GroupButtonsModel *model = self.mainStaticModel.groupButtons[imageTag-200];
+    NSArray *array = [model.linkAction componentsSeparatedByString:@":"];
+    
+    if ([array containsObject:openCoinRechargePage]) {
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        CoinsRechargeViewController *CoinsRechargeVC = [mainSB instantiateViewControllerWithIdentifier:@"CoinsRechargeViewController"];
+        [self.navigationController pushViewController:CoinsRechargeVC animated:YES];
+        
+    }else if ([array containsObject:openUri]) {
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        URLViewController *URLVC = [mainSB instantiateViewControllerWithIdentifier:@"URLViewController"];
+        URLVC.title = model.title;
+        URLVC.urlString = [NSString stringWithFormat:@"%@:%@",array[2],array[3]];
+        [self.navigationController pushViewController:URLVC animated:YES];
+        
+    }else if ([array containsObject:queryGoodsFeature]) {
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        FeatureViewController *FeatureVC = [mainSB instantiateViewControllerWithIdentifier:@"FeatureViewController"];
+        FeatureVC.feature = array.lastObject;
+        FeatureVC.title = model.title;
+        [self.navigationController pushViewController:FeatureVC animated:YES];
+        
+    }else if ([array containsObject:showGoodsListByTag]) {
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        GoodsViewController *GoodsVC = [mainSB instantiateViewControllerWithIdentifier:@"GoodsViewController"];
+        GoodsVC.tag = array.lastObject;
+        GoodsVC.title = model.title;
+        [self.navigationController pushViewController:GoodsVC animated:YES];
+    }
+    
+    NSLog(@"%@",array);
+}
+
+#pragma mark Main3CellDelegate
+- (void)main3CellTapImage:(NSInteger)imageTag {
+
+    NewsModel *model = self.mainStaticModel.news[imageTag-100];
+    NSArray *array = [model.linkAction componentsSeparatedByString:@":"];
+    
+    if ([array containsObject:openCoinRechargePage]) {
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        CoinsRechargeViewController *CoinsRechargeVC = [mainSB instantiateViewControllerWithIdentifier:@"CoinsRechargeViewController"];
+        [self.navigationController pushViewController:CoinsRechargeVC animated:YES];
+        
+    }else if ([array containsObject:openUri]) {
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        URLViewController *URLVC = [mainSB instantiateViewControllerWithIdentifier:@"URLViewController"];
+        URLVC.title = model.title;
+        URLVC.urlString = [NSString stringWithFormat:@"%@:%@",array[2],array[3]];
+        [self.navigationController pushViewController:URLVC animated:YES];
+        
+    }else if ([array containsObject:queryGoodsFeature]) {
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        FeatureViewController *FeatureVC = [mainSB instantiateViewControllerWithIdentifier:@"FeatureViewController"];
+        FeatureVC.feature = array.lastObject;
+        FeatureVC.title = model.title;
+        [self.navigationController pushViewController:FeatureVC animated:YES];
+        
+    }else if ([array containsObject:showGoodsListByTag]) {
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        GoodsViewController *GoodsVC = [mainSB instantiateViewControllerWithIdentifier:@"GoodsViewController"];
+        GoodsVC.tag = array.lastObject;
+        GoodsVC.title = model.title;
+        [self.navigationController pushViewController:GoodsVC animated:YES];
+    }
+    
+    NSLog(@"%@",array);
+}
 
 @end

@@ -63,6 +63,12 @@
 		BF40865C1D12EF7600E11065 /* ShortcutsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF40865B1D12EF7600E11065 /* ShortcutsModel.m */; };
 		BF40865F1D12EF8500E11065 /* GroupButtonsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF40865E1D12EF8500E11065 /* GroupButtonsModel.m */; };
 		BF4086621D12EF9500E11065 /* TopBannersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF4086611D12EF9500E11065 /* TopBannersModel.m */; };
+		BF59C5381D44E861007A2E84 /* ProDetailCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = BF59C5361D44E861007A2E84 /* ProDetailCell3.m */; };
+		BF59C5391D44E861007A2E84 /* ProDetailCell3.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF59C5371D44E861007A2E84 /* ProDetailCell3.xib */; };
+		BF59C53C1D453082007A2E84 /* URLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF59C53B1D453082007A2E84 /* URLViewController.m */; };
+		BF59C53F1D453264007A2E84 /* FeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF59C53E1D453264007A2E84 /* FeatureViewController.m */; };
+		BF59C5421D453393007A2E84 /* FeatureParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BF59C5411D453393007A2E84 /* FeatureParams.m */; };
+		BF59C5451D453616007A2E84 /* GoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF59C5441D453616007A2E84 /* GoodsViewController.m */; };
 		BF7F92771D26937D0081578F /* BaseParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7F92761D26937D0081578F /* BaseParams.m */; };
 		BF8600C31D3A263000BCA60A /* PayAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8600C21D3A263000BCA60A /* PayAlertViewController.m */; };
 		BF8600C61D3A29B800BCA60A /* CoinsDetailParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8600C51D3A29B800BCA60A /* CoinsDetailParams.m */; };
@@ -276,6 +282,17 @@
 		BF40865E1D12EF8500E11065 /* GroupButtonsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupButtonsModel.m; sourceTree = "<group>"; };
 		BF4086601D12EF9500E11065 /* TopBannersModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopBannersModel.h; sourceTree = "<group>"; };
 		BF4086611D12EF9500E11065 /* TopBannersModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopBannersModel.m; sourceTree = "<group>"; };
+		BF59C5351D44E861007A2E84 /* ProDetailCell3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProDetailCell3.h; sourceTree = "<group>"; };
+		BF59C5361D44E861007A2E84 /* ProDetailCell3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProDetailCell3.m; sourceTree = "<group>"; };
+		BF59C5371D44E861007A2E84 /* ProDetailCell3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProDetailCell3.xib; sourceTree = "<group>"; };
+		BF59C53A1D453082007A2E84 /* URLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLViewController.h; sourceTree = "<group>"; };
+		BF59C53B1D453082007A2E84 /* URLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLViewController.m; sourceTree = "<group>"; };
+		BF59C53D1D453264007A2E84 /* FeatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeatureViewController.h; sourceTree = "<group>"; };
+		BF59C53E1D453264007A2E84 /* FeatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeatureViewController.m; sourceTree = "<group>"; };
+		BF59C5401D453393007A2E84 /* FeatureParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeatureParams.h; sourceTree = "<group>"; };
+		BF59C5411D453393007A2E84 /* FeatureParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeatureParams.m; sourceTree = "<group>"; };
+		BF59C5431D453616007A2E84 /* GoodsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsViewController.h; sourceTree = "<group>"; };
+		BF59C5441D453616007A2E84 /* GoodsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsViewController.m; sourceTree = "<group>"; };
 		BF7F92751D26937D0081578F /* BaseParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseParams.h; sourceTree = "<group>"; };
 		BF7F92761D26937D0081578F /* BaseParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseParams.m; sourceTree = "<group>"; };
 		BF8600C11D3A263000BCA60A /* PayAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayAlertViewController.h; sourceTree = "<group>"; };
@@ -788,6 +805,8 @@
 				BF8601051D3E2FAF00BCA60A /* OrderDetailParams.m */,
 				BF86010D1D3FD8B700BCA60A /* WineCoinsRechargeParams.h */,
 				BF86010E1D3FD8B700BCA60A /* WineCoinsRechargeParams.m */,
+				BF59C5401D453393007A2E84 /* FeatureParams.h */,
+				BF59C5411D453393007A2E84 /* FeatureParams.m */,
 			);
 			name = Params;
 			path = Controllers;
@@ -993,6 +1012,12 @@
 			children = (
 				BFA2B71C1CF6E94200EB460E /* MainViewController.h */,
 				BFD1FEA21CF74925006FDDF6 /* MainViewController.m */,
+				BF59C53A1D453082007A2E84 /* URLViewController.h */,
+				BF59C53B1D453082007A2E84 /* URLViewController.m */,
+				BF59C53D1D453264007A2E84 /* FeatureViewController.h */,
+				BF59C53E1D453264007A2E84 /* FeatureViewController.m */,
+				BF59C5431D453616007A2E84 /* GoodsViewController.h */,
+				BF59C5441D453616007A2E84 /* GoodsViewController.m */,
 			);
 			name = "首页";
 			sourceTree = "<group>";
@@ -1143,6 +1168,9 @@
 				BFEEA58B1D19996200B261BF /* ProDetailCell.h */,
 				BFEEA58C1D19996200B261BF /* ProDetailCell.m */,
 				BFEEA58D1D19996200B261BF /* ProDetailCell.xib */,
+				BF59C5351D44E861007A2E84 /* ProDetailCell3.h */,
+				BF59C5361D44E861007A2E84 /* ProDetailCell3.m */,
+				BF59C5371D44E861007A2E84 /* ProDetailCell3.xib */,
 				BFEEA59D1D1A444400B261BF /* UserSourceCell.h */,
 				BFEEA59E1D1A444500B261BF /* UserSourceCell.m */,
 				BFEEA59F1D1A444500B261BF /* UserSourceCell.xib */,
@@ -1240,6 +1268,7 @@
 				BFED9BAD1D2A52E4000175C5 /* OrderCell.xib in Resources */,
 				BF8600FA1D3D490700BCA60A /* sureOrderFoorView.xib in Resources */,
 				BFEEA58A1D198ADF00B261BF /* ProDetailCell2.xib in Resources */,
+				BF59C5391D44E861007A2E84 /* ProDetailCell3.xib in Resources */,
 				788836CE1CBC9BAB0030909E /* SelectEDU.xib in Resources */,
 				BFED9BC11D2B8523000175C5 /* CoinsDetailCell.xib in Resources */,
 				BF3C3C241D39CEA1000E3027 /* CoinRechargeCell2.xib in Resources */,
@@ -1327,6 +1356,7 @@
 				BFF578BB1D2F79AE00EC9400 /* MsgCenterViewController.m in Sources */,
 				BF8600D91D3B34B700BCA60A /* UserSourceModel.m in Sources */,
 				BFED9BC01D2B8523000175C5 /* CoinsDetailCell.m in Sources */,
+				BF59C5421D453393007A2E84 /* FeatureParams.m in Sources */,
 				BFF578B81D2F6C4C00EC9400 /* ZZPhotoPickerViewController.m in Sources */,
 				BFF472B51D17C93F00516EE3 /* MyCoinsController.m in Sources */,
 				BF4086621D12EF9500E11065 /* TopBannersModel.m in Sources */,
@@ -1362,6 +1392,7 @@
 				BF3C3C191D38F11D000E3027 /* PackageListModel.m in Sources */,
 				BF3C3C1E1D38F66D000E3027 /* CoinRechargeCell1.m in Sources */,
 				BFED9BA31D2A3E16000175C5 /* ClassifyTerm3ViewController.m in Sources */,
+				BF59C5451D453616007A2E84 /* GoodsViewController.m in Sources */,
 				BFA2B7181CF6E8C600EB460E /* MethodGetPwdViewController.m in Sources */,
 				BF8600E51D3D3D0900BCA60A /* ProPriceByStoreParams.m in Sources */,
 				BFF433D51D152B9A00D21427 /* MeumList.m in Sources */,
@@ -1371,8 +1402,10 @@
 				BFEEA5A01D1A444500B261BF /* UserSourceCell.m in Sources */,
 				BFD887CF1CF976CF00C9DF44 /* MethodBagCell.m in Sources */,
 				BF35098F1D13AE1D00F2BCC5 /* HUDConfig.m in Sources */,
+				BF59C53F1D453264007A2E84 /* FeatureViewController.m in Sources */,
 				BF8600C61D3A29B800BCA60A /* CoinsDetailParams.m in Sources */,
 				786D50B71CCF4F19001242D8 /* LDXScore.m in Sources */,
+				BF59C53C1D453082007A2E84 /* URLViewController.m in Sources */,
 				BF3C3C371D3A16C0000E3027 /* ChosePayTypeController.m in Sources */,
 				BF40865C1D12EF7600E11065 /* ShortcutsModel.m in Sources */,
 				BF3C3C061D3732B8000E3027 /* SecondBannerModel.m in Sources */,
@@ -1408,6 +1441,7 @@
 				782800801CD1BD9100F760EF /* SDKKey.m in Sources */,
 				789E78DD1CB633580039AC69 /* NSString+HYExtension.m in Sources */,
 				BF35098C1D13A3C900F2BCC5 /* MainProduceListParams.m in Sources */,
+				BF59C5381D44E861007A2E84 /* ProDetailCell3.m in Sources */,
 				789E78CA1CB631700039AC69 /* UIColor+HYExtension.m in Sources */,
 				BFF433A61D151B7800D21427 /* ControlAccount.m in Sources */,
 				BF3C3C341D39F95E000E3027 /* CalculateCoinModel.m in Sources */,

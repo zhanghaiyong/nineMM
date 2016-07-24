@@ -106,7 +106,7 @@
     
     [self setNavigationRightTitle:@"清除选择"];
     //搜索框
-    UITextField *searchBar = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-100, 30)];
+    UITextField *searchBar = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-120, 30)];
     searchBar.layer.cornerRadius = 15;
     searchBar.placeholder = @"输入商品名字，编号";
     searchBar.font = lever2Font;
@@ -386,7 +386,13 @@
         
         MainProduceModel *model = self.produces[indexPath.row];
         cell.NameLabel.text     = model.name;
-        cell.CoinsLabel.text    = model.marketPrice;
+        if ([model.isPackagePrice integerValue] == 1) {
+            
+            cell.CoinsLabel.text    = model.marketPrice;
+        }else {
+            
+            cell.CoinsLabel.text    = [NSString stringWithFormat:@"%@~%@",model.minPrice,model.maxPrice];
+        }
         cell.timeLabel.text     = model.scheduleDesc;
         cell.termsLabel.text    = [NSString stringWithFormat:@"资源限制说明：%@",model.terms];
         cell.StockLabel.text    = [NSString stringWithFormat:@"库存 %@",model.stock];

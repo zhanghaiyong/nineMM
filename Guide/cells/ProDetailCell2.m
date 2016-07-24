@@ -5,7 +5,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    self.viewWidth.constant = SCREEN_WIDTH*3;
+//    self.viewWidth.constant = SCREEN_WIDTH*3;
     
 }
 
@@ -17,23 +17,23 @@
 
 -(void)setScrollTag:(NSInteger)scrollTag {
 
-    _scrollTag = scrollTag;
-    switch (scrollTag) {
-        case 0:{
-           self.scrollView.contentOffset = CGPointMake(0, 0);
-        }
-            break;
-        case 1:{
-            self.scrollView.contentOffset = CGPointMake(SCREEN_WIDTH, 0);
-        }
-            break;
-        case 2:{
-            self.scrollView.contentOffset = CGPointMake(SCREEN_WIDTH*2, 0);
-        }
-            break;
-        default:
-            break;
-    }
+//    _scrollTag = scrollTag;
+//    switch (scrollTag) {
+//        case 0:{
+//           self.scrollView.contentOffset = CGPointMake(0, 0);
+//        }
+//            break;
+//        case 1:{
+//            self.scrollView.contentOffset = CGPointMake(SCREEN_WIDTH, 0);
+//        }
+//            break;
+//        case 2:{
+//            self.scrollView.contentOffset = CGPointMake(SCREEN_WIDTH*2, 0);
+//        }
+//            break;
+//        default:
+//            break;
+//    }
 }
 
 

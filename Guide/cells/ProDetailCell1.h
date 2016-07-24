@@ -15,10 +15,6 @@
  */
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 /**
- *  限时促销
- */
-@property (weak, nonatomic) IBOutlet UILabel *tagLabel;
-/**
  *  6折优惠，限时抢购
  */
 @property (weak, nonatomic) IBOutlet UILabel *otherInfo;
@@ -30,4 +26,5 @@
  *  限时优惠，购买立省1000酒币
  */
 @property (weak, nonatomic) IBOutlet UILabel *explainLabel;
+
 @end

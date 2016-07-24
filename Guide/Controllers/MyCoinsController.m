@@ -112,7 +112,7 @@
                 
                 
                 //过期信息
-                if (![[retObj objectForKey:@"expiryInfo"] isEqual:[NSNull null]]) {
+                if (![retObj objectForKey:@"expiryInfo"]) {
                     
                     NSDictionary *expiryInfo = [retObj objectForKey:@"expiryInfo"];
                     

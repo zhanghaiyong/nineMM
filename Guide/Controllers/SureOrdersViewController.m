@@ -170,7 +170,7 @@
             break;
         case 2:
             
-            return 260;
+            return 120;//260
             
             break;
             

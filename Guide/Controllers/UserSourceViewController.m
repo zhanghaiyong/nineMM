@@ -122,7 +122,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    return 100;
+    return 80;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -167,16 +167,24 @@
     
     UserSourceModel *model = userSourceArr[indexPath.row];
     UserSourceCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    if ([selectArr containsObject:model]) {
-        
-        [selectArr removeObject:model];
-        cell.isSelect.selected = NO;
-        
-    }else {
     
-        [selectArr addObject:model];
-        cell.isSelect.selected = YES;
-    }
+        
+        if ([selectArr containsObject:model]) {
+            
+            [selectArr removeObject:model];
+            cell.isSelect.selected = NO;
+            
+        }else {
+            if (selectArr.count == [self.itemsCount integerValue]) {
+                [[HUDConfig shareHUD]Tips:[NSString stringWithFormat:@"最多可以选择%@个",self.itemsCount] delay:DELAY];
+            }else {
+            
+                [selectArr addObject:model];
+                cell.isSelect.selected = YES;
+            }
+        }
+    
+    
     
     cellHead.countLabel.text = [NSString stringWithFormat:@"已选商品（%ld）",selectArr.count];
     

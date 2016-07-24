@@ -1,9 +1,11 @@
 #ifndef NSURLs_h
 #define NSURLs_h
 
-
+//http://9mama.top:8080
+//http://101.200.131.198:8090/promot
 #define  BaseURLString (@"http://101.200.131.198:8090/promot/gw?cmd=")
-#define  BaseImageURL  (@"http://101.200.131.198:8090/promot/dimg/")
+#define  BaseImageURL  (@"http://9mama.top:8080/dimg/")
+#define HTMLURL (@"http://9mama.top:8080/goods/mobile/")
 
 #endif /* NSURLs_h */
 
@@ -71,4 +73,9 @@
 
 //下单
 #define KAppSubOrder [BaseURLString stringByAppendingString:@"appSubOrder"]
+
+
+#pragma mark LinkAction-----------------
+//根据特征查找商品列表
+#define appQueryProductListByFeature [BaseURLString stringByAppendingString:@"appQueryProductListByFeature"]
 

@@ -14,36 +14,20 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="278.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ezq-be-AQd">
+                    <webView userInteractionEnabled="NO" contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BLZ-g7-FlC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="278.5"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ktu-hV-mhE">
-                                <rect key="frame" x="0.0" y="0.0" width="1000" height="278.5"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="1000" id="JKv-6n-ipG"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Ktu-hV-mhE" secondAttribute="trailing" id="Ceg-k8-eKK"/>
-                            <constraint firstItem="Ktu-hV-mhE" firstAttribute="centerY" secondItem="ezq-be-AQd" secondAttribute="centerY" id="DLE-5E-Rek"/>
-                            <constraint firstAttribute="bottom" secondItem="Ktu-hV-mhE" secondAttribute="bottom" id="Z9W-hK-2KO"/>
-                            <constraint firstItem="Ktu-hV-mhE" firstAttribute="leading" secondItem="ezq-be-AQd" secondAttribute="leading" id="tQI-bI-Mbo"/>
-                            <constraint firstItem="Ktu-hV-mhE" firstAttribute="top" secondItem="ezq-be-AQd" secondAttribute="top" id="tTb-FK-tVs"/>
-                        </constraints>
-                    </scrollView>
+                        <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                    </webView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="ezq-be-AQd" secondAttribute="trailing" id="00g-vF-cFd"/>
-                    <constraint firstAttribute="bottom" secondItem="ezq-be-AQd" secondAttribute="bottom" id="QZO-1y-ytp"/>
-                    <constraint firstItem="ezq-be-AQd" firstAttribute="leading" secondItem="YqL-uB-0fW" secondAttribute="leading" id="ffc-bQ-APE"/>
-                    <constraint firstItem="ezq-be-AQd" firstAttribute="top" secondItem="YqL-uB-0fW" secondAttribute="top" id="lye-SU-cYe"/>
+                    <constraint firstAttribute="trailing" secondItem="BLZ-g7-FlC" secondAttribute="trailing" id="3iF-GA-wqU"/>
+                    <constraint firstItem="BLZ-g7-FlC" firstAttribute="top" secondItem="YqL-uB-0fW" secondAttribute="top" id="R1R-rS-px7"/>
+                    <constraint firstItem="BLZ-g7-FlC" firstAttribute="leading" secondItem="YqL-uB-0fW" secondAttribute="leading" id="pQS-d1-gZk"/>
+                    <constraint firstAttribute="bottom" secondItem="BLZ-g7-FlC" secondAttribute="bottom" id="xu5-Ho-d28"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="scrollView" destination="ezq-be-AQd" id="5Du-l4-4vm"/>
-                <outlet property="viewWidth" destination="JKv-6n-ipG" id="i7o-SX-fKZ"/>
+                <outlet property="webView" destination="BLZ-g7-FlC" id="ZGL-O6-f7i"/>
             </connections>
             <point key="canvasLocation" x="424" y="623.5"/>
         </tableViewCell>

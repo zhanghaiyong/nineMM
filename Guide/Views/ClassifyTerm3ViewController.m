@@ -13,7 +13,7 @@
 #import "ProduceAreaIDParams.h"
 #import "ProduceStoresParams.h"
 #import "ProduceStoresModel.h"
-@interface ClassifyTerm3ViewController ()<UITableViewDelegate,UITableViewDataSource> {
+@interface ClassifyTerm3ViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate> {
     
     UITableView *tableV1;
     UITableView *tableV2;
@@ -29,6 +29,7 @@
     NSMutableArray *TableAreaId2;
     NSMutableArray *TableAreaId3;
     NSMutableArray *storeIds;
+    UITextField *searchBar;
     
 }
 
@@ -297,12 +298,14 @@
     
     if (self.produceModel) {
     
-        UITextField *searchBar = [[UITextField alloc]initWithFrame:CGRectMake(20, tableV2.bottom+10, SCREEN_WIDTH-40, 30)];
+        searchBar = [[UITextField alloc]initWithFrame:CGRectMake(20, tableV2.bottom+10, SCREEN_WIDTH-40, 30)];
         searchBar.font = lever2Font;
         searchBar.backgroundColor = backgroudColor;
         searchBar.placeholder = @"请输入门店关键字";
         searchBar.layer.cornerRadius = 17;
         searchBar.layer.masksToBounds = YES;
+        searchBar.delegate = self;
+        searchBar.returnKeyType = UIReturnKeySearch;
         searchBar.leftViewMode = UITextFieldViewModeAlways;
         UIImageView *searchIcon = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"iconfont-fangdajing"]];
         //将左边的图片向右移动一定距离
@@ -357,8 +360,6 @@
     
     [[HUDConfig shareHUD]alwaysShow];
     
-    [storesArr removeAllObjects];
-    
     [KSMNetworkRequest postRequest:KSearchProductStores params:self.storesParams.mj_keyValues success:^(NSDictionary *dataDic) {
         
         FxLog(@"loadStores = %@",dataDic);
@@ -373,6 +374,7 @@
                 
                 //等于1，说明是刷新
                 if (self.storesParams.page == 1) {
+                    [storesArr removeAllObjects];
                     
                     storesArr = [ProduceStoresModel mj_objectArrayWithKeyValuesArray:sourceData];
                     [storeTable.mj_header endRefreshing];
@@ -465,9 +467,19 @@
             cell.meumNameLabel.text = @"全部";
             cell.dataLabel.text = [NSString stringWithFormat:@"%ld家门店",storesArr.count];
             
+            cell.meumNameLabel.textColor = lineColor;
+            cell.dataLabel.textColor     = lineColor;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
         }else {
         
         ProduceStoresModel *model = storesArr[indexPath.row-1];
+        if ([storeIds containsObject:model.id]) {
+            
+            cell.logoBtn.selected        = YES;
+            cell.meumNameLabel.textColor = MainColor;
+            cell.dataLabel.textColor     = MainColor;
+        }
         cell.meumNameLabel.text = model.name;
         cell.dataLabel.text = model.createDate;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -656,21 +668,23 @@
         }
         [tableView setContentOffset:CGPointMake(0, offset) animated:YES];
         
-        ProduceStoresModel *model = storesArr[indexPath.row-1];
-        if ([storeIds containsObject:model.id]) {
+        if (indexPath.row > 0) {
+            ProduceStoresModel *model = storesArr[indexPath.row-1];
+            if ([storeIds containsObject:model.id]) {
+                
+                [storeIds removeObject:model.id];
+                cell.logoBtn.selected        = NO;
+                cell.meumNameLabel.textColor = [UIColor blackColor];
+                cell.dataLabel.textColor     = [UIColor blackColor];
+                
+            }else {
             
-            [storeIds removeObject:model.id];
-            cell.logoBtn.selected        = NO;
-            cell.meumNameLabel.textColor = [UIColor blackColor];
-            cell.dataLabel.textColor     = [UIColor blackColor];
-            
-        }else {
-        
-            [storeIds addObject:model.id];
-            
-            cell.logoBtn.selected        = YES;
-            cell.meumNameLabel.textColor = MainColor;
-            cell.dataLabel.textColor     = MainColor;
+                [storeIds addObject:model.id];
+                
+                cell.logoBtn.selected        = YES;
+                cell.meumNameLabel.textColor = MainColor;
+                cell.dataLabel.textColor     = MainColor;
+            }
         }
     }
 }
@@ -699,5 +713,17 @@
     
 }
 
+#pragma mark UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+
+        
+        [searchBar resignFirstResponder];
+    
+        self.storesParams.keyword = textField.text;
+        
+        [storeTable.mj_header beginRefreshing];
+    
+    return YES;
+}
 
 @end

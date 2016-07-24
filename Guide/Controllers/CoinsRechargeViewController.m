@@ -22,6 +22,7 @@
     CoinRechargeCell1  *coinRechargeCell1;
     CoinRechargeCell2  *coinRechargeCell2;
     CoinRechargeCell3  *coinRechargeCell3;
+    CGFloat            cell2Height;
 }
 
 @property (nonatomic,strong)CoinRechargePackageParams *packageParams;
@@ -110,13 +111,16 @@
         
         FxLog(@"计算酒币充值套餐人民币与酒币的换算 = %@",dataDic);
         
+        
         if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
             
             [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
-            
+        
             if (![[dataDic objectForKey:@"retObj"] isEqual:[NSNull null]]) {
                 
                 calculateCoinModel = [CalculateCoinModel mj_objectWithKeyValues:[dataDic objectForKey:@"retObj"]];
+                
+                cell2Height = 180;
                 NSIndexSet *section1=[[NSIndexSet alloc]initWithIndexesInRange:NSMakeRange(1, 2)];
                 [self.bigTableView reloadSections:section1 withRowAnimation:UITableViewRowAnimationTop];
                 
@@ -160,7 +164,7 @@
         
         if (section == 1) {
             
-            return 20;
+            return SCREEN_HEIGHT-390-cell2Height-64-50;
         }
             return 0.1;
     }
@@ -177,7 +181,7 @@
                 return 390;
                 break;
             case 1:
-                return 180;
+                return cell2Height;
                 break;
             case 2:
                 return 50;
@@ -288,6 +292,7 @@
                     UIStoryboard *SB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
                     ChosePayTypeController *payType = [SB instantiateViewControllerWithIdentifier:@"ChosePayTypeController"];
                     payType.calculateCoinModel = calculateCoinModel;
+                    payType.packageId = self.calculateCoinParams.packageId;
                     [self.navigationController pushViewController:payType animated:YES];
                     
                 }];
@@ -334,6 +339,7 @@
         CoinRechargeCell1 *cell1 = (CoinRechargeCell1 *)[self.bigTableView cellForRowAtIndexPath:index];
         [cell1.smallTableVIew reloadData];
         
+        NSLog(@"%ld",indexPath.row);
         packageIndex = indexPath.row;
         
         PackageCell *cell = [tableView cellForRowAtIndexPath:indexPath];
