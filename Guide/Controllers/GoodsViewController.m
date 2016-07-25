@@ -141,7 +141,12 @@
         
         if ([model.isPackagePrice integerValue] == 1) {
             
-            cell.CoinsLabel.text    = model.marketPrice;
+            if (model.price.length == 0) {
+                cell.CoinsLabel.text    = [NSString stringWithFormat:@"%@~%@",model.minPrice,model.maxPrice];
+            }else {
+                cell.CoinsLabel.text    = model.price;
+            }
+            
         }else {
             
             cell.CoinsLabel.text    = [NSString stringWithFormat:@"%@~%@",model.minPrice,model.maxPrice];
@@ -170,9 +175,11 @@
         
         for (int i = 0; i<model.tags.count; i++) {
             
-            UIButton *tagsButton = (UIButton *)[cell.contentView viewWithTag:i+200];
-            tagsButton.hidden    = NO;
-            [tagsButton setTitle:model.tags[i] forState:UIControlStateNormal];
+            if (((NSString *)model.tags[i]).length > 0) {
+                UIButton *tagsButton = (UIButton *)[cell.contentView viewWithTag:i+200];
+                tagsButton.hidden    = NO;
+                [tagsButton setTitle:model.tags[i] forState:UIControlStateNormal];
+            }
         }
         
     }
