@@ -25,7 +25,7 @@
                                     <constraint firstAttribute="width" secondItem="XA7-fw-9iy" secondAttribute="height" multiplier="4:3" id="5z0-8D-jm7"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="13400000000" borderStyle="roundedRect" placeholder="用户名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UVq-1Q-U17">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="用户名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UVq-1Q-U17">
                                 <rect key="frame" x="30" y="280" width="260" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="zn4-a2-oJf"/>
@@ -115,7 +115,7 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
                                 </userDefinedRuntimeAttributes>
                             </visualEffectView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0000" borderStyle="roundedRect" placeholder="密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XAs-mi-Kec">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XAs-mi-Kec">
                                 <rect key="frame" x="30" y="335" width="260" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="wZJ-QG-9WA"/>

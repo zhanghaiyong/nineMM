@@ -311,7 +311,7 @@
             for (int i = 0; i<self.mainStaticModel.secondBanner.count; i++) {
                 UIImageView *imageV = [cell.contentView viewWithTag:i+100];
                 SecondBannerModel *groupButton = self.mainStaticModel.secondBanner[i];
-                [Uitils cacheImagwWithSize:imageV.size imageID:groupButton.imageId imageV:imageV placeholder:@""];
+                [Uitils cacheImagwWithSize:CGSizeMake(imageV.size.width*2, imageV.size.height*2) imageID:groupButton.imageId imageV:imageV placeholder:@""];
             }
             
             return cell;

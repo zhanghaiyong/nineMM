@@ -19,6 +19,7 @@
 @property (nonatomic,strong) NSString  *itemSelecting;
 @property (nonatomic,strong) NSString *itemsCount;
 @property (nonatomic,strong) NSString *marketPrice;
+@property (nonatomic,strong) NSString *price;
 @property (nonatomic,strong) NSString *maxPrice;
 @property (nonatomic,strong) NSString *minPrice;
 @property (nonatomic,strong) NSString *merchantName;

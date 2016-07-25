@@ -237,7 +237,15 @@
         }
         cell.nameLabel.text = produceDetail.name;
         if ([produceDetail.isPackagePrice integerValue] == 1) {
-            cell.priceLabel.text    = produceDetail.marketPrice;
+            
+            if (produceDetail.price.length == 0) {
+                
+                cell.priceLabel.text    = [NSString stringWithFormat:@"%@~%@",produceDetail.minPrice,produceDetail.maxPrice];
+                
+            }else {
+                
+                cell.priceLabel.text    = produceDetail.price;
+            }
             
         }else {
             cell.priceLabel.text    = [NSString stringWithFormat:@"%@~%@",produceDetail.minPrice,produceDetail.maxPrice];
@@ -383,7 +391,12 @@
     sureOrder.userSourceArr = userSource;
     sureOrder.produceModel = self.produceModel;
     sureOrder.proPriceByStoreParams = self.proPriceByStoreParams;
-    sureOrder.proPrice = price;
+    
+    if ([produceDetail.isPackagePrice integerValue] == 1) {
+        sureOrder.proPrice = self.produceModel.price;
+    }else {
+        sureOrder.proPrice = price;
+    }
     [self.navigationController pushViewController:sureOrder animated:YES];
 
 }

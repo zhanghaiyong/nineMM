@@ -34,11 +34,15 @@
 
 - (void)loadSubViews {
 
-    imageView = [[UIImageView alloc]init];
+    
+    imageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.width/2-20, 5, 38, 38)];
+    imageView.contentMode = UIViewContentModeCenter;
+    [imageView setContentMode:UIViewContentModeScaleToFill];
     [self addSubview:imageView];
     
-    label = [[UILabel alloc]init];
+    label = [[UILabel alloc]initWithFrame:CGRectMake(0, imageView.bottom-3, self.width, 20)];
     label.textColor = lever1Color;
+    label.text = self.labelTitle;
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont boldSystemFontOfSize:13];
     label.adjustsFontSizeToFitWidth = YES;
@@ -56,16 +60,15 @@
 
     [super layoutSubviews];
 
-    imageView.frame = CGRectMake(self.width/2-20, 5, 40, 40);
-    imageView.contentMode = UIViewContentModeCenter;
+
+//    
+//    self.badgeBtn.frame = CGRectMake(imageView.right-25, imageView.top+10, 20, 20);
+//    self.badgeBtn.layer.cornerRadius = 10;
+//    self.badgeBtn.clipsToBounds = YES;
+//    [self.badgeBtn setTitle:@"0" forState:UIControlStateNormal];
+//    
+//    label.frame = CGRectMake(0, imageView.bottom-3, self.width, 20);
     
-    self.badgeBtn.frame = CGRectMake(imageView.right-25, imageView.top+10, 20, 20);
-    self.badgeBtn.layer.cornerRadius = 10;
-    self.badgeBtn.clipsToBounds = YES;
-    [self.badgeBtn setTitle:@"0" forState:UIControlStateNormal];
-    
-    label.frame = CGRectMake(0, imageView.bottom-3, self.width, 20);
-    label.text = self.labelTitle;
 }
 
 /**
@@ -84,15 +87,12 @@
 
     _imageName = imageName;
     if (_isNetImage) {
-       [Uitils cacheImagwWithSize:CGSizeMake(38, 38) imageID:imageName imageV:imageView placeholder:nil];
+       [Uitils cacheImagwWithSize:CGSizeMake(38*2, 38*2) imageID:imageName imageV:imageView placeholder:nil];
+        
     }else {
     imageView.image = [UIImage imageNamed:imageName];
         
     }
-    
-    
-    
-    
 }
 
 //添加的手势方法
