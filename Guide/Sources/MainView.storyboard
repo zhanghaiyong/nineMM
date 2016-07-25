@@ -938,6 +938,9 @@
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="6"/>
                                                     </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="logoutAction:" destination="4t9-9k-iDN" eventType="touchUpInside" id="w0Q-cG-5pU"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>

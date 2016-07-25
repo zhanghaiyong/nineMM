@@ -19,6 +19,7 @@
     NSArray     *userSource;
     CGFloat webViewH;
     ProDetailCell2 *cell3;
+    NSString  *price;
 }
 @property (nonatomic,strong)MeumList *meumList;
 @property (nonatomic,strong)ProPriceByStoreParams *proPriceByStoreParams;
@@ -112,7 +113,7 @@
                 NSLog(@"11111");
                 self.tableView.delegate = self;
                 self.tableView.dataSource = self;
-                    [self.tableView reloadData];
+                [self.tableView reloadData];
             }
             
         }else if ([[dataDic objectForKey:@"retCode"]integerValue] == -2){
@@ -220,8 +221,6 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
-    NSLog(@"22222");
     
     if (indexPath.section == 0) {
         
@@ -379,34 +378,13 @@
         }
     }
     
-    [[HUDConfig shareHUD]alwaysShow];
-    
-    FxLog(@"buyNowAction = %@",self.proPriceByStoreParams.mj_keyValues);
-    
-    [KSMNetworkRequest postRequest:KGetProductPriceByStoreSelection params:self.proPriceByStoreParams.mj_keyValues success:^(NSDictionary *dataDic) {
-        
-        FxLog(@"buyNowAction = %@",dataDic);
-        
-        if ([[dataDic objectForKey:@"retCode"]integerValue] == 0) {
-            
-            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
-            
-            UIStoryboard *SB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
-            SureOrdersViewController *sureOrder = [SB instantiateViewControllerWithIdentifier:@"SureOrdersViewController"];
-            sureOrder.userSourceArr = userSource;
-            sureOrder.produceModel = self.produceModel;
-            sureOrder.proPriceByStoreParams = self.proPriceByStoreParams;
-            sureOrder.proPrice = [NSString stringWithFormat:@"%@",[[dataDic objectForKey:@"retObj"] objectForKey:@"price"]];
-            [self.navigationController pushViewController:sureOrder animated:YES];
-            
-        }else {
-            [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
-        }
-        
-    } failure:^(NSError *error) {
-        
-        [[HUDConfig shareHUD]ErrorHUD :error.localizedDescription delay:DELAY];
-    }];
+    UIStoryboard *SB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+    SureOrdersViewController *sureOrder = [SB instantiateViewControllerWithIdentifier:@"SureOrdersViewController"];
+    sureOrder.userSourceArr = userSource;
+    sureOrder.produceModel = self.produceModel;
+    sureOrder.proPriceByStoreParams = self.proPriceByStoreParams;
+    sureOrder.proPrice = price;
+    [self.navigationController pushViewController:sureOrder animated:YES];
 
 }
 
@@ -429,6 +407,36 @@
         self.proPriceByStoreParams.storeSelectingType = @"area";
         self.proPriceByStoreParams.areaIds = ids;
     }
+    
+    [[HUDConfig shareHUD]alwaysShow];
+    
+    FxLog(@"buyNowAction = %@",self.proPriceByStoreParams.mj_keyValues);
+    
+    [KSMNetworkRequest postRequest:KGetProductPriceByStoreSelection params:self.proPriceByStoreParams.mj_keyValues success:^(NSDictionary *dataDic) {
+
+        FxLog(@"buyNowAction = %@",dataDic);
+        
+        if ([[dataDic objectForKey:@"retCode"]integerValue] == 0) {
+            
+            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+            ProDetailCell1 *cell = (ProDetailCell1 *)[self.tableView cellForRowAtIndexPath:indexPath];
+            cell.priceLabel.text = [NSString stringWithFormat:@"%@",[[dataDic objectForKey:@"retObj"] objectForKey:@"price"]];
+            price = [NSString stringWithFormat:@"%@",[[dataDic objectForKey:@"retObj"] objectForKey:@"price"]];
+            
+        }else {
+            [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+        }
+        
+    } failure:^(NSError *error) {
+        
+        [[HUDConfig shareHUD]ErrorHUD :error.localizedDescription delay:DELAY];
+    }];
+    
+
+    
+    
 }
 
 #pragma mark UIWe=bViewDelegate

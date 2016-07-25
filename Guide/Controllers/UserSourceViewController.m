@@ -75,28 +75,27 @@
             
             if (![[dataDic objectForKey:@"retObj"] isEqual:[NSNull null]]) {
                 
-                NSArray *sourceData = [[dataDic objectForKey:@"retObj"] objectForKey:@"rows"];
+                NSArray *rows = [[dataDic objectForKey:@"retObj"] objectForKey:@"rows"];
                 
                 //等于1，说明是刷新
                 if (self.params.page == 1) {
                     
-                    userSourceArr = [UserSourceModel mj_objectArrayWithKeyValuesArray:sourceData];
+                    userSourceArr = [UserSourceModel mj_objectArrayWithKeyValuesArray:rows];
                     [self.tableView.mj_header endRefreshing];
                     
                 }else {
                 
-                    NSArray *array = [UserSourceModel mj_objectArrayWithKeyValuesArray:sourceData];
+                    NSArray *array = [UserSourceModel mj_objectArrayWithKeyValuesArray:rows];
                     [userSourceArr addObjectsFromArray:array];
-                    
-                    if (array.count < self.params.rows) {
-                        
-                        [self.tableView.mj_footer endRefreshingWithNoMoreData];
-                    }else {
-                    
-                        [self.tableView.mj_footer endRefreshing];
-                    }
                 }
                 
+                if (rows.count < self.params.rows) {
+                    
+                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                }else {
+                    
+                    [self.tableView.mj_footer endRefreshing];
+                }
                 [self.tableView reloadData];
             }
             

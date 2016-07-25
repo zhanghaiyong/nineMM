@@ -287,6 +287,12 @@
                     coinRechargeCell3.moneyLabel.text = [NSString stringWithFormat:@"%@元人民币",calculateCoinModel.rmb];
                 }
                 
+                if (cell2Height > 0) {
+                    
+                    coinRechargeCell3.sureRechargeBtn.alpha = 1;
+                    coinRechargeCell3.sureRechargeBtn.userInteractionEnabled = YES;
+                }
+                
                 [coinRechargeCell3 userBlockToVC:^{
                     
                     UIStoryboard *SB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];

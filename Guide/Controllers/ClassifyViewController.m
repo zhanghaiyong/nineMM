@@ -43,8 +43,8 @@
     if (_produceParams == nil) {
         
         MainProduceListParams *produceParams = [[MainProduceListParams alloc]init];
+        produceParams.rows = 20;
         _produceParams = produceParams;
-        _produceParams.rows = 20;
         
     }
     return _produceParams;
@@ -183,14 +183,14 @@
                     
                     NSArray *array = [MainProduceModel mj_objectArrayWithKeyValuesArray:rows];
                     [self.produces addObjectsFromArray:array];
+                }
+                
+                if (rows.count < self.produceParams.rows) {
                     
-                    if (array.count < self.produceParams.rows) {
-                        
-                        [typeTableView.mj_footer endRefreshingWithNoMoreData];
-                    }else {
-                        
-                        [typeTableView.mj_footer endRefreshing];
-                    }
+                    [typeTableView.mj_footer endRefreshingWithNoMoreData];
+                }else {
+                    
+                    [typeTableView.mj_footer endRefreshing];
                 }
                 [typeTableView reloadData];
             }
@@ -416,9 +416,11 @@
         
         for (int i = 0; i<model.tags.count; i++) {
             
-            UIButton *tagsButton = (UIButton *)[cell.contentView viewWithTag:i+200];
-            tagsButton.hidden    = NO;
-            [tagsButton setTitle:model.tags[i] forState:UIControlStateNormal];
+            if (((NSString *)model.tags[i]).length > 0) {
+                UIButton *tagsButton = (UIButton *)[cell.contentView viewWithTag:i+200];
+                tagsButton.hidden    = NO;
+                [tagsButton setTitle:model.tags[i] forState:UIControlStateNormal];
+            }
         }
         
     }

@@ -44,9 +44,13 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.tableView.frame = CGRectMake(0, -20, SCREEN_WIDTH, self.tableView.height);
     
+        //刷新
+        self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            
+            [self loadPersionData];
+        }];
     if (!persionModel) {
-        [self loadPersionData];
-
+        [self.tableView.mj_header beginRefreshing];
     }
 }
 
@@ -59,6 +63,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+
 }
 
 - (void)loadPersionData {
@@ -69,6 +75,8 @@
     [KSMNetworkRequest postRequest:KPersionCenter params:params.mj_keyValues success:^(NSDictionary *dataDic) {
         
         FxLog(@"PersionData = %@",dataDic);
+        
+        [self.tableView.mj_header endRefreshing];
         
         if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
             
@@ -117,6 +125,7 @@
         
     } failure:^(NSError *error) {
        
+        [self.tableView.mj_header endRefreshing];
          [[HUDConfig shareHUD]ErrorHUD:error.localizedDescription delay:DELAY];
     }];
 }
@@ -140,6 +149,7 @@
 
     return 0.1;
 }
+
 - (IBAction)personCenterAction:(id)sender {
     
      [[HUDConfig shareHUD]Tips:@"即将上线，敬请期待" delay:DELAY];
@@ -147,6 +157,22 @@
 - (IBAction)msgCenterAction:(id)sender {
     
      [[HUDConfig shareHUD]Tips:@"即将上线，敬请期待" delay:DELAY];
+}
+- (IBAction)logoutAction:(id)sender {
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否注销此账号?" preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"是" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        [Uitils UserDefaultRemoveObjectForKey:TOKEN];
+        persionModel = nil;
+        self.tabBarController.selectedIndex = 0;
+    }]];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"否" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        
+    }]];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 /**

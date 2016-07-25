@@ -93,14 +93,14 @@
                     
                     NSArray *array = [MainProduceModel mj_objectArrayWithKeyValuesArray:rows];
                     [self.produces addObjectsFromArray:array];
+                }
+                
+                if (rows.count < self.params.rows) {
                     
-                    if (array.count < self.params.rows) {
-                        
-                        [self.tableView.mj_footer endRefreshingWithNoMoreData];
-                    }else {
-                        
-                        [self.tableView.mj_footer endRefreshing];
-                    }
+                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                }else {
+                    
+                    [self.tableView.mj_footer endRefreshing];
                 }
                 [self.tableView reloadData];
             }

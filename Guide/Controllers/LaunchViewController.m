@@ -120,8 +120,6 @@
         FxLog(@"sessionID = %@",dataDic);
         if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
             
-            [Uitils setUserDefaultsObject:[dataDic objectForKey:@"sessionId"] ForKey:TOKEN];
-            
             [self getProductCategoryTree:[dataDic objectForKey:@"sessionId"]];
             
             [self getAreasTreeJson:[dataDic objectForKey:@"sessionId"]];

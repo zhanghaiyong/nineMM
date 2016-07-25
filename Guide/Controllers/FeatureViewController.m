@@ -35,8 +35,8 @@
     if (_params == nil) {
         
         FeatureParams *params = [[FeatureParams alloc]init];
-        _params.rows = 20;
-        _params.feature = self.feature;
+        params.rows = 20;
+        params.feature = self.feature;
         _params = params;
     }
     return _params;
@@ -93,14 +93,14 @@
                     
                     NSArray *array = [MainProduceModel mj_objectArrayWithKeyValuesArray:rows];
                     [self.features addObjectsFromArray:array];
+                }
+                
+                if (rows.count < self.params.rows) {
                     
-                    if (array.count < self.params.rows) {
-                        
-                        [self.tableView.mj_footer endRefreshingWithNoMoreData];
-                    }else {
-                        
-                        [self.tableView.mj_footer endRefreshing];
-                    }
+                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                }else {
+                    
+                    [self.tableView.mj_footer endRefreshing];
                 }
                 
                 [self.tableView reloadData];

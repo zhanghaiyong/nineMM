@@ -54,7 +54,7 @@
     if (_produceListParams == nil) {
         
         MainProduceListParams *produceListParams = [[MainProduceListParams alloc]init];
-        _produceListParams.rows = 20;
+        produceListParams.rows = 20;
         _produceListParams = produceListParams;
     }
     return _produceListParams;
@@ -149,14 +149,19 @@
                     NSArray *array = [MainProduceModel mj_objectArrayWithKeyValuesArray:rows];
                     [self.produces addObjectsFromArray:array];
                     
-                    if (array.count < self.produceListParams.rows) {
-                        
-                        [self.tableView.mj_footer endRefreshingWithNoMoreData];
-                    }else {
-                        
-                        [self.tableView.mj_footer endRefreshing];
-                    }
                 }
+                
+                NSLog(@"sdfzdf = %d",self.produceListParams.rows);
+                
+                if (rows.count < self.produceListParams.rows) {
+                    
+                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                    
+                }else {
+                    
+                    [self.tableView.mj_footer endRefreshing];
+                }
+                
                 NSIndexSet *nd=[[NSIndexSet alloc]initWithIndex:3];//刷新第3个section
                 [self.tableView reloadSections:nd withRowAnimation:UITableViewRowAnimationTop];
             }
@@ -347,17 +352,18 @@
                 for (int i = 0; i<model.acceptableCoinTypes.count; i++) {
                     
                     UIImageView *coinImg = (UIImageView *)[cell.contentView viewWithTag:i+100];
-                    coinImg.hidden       = NO;
-                    coinImg.image        = [UIImage imageNamed:[Uitils toImageName:model.acceptableCoinTypes[i]]];
+                    coinImg.hidden = NO;
+                    coinImg.image  = [UIImage imageNamed:[Uitils toImageName:model.acceptableCoinTypes[i]]];
                 }
                 
-                for (int i = 0; i<model.tags.count; i++) {
-                    
-                    UIButton *tagsButton = (UIButton *)[cell.contentView viewWithTag:i+200];
-                    tagsButton.hidden    = NO;
-                    [tagsButton setTitle:model.tags[i] forState:UIControlStateNormal];
-                }
-                
+                    for (int i = 0; i< model.tags.count; i++) {
+                        
+                        if (((NSString *)model.tags[i]).length > 0) {
+                            UIButton *tagsButton = (UIButton *)[cell.contentView viewWithTag:i+200];
+                            tagsButton.hidden    = NO;
+                            [tagsButton setTitle:model.tags[i] forState:UIControlStateNormal];
+                        }
+                    }
             }
             return cell;
         }
