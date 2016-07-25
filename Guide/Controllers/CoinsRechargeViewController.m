@@ -52,15 +52,18 @@
     return _packageParams;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+
+    [super viewWillAppear:animated];
+    packageArr = [NSMutableArray array];
+     [self getPackageList:@"golden"];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.title = @"酒币充值";
-    
-    packageArr = [NSMutableArray array];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    
-    [self getPackageList:@"golden"];
 }
 
 
@@ -95,11 +98,7 @@
             UIStoryboard *SB = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
             LoginViewController *loginVC = [SB instantiateViewControllerWithIdentifier:@"LoginViewController"];
             UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:loginVC];
-            [self presentViewController:navi animated:YES completion:^{
-                
-                [self.navigationController popViewControllerAnimated:YES];
-                
-            }];
+            [self presentViewController:navi animated:YES completion:nil];
         }else {
             
             [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];

@@ -74,6 +74,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
+    
+    [self produceDetailData];
     //隐藏
 //    self.navigationController.navigationBar.hidden = NO;
 //    self.automaticallyAdjustsScrollViewInsets = NO;
@@ -85,7 +87,7 @@
     self.tableView.tableFooterView = [[UIView alloc]init];
     
     self.title = @"资源详情";
-    [self produceDetailData];
+//    [self produceDetailData];
 }
 
 
@@ -122,11 +124,7 @@
             UIStoryboard *SB = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
             LoginViewController *loginVC = [SB instantiateViewControllerWithIdentifier:@"LoginViewController"];
             UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:loginVC];
-            [self presentViewController:navi animated:YES completion:^{
-                
-            [self.navigationController popViewControllerAnimated:YES];
-                
-            }];
+            [self presentViewController:navi animated:YES completion:nil];
         }
         
     } failure:^(NSError *error) {

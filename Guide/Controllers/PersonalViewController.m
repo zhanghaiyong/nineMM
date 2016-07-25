@@ -116,11 +116,7 @@
             UIStoryboard *SB = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
             LoginViewController *loginVC = [SB instantiateViewControllerWithIdentifier:@"LoginViewController"];
             UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:loginVC];
-            [self presentViewController:navi animated:YES completion:^{
-                
-                [self.navigationController popViewControllerAnimated:YES];
-                
-            }];
+            [self presentViewController:navi animated:YES completion:nil];
         }
         
     } failure:^(NSError *error) {
