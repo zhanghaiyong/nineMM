@@ -329,7 +329,7 @@
                 
                 if ([model.isPackagePrice integerValue] == 1) {
                     
-                    cell.CoinsLabel.text    = model.marketPrice;
+                    cell.CoinsLabel.text    = model.price;
                 }else {
                 
                     cell.CoinsLabel.text    = [NSString stringWithFormat:@"%@~%@",model.minPrice,model.maxPrice];

@@ -11,6 +11,7 @@
 @property (nonatomic,strong) NSString *gold;
 @property (nonatomic,strong) NSString *id;
 @property (nonatomic,strong) NSString *isPackagePrice;
+@property (nonatomic,strong) NSString *price;
 @property (nonatomic,strong) NSString *maxPrice;
 @property (nonatomic,strong) NSString *minPrice;
 @property (nonatomic,strong) NSString *merchantName;
