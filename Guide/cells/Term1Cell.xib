@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -24,12 +24,12 @@
                         <state key="selected" image="组-1"/>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="OIr-ua-l53">
-                        <rect key="frame" x="23" y="14" width="33" height="16"/>
+                        <rect key="frame" x="20" y="14" width="33" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000298023224" translatesAutoresizingMaskIntoConstraints="NO" id="VtS-m9-e5m">
-                        <rect key="frame" x="66" y="22" width="0.0" height="0.0"/>
+                        <rect key="frame" x="63" y="22" width="0.0" height="0.0"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -40,7 +40,7 @@
                     <constraint firstItem="OIr-ua-l53" firstAttribute="centerY" secondItem="QyG-MQ-S05" secondAttribute="centerY" id="3yq-AF-qCh"/>
                     <constraint firstItem="QyG-MQ-S05" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="8wB-ab-DOK"/>
                     <constraint firstItem="QyG-MQ-S05" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="KcZ-PI-EhU"/>
-                    <constraint firstItem="OIr-ua-l53" firstAttribute="leading" secondItem="QyG-MQ-S05" secondAttribute="trailing" constant="3" id="c6O-mg-zdD"/>
+                    <constraint firstItem="OIr-ua-l53" firstAttribute="leading" secondItem="QyG-MQ-S05" secondAttribute="trailing" id="c6O-mg-zdD"/>
                     <constraint firstItem="VtS-m9-e5m" firstAttribute="centerY" secondItem="OIr-ua-l53" secondAttribute="centerY" id="iZk-eZ-sBg"/>
                 </constraints>
             </tableViewCellContentView>

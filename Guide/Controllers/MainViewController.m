@@ -225,7 +225,7 @@
 
     switch (indexPath.section) {
         case 0:
-            return 375;
+            return 380;
             break;
         case 1:
             return 150;
@@ -233,8 +233,18 @@
         case 2:
             return 120;
             break;
-        case 3:
-            return 170;
+        case 3:{
+            
+            MainProduceModel *model = self.produces[indexPath.row];
+            if (model.tags.count > 0) {
+                
+                return 170;
+                
+            }else {
+            
+                return 140;
+            }
+        }
             break;
         default:
             break;

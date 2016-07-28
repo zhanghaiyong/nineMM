@@ -1,10 +1,17 @@
 #import <UIKit/UIKit.h>
 
-@interface ProDetailCell2 : UITableViewCell
+typedef void(^countWebViewHBlock)(float webViewH);
+
+@interface ProDetailCell2 : UITableViewCell<UIWebViewDelegate>
 //@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 //@property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewWidth;
-@property (nonatomic,assign)NSInteger scrollTag;
+@property (nonatomic,strong)NSURL *htmlUrl;
+@property (nonatomic,assign)BOOL  isRefreshWebView;
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
+
+@property (nonatomic,copy)countWebViewHBlock block;
+
+- (void)countWebViewHeight:(countWebViewHBlock)block;
 
 @end

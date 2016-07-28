@@ -5,7 +5,7 @@
 //http://101.200.131.198:8090/promot
 #define  BaseURLString (@"http://9mama.top:8080")
 #define  BaseImageURL  (@"http://9mama.top:8080/dimg/")
-#define HTMLURL (@"http://9mama.top:8080/goods/mobile/")
+#define HTMLURL (@"http://9mama.top:8080/product/mobile/")
 
 #endif /* NSURLs_h */
 

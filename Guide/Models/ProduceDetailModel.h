@@ -31,4 +31,5 @@
 @property (nonatomic,strong) NSArray  *tabs;
 @property (nonatomic,strong) NSArray  *tags;
 @property (nonatomic,strong) NSString *terms;
+@property (nonatomic,strong) NSString *fullName;
 @end

@@ -13,7 +13,6 @@
 #import "OrderDetailTabViewCtrl.h"
 @interface SureOrdersViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
-    NSString *coin;
     sureOrderCell3 *cell3;
 }
 
@@ -47,7 +46,6 @@
         
         AppSubOrderParams *params = [[AppSubOrderParams alloc]init];
         params.amount = [self.proPrice intValue];
-        params.paymentMethod = coin;
         _params = params;
         
     }
@@ -65,7 +63,11 @@
 
     [[HUDConfig shareHUD]alwaysShow];
     
+    NSLog(@"self.params = %@",self.params.mj_keyValues);
+    
     [KSMNetworkRequest postRequest:KAppSubOrder params:self.params.mj_keyValues success:^(NSDictionary *dataDic) {
+        
+        
         
         FxLog(@"buyNowAction = %@",dataDic);
         
@@ -76,6 +78,7 @@
             UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
             OrderDetailTabViewCtrl *orderDetail = [mainSB instantiateViewControllerWithIdentifier:@"OrderDetailTabViewCtrl"];
             orderDetail.orderId = [[dataDic objectForKey:@"retObj"] objectForKey:@"orderId"][0];
+            orderDetail.surePayProduce = YES;
             [self.navigationController pushViewController:orderDetail animated:YES];
             
         }else {
@@ -143,9 +146,24 @@
 
             NSString *jsonString  = [array mj_JSONString];
             self.params.orders = jsonString;
-            NSLog(@"self.params = %@",self.params.mj_keyValues);
             
-            [self subOrder];
+            if (self.params.paymentMethod.length == 0) {
+                
+                [[HUDConfig shareHUD]Tips:@"请选择支付币种" delay:DELAY];
+                return;
+            }
+            
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"下单后酒币将立即支付，请确认是否提交订单？" preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"是" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+                [self subOrder];
+            }]];
+            
+            [alert addAction:[UIAlertAction actionWithTitle:@"否" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+                
+            }]];
+            
+            [self presentViewController:alert animated:YES completion:nil];
             
         }];
         return footer;
@@ -226,7 +244,7 @@
             
             [cell2 choseCoinPay:^(NSString *coinStatus) {
                 
-                coin = coinStatus;
+                self.params.paymentMethod = coinStatus;
                 if ([coinStatus isEqualToString:@"goldenCoin"]) {
                     
                     cell3.payCoinType.text = @"支付币种：金币";

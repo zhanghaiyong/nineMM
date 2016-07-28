@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="50" id="T4z-cH-cNS" customClass="MyCoinsCell4">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="T4z-cH-cNS" id="ewG-84-loW">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="49.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="查询酒币明细" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y45-xS-AtO">
+                        <rect key="frame" x="10" y="16" width="84" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="箭头" translatesAutoresizingMaskIntoConstraints="NO" id="e0o-LM-4DT">
+                        <rect key="frame" x="301" y="17" width="9" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="e0o-LM-4DT" secondAttribute="height" multiplier="1:1" id="Ets-3W-Keb"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Ets-3W-Keb"/>
+                            </mask>
+                        </variation>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="y45-xS-AtO" firstAttribute="leading" secondItem="ewG-84-loW" secondAttribute="leading" constant="10" id="3qc-RD-VcN"/>
+                    <constraint firstItem="e0o-LM-4DT" firstAttribute="width" secondItem="e0o-LM-4DT" secondAttribute="height" multiplier="1:1" id="6EH-Dk-Jm1"/>
+                    <constraint firstItem="y45-xS-AtO" firstAttribute="centerY" secondItem="ewG-84-loW" secondAttribute="centerY" id="Ino-f5-Xg8"/>
+                    <constraint firstItem="e0o-LM-4DT" firstAttribute="width" secondItem="e0o-LM-4DT" secondAttribute="height" multiplier="1:1" id="Jb2-ZS-ouZ"/>
+                    <constraint firstItem="e0o-LM-4DT" firstAttribute="centerY" secondItem="ewG-84-loW" secondAttribute="centerY" id="ajo-zQ-rbx"/>
+                    <constraint firstAttribute="trailing" secondItem="e0o-LM-4DT" secondAttribute="trailing" constant="10" id="fat-Gg-FLj"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="6EH-Dk-Jm1"/>
+                        <exclude reference="Jb2-ZS-ouZ"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="箭头" width="9" height="16"/>
+    </resources>
+</document>

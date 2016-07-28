@@ -1,7 +1,7 @@
 #import "BaseTableViewController.h"
 #import "PersionModel.h"
 
-@interface MyCoinsController : BaseTableViewController
+@interface MyCoinsController : BaseViewController
 
 
 @property (nonatomic,strong)PersionModel *persionModel;

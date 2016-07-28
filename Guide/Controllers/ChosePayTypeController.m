@@ -39,7 +39,7 @@
     //金额
     self.rmbLabel.text = self.calculateCoinModel.rmb;
     
-    self.finalRmbLabel.text = self.calculateCoinModel.rmb;
+    self.finalRmbLabel.text = [NSString stringWithFormat:@"%@元",self.calculateCoinModel.rmb];
     
     if ([self.calculateCoinModel.expiryDate integerValue] > 0) {
         

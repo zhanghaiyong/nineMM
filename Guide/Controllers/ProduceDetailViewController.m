@@ -10,16 +10,17 @@
 #import "ProduceDetailModel.h"
 #import "ProPriceByStoreParams.h"
 #import "SureOrdersViewController.h"
-@interface ProduceDetailViewController ()<UITableViewDelegate,UITableViewDataSource,Term3Delegate,UserSourceDelegate,UIWebViewDelegate>{
+@interface ProduceDetailViewController ()<UITableViewDelegate,UITableViewDataSource,Term3Delegate,UserSourceDelegate>{
 
     //资源 档期 样刊切换标示
     NSInteger typeFlag;
     ProduceDetailModel *produceDetail;
     NSString    *areaOrStore;
     NSArray     *userSource;
-    CGFloat webViewH;
+    CGFloat webViewHeight;
     ProDetailCell2 *cell3;
     NSString  *price;
+    BOOL      isRefreshWebViewH;
 }
 @property (nonatomic,strong)MeumList *meumList;
 @property (nonatomic,strong)ProPriceByStoreParams *proPriceByStoreParams;
@@ -75,7 +76,7 @@
     
     [super viewWillAppear:animated];
     
-    [self produceDetailData];
+//    [self produceDetailData];
     //隐藏
 //    self.navigationController.navigationBar.hidden = NO;
 //    self.automaticallyAdjustsScrollViewInsets = NO;
@@ -83,11 +84,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    self.tableView.tableFooterView = [[UIView alloc]init];
     
     self.title = @"资源详情";
-//    [self produceDetailData];
+    
+    self.tableView.tableFooterView = [[UIView alloc]init];
+    [self produceDetailData];
+    isRefreshWebViewH = YES;
 }
 
 
@@ -107,15 +109,17 @@
             
             [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
             
-            if (![[dataDic objectForKey:@"retObj"] isEqual:[NSNull null]]) {
+            if (((NSDictionary *)[dataDic objectForKey:@"retObj"]).count !=0) {
                 
                 NSDictionary *retObj = [dataDic objectForKey:@"retObj"];
                 produceDetail = [ProduceDetailModel mj_objectWithKeyValues:retObj];
                 
-                NSLog(@"11111");
                 self.tableView.delegate = self;
                 self.tableView.dataSource = self;
                 [self.tableView reloadData];
+                
+//                NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:2];
+//                [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
             }
             
         }else if ([[dataDic objectForKey:@"retCode"]integerValue] == -2){
@@ -124,7 +128,11 @@
             UIStoryboard *SB = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
             LoginViewController *loginVC = [SB instantiateViewControllerWithIdentifier:@"LoginViewController"];
             UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:loginVC];
-            [self presentViewController:navi animated:YES completion:nil];
+            [self presentViewController:navi animated:YES completion:^{
+                
+                [self.navigationController popViewControllerAnimated:YES];
+                
+            }];
         }
         
     } failure:^(NSError *error) {
@@ -146,11 +154,8 @@
         case 0:
             return 1;
             break;
-        case 1: {
-            
+        case 1:
             return 3;
-        }
-            
             break;
         case 2:
             return 1;
@@ -158,7 +163,7 @@
         default:
             break;
     }
-    return 3;
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -200,20 +205,8 @@
         }
         
     }else {
-    
-//        switch (typeFlag) {
-//            case 0:
-//                return 200;
-//            case 1:
-//                return 300;
-//            case 2:
-//                return 400;
-//                break;
-//                
-//            default:
-//                break;
-//        }
-        return webViewH;
+
+        return webViewHeight-16;
     }
     return 0;
 }
@@ -233,20 +226,21 @@
             }
             cell.Banner.imageArray = topImages;
         }
-        cell.nameLabel.text = produceDetail.name;
+        cell.nameLabel.text = produceDetail.fullName;
         if ([produceDetail.isPackagePrice integerValue] == 1) {
             
             if (produceDetail.price.length == 0) {
                 
-                cell.priceLabel.text    = [NSString stringWithFormat:@"%@~%@",produceDetail.minPrice,produceDetail.maxPrice];
+                cell.priceLabel.text = [NSString stringWithFormat:@"%@~%@",produceDetail.minPrice,produceDetail.maxPrice];
                 
             }else {
                 
-                cell.priceLabel.text    = produceDetail.price;
+                cell.priceLabel.text = produceDetail.price;
             }
             
         }else {
-            cell.priceLabel.text    = [NSString stringWithFormat:@"%@~%@",produceDetail.minPrice,produceDetail.maxPrice];
+            
+            cell.priceLabel.text = [NSString stringWithFormat:@"%@~%@",produceDetail.minPrice,produceDetail.maxPrice];
         }
         
         for (int i = 0; i<produceDetail.tags.count; i++) {
@@ -255,7 +249,7 @@
             tagLabel.text = [NSString stringWithFormat:@" %@ ",produceDetail.tags[i]];
         }
         cell.otherInfo.text = produceDetail.otherInfo;
-        cell.termLabel.text = [NSString stringWithFormat:@"库存 %@",produceDetail.itemsCount];
+        cell.termLabel.text = [NSString stringWithFormat:@"库存 %@",produceDetail.stock];
         cell.explainLabel.text = produceDetail.terms;
         
         return cell;
@@ -289,10 +283,10 @@
             
             [cell proDetailTypeChange:^(NSInteger flag) {
                 typeFlag = flag;
-                NSIndexPath *lastIndex = [NSIndexPath indexPathForRow:0 inSection:2];
-                [self.tableView beginUpdates];
-                [self.tableView reloadRowsAtIndexPaths:@[lastIndex] withRowAnimation:UITableViewRowAnimationMiddle];
-                [self.tableView endUpdates];
+                isRefreshWebViewH = YES;
+                NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:2];
+                [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationTop];
+ 
             }];
             
             cell.lineIndex = typeFlag;
@@ -300,17 +294,28 @@
         }
     }else {
 
-        cell3 = [[[NSBundle mainBundle] loadNibNamed:@"ProDetailCell2" owner:self options:nil] lastObject];
-        cell3.scrollTag = typeFlag;
-        cell3.webView.delegate = self;
+        static NSString *identifier = @"cell3";
+        cell3 = [tableView dequeueReusableCellWithIdentifier:identifier];
+        
+        if (!cell3) {
+            
+            cell3 = [[[NSBundle mainBundle] loadNibNamed:@"ProDetailCell2" owner:self options:nil] lastObject];
+        }
         
         NSArray *tabs = produceDetail.tabs;
         NSDictionary *dic = tabs[typeFlag];
         NSString *urlStr = [NSString stringWithFormat:@"%@%@/%@.page",HTMLURL,self.produceModel.id,[dic objectForKey:@"tab"]];
         NSLog(@"zfzsdgd =%@",urlStr);
         NSURL *url = [NSURL URLWithString:urlStr];
-        [cell3.webView loadRequest:[NSURLRequest requestWithURL:url]];
-        
+        cell3.isRefreshWebView = isRefreshWebViewH;
+        cell3.htmlUrl = url;
+        [cell3 countWebViewHeight:^(float webViewH) {
+            
+            isRefreshWebViewH = NO;
+            webViewHeight = webViewH;
+            NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:2];
+            [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
+        }];
         return cell3;
     }
     return nil;
@@ -444,23 +449,7 @@
         
         [[HUDConfig shareHUD]ErrorHUD :error.localizedDescription delay:DELAY];
     }];
-    
 
-    
-    
-}
-
-#pragma mark UIWe=bViewDelegate
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-    
-    NSString *height_str = [webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight"];
-    webViewH = [height_str floatValue];
-    NSLog(@"height_str = %lf",webViewH);
-    
-    [self.tableView beginUpdates];
-    [self.tableView reloadRowsAtIndexPaths:@[cell3] withRowAnimation:UITableViewRowAnimationTop];
-    [self.tableView endUpdates];
-    
 }
 
 

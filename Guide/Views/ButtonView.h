@@ -8,6 +8,8 @@
 
 @interface ButtonView : UIView
 
+@property (nonatomic,assign)CGSize imageSize;
+
 @property (nonatomic,strong)NSString *labelTitle;
 @property (nonatomic,strong)NSString *imageName;
 @property (nonatomic,strong)UIButton *badgeBtn;

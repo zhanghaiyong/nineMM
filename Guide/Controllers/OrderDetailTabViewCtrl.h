@@ -11,5 +11,6 @@
 @interface OrderDetailTabViewCtrl : BaseTableViewController
 
 @property (nonnull,strong)NSString *orderId;
+@property (nonatomic,assign)BOOL surePayProduce;
 
 @end

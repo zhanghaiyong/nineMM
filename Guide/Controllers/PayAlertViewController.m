@@ -20,7 +20,7 @@
     
     self.title = @"线下支付";
     
-    NSURL *url = [[NSURL alloc]initWithString:@"http://www.baidu.com"];
+    NSURL *url = [[NSURL alloc]initWithString:@"http://9mama.top:8080/offlinePaymentInfo/420.page"];
     
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
     

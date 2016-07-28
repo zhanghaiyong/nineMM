@@ -640,15 +640,26 @@
         }
         
         
-        NSMutableArray *finalAreaId = [NSMutableArray array];
-        [finalAreaId addObjectsFromArray:TableAreaId1];
-        [finalAreaId addObjectsFromArray:TableAreaId2];
-        [finalAreaId addObjectsFromArray:TableAreaId3];
+//        NSMutableArray *finalAreaId = [NSMutableArray array];
+//        [finalAreaId addObjectsFromArray:TableAreaId1];
+//        [finalAreaId addObjectsFromArray:TableAreaId2];
+//        [finalAreaId addObjectsFromArray:TableAreaId3];
         
-        NSString *areaIds = [finalAreaId componentsJoinedByString:@","];
+        NSString *areaIds;
+        if (TableAreaId3.count > 0) {
+        
+            areaIds = [TableAreaId3 componentsJoinedByString:@","];
+            
+        }else if (TableAreaId2.count > 0) {
+        
+            areaIds = [TableAreaId2 componentsJoinedByString:@","];
+        }else {
+        
+            areaIds = [TableAreaId1 componentsJoinedByString:@","];
+        }
+        
         self.storesParams.areaIds = areaIds;
         
-        NSLog(@"%@",finalAreaId);
         NSLog(@"%@",areaIds);
         
         [storeTable.mj_header beginRefreshing];

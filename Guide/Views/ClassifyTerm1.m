@@ -106,28 +106,18 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
     
     if (tableView == tableV1) {
-        
-        if (dataArr1.count > 0) {
             
-            return dataArr1.count+1;
-        }
+        return dataArr1.count+1;
         
     }else if (tableView == tableV2) {
-    
-        if (dataArr2.count > 0) {
             
-            return dataArr2.count+1;
-        }
+        return dataArr2.count+1;
         
     }else {
-        
-        if (dataArr3.count > 0) {
             
-            return dataArr3.count+1;
-        }
+        return dataArr3.count+1;
     }
     return 0;
 }
@@ -156,6 +146,7 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"Term1Cell" owner:self options:nil] lastObject];
     }
     
+    cell.logoBtn.hidden = YES;
     if (tableView == tableV1) {
         
         if (indexPath.row == 0) {
@@ -201,7 +192,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
         Term1Cell *cell = (Term1Cell *)[tableView cellForRowAtIndexPath:indexPath];
-        cell.logoBtn.selected = YES;
         cell.meumNameLabel.textColor = MainColor;
         //将点击的cell移动到中间位置
         CGFloat offset = cell.center.y - tableView.height/2;
@@ -243,7 +233,6 @@
                 
                 NSIndexPath *moreIndex = [NSIndexPath indexPathForRow:i+1 inSection:0];
                 Term1Cell *moreCell = [tableView cellForRowAtIndexPath:moreIndex];
-                moreCell.logoBtn.selected = YES;
                 moreCell.meumNameLabel.textColor = MainColor;
                 UIView *cellBackView = [[UIView alloc] initWithFrame:cell.frame];
                 cellBackView.backgroundColor = RGB(216, 216, 216);
@@ -274,7 +263,6 @@
                 
                 NSIndexPath *moreIndex = [NSIndexPath indexPathForRow:i+1 inSection:0];
                 Term1Cell *moreCell = [tableView cellForRowAtIndexPath:moreIndex];
-                moreCell.logoBtn.selected = YES;
                 moreCell.meumNameLabel.textColor = MainColor;
             }
             
@@ -295,7 +283,6 @@
                 
                 NSIndexPath *moreIndex = [NSIndexPath indexPathForRow:i+1 inSection:0];
                 Term1Cell *moreCell = [tableView cellForRowAtIndexPath:moreIndex];
-                moreCell.logoBtn.selected = YES;
                 moreCell.meumNameLabel.textColor = MainColor;
             }
             
@@ -304,7 +291,7 @@
         }
     }
     
-    NSLog(@"categoryId = %@",categoryId);;
+//    NSLog(@"categoryId = %@",categoryId);;
 }
 
 - (void)delayBlock {
@@ -316,7 +303,6 @@
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     Term1Cell *cell = (Term1Cell *)[tableView cellForRowAtIndexPath:indexPath];
-    cell.logoBtn.selected = NO;
     cell.meumNameLabel.textColor = [UIColor blackColor];
 }
 

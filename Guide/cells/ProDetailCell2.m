@@ -4,6 +4,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.webView.delegate = self;
     
 //    self.viewWidth.constant = SCREEN_WIDTH*3;
     
@@ -15,25 +16,29 @@
     // Configure the view for the selected state
 }
 
--(void)setScrollTag:(NSInteger)scrollTag {
+-(void)setHtmlUrl:(NSURL *)htmlUrl {
 
-//    _scrollTag = scrollTag;
-//    switch (scrollTag) {
-//        case 0:{
-//           self.scrollView.contentOffset = CGPointMake(0, 0);
-//        }
-//            break;
-//        case 1:{
-//            self.scrollView.contentOffset = CGPointMake(SCREEN_WIDTH, 0);
-//        }
-//            break;
-//        case 2:{
-//            self.scrollView.contentOffset = CGPointMake(SCREEN_WIDTH*2, 0);
-//        }
-//            break;
-//        default:
-//            break;
-//    }
+    _htmlUrl = htmlUrl;
+    
+    [self.webView loadRequest:[NSURLRequest requestWithURL:htmlUrl]];
+}
+
+#pragma mark UIWe=bViewDelegate
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    
+    NSString *height_str = [webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight"];
+    float webViewH = [height_str floatValue];
+    NSLog(@"height_str = %lf",webViewH);
+    
+    if (self.isRefreshWebView) {   
+        self.block(webViewH);
+    }
+    
+}
+
+- (void)countWebViewHeight:(countWebViewHBlock)block {
+
+    _block = block;
 }
 
 

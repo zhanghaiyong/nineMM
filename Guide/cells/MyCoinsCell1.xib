@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="100" id="sS1-fJ-w33" customClass="MyCoinsCell1">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sS1-fJ-w33" id="FI9-gN-r4S">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="组-23" translatesAutoresizingMaskIntoConstraints="NO" id="vRq-RO-3Ae">
+                        <rect key="frame" x="10" y="16" width="68" height="68"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="68" id="aCl-LK-uCi"/>
+                            <constraint firstAttribute="height" constant="68" id="dqB-UI-bPu"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="34"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="1"/>
+                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
+                                <color key="value" red="0.1960784314" green="0.60392156860000001" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上海玖酷有限公司" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xcn-tn-p6w">
+                        <rect key="frame" x="88" y="30" width="222" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ID:193579987" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wRY-9i-tMf">
+                        <rect key="frame" x="88" y="48" width="86" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="xcn-tn-p6w" firstAttribute="leading" secondItem="vRq-RO-3Ae" secondAttribute="trailing" constant="10" id="2ae-lg-nUt"/>
+                    <constraint firstItem="xcn-tn-p6w" firstAttribute="top" secondItem="FI9-gN-r4S" secondAttribute="top" constant="30" id="9L3-Og-ENE"/>
+                    <constraint firstAttribute="trailing" secondItem="xcn-tn-p6w" secondAttribute="trailing" constant="10" id="TZW-0B-Wsw"/>
+                    <constraint firstItem="vRq-RO-3Ae" firstAttribute="centerY" secondItem="FI9-gN-r4S" secondAttribute="centerY" id="UmH-fX-FXl"/>
+                    <constraint firstItem="xcn-tn-p6w" firstAttribute="centerY" secondItem="vRq-RO-3Ae" secondAttribute="centerY" id="WaC-P1-UUD"/>
+                    <constraint firstItem="vRq-RO-3Ae" firstAttribute="leading" secondItem="FI9-gN-r4S" secondAttribute="leading" constant="10" id="iu0-xQ-ZgR"/>
+                    <constraint firstItem="xcn-tn-p6w" firstAttribute="top" secondItem="FI9-gN-r4S" secondAttribute="top" constant="20" id="m9j-4e-VEl"/>
+                    <constraint firstItem="wRY-9i-tMf" firstAttribute="leading" secondItem="xcn-tn-p6w" secondAttribute="leading" id="pIJ-eS-ZgQ"/>
+                    <constraint firstItem="wRY-9i-tMf" firstAttribute="top" secondItem="xcn-tn-p6w" secondAttribute="bottom" id="pQ7-rG-4Jw"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="WaC-P1-UUD"/>
+                        <exclude reference="m9j-4e-VEl"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="组-23" width="65" height="65"/>
+    </resources>
+</document>

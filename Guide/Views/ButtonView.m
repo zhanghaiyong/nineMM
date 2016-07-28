@@ -32,15 +32,22 @@
     return self;
 }
 
+- (void)setImageSize:(CGSize)imageSize {
+
+    _imageSize = imageSize;
+    imageView.frame = CGRectMake(self.width/2-imageSize.width/2, 10, imageSize.width, imageSize.height);
+    label.frame = CGRectMake(0, imageView.bottom, self.width, 20);
+}
+
 - (void)loadSubViews {
 
     
-    imageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.width/2-20, 5, 38, 38)];
+    imageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.width/2-19, 10, 38, 38)];
     imageView.contentMode = UIViewContentModeCenter;
     [imageView setContentMode:UIViewContentModeScaleToFill];
     [self addSubview:imageView];
     
-    label = [[UILabel alloc]initWithFrame:CGRectMake(0, imageView.bottom-3, self.width, 20)];
+    label = [[UILabel alloc]initWithFrame:CGRectMake(0, imageView.bottom, self.width, 20)];
     label.textColor = lever1Color;
     label.text = self.labelTitle;
     label.textAlignment = NSTextAlignmentCenter;
@@ -60,8 +67,8 @@
 
     [super layoutSubviews];
 
-
-//    
+    imageView.image = [UIImage imageNamed:_imageName];
+//
 //    self.badgeBtn.frame = CGRectMake(imageView.right-25, imageView.top+10, 20, 20);
 //    self.badgeBtn.layer.cornerRadius = 10;
 //    self.badgeBtn.clipsToBounds = YES;

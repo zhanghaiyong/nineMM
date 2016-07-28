@@ -68,6 +68,7 @@
 - (void)getCoinsDetail {
 
     [[HUDConfig shareHUD]alwaysShow];
+    FxLog(@"params = %@",self.params.mj_keyValues);
     
     [KSMNetworkRequest postRequest:KCoinsDetail params:self.params.mj_keyValues success:^(NSDictionary *dataDic) {
         

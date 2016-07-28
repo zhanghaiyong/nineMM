@@ -30,8 +30,6 @@
         self.lineView.center = CGPointMake(button.center.x, self.lineView.center.y);
     }];
     
-    FxLog(@"%@",NSStringFromCGPoint(self.lineView.center));
-    
     switch (button.tag) {
         case 100:
             break;

@@ -156,7 +156,7 @@
         cell.isSelect.selected = YES;
     }
     cell.titleLabel.text = model.name;
-    cell.numLabel.text = model.code;
+    cell.numLabel.text = [NSString stringWithFormat:@"编码：%@",model.code];
     return cell;
 }
 

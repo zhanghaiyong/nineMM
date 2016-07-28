@@ -1,6 +1,6 @@
 #import "MethodBagViewController.h"
 #import "MethodBagCell.h"
-
+#import "NoChatList.h"
 @interface MethodBagViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableV;
 @property (weak, nonatomic) IBOutlet UIButton *checkoutOrDelete;
@@ -19,8 +19,8 @@
     [super viewDidLoad];
 
     self.title = @"购物车";
-    self.tableV.delegate = self;
-    self.tableV.dataSource = self;
+//    self.tableV.delegate = self;
+//    self.tableV.dataSource = self;
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, 60, 44);
@@ -33,6 +33,13 @@
     [btn addTarget:self action:@selector(edit:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.navigationItem.rightBarButtonItem = item;
+    
+    
+    NoChatList *noChatList = [[[NSBundle mainBundle]loadNibNamed:@"NoChatList" owner:self options:nil] lastObject];
+    noChatList.frame = self.view.frame;
+    noChatList.label1.text = @"";
+    noChatList.label2.text = @"即将上线 敬请期待";
+    [self.view addSubview:noChatList];
 }
 
 #pragma mark UITableViewDelegate&&DataSource

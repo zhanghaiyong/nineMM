@@ -1,24 +1,17 @@
 #import "MyCoinsController.h"
-//#import "TitleView.h"
-#import "balanceCoinModel.h"
+#import "MyCoinsCell1.h"
+#import "MyCoinsCell2.h"
+#import "MyCoinsCell3.h"
+#import "MyCoinsCell4.h"
 #import "CoinsDetailViewCtrl.h"
-@interface MyCoinsController ()
+#import "CoinsRechargeViewController.h"
+@interface MyCoinsController ()<UITableViewDataSource,UITableViewDelegate>
+{
+    NSDictionary *coinModel;
+}
 
-//可用
-@property (weak, nonatomic) IBOutlet UILabel *golden;
-@property (weak, nonatomic) IBOutlet UILabel *black;
-@property (weak, nonatomic) IBOutlet UILabel *red;
-@property (weak, nonatomic) IBOutlet UILabel *blue;
-@property (weak, nonatomic) IBOutlet UILabel *green;
-//过期
-@property (weak, nonatomic) IBOutlet UILabel *expiryLabel;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-//冻结
-@property (weak, nonatomic) IBOutlet UILabel *FreezeGolden;
-@property (weak, nonatomic) IBOutlet UILabel *FreezeBlack;
-@property (weak, nonatomic) IBOutlet UILabel *FreezeRed;
-@property (weak, nonatomic) IBOutlet UILabel *FreezeBlue;
-@property (weak, nonatomic) IBOutlet UILabel *FreezeGreen;
 @end
 
 @implementation MyCoinsController
@@ -27,21 +20,9 @@
     [super viewDidLoad];
     
     self.title = @"我的酒币";
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     
     NSLog(@"我的酒币 = %@",self.persionModel);
-    
-//    //头部
-//    TitleView *titleView = [[TitleView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
-//    titleView.normalColor = lever2Color;
-//    titleView.backgroundColor = [UIColor whiteColor];
-//    titleView.selectedColor = specialRed;
-//    titleView.titleArray = @[@"全部",@"金币",@"绿币",@"黑币",@"红币",@"蓝币"];
-//    
-//    [titleView TitleViewCallBack:^(NSInteger btnTag) {
-//        
-//    }];
-//    
-//    self.tableView.tableHeaderView = titleView;
     //用户信息
     NSIndexPath *index1 = [NSIndexPath indexPathForRow:0 inSection:0];
     UITableViewCell *cell1 = [self.tableView cellForRowAtIndexPath:index1];
@@ -52,32 +33,6 @@
     userName.text = [self.persionModel.memberInfo objectForKey:@"departmentName"];
     UILabel *userType = [cell1.contentView viewWithTag:102];
     userType.text = [self.persionModel.memberInfo objectForKey:@"nick"];
-    
-    //金币
-    for (NSDictionary *coinDic in self.persionModel.coins) {
-        
-        if ([coinDic.allKeys containsObject:@"black"]) {
-            
-            self.black.text = [NSString stringWithFormat:@"%@",[coinDic objectForKey:@"black"]];
-            
-        }else if ([coinDic.allKeys containsObject:@"red"]) {
-            
-            self.red.text = [NSString stringWithFormat:@"%@",[coinDic objectForKey:@"red"]];
-            
-        }else if ([coinDic.allKeys containsObject:@"blue"]) {
-            
-            self.blue.text = [NSString stringWithFormat:@"%@",[coinDic objectForKey:@"blue"]];
-            
-        }else if ([coinDic.allKeys containsObject:@"golden"]) {
-            
-            self.golden.text = [NSString stringWithFormat:@"%@",[coinDic objectForKey:@"golden"]];
-            
-        }else {
-        
-            self.green.text = [NSString stringWithFormat:@"%@",[coinDic objectForKey:@"green"]];
-        }
-    }
-    
     
     [self balanceData];
 
@@ -102,23 +57,25 @@
             
             if (![[dataDic objectForKey:@"retObj"] isEqual:[NSNull null]]) {
                 
-                NSDictionary *retObj = [dataDic objectForKey:@"retObj"];
-                balanceCoinModel *model = [balanceCoinModel mj_objectWithKeyValues:retObj];
-                self.black.text = model.black;
-                self.blue.text = model.blue;
-                self.golden.text = model.golden;
-                self.green.text = model.green;
-                self.red.text = model.red;
+                coinModel = [dataDic objectForKey:@"retObj"];
+
+//                self.black.text = model.black;
+//                self.blue.text = model.blue;
+//                self.golden.text = model.golden;
+//                self.green.text = model.green;
+//                self.red.text = model.red;
                 
-                
-                //过期信息
-                if (![retObj objectForKey:@"expiryInfo"]) {
-                    
-                    NSDictionary *expiryInfo = [retObj objectForKey:@"expiryInfo"];
-                    
-                    self.expiryLabel.hidden = NO;
-                    self.expiryLabel.text = [NSString stringWithFormat:@"%@到%@过期",[expiryInfo objectForKey:@"amount"],[[expiryInfo objectForKey:@"expiryDate"] substringToIndex:10]];
-                }
+                [self.tableView reloadData];
+//                
+//                
+//                //过期信息
+//                if (![retObj objectForKey:@"expiryInfo"]) {
+//                    
+//                    NSDictionary *expiryInfo = [retObj objectForKey:@"expiryInfo"];
+//                    
+//                    self.expiryLabel.hidden = NO;
+//                    self.expiryLabel.text = [NSString stringWithFormat:@"%@到%@过期",[expiryInfo objectForKey:@"amount"],[[expiryInfo objectForKey:@"expiryDate"] substringToIndex:10]];
+//                }
             }
             
         }else {
@@ -136,8 +93,16 @@
 
 
 #pragma mark UITableView Delegate &&DataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+
+    return 4;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 
+    if (section == 0) {
+        return 0;
+    }
     return 10;
 }
 
@@ -146,48 +111,139 @@
     return 0.1;
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+
+    switch (section) {
+        case 0:
+            return 1;
+            break;
+        case 1:
+            return 1;
+            break;
+        case 2:
+            return self.persionModel.coins.count;
+            break;
+        case 3:
+            return 1;
+            break;
+            
+        default:
+            break;
+    }
+    return 0;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    switch (indexPath.section) {
+        case 0:
+            return 100;
+            break;
+        case 1:
+            return 50;
+            break;
+        case 2:
+            return 60;
+            break;
+        case 3:
+            return 50;
+            break;
+        default:
+            break;
+    }
+    return 0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    switch (indexPath.section) {
+        case 0:{
+        
+            static NSString *ideitifier = @"cell1";
+            MyCoinsCell1 *cell = [tableView dequeueReusableCellWithIdentifier:ideitifier];
+            if (!cell) {
+                 cell = [[[NSBundle mainBundle] loadNibNamed:@"MyCoinsCell1" owner:self options:nil] lastObject];
+            }
+            return cell;
+        }
+            break;
+        case 1:{
+            
+            static NSString *ideitifier = @"cell2";
+            MyCoinsCell2 *cell = [tableView dequeueReusableCellWithIdentifier:ideitifier];
+            if (!cell) {
+                cell = [[[NSBundle mainBundle] loadNibNamed:@"MyCoinsCell2" owner:self options:nil] lastObject];
+            }
+            [cell toRechargeVC:^{
+                
+                UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+                CoinsRechargeViewController *coinDetailVC = [mainSB instantiateViewControllerWithIdentifier:@"CoinsRechargeViewController"];
+                [self.navigationController pushViewController:coinDetailVC animated:YES];
+            }];
+            return cell;
+        }
+            break;
+        case 2:{
+            
+            static NSString *ideitifier = @"cell3";
+            MyCoinsCell3 *cell = [tableView dequeueReusableCellWithIdentifier:ideitifier];
+            if (!cell) {
+                cell = [[[NSBundle mainBundle] loadNibNamed:@"MyCoinsCell3" owner:self options:nil] lastObject];
+            }
+            
+            NSDictionary *coins = self.persionModel.coins[indexPath.row];
+            cell.coinImage.image = [UIImage imageNamed:[Uitils toImageName:coins.allKeys[0]]];
+            cell.coinName.text = [Uitils toChinses:coins.allKeys[0]];
+            cell.usableCoin.text = [NSString stringWithFormat:@"%@",coins.allValues[0]];
+            
+            
+            if ([coins.allKeys[0] isEqualToString:@"red"]) {
+                
+                if (((NSDictionary *)[coinModel objectForKey:@"expiryInfo"]).count != 0) {
+                    
+                    cell.expireLabel.hidden = NO;
+                    cell.expireLabel.text = [NSString stringWithFormat:@"%@到%@过期",[[coinModel objectForKey:@"expiryInfo"] objectForKey:@"amount"],[[[coinModel objectForKey:@"expiryInfo"] objectForKey:@"expiryDate"] substringToIndex:10]];
+                }
+            }
+            
+            return cell;
+        }
+            break;
+        case 3:{
+            
+            static NSString *ideitifier = @"cell4";
+            MyCoinsCell4 *cell = [tableView dequeueReusableCellWithIdentifier:ideitifier];
+            if (!cell) {
+                cell = [[[NSBundle mainBundle] loadNibNamed:@"MyCoinsCell4" owner:self options:nil] lastObject];
+            }
+            return cell;
+        }
+            break;
+        default:
+            break;
+    }
+    return nil;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     if (indexPath.section == 2) {
         
-        NSString *coinTypeCode;
-        
-        switch (indexPath.row) {
-            case 0:
-                
-                coinTypeCode = @"golden";
-                
-                break;
-            case 1:
-                
-                coinTypeCode = @"black";
-                
-                break;
-            case 2:
-                
-                coinTypeCode = @"red";
-                
-                break;
-            case 3:
-                
-                coinTypeCode = @"blue";
-                
-                break;
-            case 4:
-                
-                coinTypeCode = @"green";
-                
-                break;
-                
-            default:
-                break;
-        }
-        
+        NSDictionary *coins = self.persionModel.coins[indexPath.row];
+
         UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
         CoinsDetailViewCtrl *coinDetailVC = [mainSB instantiateViewControllerWithIdentifier:@"CoinsDetailViewCtrl"];
-        coinDetailVC.coinTypeCode = coinTypeCode;
+        coinDetailVC.coinTypeCode = coins.allKeys[0];
         [self.navigationController pushViewController:coinDetailVC animated:YES];
         
+    }else if (indexPath.section == 3) {
+    
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        CoinsDetailViewCtrl *coinDetailVC = [mainSB instantiateViewControllerWithIdentifier:@"CoinsDetailViewCtrl"];
+        [self.navigationController pushViewController:coinDetailVC animated:YES];
     }
 }
 

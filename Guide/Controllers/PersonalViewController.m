@@ -31,6 +31,7 @@
         //订单
         ButtonView *orderBV = (ButtonView *)[cell1.contentView viewWithTag:i+100];
         orderBV.delegate = self;
+        orderBV.imageSize = CGSizeMake(25, 25);
         orderBV.labelTitle = titles[i];
         orderBV.imageName  = images[i];
     }
@@ -93,9 +94,12 @@
                 for (int i = 0; i<persionModel.coins.count; i++) {
                     
                     NSDictionary *dic  = persionModel.coins[i];
-                    ButtonView *coinBV = (ButtonView *)[cell2.contentView viewWithTag:i+200];
-                    coinBV.labelTitle = [Uitils toChinses:dic.allKeys[0]];
-                    coinBV.imageName =  [Uitils toImageName:dic.allKeys[0]];
+//                    ButtonView *coinBV = (ButtonView *)[cell2.contentView viewWithTag:i+200];
+//                    coinBV.labelTitle = [Uitils toChinses:dic.allKeys[0]];
+//                    coinBV.imageName =  [Uitils toImageName:dic.allKeys[0]];
+                    ButtonView *coinBV = [[ButtonView alloc]initWithFrame:CGRectMake(i*SCREEN_WIDTH/persionModel.coins.count, 44, SCREEN_WIDTH/persionModel.coins.count, cell2.height) title:[Uitils toChinses:dic.allKeys[0]] image:[Uitils toImageName:dic.allKeys[0]]];
+                    coinBV.imageSize = CGSizeMake(25, 25);
+                    [cell2.contentView addSubview:coinBV];
                 }
                 
                 //头像

@@ -63,6 +63,8 @@
         
         [term1 selectedCategoryId:^(NSString *qryCategoryId) {
             
+            NSLog(@"qryCategoryId = %@",qryCategoryId);
+            
             [term1 removeFromSuperview];
             UIButton *button = [head viewWithTag:1000];
             button.selected = NO;
@@ -384,7 +386,7 @@
     
     if (self.produces.count > 0) {
         
-        MainProduceModel *model = self.produces[indexPath.row];
+        MainProduceModel *model = self.produces[indexPath.section];
         cell.NameLabel.text     = model.name;
         if ([model.isPackagePrice integerValue] == 1) {
             

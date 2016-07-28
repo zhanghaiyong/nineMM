@@ -55,9 +55,9 @@
  */
 @property (weak, nonatomic) IBOutlet UILabel *orderMan;
 /**
- *  资源数量
+ *  购买单位
  */
-@property (weak, nonatomic) IBOutlet UILabel *sourceCount;
+@property (weak, nonatomic) IBOutlet UILabel *payUnit;
 /**
  *  订单总额
  */
@@ -71,6 +71,7 @@
     [super viewDidLoad];
 
     self.title = @"订单详情";
+    [self setNavigationLeft:@"返回"];
     
     [self orderDetail];
 }
@@ -113,11 +114,12 @@
                 self.totalPrice.text = orderDetail.totalPrice;
                 self.orderCode.text = orderDetail.orderSn;
                 self.orderStatus.text = orderDetail.orderStepName;
+                self.orderStatus.textColor = HEX_RGB((unsigned long)orderDetail.orderStepTextColor);
                 self.orderTime.text = orderDetail.orderCreateDate;
                 self.pointGoods.text = orderDetail.productName;
                 self.coinType.text = orderDetail.paymentMethodName;
                 self.orderMan.text = [orderDetail.address objectForKey:@"consignee"];
-//                self.sourceCount.text = orderDetail.
+//                self.payUnit.text = orderDetail.
                 self.orderTotalWineCoin.text = orderDetail.totalPrice;
                 
                 
@@ -145,7 +147,17 @@
     }];
 }
 
-
+- (void)doBack:(UIButton *)sender
+{
+    if (self.surePayProduce) {
+        
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }else {
+    
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
+}
 
 
 @end

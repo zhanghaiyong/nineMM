@@ -252,23 +252,23 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    if (_showDic == nil) {
-        
-        _showDic = [[NSMutableDictionary alloc]init];
-    }
-    
-    NSString *key = [NSString stringWithFormat:@"%ld",indexPath.section];
-    
-    if (![_showDic objectForKey:key]) {
-        [_showDic setObject:@"1" forKey:key];
-        
-    }else {
-        
-        [_showDic removeObjectForKey:key];
-    }
-    [self.tableView beginUpdates];
-    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    [self.tableView endUpdates];
+//    if (_showDic == nil) {
+//        
+//        _showDic = [[NSMutableDictionary alloc]init];
+//    }
+//    
+//    NSString *key = [NSString stringWithFormat:@"%ld",indexPath.section];
+//    
+//    if (![_showDic objectForKey:key]) {
+//        [_showDic setObject:@"1" forKey:key];
+//        
+//    }else {
+//        
+//        [_showDic removeObjectForKey:key];
+//    }
+//    [self.tableView beginUpdates];
+//    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//    [self.tableView endUpdates];
     
 
 //    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationFade];
