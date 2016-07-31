@@ -2442,7 +2442,7 @@
                                                         <constraint firstAttribute="height" constant="1" id="f54-Gd-JYG"/>
                                                     </constraints>
                                                 </view>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="图层-144" translatesAutoresizingMaskIntoConstraints="NO" id="Gkn-Aa-QO2">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Gkn-Aa-QO2">
                                                     <rect key="frame" x="140" y="51" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="WNn-MF-xaG"/>
@@ -2601,6 +2601,7 @@
                     </tableView>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="coinImage" destination="Gkn-Aa-QO2" id="dwJ-nx-1Kt"/>
                         <outlet property="coinType" destination="CTI-Sz-QsQ" id="3i2-3m-xgg"/>
                         <outlet property="goodsName" destination="Xto-8Z-IbV" id="Kqu-hO-FNC"/>
                         <outlet property="image" destination="3C7-O1-bqb" id="2iL-cX-CPJ"/>
@@ -3229,7 +3230,6 @@
         <image name="下载(5)" width="16" height="16"/>
         <image name="下载(6)" width="16" height="16"/>
         <image name="下载(7)" width="16" height="16"/>
-        <image name="图层-144" width="27" height="27"/>
         <image name="图层-160" width="34" height="35"/>
         <image name="图层-162" width="34" height="34"/>
         <image name="图层-163" width="34" height="34"/>

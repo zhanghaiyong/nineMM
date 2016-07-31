@@ -16,6 +16,8 @@ typedef void(^dealOrder)(void);
 @property (weak, nonatomic) IBOutlet UILabel *oriPrice;
 @property (weak, nonatomic) IBOutlet UIButton *appealButton;
 @property (weak, nonatomic) IBOutlet UIButton *lookDetailButton;
+@property (weak, nonatomic) IBOutlet UILabel *coinType1;
+@property (weak, nonatomic) IBOutlet UILabel *coinType2;
 
 @property (nonatomic,copy)toOrderDetail toOrderDetailBlock;
 @property (nonatomic,copy)dealOrder dealOrderBlock;

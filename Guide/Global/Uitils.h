@@ -7,6 +7,8 @@
 
 + (void)reach;
 
++ (UIColor *)colorWithHex:(unsigned long)col;
+
 //照片压缩
 +(UIImage*)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize;
 

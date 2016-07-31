@@ -221,13 +221,15 @@
     
     cell.orderIDLabel.text = model.orderSn;
     [cell.orderStatusButton setTitle:[NSString stringWithFormat:@"  %@  ",model.orderStepName] forState:UIControlStateNormal];
-    [cell.orderStatusButton setTitleColor:HEX_RGB((unsigned long)model.orderStepTextColor) forState:UIControlStateNormal];
-    cell.orderStatusButton.layer.borderColor = HEX_RGB((unsigned long)model.orderStepTextColor).CGColor;
+    [cell.orderStatusButton setTitleColor:[Uitils colorWithHex:(unsigned long)model.orderStepTextColor] forState:UIControlStateNormal];
+    cell.orderStatusButton.layer.borderColor = [Uitils colorWithHex:(unsigned long)model.orderStepTextColor].CGColor;
     cell.produceName.text = model.goodsName;
     cell.nowPriceLabel.text = model.price;
+//    cell.coinType1.text = ;
+//    cell.coinType2.text = ;
     cell.collectLabel.text = [NSString stringWithFormat:@"x%@",model.quantity];
     cell.nowPriceRed.text = model.price;
-    cell.oriPrice.text = model.totalPrice;
+//    cell.oriPrice.text = model.totalPrice;
     
     [cell tapDealOrder:^{
         

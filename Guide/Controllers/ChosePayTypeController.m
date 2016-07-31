@@ -90,6 +90,7 @@
         
         UIStoryboard *SB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
         PayAlertViewController *paySuccessALert = [SB instantiateViewControllerWithIdentifier:@"PayAlertViewController"];
+        paySuccessALert.orderId = [[dataDic objectForKey:@"retObj"] objectForKey:@"orderId"];
         [self.navigationController pushViewController:paySuccessALert animated:YES];
         
     } failure:^(NSError *error) {

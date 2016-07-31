@@ -47,6 +47,10 @@
  */
 @property (weak, nonatomic) IBOutlet UILabel *pointGoods;
 /**
+ *  酒币图片
+ */
+@property (weak, nonatomic) IBOutlet UIImageView *coinImage;
+/**
  *  支付币种
  */
 @property (weak, nonatomic) IBOutlet UILabel *coinType;
@@ -117,10 +121,13 @@
                 self.totalPrice.text = orderDetail.totalPrice;
                 self.orderCode.text = orderDetail.orderSn;
                 self.orderStatus.text = orderDetail.orderStepName;
-                self.orderStatus.textColor = HEX_RGB((unsigned long)orderDetail.orderStepTextColor);
+                self.orderStatus.textColor = [Uitils colorWithHex:(unsigned long)orderDetail.orderStepTextColor];
                 self.orderTime.text = orderDetail.orderCreateDate;
                 
                 self.pointGoods.text = orderDetail.productName;
+                
+                NSString *coinType = [orderDetail.paymentMethodCode stringByReplacingOccurrencesOfString:@"Coin" withString:@""];
+                self.coinImage.image = [UIImage imageNamed:[Uitils toImageName:coinType]];
                 self.coinType.text = orderDetail.paymentMethodName;
                 self.orderMan.text = [orderDetail.address objectForKey:@"consignee"];
 //                self.payUnit.text = orderDetail.

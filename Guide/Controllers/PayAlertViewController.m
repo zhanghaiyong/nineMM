@@ -20,8 +20,10 @@
     
     self.title = @"线下支付";
     
-    NSURL *url = [[NSURL alloc]initWithString:@"http://9mama.top:8080/offlinePaymentInfo/420.page"];
+    NSString *strUrl = [NSString stringWithFormat:@"http://9mama.top:8080/offlinePaymentInfo/%@.page",self.orderId];
+    NSURL *url = [[NSURL alloc]initWithString:strUrl];
     self.webView.scrollView.showsVerticalScrollIndicator = NO;
+    self.webView.scrollView.bounces = NO;
     self.webView.scrollView.showsHorizontalScrollIndicator = NO;
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
     

@@ -122,12 +122,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    return 100;
+    return 70;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 
-    return 30;
+    return 40;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
@@ -139,7 +139,7 @@
     
     SourceListHead *sourceListHead = [[[NSBundle mainBundle]loadNibNamed:@"SourceListHead" owner:self options:nil]lastObject];
     sourceListHead.backgroundColor = backgroudColor;
-    sourceListHead.frame = CGRectMake(0, 0, self.tableView.width, 30);
+    sourceListHead.frame = CGRectMake(0, 0, self.tableView.width, 40);
     
 //    sourceListHead.countLabel.text = [NSString stringWithFormat:@"共%ld件",coinsDetailMsgArr.count];
     
@@ -183,9 +183,8 @@
     
         CoinsDetailModel *model = coinsDetailMsgArr[indexPath.row];
         cell.dataLabel.text = model.createDate;
-//        cell.summary.text = model.summary;
         cell.logIdLabel.text = [NSString stringWithFormat:@"%@：%@",model.summary,model.logId];
-        cell.coinCountLabel.textColor = HEX_RGB((unsigned long)model.textColor);
+        cell.coinCountLabel.textColor = [Uitils colorWithHex:(unsigned long)model.textColor];
     if ([model.amount integerValue] > 0) {
         
         cell.coinCountLabel.text = [NSString stringWithFormat:@"+%@%@",model.amount,model.coinTypeName];
