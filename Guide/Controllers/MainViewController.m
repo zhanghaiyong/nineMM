@@ -447,6 +447,13 @@
 #pragma mark ButtonViewDelegate
 - (void)buttonViewTap:(NSInteger)aFlag {
 
+    
+    if (aFlag == 102) {
+        
+        [[HUDConfig shareHUD]Tips:@"即将上线，敬请期待" delay:DELAY];
+        return;
+    }
+    
     ShortcutsModel *model = self.mainStaticModel.shortcuts[aFlag-101];
     NSArray *array = [model.linkAction componentsSeparatedByString:@":"];
     
@@ -528,7 +535,7 @@
 
 #pragma mark Main2CelleDelegate
 - (void)main2CellTapImage:(NSInteger)imageTag {
-
+    
     GroupButtonsModel *model = self.mainStaticModel.groupButtons[imageTag-200];
     NSArray *array = [model.linkAction componentsSeparatedByString:@":"];
     
