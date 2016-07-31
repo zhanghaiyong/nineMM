@@ -22,7 +22,7 @@
     CoinRechargeCell1  *coinRechargeCell1;
     CoinRechargeCell2  *coinRechargeCell2;
     CoinRechargeCell3  *coinRechargeCell3;
-    CGFloat            cell2Height;
+//    CGFloat            cell2Height;
 }
 
 @property (nonatomic,strong)CoinRechargePackageParams *packageParams;
@@ -131,10 +131,8 @@
             if (![[dataDic objectForKey:@"retObj"] isEqual:[NSNull null]]) {
                 
                 calculateCoinModel = [CalculateCoinModel mj_objectWithKeyValues:[dataDic objectForKey:@"retObj"]];
-                
-                cell2Height = SCREEN_HEIGHT-310-50-64-10;
                 NSIndexSet *section1=[[NSIndexSet alloc]initWithIndexesInRange:NSMakeRange(1, 2)];
-                [self.bigTableView reloadSections:section1 withRowAnimation:UITableViewRowAnimationTop];
+                [self.bigTableView reloadSections:section1 withRowAnimation:UITableViewRowAnimationNone];
                 
                 coinRechargeCell3.sureRechargeBtn.alpha = 1;
                 coinRechargeCell3.sureRechargeBtn.userInteractionEnabled = YES;
@@ -145,15 +143,6 @@
             
             coinRechargeCell1.priceLabel.text = @"";
             [[HUDConfig shareHUD] dismiss];
-//            coinRechargeCell1.tipsLabel.text = [dataDic objectForKey:@"retMsg"];
-//                [UIView animateWithDuration:1.5 animations:^{
-//                    
-//                    coinRechargeCell1.tipsLabel.alpha = 1;
-//                    
-//                } completion:^(BOOL finished) {
-//                    
-//                    coinRechargeCell1.tipsLabel.alpha = 0;
-//                }];
         }
         
     } failure:^(NSError *error) {
@@ -190,10 +179,10 @@
         
         switch (indexPath.section) {
             case 0:
-                return 310;
+                return 330;
                 break;
             case 1:
-                return cell2Height;
+                return SCREEN_HEIGHT-330-50-64-10;
                 break;
             case 2:
                 return 50;
@@ -240,6 +229,19 @@
                 [coinRechargeCell1 getPackageList:^(NSString *coinType) {
                     
                     [self getPackageList:coinType];
+                    //酒币切换的时候，清空原油的数据
+                    //币种
+                    coinRechargeCell2.coinType.text = @"";
+                    //酒币数量
+                    coinRechargeCell2.coins.text = @"";
+                    //金额
+                    coinRechargeCell2.rmbLabel.text = @"";
+                    coinRechargeCell2.validDate.text = @"";
+                    coinRechargeCell1.priceLabel.text = @"";
+                    
+                    coinRechargeCell3.sureRechargeBtn.alpha = 0.5;
+                    coinRechargeCell3.sureRechargeBtn.userInteractionEnabled = NO;
+                    [coinRechargeCell1.priceLabel resignFirstResponder];
                     
                 }];
                 
@@ -254,10 +256,6 @@
                         PackageListModel *model = packageArr[packageIndex];
                         self.calculateCoinParams.packageId = [model.id intValue];
                     }
-//                    else {
-//                    
-//                        [[HUDConfig shareHUD]Tips:@"请选择充值套餐" delay:DELAY];
-//                    }
                     
                     [self calculateCoinPackageRecharge];
                     
@@ -279,13 +277,12 @@
                     
                     if ([calculateCoinModel.expiryDate integerValue] > 0) {
                         
-                        coinRechargeCell2.validDate.text = calculateCoinModel.expiryDate;
+                        coinRechargeCell2.validDate.text = [NSString stringWithFormat:@"%@天",calculateCoinModel.expiryDate];
                     }else {
                     
                         coinRechargeCell2.validDate.text = @"永久";
                     }
                 }
-                
                 return coinRechargeCell2;
             }
                 break;
@@ -297,12 +294,6 @@
                 if (calculateCoinModel) {
                     //金额
                     coinRechargeCell3.moneyLabel.text = [NSString stringWithFormat:@"%@元",calculateCoinModel.rmb];
-                }
-                
-                if (cell2Height > 0) {
-                    
-                    coinRechargeCell3.sureRechargeBtn.alpha = 1;
-                    coinRechargeCell3.sureRechargeBtn.userInteractionEnabled = YES;
                 }
                 
                 [coinRechargeCell3 userBlockToVC:^{
@@ -342,9 +333,6 @@
        cell.label1.text = [NSString stringWithFormat:@"有效期:%@",model.expiryDate];
         
     }
-//    else {
-//        cell.label1.text = [NSString stringWithFormat:@"比例:%@,充值金额范围:%@~%@",model.ratioRmb,model.rangeRmbMin,model.rangeRmbMax];
-//    }
     cell.label2.text = [NSString stringWithFormat:@"(%@)",model.name];
     
     return cell;
@@ -360,6 +348,19 @@
         
         PackageListModel *model = packageArr[indexPath.row];
         coinRechargeCell1.tipsLabel.text = [NSString stringWithFormat:@"充值范围:%@~%@",model.rangeRmbMin,model.rangeRmbMax];
+        
+        //切换套餐的时候清空原有的数据
+        //币种
+        coinRechargeCell2.coinType.text = @"";
+        //酒币数量
+        coinRechargeCell2.coins.text = @"";
+        //金额
+        coinRechargeCell2.rmbLabel.text = @"";
+        coinRechargeCell2.validDate.text = @"";
+        coinRechargeCell1.priceLabel.text = @"";
+        coinRechargeCell3.sureRechargeBtn.alpha = 0.5;
+        coinRechargeCell3.sureRechargeBtn.userInteractionEnabled = NO;
+        [coinRechargeCell1.priceLabel resignFirstResponder];
         
         //记录选中的套餐
         packageIndex = indexPath.row;

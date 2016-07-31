@@ -183,7 +183,7 @@
     
         CoinsDetailModel *model = coinsDetailMsgArr[indexPath.row];
         cell.dataLabel.text = model.createDate;
-        cell.logIdLabel.text = [NSString stringWithFormat:@"%@：%@",model.summary,model.logId];
+        cell.logIdLabel.text = model.summary;
         cell.coinCountLabel.textColor = [Uitils colorWithHex:(unsigned long)model.textColor];
     if ([model.amount integerValue] > 0) {
         
