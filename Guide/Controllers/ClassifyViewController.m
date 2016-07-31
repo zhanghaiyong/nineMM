@@ -9,13 +9,14 @@
 #import "ClassifyTerm3ViewController.h"
 #import "ProduceDetailViewController.h"
 #import "MainProduceListParams.h"
-@interface ClassifyViewController ()<UITableViewDataSource,UITableViewDelegate,ClassifyDetailHeadDelegate,ClassifyTerm2Delegate,Term3Delegate>
+@interface ClassifyViewController ()<UITableViewDataSource,UITableViewDelegate,ClassifyDetailHeadDelegate,ClassifyTerm2Delegate,Term3Delegate,UITextFieldDelegate>
 {
     //分类列表
     UITableView *typeTableView;
     //列表内容
     NSArray *typeArray;
     ClassifyDetailHead *head;
+    UITextField *searchBar;
     
 
 }
@@ -108,12 +109,16 @@
     
     [self setNavigationRightTitle:@"清除选择"];
     //搜索框
-    UITextField *searchBar = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-120, 30)];
+    searchBar = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-120, 30)];
     searchBar.layer.cornerRadius = 15;
+    searchBar.returnKeyType = UIReturnKeySearch;
+    searchBar.clearButtonMode = UITextFieldViewModeWhileEditing;
+    searchBar.delegate = self;
     searchBar.placeholder = @"输入商品名字，编号";
     searchBar.font = lever2Font;
     searchBar.layer.borderColor = lineColor.CGColor;
     searchBar.layer.borderWidth = 0.8;
+    
     self.navigationItem.titleView = searchBar;
     
     searchBar.leftViewMode = UITextFieldViewModeAlways;
@@ -205,9 +210,26 @@
         
     } failure:^(NSError *error) {
         
-        [[HUDConfig shareHUD]Tips :error.localizedDescription delay:DELAY];
         [typeTableView.mj_footer endRefreshing];
     }];
+}
+
+#pragma mark UITextFieldDelegate
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    [searchBar resignFirstResponder];
+    if (self.produceParams.qryKeyword.length == 0) {
+        
+        self.produceParams.qryKeyword = textField.text;
+        [typeTableView.mj_header beginRefreshing];
+    }
+    
+    return YES;
+}
+
+- (BOOL)textFieldShouldClear:(UITextField *)textField {
+
+    return YES;
 }
 
 

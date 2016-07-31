@@ -7,14 +7,15 @@
 //
 
 #import "FeatureViewController.h"
-#import "FeatureParams.h"
+#import "MainProduceListParams.h"
 #import "Main4Cell.h"
 #import "MainProduceModel.h"
 #import "ProduceDetailViewController.h"
+#import "NoChatList.h"
 @interface FeatureViewController ()
 
 
-@property (nonatomic,strong)FeatureParams *params;
+@property (nonatomic,strong)MainProduceListParams *params;
 @property (nonatomic,strong)NSMutableArray *features;
 @end
 
@@ -30,13 +31,13 @@
 }
 
 
--(FeatureParams *)params {
+-(MainProduceListParams *)params {
     
     if (_params == nil) {
         
-        FeatureParams *params = [[FeatureParams alloc]init];
+        MainProduceListParams *params = [[MainProduceListParams alloc]init];
         params.rows = 20;
-        params.feature = self.feature;
+        params.qryProductFeature = self.feature;
         _params = params;
     }
     return _params;
@@ -83,6 +84,16 @@
                 
                 NSArray *rows = [[dataDic objectForKey:@"retObj"] objectForKey:@"rows"];
                 
+                if (rows.count == 0) {
+                    
+                    NoChatList *noChatList = [[[NSBundle mainBundle]loadNibNamed:@"NoChatList" owner:self options:nil] lastObject];
+                    noChatList.frame = self.view.frame;
+                    noChatList.label1.text = @"";
+                    noChatList.label2.text = @"暂无数据，可查看其它功能";
+                    [self.view addSubview:noChatList];
+                    return;
+                }
+                
                 //等于1，说明是刷新
                 if (self.params.page == 1) {
                     
@@ -114,8 +125,12 @@
         
     } failure:^(NSError *error) {
         
-        [[HUDConfig shareHUD]Tips :error.localizedDescription delay:DELAY];
         [self.tableView.mj_footer endRefreshing];
+        NoChatList *noChatList = [[[NSBundle mainBundle]loadNibNamed:@"NoChatList" owner:self options:nil] lastObject];
+        noChatList.frame = self.view.frame;
+        noChatList.label1.text = @"";
+        noChatList.label2.text = @"检查网络";
+        [self.view addSubview:noChatList];
     }];
 }
 

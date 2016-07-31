@@ -68,7 +68,7 @@
         UIImageView *imageView = [[UIImageView alloc] init];
         imageView.image = [UIImage imageNamed:imageName];
         imageView.frame = CGRectMake((idx+1) * scrollViewSize.width, 0, scrollViewSize.width, scrollViewSize.height);
-        [Uitils cacheImagwWithSize:CGSizeMake(scrollViewSize.width*2, scrollViewSize.height*2) imageID:imageArray[idx] imageV:imageView placeholder:@""];
+        [Uitils cacheImagwWithSize:CGSizeMake(scrollViewSize.width*2, scrollViewSize.height*2) imageID:imageArray[idx] imageV:imageView placeholder:@"组-23"];
         imageView.userInteractionEnabled = YES;
         [self.ScrollView addSubview:imageView];
         imageView.tag = idx+1000;
@@ -79,7 +79,7 @@
     // 将最后一张图片弄到第一张的位置
     UIImageView *imageView = [[UIImageView alloc] init];
     imageView.frame = CGRectMake(0, 0, scrollViewSize.width, scrollViewSize.height);
-    [Uitils cacheImagwWithSize:CGSizeMake(scrollViewSize.width*2, scrollViewSize.height*2) imageID:imageArray[[imageArray count] - 1] imageV:imageView placeholder:@""];
+    [Uitils cacheImagwWithSize:CGSizeMake(scrollViewSize.width*2, scrollViewSize.height*2) imageID:imageArray[[imageArray count] - 1] imageV:imageView placeholder:@"组-23"];
     imageView.userInteractionEnabled = YES;
     [self.ScrollView addSubview:imageView];
     imageView.tag = [imageArray count] - 1+1000;
@@ -89,7 +89,7 @@
     // 将第一张图片放到最后位置，造成视觉上的循环
     UIImageView *lastImageView = [[UIImageView alloc] init];
     lastImageView.image = [UIImage imageNamed:imageArray[0]];
-    [Uitils cacheImagwWithSize:CGSizeMake(scrollViewSize.width*2, scrollViewSize.height*2) imageID:imageArray[0] imageV:lastImageView placeholder:@""];
+    [Uitils cacheImagwWithSize:CGSizeMake(scrollViewSize.width*2, scrollViewSize.height*2) imageID:imageArray[0] imageV:lastImageView placeholder:@"组-23"];
     lastImageView.frame = CGRectMake(scrollViewSize.width * ([imageArray count] + 1), 0, scrollViewSize.width, scrollViewSize.height);
     lastImageView.userInteractionEnabled = YES;
     [self.ScrollView addSubview:lastImageView];

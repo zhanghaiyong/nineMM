@@ -34,7 +34,6 @@
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.navigationItem.rightBarButtonItem = item;
     
-    
     NoChatList *noChatList = [[[NSBundle mainBundle]loadNibNamed:@"NoChatList" owner:self options:nil] lastObject];
     noChatList.frame = self.view.frame;
     noChatList.label1.text = @"";

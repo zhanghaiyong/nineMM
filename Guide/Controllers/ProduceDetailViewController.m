@@ -137,7 +137,6 @@
         
     } failure:^(NSError *error) {
         
-        [[HUDConfig shareHUD]ErrorHUD :error.localizedDescription delay:DELAY];
     }];
 }
 
@@ -170,7 +169,7 @@
     
     if (indexPath.section == 0) {
         
-        return 310;
+        return 300;
         
     }else if (indexPath.section == 1) {
         
@@ -206,7 +205,7 @@
         
     }else {
 
-        return webViewHeight-16;
+        return webViewHeight;
     }
     return 0;
 }
@@ -249,7 +248,7 @@
             tagLabel.text = [NSString stringWithFormat:@" %@ ",produceDetail.tags[i]];
         }
         cell.otherInfo.text = produceDetail.otherInfo;
-        cell.termLabel.text = [NSString stringWithFormat:@"库存 %@",produceDetail.stock];
+        cell.termLabel.text = [NSString stringWithFormat:@"库存：%@",produceDetail.stock];
         cell.explainLabel.text = produceDetail.terms;
         
         return cell;
@@ -269,7 +268,6 @@
         }else {
         
             ProDetailCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"ProDetailCell" owner:self options:nil] lastObject];
-            
             //资源描述 档期规格 样刊案例
             NSArray *tabs = produceDetail.tabs;
             if (tabs.count > 0) {
@@ -293,15 +291,8 @@
             return cell;
         }
     }else {
-
-        static NSString *identifier = @"cell3";
-        cell3 = [tableView dequeueReusableCellWithIdentifier:identifier];
         
-        if (!cell3) {
-            
-            cell3 = [[[NSBundle mainBundle] loadNibNamed:@"ProDetailCell2" owner:self options:nil] lastObject];
-        }
-        
+        cell3 = [[[NSBundle mainBundle] loadNibNamed:@"ProDetailCell2" owner:self options:nil] lastObject];
         NSArray *tabs = produceDetail.tabs;
         NSDictionary *dic = tabs[typeFlag];
         NSString *urlStr = [NSString stringWithFormat:@"%@%@/%@.page",HTMLURL,self.produceModel.id,[dic objectForKey:@"tab"]];
@@ -447,7 +438,6 @@
         
     } failure:^(NSError *error) {
         
-        [[HUDConfig shareHUD]ErrorHUD :error.localizedDescription delay:DELAY];
     }];
 
 }

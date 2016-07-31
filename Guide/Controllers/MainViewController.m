@@ -27,7 +27,7 @@
 #import "FeatureViewController.h"
 #import "GoodsViewController.h"
 
-@interface MainViewController ()<UITableViewDelegate,UITableViewDataSource,ButtonViewDeleage,ZHYBannerViewDelegte,Main2CellDelegate,Main3CellDelegate>
+@interface MainViewController ()<UITableViewDelegate,UITableViewDataSource,ButtonViewDeleage,ZHYBannerViewDelegte,Main2CellDelegate,Main3CellDelegate,UITextFieldDelegate>
 {
 
     SearchBar *searchBar;
@@ -78,10 +78,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
     searchBar = [[[NSBundle mainBundle] loadNibNamed:@"SearchBar" owner:self options:nil] lastObject];
     searchBar.frame = CGRectMake(0, 0, SCREEN_WIDTH, 64);
     searchBar.searchTF.backgroundColor = [UIColor whiteColor];
+    searchBar.searchTF.delegate = self;
     searchBar.backgroundColor = [UIColor clearColor];
     
     [searchBar connectTwoBlock:^{
@@ -174,10 +174,28 @@
         
     } failure:^(NSError *error) {
         
-        [[HUDConfig shareHUD]Tips :error.localizedDescription delay:DELAY];
         [self.tableView.mj_footer endRefreshing];
     }];
 }
+
+#pragma mark UITextFieldDelegate
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+
+    [searchBar.searchTF resignFirstResponder];
+    
+    if (self.produceListParams.qryKeyword.length == 0) {
+        self.produceListParams.qryKeyword = textField.text;
+        [self.tableView.mj_header beginRefreshing];
+    }
+    
+    return YES;
+}
+
+- (BOOL)textFieldShouldClear:(UITextField *)textField {
+    
+    return YES;
+}
+
 
 #pragma mark UITableViewDelegate&&DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -306,7 +324,7 @@
             for (int i = 0; i<self.mainStaticModel.groupButtons.count; i++) {
                 UIImageView *imageV = [cell.contentView viewWithTag:i+200];
                 GroupButtonsModel *groupButton = self.mainStaticModel.groupButtons[i];
-                [Uitils cacheImagwWithSize:CGSizeMake(imageV.size.width*2, imageV.size.height*2) imageID:groupButton.imageId imageV:imageV placeholder:@""];
+                [Uitils cacheImagwWithSize:CGSizeMake(imageV.size.width*2, imageV.size.height*2) imageID:groupButton.imageId imageV:imageV placeholder:@"组-23"];
             }
             
             
@@ -321,7 +339,7 @@
             for (int i = 0; i<self.mainStaticModel.secondBanner.count; i++) {
                 UIImageView *imageV = [cell.contentView viewWithTag:i+100];
                 SecondBannerModel *groupButton = self.mainStaticModel.secondBanner[i];
-                [Uitils cacheImagwWithSize:CGSizeMake(imageV.size.width*2, imageV.size.height*2) imageID:groupButton.imageId imageV:imageV placeholder:@""];
+                [Uitils cacheImagwWithSize:CGSizeMake(imageV.size.width*2, imageV.size.height*2) imageID:groupButton.imageId imageV:imageV placeholder:@"组-23"];
             }
             
             return cell;

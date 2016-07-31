@@ -27,7 +27,7 @@
     NSIndexPath *index1 = [NSIndexPath indexPathForRow:0 inSection:0];
     UITableViewCell *cell1 = [self.tableView cellForRowAtIndexPath:index1];
     UIImageView *avatar = [cell1.contentView viewWithTag:100];
-    [Uitils cacheImagwWithSize:avatar.size imageID:[self.persionModel.memberInfo objectForKey:@"avatarImgId"] imageV:avatar placeholder:nil];
+    [Uitils cacheImagwWithSize:avatar.size imageID:[self.persionModel.memberInfo objectForKey:@"avatarImgId"] imageV:avatar placeholder:@"组-23"];
     
     UILabel *userName = [cell1.contentView viewWithTag:101];
     userName.text = [self.persionModel.memberInfo objectForKey:@"departmentName"];

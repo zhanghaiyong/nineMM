@@ -19,5 +19,7 @@
 @property (nonatomic,strong)NSString *logId;
 @property (nonatomic,strong)NSString *memberId;
 @property (nonatomic,strong)NSString *memberUsername;
+@property (nonatomic,strong)NSString *textColor;
+@property (nonatomic,strong)NSString *summary;
 
 @end

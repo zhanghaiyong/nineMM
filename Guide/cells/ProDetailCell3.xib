@@ -30,14 +30,24 @@
                             <constraint firstAttribute="height" constant="44" id="U5o-uh-WEk"/>
                         </constraints>
                     </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yse-LG-SHM">
+                        <rect key="frame" x="0.0" y="42.5" width="320" height="1"/>
+                        <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="unh-QW-Wfs"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="W3x-EJ-Pkt" secondAttribute="bottom" id="0se-gD-UCZ"/>
+                    <constraint firstAttribute="trailing" secondItem="Yse-LG-SHM" secondAttribute="trailing" id="Hvh-Su-7GV"/>
                     <constraint firstAttribute="bottom" secondItem="zfl-TL-Jt4" secondAttribute="bottom" id="JNg-Yd-yxL"/>
+                    <constraint firstAttribute="bottom" secondItem="Yse-LG-SHM" secondAttribute="bottom" id="QBo-X7-36G"/>
                     <constraint firstItem="zfl-TL-Jt4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="UsI-F7-te4"/>
                     <constraint firstItem="zfl-TL-Jt4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="WQU-HA-UAP"/>
                     <constraint firstAttribute="trailing" secondItem="W3x-EJ-Pkt" secondAttribute="trailing" id="j2M-jV-USA"/>
                     <constraint firstItem="W3x-EJ-Pkt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="tO8-u5-ogF"/>
+                    <constraint firstItem="Yse-LG-SHM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="upO-Tj-Ctm"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

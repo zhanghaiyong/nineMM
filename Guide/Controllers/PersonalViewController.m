@@ -24,14 +24,12 @@
     
     NSArray *images         = @[@"全部订单",@"待审核",@"已取消",@"执行中",@"申诉订单"];
     NSArray *titles         = @[@"全部订单",@"待审核",@"已取消",@"执行中",@"申诉订单"];
-//    NSArray *iconNames      = @[@"金币",@"绿币",@"红币",@"蓝币",@"黑币"];
-//    NSArray *iconImage      = @[@"图层-142",@"图层-145",@"图层-143",@"图层-146",@"图层-144"];
     
     for (int i = 0; i<5; i++) {
         //订单
         ButtonView *orderBV = (ButtonView *)[cell1.contentView viewWithTag:i+100];
         orderBV.delegate = self;
-        orderBV.imageSize = CGSizeMake(25, 25);
+        orderBV.imageSize = CGSizeMake(22, 22);
         orderBV.labelTitle = titles[i];
         orderBV.imageName  = images[i];
     }
@@ -103,7 +101,7 @@
                 }
                 
                 //头像
-                [Uitils cacheImagwWithSize:_avatar.size imageID:[persionModel.memberInfo objectForKey:@"avatarImgId"] imageV:_avatar placeholder:nil];
+                [Uitils cacheImagwWithSize:_avatar.size imageID:[persionModel.memberInfo objectForKey:@"avatarImgId"] imageV:_avatar placeholder:@"组-23"];
                 //用户名
                 _userName.text = [persionModel.memberInfo objectForKey:@"departmentName"];
                 _userType.text = [persionModel.memberInfo objectForKey:@"nick"];
@@ -126,7 +124,6 @@
     } failure:^(NSError *error) {
        
         [self.tableView.mj_header endRefreshing];
-         [[HUDConfig shareHUD]ErrorHUD:error.localizedDescription delay:DELAY];
     }];
 }
 

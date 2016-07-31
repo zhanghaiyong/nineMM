@@ -11,6 +11,7 @@
 @interface CoinsDetailCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *dataLabel;
 @property (weak, nonatomic) IBOutlet UILabel *logIdLabel;
+@property (weak, nonatomic) IBOutlet UILabel *summary;
 
 @property (weak, nonatomic) IBOutlet UILabel *coinCountLabel;
 @end

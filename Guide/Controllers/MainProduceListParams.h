@@ -33,10 +33,17 @@
  *  筛选条件-最大价格范围
  */
 @property (nonatomic,strong) NSString           *qryPriceRangeTo;
-
 /**
  *  筛选条件-tag名
  */
 @property (nonatomic,strong) NSString           *qryTagName;
+/**
+ *  筛选条件-关键字
+ */
+@property (nonatomic,strong) NSString           *qryKeyword;
+/**
+ *  筛选条件-商品特征
+ */
+@property (nonatomic,strong) NSString           *qryProductFeature;
 
 @end

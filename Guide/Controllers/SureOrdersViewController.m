@@ -87,7 +87,6 @@
         
     } failure:^(NSError *error) {
         
-        [[HUDConfig shareHUD]ErrorHUD :error.localizedDescription delay:DELAY];
     }];
     
 
@@ -109,7 +108,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     
     if (section == 2) {
-        return 60;
+        return SCREEN_HEIGHT-64-110-80-120;
     }
     return 10;
 
@@ -120,7 +119,7 @@
     if (section == 2) {
         
         sureOrderFoorView *footer = [[[NSBundle mainBundle]loadNibNamed:@"sureOrderFoorView" owner:self options:nil]lastObject];
-        footer.frame = CGRectMake(0, 0, self.tableView.width, 60);
+        footer.frame = CGRectMake(0, 0, self.tableView.width, 50);
         
         [footer nowBuyProduce:^{
             

@@ -49,11 +49,15 @@
 #define USERSOURCE    (@"userSource")
 #define DELAY 2
 
-
+//资源
 #define queryGoodsFeature    (@"queryGoodsFeature")
+//外网、内网
 #define openUri              (@"openUri")
 #define showGoodsListByTag   (@"showGoodsListByTag")
+//酒币充值
 #define openCoinRechargePage (@"openCoinRechargePage")
+//打包套餐
+#define queryPackagedGoods   (@"queryPackagedGoods")
 
 
 

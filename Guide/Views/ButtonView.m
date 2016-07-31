@@ -94,7 +94,7 @@
 
     _imageName = imageName;
     if (_isNetImage) {
-       [Uitils cacheImagwWithSize:CGSizeMake(38*2, 38*2) imageID:imageName imageV:imageView placeholder:nil];
+       [Uitils cacheImagwWithSize:CGSizeMake(38*2, 38*2) imageID:imageName imageV:imageView placeholder:@"组-23"];
         
     }else {
     imageView.image = [UIImage imageNamed:imageName];

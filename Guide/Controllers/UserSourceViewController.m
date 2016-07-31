@@ -9,7 +9,6 @@
     NSMutableArray *userSourceArr;
     //选择的数据
     NSMutableArray *selectArr;
-    
     SourceListHead *cellHead;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -104,14 +103,10 @@
             [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
         }
         
-
-        
     } failure:^(NSError *error) {
         
-        [[HUDConfig shareHUD]ErrorHUD:error.localizedDescription delay:DELAY];
     }];
 }
-
 
 #pragma mark UITableView Delegate&DataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

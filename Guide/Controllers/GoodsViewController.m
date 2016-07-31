@@ -11,6 +11,7 @@
 #import "Main4Cell.h"
 #import "MainProduceModel.h"
 #import "ProduceDetailViewController.h"
+#import "NoChatList.h"
 @interface GoodsViewController ()
 
 @property (nonatomic,strong)NSMutableArray *produces;
@@ -82,6 +83,16 @@
             if (![[dataDic objectForKey:@"retObj"] isEqual:[NSNull null]]) {
                 
                 NSArray *rows = [[dataDic objectForKey:@"retObj"] objectForKey:@"rows"];
+                if (rows.count == 0) {
+                    [self.tableView.mj_header endRefreshing];
+                    NoChatList *noChatList = [[[NSBundle mainBundle]loadNibNamed:@"NoChatList" owner:self options:nil] lastObject];
+                    noChatList.frame = self.view.frame;
+                    noChatList.label1.text = @"";
+                    noChatList.label2.text = @"暂无数据，可查看其它功能";
+                    [self.view addSubview:noChatList];
+                    return;
+                }
+                
                 
                 //等于1，说明是刷新
                 if (self.params.page == 1) {
@@ -107,13 +118,16 @@
             
         }else {
             
-            [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            NoChatList *noChatList = [[[NSBundle mainBundle]loadNibNamed:@"NoChatList" owner:self options:nil] lastObject];
+            noChatList.frame = self.view.frame;
+            noChatList.label1.text = @"";
+            noChatList.label2.text = @"点击刷新";
+            [self.view addSubview:noChatList];
             [self.tableView.mj_footer endRefreshingWithNoMoreData];
         }
         
     } failure:^(NSError *error) {
         
-        [[HUDConfig shareHUD]Tips :error.localizedDescription delay:DELAY];
         [self.tableView.mj_footer endRefreshing];
     }];
 }

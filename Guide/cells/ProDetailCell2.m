@@ -5,8 +5,11 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.webView.delegate = self;
-    
-//    self.viewWidth.constant = SCREEN_WIDTH*3;
+    self.webView.scrollView.scrollEnabled = NO;
+    self.webView.scrollView.showsHorizontalScrollIndicator = NO;
+    self.webView.scrollView.showsVerticalScrollIndicator = NO;
+//    self.webView.scalesPageToFit = YES;
+//    self.webView. = lever2Font;
     
 }
 
@@ -26,7 +29,7 @@
 #pragma mark UIWe=bViewDelegate
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     
-    NSString *height_str = [webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight"];
+    NSString *height_str = [webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"];
     float webViewH = [height_str floatValue];
     NSLog(@"height_str = %lf",webViewH);
     

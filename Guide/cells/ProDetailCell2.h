@@ -3,8 +3,7 @@
 typedef void(^countWebViewHBlock)(float webViewH);
 
 @interface ProDetailCell2 : UITableViewCell<UIWebViewDelegate>
-//@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-//@property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewWidth;
+
 @property (nonatomic,strong)NSURL *htmlUrl;
 @property (nonatomic,assign)BOOL  isRefreshWebView;
 

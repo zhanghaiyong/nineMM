@@ -165,7 +165,6 @@
         
     } failure:^(NSError *error) {
         
-        [[HUDConfig shareHUD]ErrorHUD:error.localizedDescription delay:DELAY];
     }];
 }
 
@@ -184,9 +183,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if ([_showDic objectForKey:[NSString stringWithFormat:@"%ld",indexPath.section]]) {
-        return 180+160;
+        return 165+135;
     }
-    return 180;
+    return 165;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -206,11 +205,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-        static NSString *identtifier = @"cell";
-        OrderCell *cell = [tableView dequeueReusableCellWithIdentifier:identtifier];
-        if (!cell) {
-            cell = [[[NSBundle mainBundle] loadNibNamed:@"OrderCell" owner:self options:nil] lastObject];
-        }
+    static NSString *identtifier = @"cell";
+    OrderCell *cell = [tableView dequeueReusableCellWithIdentifier:identtifier];
+    if (!cell) {
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"OrderCell" owner:self options:nil] lastObject];
+    }
     if ([_showDic objectForKey:[NSString stringWithFormat:@"%ld",indexPath.section]]) {
         cell.detailViewHeight.constant = 160;
     }else {
@@ -223,9 +222,10 @@
     cell.orderIDLabel.text = model.orderSn;
     [cell.orderStatusButton setTitle:[NSString stringWithFormat:@"  %@  ",model.orderStepName] forState:UIControlStateNormal];
     [cell.orderStatusButton setTitleColor:HEX_RGB((unsigned long)model.orderStepTextColor) forState:UIControlStateNormal];
+    cell.orderStatusButton.layer.borderColor = HEX_RGB((unsigned long)model.orderStepTextColor).CGColor;
     cell.produceName.text = model.goodsName;
     cell.nowPriceLabel.text = model.price;
-    cell.collectLabel.text = model.quantity;
+    cell.collectLabel.text = [NSString stringWithFormat:@"x%@",model.quantity];
     cell.nowPriceRed.text = model.price;
     cell.oriPrice.text = model.totalPrice;
     

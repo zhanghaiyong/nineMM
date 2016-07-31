@@ -110,7 +110,6 @@
         
     } failure:^(NSError *error) {
         
-        [[HUDConfig shareHUD]ErrorHUD:error.localizedDescription delay:DELAY];
     }];
 }
 
@@ -123,7 +122,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    return 60;
+    return 100;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -184,7 +183,9 @@
     
         CoinsDetailModel *model = coinsDetailMsgArr[indexPath.row];
         cell.dataLabel.text = model.createDate;
-        cell.logIdLabel.text = [NSString stringWithFormat:@"操作流水 %@",model.logId];
+        cell.summary.text = model.summary;
+        cell.logIdLabel.text = [NSString stringWithFormat:@"操作流水：%@",model.logId];
+        cell.coinCountLabel.textColor = HEX_RGB((unsigned long)model.textColor);
     if ([model.amount integerValue] > 0) {
         
         cell.coinCountLabel.text = [NSString stringWithFormat:@"+%@%@",model.amount,model.coinTypeName];

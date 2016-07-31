@@ -106,7 +106,6 @@
         
     } failure:^(NSError *error) {
         
-        [[HUDConfig shareHUD]ErrorHUD:error.localizedDescription delay:DELAY];
     }];
 }
 
@@ -143,15 +142,15 @@
             
             coinRechargeCell1.priceLabel.text = @"";
             [[HUDConfig shareHUD] dismiss];
-            coinRechargeCell1.tipsLabel.text = [dataDic objectForKey:@"retMsg"];
-                [UIView animateWithDuration:1.5 animations:^{
-                    
-                    coinRechargeCell1.tipsLabel.alpha = 1;
-                    
-                } completion:^(BOOL finished) {
-                    
-                    coinRechargeCell1.tipsLabel.alpha = 0;
-                }];
+//            coinRechargeCell1.tipsLabel.text = [dataDic objectForKey:@"retMsg"];
+//                [UIView animateWithDuration:1.5 animations:^{
+//                    
+//                    coinRechargeCell1.tipsLabel.alpha = 1;
+//                    
+//                } completion:^(BOOL finished) {
+//                    
+//                    coinRechargeCell1.tipsLabel.alpha = 0;
+//                }];
         }
         
     } failure:^(NSError *error) {
@@ -356,7 +355,10 @@
         CoinRechargeCell1 *cell1 = (CoinRechargeCell1 *)[self.bigTableView cellForRowAtIndexPath:index];
         [cell1.smallTableVIew reloadData];
         
-        NSLog(@"%ld",indexPath.row);
+        PackageListModel *model = packageArr[indexPath.row];
+        coinRechargeCell1.tipsLabel.text = [NSString stringWithFormat:@"充值范围:%@~%@",model.rangeRmbMin,model.rangeRmbMax];
+        
+        //记录选中的套餐
         packageIndex = indexPath.row;
         
         PackageCell *cell = [tableView cellForRowAtIndexPath:indexPath];

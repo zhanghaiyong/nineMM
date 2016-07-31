@@ -133,19 +133,22 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="输入充值金额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2eb-SJ-ub3">
-                        <rect key="frame" x="10" y="238" width="90" height="18"/>
+                        <rect key="frame" x="10" y="233" width="90" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="hic-fL-pZY"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="该金额不符合充值要求" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xg1-Cg-UUo">
-                        <rect key="frame" x="105" y="239" width="140" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xg1-Cg-UUo">
+                        <rect key="frame" x="105" y="248" width="0.0" height="0.0"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="1" green="0.1345214673" blue="0.1072103278" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入充值人民币金额" textAlignment="natural" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="tWA-xG-rQt">
-                        <rect key="frame" x="20" y="266" width="210" height="36"/>
+                        <rect key="frame" x="20" y="263.5" width="210" height="36"/>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="36" id="YPR-Sz-TOF"/>
@@ -154,7 +157,7 @@
                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                     </textField>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sl2-y8-zdu">
-                        <rect key="frame" x="240" y="266" width="70" height="36"/>
+                        <rect key="frame" x="240" y="263" width="70" height="36"/>
                         <color key="backgroundColor" red="0.3921568627" green="0.81568627449999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="36" id="23o-lj-Zub"/>
@@ -177,6 +180,7 @@
                     <constraint firstItem="rKb-98-Xgf" firstAttribute="centerY" secondItem="iHe-ty-cBK" secondAttribute="centerY" id="2FV-xh-eBP"/>
                     <constraint firstItem="vvb-h8-ajK" firstAttribute="centerY" secondItem="Xj9-cP-OBE" secondAttribute="centerY" id="7SZ-D7-WVg"/>
                     <constraint firstAttribute="trailingMargin" secondItem="IP6-xr-3r7" secondAttribute="trailing" constant="20" id="C3K-rF-BCu"/>
+                    <constraint firstItem="sl2-y8-zdu" firstAttribute="top" secondItem="f8a-8w-p2N" secondAttribute="bottom" constant="30" id="Ci4-TR-FMe"/>
                     <constraint firstAttribute="trailing" secondItem="f8a-8w-p2N" secondAttribute="trailing" id="Lee-Xw-m6k"/>
                     <constraint firstItem="oeG-N4-VZp" firstAttribute="top" secondItem="nCg-CB-aFO" secondAttribute="bottom" id="OH9-8k-zbI"/>
                     <constraint firstItem="Imu-aO-ypp" firstAttribute="leading" secondItem="iim-DV-Rhm" secondAttribute="leading" constant="10" id="Ost-wg-X3c"/>
@@ -210,12 +214,17 @@
                     <constraint firstItem="Xj9-cP-OBE" firstAttribute="width" secondItem="Ze9-mn-AKp" secondAttribute="width" id="nPu-KE-mAy"/>
                     <constraint firstItem="Ze9-mn-AKp" firstAttribute="top" secondItem="Imu-aO-ypp" secondAttribute="bottom" constant="10" id="nuw-HX-Yyg"/>
                     <constraint firstItem="2eb-SJ-ub3" firstAttribute="leading" secondItem="iim-DV-Rhm" secondAttribute="leading" constant="10" id="pNt-Ia-5N2"/>
-                    <constraint firstItem="2eb-SJ-ub3" firstAttribute="top" secondItem="f8a-8w-p2N" secondAttribute="bottom" constant="5" id="q6r-ab-vec"/>
+                    <constraint firstItem="2eb-SJ-ub3" firstAttribute="top" secondItem="f8a-8w-p2N" secondAttribute="bottom" id="q6r-ab-vec"/>
                     <constraint firstItem="sl2-y8-zdu" firstAttribute="leading" secondItem="tWA-xG-rQt" secondAttribute="trailing" constant="10" id="rwe-uy-Q3G"/>
                     <constraint firstItem="xg1-Cg-UUo" firstAttribute="leading" secondItem="2eb-SJ-ub3" secondAttribute="trailing" constant="5" id="sIr-qx-3XF"/>
                     <constraint firstAttribute="trailing" secondItem="oeG-N4-VZp" secondAttribute="trailing" id="xcM-TM-JDr"/>
                     <constraint firstItem="SvG-iK-yUf" firstAttribute="top" secondItem="IP6-xr-3r7" secondAttribute="bottom" constant="5" id="yzA-t1-FnU"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="SZO-wP-OXS"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="firstBtn" destination="cLX-RR-4Lg" id="Ykr-J4-WU4"/>
@@ -223,7 +232,7 @@
                 <outlet property="smallTableVIew" destination="oeG-N4-VZp" id="hRM-1a-nbP"/>
                 <outlet property="tipsLabel" destination="xg1-Cg-UUo" id="vVN-oV-RVP"/>
             </connections>
-            <point key="canvasLocation" x="279" y="495.5"/>
+            <point key="canvasLocation" x="279" y="495"/>
         </tableViewCell>
     </objects>
     <resources>
