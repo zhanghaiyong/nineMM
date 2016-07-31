@@ -183,9 +183,13 @@
 
     [searchBar.searchTF resignFirstResponder];
     
-    if (self.produceListParams.qryKeyword.length == 0) {
-        self.produceListParams.qryKeyword = textField.text;
-        [self.tableView.mj_header beginRefreshing];
+    if (textField.text.length != 0) {
+//        self.produceListParams.qryKeyword = textField.text;
+//        [self.tableView.mj_header beginRefreshing];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"search" object:self userInfo:@{@"keyword":textField.text}];
+        
+        self.tabBarController.selectedIndex = 1;
     }
     
     return YES;
@@ -293,7 +297,9 @@
             
             //按钮
             for (int i = 0; i<self.mainStaticModel.shortcuts.count; i++) {
+                
                 ButtonView *buttonView = [cell.contentView viewWithTag:i+101];
+                buttonView.size = CGSizeMake(SCREEN_WIDTH/5, 60);
                 ShortcutsModel *buttonModel = self.mainStaticModel.shortcuts[i];
                 buttonView.isNetImage = YES;
                 buttonView.delegate = self;

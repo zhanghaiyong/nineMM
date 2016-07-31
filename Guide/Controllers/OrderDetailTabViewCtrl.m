@@ -78,6 +78,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 
+    if (section == 0) {
+        return 0;
+    }
     return 10;
 }
 
@@ -116,29 +119,16 @@
                 self.orderStatus.text = orderDetail.orderStepName;
                 self.orderStatus.textColor = HEX_RGB((unsigned long)orderDetail.orderStepTextColor);
                 self.orderTime.text = orderDetail.orderCreateDate;
+                
                 self.pointGoods.text = orderDetail.productName;
                 self.coinType.text = orderDetail.paymentMethodName;
                 self.orderMan.text = [orderDetail.address objectForKey:@"consignee"];
 //                self.payUnit.text = orderDetail.
                 self.orderTotalWineCoin.text = orderDetail.totalPrice;
-                
-                
-                
-//                [self.tableView reloadData];
             }
             
         }else {
-//            if ([[dataDic objectForKey:@"retCode"]integerValue] == -2){
-            
             [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
-//            UIStoryboard *SB = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
-//            LoginViewController *loginVC = [SB instantiateViewControllerWithIdentifier:@"LoginViewController"];
-//            UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:loginVC];
-//            [self presentViewController:navi animated:YES completion:^{
-//                
-//                [self.navigationController popViewControllerAnimated:YES];
-//                
-//            }];
         }
         
     } failure:^(NSError *error) {

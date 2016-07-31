@@ -121,7 +121,7 @@
             NoChatList *noChatList = [[[NSBundle mainBundle]loadNibNamed:@"NoChatList" owner:self options:nil] lastObject];
             noChatList.frame = self.view.frame;
             noChatList.label1.text = @"";
-            noChatList.label2.text = @"点击刷新";
+            noChatList.label2.text = @"请求失败，请检查网络";
             [self.view addSubview:noChatList];
             [self.tableView.mj_footer endRefreshingWithNoMoreData];
         }

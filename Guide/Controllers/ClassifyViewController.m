@@ -97,12 +97,24 @@
     return _term2;
 }
 
+- (void)awakeFromNib {
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(beginSearch:) name:@"search" object:nil];
+}
+
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
     [self initTableViews];
-    
+}
+
+- (void)beginSearch:(NSNotification *)notifation {
+
+    NSLog(@"%@",notifation);
+    searchBar.text = notifation.userInfo[@"keyword"];
+    self.produceParams.qryKeyword = notifation.userInfo[@"keyword"];
+    [typeTableView.mj_header beginRefreshing];
 }
 
 - (void)initTableViews {
@@ -218,8 +230,8 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
     
     [searchBar resignFirstResponder];
-    if (self.produceParams.qryKeyword.length == 0) {
-        
+    
+    if (![self.produceParams.qryKeyword isEqual:textField.text]) {
         self.produceParams.qryKeyword = textField.text;
         [typeTableView.mj_header beginRefreshing];
     }

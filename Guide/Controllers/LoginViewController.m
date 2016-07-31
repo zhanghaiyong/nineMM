@@ -37,6 +37,10 @@
     [_accountTF setValue:@5 forKey:@"paddingLeft"];
     [_pwdTF setValue:@5 forKey:@"paddingLeft"];
 }
+- (IBAction)backAction:(id)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (IBAction)showPwdAction:(id)sender {
     

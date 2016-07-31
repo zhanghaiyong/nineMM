@@ -141,7 +141,7 @@
     sourceListHead.backgroundColor = backgroudColor;
     sourceListHead.frame = CGRectMake(0, 0, self.tableView.width, 30);
     
-    sourceListHead.countLabel.text = [NSString stringWithFormat:@"共%ld件",coinsDetailMsgArr.count];
+//    sourceListHead.countLabel.text = [NSString stringWithFormat:@"共%ld件",coinsDetailMsgArr.count];
     
     if (self.coinTypeCode.length == 0) {
         sourceListHead.titleLabel.text = @"我的酒币(全部)";
@@ -183,8 +183,8 @@
     
         CoinsDetailModel *model = coinsDetailMsgArr[indexPath.row];
         cell.dataLabel.text = model.createDate;
-        cell.summary.text = model.summary;
-        cell.logIdLabel.text = [NSString stringWithFormat:@"操作流水：%@",model.logId];
+//        cell.summary.text = model.summary;
+        cell.logIdLabel.text = [NSString stringWithFormat:@"%@：%@",model.summary,model.logId];
         cell.coinCountLabel.textColor = HEX_RGB((unsigned long)model.textColor);
     if ([model.amount integerValue] > 0) {
         

@@ -29,6 +29,7 @@
         //订单
         ButtonView *orderBV = (ButtonView *)[cell1.contentView viewWithTag:i+100];
         orderBV.delegate = self;
+        orderBV.size = CGSizeMake(SCREEN_WIDTH/5, 60);
         orderBV.imageSize = CGSizeMake(22, 22);
         orderBV.labelTitle = titles[i];
         orderBV.imageName  = images[i];
@@ -109,7 +110,6 @@
                 _collectCount.text = [NSString stringWithFormat:@"%@",[persionModel.data objectForKey:@"favoriteCount"]];
                 //浏览
                 _browseCount.text = [NSString stringWithFormat:@"%@",[persionModel.data objectForKey:@"noticeCount"]];
-                
             }
             
         }else if ([[dataDic objectForKey:@"retCode"]integerValue] == -2){
@@ -118,7 +118,11 @@
             UIStoryboard *SB = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
             LoginViewController *loginVC = [SB instantiateViewControllerWithIdentifier:@"LoginViewController"];
             UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:loginVC];
-            [self presentViewController:navi animated:YES completion:nil];
+            [self presentViewController:navi animated:YES completion:^{
+                
+                self.tabBarController.selectedIndex = 0;
+                
+            }];
         }
         
     } failure:^(NSError *error) {

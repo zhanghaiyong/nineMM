@@ -15,7 +15,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016-04-23" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lvs-yf-quV">
-                        <rect key="frame" x="10" y="40" width="84.5" height="30"/>
+                        <rect key="frame" x="10" y="10" width="84.5" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="EjO-KO-pmF"/>
                         </constraints>
@@ -24,7 +24,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="充值流水:201505079" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AV0-vG-Uz8">
-                        <rect key="frame" x="10" y="70" width="125.5" height="20"/>
+                        <rect key="frame" x="10" y="40" width="125.5" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="SsA-PL-Zjq"/>
                         </constraints>
@@ -39,9 +39,9 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="说明" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O31-1q-5Aa">
-                        <rect key="frame" x="10" y="10" width="30" height="30"/>
+                        <rect key="frame" x="10" y="10" width="30" height="0.0"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" id="tft-3X-ahk"/>
+                            <constraint firstAttribute="height" id="tft-3X-ahk"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="highlightedColor"/>

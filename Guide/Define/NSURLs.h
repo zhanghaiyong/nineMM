@@ -76,6 +76,6 @@
 
 
 #pragma mark LinkAction-----------------
-////根据特征查找商品列表
-//#define appQueryProductListByFeature [BaseURLString stringByAppendingString:@"/gw?cmd=appQueryProductListByFeature"]
+//根据特征查找商品列表
+#define appQueryProductListByFeature [BaseURLString stringByAppendingString:@"/gw?cmd=appQueryProductListByFeature"]
 

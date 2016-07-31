@@ -10,4 +10,6 @@
 
 @interface PayAlertViewController : BaseViewController
 
+@property (nonatomic,strong)NSString *orderId;
+
 @end

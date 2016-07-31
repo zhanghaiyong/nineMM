@@ -7,7 +7,7 @@
 //
 
 #import "FeatureViewController.h"
-#import "MainProduceListParams.h"
+#import "FeatureParams.h"
 #import "Main4Cell.h"
 #import "MainProduceModel.h"
 #import "ProduceDetailViewController.h"
@@ -15,7 +15,7 @@
 @interface FeatureViewController ()
 
 
-@property (nonatomic,strong)MainProduceListParams *params;
+@property (nonatomic,strong)FeatureParams *params;
 @property (nonatomic,strong)NSMutableArray *features;
 @end
 
@@ -31,13 +31,13 @@
 }
 
 
--(MainProduceListParams *)params {
+-(FeatureParams *)params {
     
     if (_params == nil) {
         
-        MainProduceListParams *params = [[MainProduceListParams alloc]init];
+        FeatureParams *params = [[FeatureParams alloc]init];
         params.rows = 20;
-        params.qryProductFeature = self.feature;
+        params.feature = self.feature;
         _params = params;
     }
     return _params;
@@ -73,7 +73,7 @@
     
     FxLog(@"featureList = %@",self.params.mj_keyValues);
     
-    [KSMNetworkRequest postRequest:KHomePageProcudeList params:self.params.mj_keyValues success:^(NSDictionary *dataDic) {
+    [KSMNetworkRequest postRequest:appQueryProductListByFeature params:self.params.mj_keyValues success:^(NSDictionary *dataDic) {
         
         FxLog(@"featureList = %@",dataDic);
         if ([[dataDic objectForKey:@"retCode"]integerValue] == 0) {
@@ -86,6 +86,7 @@
                 
                 if (rows.count == 0) {
                     
+                    [self.tableView.mj_header endRefreshing];
                     NoChatList *noChatList = [[[NSBundle mainBundle]loadNibNamed:@"NoChatList" owner:self options:nil] lastObject];
                     noChatList.frame = self.view.frame;
                     noChatList.label1.text = @"";
@@ -129,7 +130,7 @@
         NoChatList *noChatList = [[[NSBundle mainBundle]loadNibNamed:@"NoChatList" owner:self options:nil] lastObject];
         noChatList.frame = self.view.frame;
         noChatList.label1.text = @"";
-        noChatList.label2.text = @"检查网络";
+        noChatList.label2.text = @"请求失败，请检查网络";
         [self.view addSubview:noChatList];
     }];
 }

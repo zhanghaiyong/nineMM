@@ -131,10 +131,8 @@
             [self presentViewController:navi animated:YES completion:^{
                 
                 [self.navigationController popViewControllerAnimated:YES];
-                
             }];
         }
-        
     } failure:^(NSError *error) {
         
     }];
@@ -247,7 +245,6 @@
             UILabel *tagLabel = (UILabel *)[cell.contentView viewWithTag:i+300];
             tagLabel.text = [NSString stringWithFormat:@" %@ ",produceDetail.tags[i]];
         }
-        cell.otherInfo.text = produceDetail.otherInfo;
         cell.termLabel.text = [NSString stringWithFormat:@"库存：%@",produceDetail.stock];
         cell.explainLabel.text = produceDetail.terms;
         

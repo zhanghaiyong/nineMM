@@ -19,18 +19,24 @@
     return self;
 }
 
-- (instancetype)initWithCoder:(NSCoder *)coder
-{
-    self = [super initWithCoder:coder];
-    if (self) {
-        
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
-        [self addGestureRecognizer:tap];
-        
-        [self loadSubViews];
-    }
-    return self;
+-(void)setSize:(CGSize)size {
+
+    [super setSize:size];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
+    [self addGestureRecognizer:tap];
+    
+    [self loadSubViews];
+    
 }
+//
+//- (instancetype)initWithCoder:(NSCoder *)coder {
+//    self = [super initWithCoder:coder];
+//    if (self) {
+//        
+//        [self loadSubViews];
+//    }
+//    return self;
+//}
 
 - (void)setImageSize:(CGSize)imageSize {
 
@@ -41,7 +47,6 @@
 
 - (void)loadSubViews {
 
-    
     imageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.width/2-19, 10, 38, 38)];
     imageView.contentMode = UIViewContentModeCenter;
     [imageView setContentMode:UIViewContentModeScaleToFill];
@@ -67,7 +72,9 @@
 
     [super layoutSubviews];
 
-    imageView.image = [UIImage imageNamed:_imageName];
+    if (!_isNetImage) {
+        imageView.image = [UIImage imageNamed:_imageName];
+    }
 //
 //    self.badgeBtn.frame = CGRectMake(imageView.right-25, imageView.top+10, 20, 20);
 //    self.badgeBtn.layer.cornerRadius = 10;
@@ -94,11 +101,10 @@
 
     _imageName = imageName;
     if (_isNetImage) {
-       [Uitils cacheImagwWithSize:CGSizeMake(38*2, 38*2) imageID:imageName imageV:imageView placeholder:@"组-23"];
+       [Uitils cacheImagwWithSize:CGSizeMake(38*2, 38*2) imageID:imageName imageV:imageView placeholder:nil];
         
     }else {
-    imageView.image = [UIImage imageNamed:imageName];
-        
+        imageView.image = [UIImage imageNamed:imageName];   
     }
 }
 

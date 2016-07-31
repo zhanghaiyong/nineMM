@@ -15,10 +15,6 @@
  */
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 /**
- *  6折优惠，限时抢购
- */
-@property (weak, nonatomic) IBOutlet UILabel *otherInfo;
-/**
  *  库存：2件
  */
 @property (weak, nonatomic) IBOutlet UILabel *termLabel;
