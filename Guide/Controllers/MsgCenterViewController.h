@@ -6,8 +6,7 @@
 //  Copyright © 2016年 ksm. All rights reserved.
 //
 
-#import "BaseTableViewController.h"
 
-@interface MsgCenterViewController : BaseTableViewController
+@interface MsgCenterViewController : BaseViewController
 
 @end

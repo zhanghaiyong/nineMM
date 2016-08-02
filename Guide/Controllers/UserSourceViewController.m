@@ -23,7 +23,6 @@
     if (_params == nil) {
         UserSourceParams *params = [[UserSourceParams alloc]init];
         params.rows = 20;
-        params.page = 0;
         _params = params;
     }
     return _params;

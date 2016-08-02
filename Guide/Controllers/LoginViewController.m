@@ -95,6 +95,8 @@
             
             [[HUDConfig shareHUD] SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
             
+            [Uitils setUserDefaultsObject:_pwdTF.text ForKey:PASSWORD];
+            
             [self dismissViewControllerAnimated:YES completion:nil];
             
         }else {

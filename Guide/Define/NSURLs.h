@@ -3,9 +3,9 @@
 
 //http://9mama.top:8080
 //http://101.200.131.198:8090/promot
-#define  BaseURLString (@"http://9mama.top:8080")
-#define  BaseImageURL  (@"http://9mama.top:8080/dimg/")
-#define HTMLURL (@"http://9mama.top:8080/product/mobile/")
+#define  BaseURLString (@"http://9mama.top:80")
+#define  BaseImageURL  (@"http://9mama.top:80/dimg/")
+#define HTMLURL (@"http://9mama.top:80/product/mobile/")
 
 #endif /* NSURLs_h */
 
@@ -66,14 +66,26 @@
 //检索资源商品所绑定门店
 #define KSearchProductStores [BaseURLString stringByAppendingString:@"/gw?cmd=searchProductStores"]
 
-
 //根据门店或区域选择计算资源商品价格
 #define KGetProductPriceByStoreSelection [BaseURLString stringByAppendingString:@"/gw?cmd=getProductPriceByStoreSelection"]
-
 
 //下单
 #define KAppSubOrder [BaseURLString stringByAppendingString:@"/gw?cmd=appSubOrder"]
 
+//查看登录用户的基础信息
+#define KLoginMemberInfo [BaseURLString stringByAppendingString:@"/gw?cmd=getLoginMemberInfo"]
+
+//修改已登录用户密码
+#define KUpdatePassword [BaseURLString stringByAppendingString:@"/gw?cmd=updateLoginMemberPassword"]
+
+//消息中心
+#define KNotificationCenter [BaseURLString stringByAppendingString:@"/gw?cmd=appNotificationCenter"]
+
+//消息列表
+#define KNotificationList [BaseURLString stringByAppendingString:@"/gw?cmd=appNotificationList"]
+
+//消息详情
+#define KNotificationContent [BaseURLString stringByAppendingString:@"/gw?cmd=appNotificationContent"]
 
 #pragma mark LinkAction-----------------
 //根据特征查找商品列表

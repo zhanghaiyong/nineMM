@@ -69,6 +69,18 @@
 		BF59C53F1D453264007A2E84 /* FeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF59C53E1D453264007A2E84 /* FeatureViewController.m */; };
 		BF59C5421D453393007A2E84 /* FeatureParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BF59C5411D453393007A2E84 /* FeatureParams.m */; };
 		BF59C5451D453616007A2E84 /* GoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF59C5441D453616007A2E84 /* GoodsViewController.m */; };
+		BF5D3F6C1D50D38200AD7A44 /* MemberInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5D3F6B1D50D38200AD7A44 /* MemberInfoModel.m */; };
+		BF5D3F6F1D50E3A300AD7A44 /* UpdatePwdParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5D3F6E1D50E3A300AD7A44 /* UpdatePwdParams.m */; };
+		BF5D3F721D50E9DC00AD7A44 /* MsgCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5D3F711D50E9DC00AD7A44 /* MsgCenterModel.m */; };
+		BF5D3F781D50EA5900AD7A44 /* MsgCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5D3F761D50EA5900AD7A44 /* MsgCenterCell.m */; };
+		BF5D3F791D50EA5900AD7A44 /* MsgCenterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF5D3F771D50EA5900AD7A44 /* MsgCenterCell.xib */; };
+		BF5D3F7C1D50EFFD00AD7A44 /* MsgListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5D3F7B1D50EFFD00AD7A44 /* MsgListViewController.m */; };
+		BF5D3F7F1D50F1FF00AD7A44 /* MsgListParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5D3F7E1D50F1FF00AD7A44 /* MsgListParams.m */; };
+		BF5D3F821D50F60D00AD7A44 /* MsgListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5D3F811D50F60D00AD7A44 /* MsgListModel.m */; };
+		BF5D3F861D50F6A900AD7A44 /* MsgListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5D3F841D50F6A900AD7A44 /* MsgListCell.m */; };
+		BF5D3F871D50F6A900AD7A44 /* MsgListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF5D3F851D50F6A900AD7A44 /* MsgListCell.xib */; };
+		BF5D3F8A1D50FB3900AD7A44 /* MsgDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5D3F891D50FB3900AD7A44 /* MsgDetailViewController.m */; };
+		BF5D3F8D1D50FCCB00AD7A44 /* MsgDetailParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5D3F8C1D50FCCB00AD7A44 /* MsgDetailParams.m */; };
 		BF7F92771D26937D0081578F /* BaseParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7F92761D26937D0081578F /* BaseParams.m */; };
 		BF8600C31D3A263000BCA60A /* PayAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8600C21D3A263000BCA60A /* PayAlertViewController.m */; };
 		BF8600C61D3A29B800BCA60A /* CoinsDetailParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8600C51D3A29B800BCA60A /* CoinsDetailParams.m */; };
@@ -302,6 +314,28 @@
 		BF59C5411D453393007A2E84 /* FeatureParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeatureParams.m; sourceTree = "<group>"; };
 		BF59C5431D453616007A2E84 /* GoodsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsViewController.h; sourceTree = "<group>"; };
 		BF59C5441D453616007A2E84 /* GoodsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsViewController.m; sourceTree = "<group>"; };
+		BF5D3F6A1D50D38200AD7A44 /* MemberInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberInfoModel.h; sourceTree = "<group>"; };
+		BF5D3F6B1D50D38200AD7A44 /* MemberInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberInfoModel.m; sourceTree = "<group>"; };
+		BF5D3F6D1D50E3A300AD7A44 /* UpdatePwdParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdatePwdParams.h; sourceTree = "<group>"; };
+		BF5D3F6E1D50E3A300AD7A44 /* UpdatePwdParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatePwdParams.m; sourceTree = "<group>"; };
+		BF5D3F701D50E9DC00AD7A44 /* MsgCenterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgCenterModel.h; sourceTree = "<group>"; };
+		BF5D3F711D50E9DC00AD7A44 /* MsgCenterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgCenterModel.m; sourceTree = "<group>"; };
+		BF5D3F751D50EA5900AD7A44 /* MsgCenterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgCenterCell.h; sourceTree = "<group>"; };
+		BF5D3F761D50EA5900AD7A44 /* MsgCenterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgCenterCell.m; sourceTree = "<group>"; };
+		BF5D3F771D50EA5900AD7A44 /* MsgCenterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MsgCenterCell.xib; sourceTree = "<group>"; };
+		BF5D3F7A1D50EFFD00AD7A44 /* MsgListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgListViewController.h; sourceTree = "<group>"; };
+		BF5D3F7B1D50EFFD00AD7A44 /* MsgListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgListViewController.m; sourceTree = "<group>"; };
+		BF5D3F7D1D50F1FF00AD7A44 /* MsgListParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgListParams.h; sourceTree = "<group>"; };
+		BF5D3F7E1D50F1FF00AD7A44 /* MsgListParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgListParams.m; sourceTree = "<group>"; };
+		BF5D3F801D50F60D00AD7A44 /* MsgListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgListModel.h; sourceTree = "<group>"; };
+		BF5D3F811D50F60D00AD7A44 /* MsgListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgListModel.m; sourceTree = "<group>"; };
+		BF5D3F831D50F6A900AD7A44 /* MsgListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgListCell.h; sourceTree = "<group>"; };
+		BF5D3F841D50F6A900AD7A44 /* MsgListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgListCell.m; sourceTree = "<group>"; };
+		BF5D3F851D50F6A900AD7A44 /* MsgListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MsgListCell.xib; sourceTree = "<group>"; };
+		BF5D3F881D50FB3900AD7A44 /* MsgDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgDetailViewController.h; sourceTree = "<group>"; };
+		BF5D3F891D50FB3900AD7A44 /* MsgDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgDetailViewController.m; sourceTree = "<group>"; };
+		BF5D3F8B1D50FCCB00AD7A44 /* MsgDetailParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgDetailParams.h; sourceTree = "<group>"; };
+		BF5D3F8C1D50FCCB00AD7A44 /* MsgDetailParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgDetailParams.m; sourceTree = "<group>"; };
 		BF7F92751D26937D0081578F /* BaseParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseParams.h; sourceTree = "<group>"; };
 		BF7F92761D26937D0081578F /* BaseParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseParams.m; sourceTree = "<group>"; };
 		BF8600C11D3A263000BCA60A /* PayAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayAlertViewController.h; sourceTree = "<group>"; };
@@ -602,6 +636,7 @@
 				BFED9B891D29FFA6000175C5 /* Term1Cell.h */,
 				BFED9B8A1D29FFA6000175C5 /* Term1Cell.m */,
 				BFED9B8B1D29FFA6000175C5 /* Term1Cell.xib */,
+				BF5D3F741D50EA4300AD7A44 /* 消息中心 */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -664,6 +699,10 @@
 				BFC50F091CFC445600CA7CD5 /* 个人中心 */,
 				BFF578B91D2F79AE00EC9400 /* MsgCenterViewController.h */,
 				BFF578BA1D2F79AE00EC9400 /* MsgCenterViewController.m */,
+				BF5D3F7A1D50EFFD00AD7A44 /* MsgListViewController.h */,
+				BF5D3F7B1D50EFFD00AD7A44 /* MsgListViewController.m */,
+				BF5D3F881D50FB3900AD7A44 /* MsgDetailViewController.h */,
+				BF5D3F891D50FB3900AD7A44 /* MsgDetailViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -687,8 +726,7 @@
 				BFA2B7221CF6EE1B00EB460E /* PageInfo.m */,
 				BFD69E941CF8A5AB00B50A6E /* Produce1Model.h */,
 				BFD69E951CF8A5AB00B50A6E /* Produce1Model.m */,
-				BF8601071D3E765E00BCA60A /* OrderDetailModel.h */,
-				BF8601081D3E765E00BCA60A /* OrderDetailModel.m */,
+				BF5D3F731D50E9E100AD7A44 /* 消息中心 */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -832,6 +870,12 @@
 				BF86010E1D3FD8B700BCA60A /* WineCoinsRechargeParams.m */,
 				BF59C5401D453393007A2E84 /* FeatureParams.h */,
 				BF59C5411D453393007A2E84 /* FeatureParams.m */,
+				BF5D3F6D1D50E3A300AD7A44 /* UpdatePwdParams.h */,
+				BF5D3F6E1D50E3A300AD7A44 /* UpdatePwdParams.m */,
+				BF5D3F7D1D50F1FF00AD7A44 /* MsgListParams.h */,
+				BF5D3F7E1D50F1FF00AD7A44 /* MsgListParams.m */,
+				BF5D3F8B1D50FCCB00AD7A44 /* MsgDetailParams.h */,
+				BF5D3F8C1D50FCCB00AD7A44 /* MsgDetailParams.m */,
 			);
 			name = Params;
 			path = Controllers;
@@ -850,6 +894,10 @@
 				BF8600C81D3A2B4400BCA60A /* CoinsDetailModel.m */,
 				BF8600CE1D3B26F900BCA60A /* OrderModel.h */,
 				BF8600CF1D3B26F900BCA60A /* OrderModel.m */,
+				BF8601071D3E765E00BCA60A /* OrderDetailModel.h */,
+				BF8601081D3E765E00BCA60A /* OrderDetailModel.m */,
+				BF5D3F6A1D50D38200AD7A44 /* MemberInfoModel.h */,
+				BF5D3F6B1D50D38200AD7A44 /* MemberInfoModel.m */,
 			);
 			name = "个人中心";
 			sourceTree = "<group>";
@@ -862,6 +910,30 @@
 				BF4086551D12E59000E11065 /* SearchBar.xib */,
 			);
 			name = SearchBAr;
+			sourceTree = "<group>";
+		};
+		BF5D3F731D50E9E100AD7A44 /* 消息中心 */ = {
+			isa = PBXGroup;
+			children = (
+				BF5D3F701D50E9DC00AD7A44 /* MsgCenterModel.h */,
+				BF5D3F711D50E9DC00AD7A44 /* MsgCenterModel.m */,
+				BF5D3F801D50F60D00AD7A44 /* MsgListModel.h */,
+				BF5D3F811D50F60D00AD7A44 /* MsgListModel.m */,
+			);
+			name = "消息中心";
+			sourceTree = "<group>";
+		};
+		BF5D3F741D50EA4300AD7A44 /* 消息中心 */ = {
+			isa = PBXGroup;
+			children = (
+				BF5D3F751D50EA5900AD7A44 /* MsgCenterCell.h */,
+				BF5D3F761D50EA5900AD7A44 /* MsgCenterCell.m */,
+				BF5D3F771D50EA5900AD7A44 /* MsgCenterCell.xib */,
+				BF5D3F831D50F6A900AD7A44 /* MsgListCell.h */,
+				BF5D3F841D50F6A900AD7A44 /* MsgListCell.m */,
+				BF5D3F851D50F6A900AD7A44 /* MsgListCell.xib */,
+			);
+			name = "消息中心";
 			sourceTree = "<group>";
 		};
 		BF8600D41D3B33A100BCA60A /* 商品详情 */ = {
@@ -1287,8 +1359,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF5D3F791D50EA5900AD7A44 /* MsgCenterCell.xib in Resources */,
 				BF8600F01D3D46EA00BCA60A /* sureOrderCell2.xib in Resources */,
 				786B637C1CC71F9F00362DBF /* ProgressHUD.bundle in Resources */,
+				BF5D3F871D50F6A900AD7A44 /* MsgListCell.xib in Resources */,
 				789E789A1CB60D080039AC69 /* Assets.xcassets in Resources */,
 				BFF3DD441D2379B600F5F9B1 /* SourceListHead.xib in Resources */,
 				BFEEA5A11D1A444500B261BF /* UserSourceCell.xib in Resources */,
@@ -1393,6 +1467,7 @@
 				BF4086591D12EE6C00E11065 /* MainStaticModel.m in Sources */,
 				BF3C3C2D1D39E448000E3027 /* PackageCell.m in Sources */,
 				BFA2B7121CF6E88200EB460E /* RepeatPwdViewController.m in Sources */,
+				BF5D3F6F1D50E3A300AD7A44 /* UpdatePwdParams.m in Sources */,
 				BFD69E641CF7FA7900B50A6E /* ClassifyDetailHead.m in Sources */,
 				BF4086541D12E58100E11065 /* SearchBar.m in Sources */,
 				788836CC1CBC9BA30030909E /* SelectEDU.m in Sources */,
@@ -1411,6 +1486,7 @@
 				BF4086621D12EF9500E11065 /* TopBannersModel.m in Sources */,
 				789E78E41CB63E7E0039AC69 /* BaseViewController.m in Sources */,
 				BF8601061D3E2FAF00BCA60A /* OrderDetailParams.m in Sources */,
+				BF5D3F721D50E9DC00AD7A44 /* MsgCenterModel.m in Sources */,
 				BFD887CA1CF9752D00C9DF44 /* MethodBagViewController.m in Sources */,
 				BF8600CD1D3B243F00BCA60A /* OrderListParams.m in Sources */,
 				BFE59B2A1D48BB1800E1DB2A /* MyCoinsCell3.m in Sources */,
@@ -1426,6 +1502,7 @@
 				BFA2B70C1CF6D85600EB460E /* ButtonView.m in Sources */,
 				BFF433A91D15200200D21427 /* ModifyPassword.m in Sources */,
 				BF8600E21D3BDA4800BCA60A /* ProduceStoresModel.m in Sources */,
+				BF5D3F7F1D50F1FF00AD7A44 /* MsgListParams.m in Sources */,
 				BF8600D01D3B26F900BCA60A /* OrderModel.m in Sources */,
 				BF8601091D3E765E00BCA60A /* OrderDetailModel.m in Sources */,
 				BFF8D40F1D18F5740039600B /* ProDetailCell1.m in Sources */,
@@ -1467,12 +1544,14 @@
 				BFF578B31D2F6C4C00EC9400 /* ZZPhotoController.m in Sources */,
 				BFE59B2F1D48BBB900E1DB2A /* MyCoinsCell4.m in Sources */,
 				BF3C3C311D39F66C000E3027 /* CalculateCoinParams.m in Sources */,
+				BF5D3F7C1D50EFFD00AD7A44 /* MsgListViewController.m in Sources */,
 				BF8601031D3DDA2100BCA60A /* itemModel.m in Sources */,
 				789E78921CB60D080039AC69 /* AppDelegate.m in Sources */,
 				BFED9BB81D2A9E92000175C5 /* OrderDetailTabViewCtrl.m in Sources */,
 				BFF578B41D2F6C4C00EC9400 /* ZZPhotoDatas.m in Sources */,
 				BFD1FEA31CF74925006FDDF6 /* MainViewController.m in Sources */,
 				BF8601001D3DD9BC00BCA60A /* SubOrderModel.m in Sources */,
+				BF5D3F8D1D50FCCB00AD7A44 /* MsgDetailParams.m in Sources */,
 				BFED9B8C1D29FFA6000175C5 /* Term1Cell.m in Sources */,
 				BF8600D31D3B325600BCA60A /* UserSourceParams.m in Sources */,
 				BFF578B51D2F6C4C00EC9400 /* ZZPhotoListCell.m in Sources */,
@@ -1483,8 +1562,10 @@
 				BFED9BBB1D2B84BE000175C5 /* CoinsDetailViewCtrl.m in Sources */,
 				BFED9BB51D2A6AE0000175C5 /* OrderComplainCtrl.m in Sources */,
 				BFF578B61D2F6C4C00EC9400 /* ZZPhotoListViewController.m in Sources */,
+				BF5D3F781D50EA5900AD7A44 /* MsgCenterCell.m in Sources */,
 				BF8600EA1D3D46AC00BCA60A /* sureOrdercell1.m in Sources */,
 				BFC50EFD1CFC1B7300CA7CD5 /* Main1Cell.m in Sources */,
+				BF5D3F861D50F6A900AD7A44 /* MsgListCell.m in Sources */,
 				BFD69E781CF8212F00B50A6E /* ProduceDetailViewController.m in Sources */,
 				BFD69E6F1CF812B700B50A6E /* ClassifyDetailSearchView.m in Sources */,
 				BFD69E7B1CF8793D00B50A6E /* TitleView.m in Sources */,
@@ -1508,9 +1589,11 @@
 				BFE59B251D48BAEA00E1DB2A /* MyCoinsCell2.m in Sources */,
 				789E78BE1CB630D10039AC69 /* NSDate+Tools.m in Sources */,
 				BF8600F81D3D48D300BCA60A /* sureOrderFoorView.m in Sources */,
+				BF5D3F8A1D50FB3900AD7A44 /* MsgDetailViewController.m in Sources */,
 				789E78C71CB631670039AC69 /* UIButton+HYExtension.m in Sources */,
 				BF94681E1D2279E500143B91 /* SureOrdersViewController.m in Sources */,
 				BF8600DF1D3BD75900BCA60A /* ProduceStoresParams.m in Sources */,
+				BF5D3F6C1D50D38200AD7A44 /* MemberInfoModel.m in Sources */,
 				BFED9B901D2A073A000175C5 /* ClassifyTerm2.m in Sources */,
 				789E788F1CB60D080039AC69 /* main.m in Sources */,
 				BF8600EF1D3D46EA00BCA60A /* sureOrderCell2.m in Sources */,
@@ -1518,6 +1601,7 @@
 				BF3C3C131D38AC51000E3027 /* PersionModel.m in Sources */,
 				789E78C41CB631360039AC69 /* NSDate+HYExtension.m in Sources */,
 				BFF433A11D151ABF00D21427 /* NavigationBarView.m in Sources */,
+				BF5D3F821D50F60D00AD7A44 /* MsgListModel.m in Sources */,
 				BF7F92771D26937D0081578F /* BaseParams.m in Sources */,
 				BFF3DD421D2379AB00F5F9B1 /* SourceListHead.m in Sources */,
 				BFD69E961CF8A5AB00B50A6E /* Produce1Model.m in Sources */,

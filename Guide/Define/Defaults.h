@@ -48,7 +48,7 @@
 #define APPVERSION    (@"appVersion")
 #define USERSOURCE    (@"userSource")
 #define DELAY 2
-
+#define PASSWORD      (@"password")
 //资源
 #define queryGoodsFeature    (@"queryGoodsFeature")
 //外网、内网

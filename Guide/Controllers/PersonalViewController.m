@@ -63,8 +63,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clearPersionModel:) name:@"clearPersionDara" object:nil];
 
+}
+
+- (void)clearPersionModel:(NSNotification *)sender {
+
+    persionModel = nil;
 }
 
 - (void)loadPersionData {
@@ -151,29 +156,9 @@
     return 0.1;
 }
 
-- (IBAction)personCenterAction:(id)sender {
-    
-     [[HUDConfig shareHUD]Tips:@"即将上线，敬请期待" delay:DELAY];
-}
 - (IBAction)msgCenterAction:(id)sender {
     
      [[HUDConfig shareHUD]Tips:@"即将上线，敬请期待" delay:DELAY];
-}
-- (IBAction)logoutAction:(id)sender {
-    
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否注销此账号?" preferredStyle:UIAlertControllerStyleAlert];
-    [alert addAction:[UIAlertAction actionWithTitle:@"是" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
-        [Uitils UserDefaultRemoveObjectForKey:TOKEN];
-        persionModel = nil;
-        self.tabBarController.selectedIndex = 0;
-    }]];
-    
-    [alert addAction:[UIAlertAction actionWithTitle:@"否" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        
-    }]];
-    
-    [self presentViewController:alert animated:YES completion:nil];
 }
 
 /**
