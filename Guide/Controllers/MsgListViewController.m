@@ -160,6 +160,10 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     MsgListModel *model = self.msgLists[indexPath.row];
     
+    
+    MsgListCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.title.textColor = HEX_RGB(0x999999);
+    
     UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
     MsgDetailViewController *msgList = [mainSB instantiateViewControllerWithIdentifier:@"MsgDetailViewController"];
     msgList.ID = model.id;

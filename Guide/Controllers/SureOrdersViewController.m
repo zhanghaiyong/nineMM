@@ -51,8 +51,6 @@
     
     [KSMNetworkRequest postRequest:KAppSubOrder params:self.params.mj_keyValues success:^(NSDictionary *dataDic) {
         
-        
-        
         FxLog(@"buyNowAction = %@",dataDic);
         
         if ([[dataDic objectForKey:@"retCode"]integerValue] == 0) {
@@ -108,7 +106,7 @@
         [footer nowBuyProduce:^{
             
             SubOrderModel *subOrderModel     = [[SubOrderModel alloc]init];
-            subOrderModel.productId          = [self.produceModel.id intValue];
+            subOrderModel.productId          = [self.produceId intValue];
             subOrderModel.quantity           = 1;
             subOrderModel.storeSelectingType = self.proPriceByStoreParams.storeSelectingType;
             subOrderModel.stores             = self.proPriceByStoreParams.storeIds;
@@ -193,7 +191,7 @@
         case 1:{
             sureOrderCell2 *cell2 = [[[NSBundle mainBundle] loadNibNamed:@"sureOrderCell2" owner:self options:nil] lastObject];
             
-            NSArray *coins = self.produceModel.acceptableCoinTypes;
+            NSArray *coins = self.acceptableCoinTypes;
             for (NSString *name in coins) {
                 
                 if ([name isEqualToString:@"golden"]) {
@@ -293,25 +291,3 @@
 }
 
 @end
-
-
-
-//{
-//    amount = 387;
-//    orders = "[
-//    {
-//        "items" :
-//        [
-//            {
-//                "quantity" : 1,
-//                "items" : "11",
-//                "produceId" : 198,
-//                "storeSelectingType" : "store",
-//                "stores" : "5"
-//            }
-//         ]
-//    }
-//    ]";
-//    paymentMethod = blackCoin;
-//    sessionId = "4ecb7ae1-3798-4a76-a4f6-113a59fa849f";
-//}

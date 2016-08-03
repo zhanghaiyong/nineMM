@@ -26,6 +26,7 @@
 #import "URLViewController.h"
 #import "FeatureViewController.h"
 #import "GoodsViewController.h"
+#import "PackageViewController.h"
 
 @interface MainViewController ()<UITableViewDelegate,UITableViewDataSource,ButtonViewDeleage,ZHYBannerViewDelegte,Main2CellDelegate,Main3CellDelegate,UITextFieldDelegate>
 {
@@ -448,7 +449,7 @@
         
         UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
         ProduceDetailViewController *produceDetail = [mainSB instantiateViewControllerWithIdentifier:@"ProduceDetailViewController"];
-        produceDetail.produceModel = model;
+        produceDetail.produceId = model.id;
         [self.navigationController pushViewController:produceDetail animated:YES];
     }
 }
@@ -468,12 +469,6 @@
 #pragma mark ButtonViewDelegate
 - (void)buttonViewTap:(NSInteger)aFlag {
 
-    
-    if (aFlag == 102) {
-        
-        [[HUDConfig shareHUD]Tips:@"即将上线，敬请期待" delay:DELAY];
-        return;
-    }
     
     ShortcutsModel *model = self.mainStaticModel.shortcuts[aFlag-101];
     NSArray *array = [model.linkAction componentsSeparatedByString:@":"];
@@ -507,6 +502,13 @@
         GoodsVC.tag = array.lastObject;
         GoodsVC.title = model.title;
         [self.navigationController pushViewController:GoodsVC animated:YES];
+        
+    }else if ([array containsObject:queryPackagedGoods]) {
+    
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        PackageViewController *packageVC = [mainSB instantiateViewControllerWithIdentifier:@"PackageViewController"];
+        packageVC.title = model.title;
+        [self.navigationController pushViewController:packageVC animated:YES];
     }
     
     NSLog(@"%@",array);
@@ -629,6 +631,10 @@
         GoodsVC.tag = array.lastObject;
         GoodsVC.title = model.title;
         [self.navigationController pushViewController:GoodsVC animated:YES];
+        
+    }else if ([array containsObject:queryPackagedGoods]) {
+    
+        
     }
     
     NSLog(@"%@",array);

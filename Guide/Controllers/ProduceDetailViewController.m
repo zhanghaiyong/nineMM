@@ -38,7 +38,7 @@
     if (_proPriceByStoreParams == nil) {
         
         ProPriceByStoreParams *proPriceByStoreParams = [[ProPriceByStoreParams alloc]init];
-        proPriceByStoreParams.productId = self.produceModel.id;
+        proPriceByStoreParams.productId = self.produceId;
         _proPriceByStoreParams = proPriceByStoreParams;
     }
     return _proPriceByStoreParams;
@@ -98,7 +98,7 @@
     [[HUDConfig shareHUD]alwaysShow];
     
     ProduceDetailParams *params = [[ProduceDetailParams alloc]init];
-    params.id = self.produceModel.id;
+    params.id = self.produceId;
     
     FxLog(@"produceDetailParams = %@",params.mj_keyValues);
     
@@ -177,6 +177,7 @@
                  if ([produceDetail.itemSelecting integerValue] == -1) {
                     
                      return 0;
+                     
                  }else {
                  
                      return 44;
@@ -292,7 +293,7 @@
         cell3 = [[[NSBundle mainBundle] loadNibNamed:@"ProDetailCell2" owner:self options:nil] lastObject];
         NSArray *tabs = produceDetail.tabs;
         NSDictionary *dic = tabs[typeFlag];
-        NSString *urlStr = [NSString stringWithFormat:@"%@%@/%@.page",HTMLURL,self.produceModel.id,[dic objectForKey:@"tab"]];
+        NSString *urlStr = [NSString stringWithFormat:@"%@%@/%@.page",HTMLURL,self.produceId,[dic objectForKey:@"tab"]];
         NSLog(@"zfzsdgd =%@",urlStr);
         NSURL *url = [NSURL URLWithString:urlStr];
         cell3.isRefreshWebView = isRefreshWebViewH;
@@ -328,7 +329,7 @@
                 
                 UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
                 ClassifyTerm3ViewController *term3 = [mainSB instantiateViewControllerWithIdentifier:@"ClassifyTerm3ViewController"];
-                term3.produceModel = self.produceModel;
+                term3.produceId = self.produceId;
                 term3.delegate = self;
                 [self.navigationController pushViewController:term3 animated:YES];
             }
@@ -380,11 +381,12 @@
     UIStoryboard *SB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
     SureOrdersViewController *sureOrder = [SB instantiateViewControllerWithIdentifier:@"SureOrdersViewController"];
     sureOrder.userSourceArr = userSource;
-    sureOrder.produceModel = self.produceModel;
+    sureOrder.produceId = self.produceId;
+    sureOrder.acceptableCoinTypes = produceDetail.acceptableCoinTypes;
     sureOrder.proPriceByStoreParams = self.proPriceByStoreParams;
     
     if ([produceDetail.isPackagePrice integerValue] == 1) {
-        sureOrder.proPrice = self.produceModel.price;
+        sureOrder.proPrice = produceDetail.price;
     }else {
         sureOrder.proPrice = price;
     }

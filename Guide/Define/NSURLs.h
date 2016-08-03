@@ -87,6 +87,12 @@
 //消息详情
 #define KNotificationContent [BaseURLString stringByAppendingString:@"/gw?cmd=appNotificationContent"]
 
+//打包商品列表
+#define KPackageList [BaseURLString stringByAppendingString:@"/gw?cmd=appAdvresPackagedProductList"]
+
+//打包商品详情
+#define KPackageDetail [BaseURLString stringByAppendingString:@"/gw?cmd=appAdvresPackagedProductDetail"]
+
 #pragma mark LinkAction-----------------
 //根据特征查找商品列表
 #define appQueryProductListByFeature [BaseURLString stringByAppendingString:@"/gw?cmd=appQueryProductListByFeature"]

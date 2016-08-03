@@ -3,5 +3,5 @@
 
 @interface ProduceDetailViewController : BaseViewController
 
-@property (nonatomic,strong)MainProduceModel *produceModel;
+@property (nonatomic,strong)NSString *produceId;
 @end

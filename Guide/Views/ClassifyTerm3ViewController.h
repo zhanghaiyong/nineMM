@@ -16,7 +16,7 @@
 
 @interface ClassifyTerm3ViewController : UIViewController
 
-@property (nonatomic,strong)MainProduceModel *produceModel;
+@property (nonatomic,strong)NSString *produceId;
 
 @property (nonatomic,assign)id<Term3Delegate>delegate;
 

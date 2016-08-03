@@ -1,5 +1,5 @@
 //
-//  MsgDetailParams.h
+//  PackageParams.h
 //  Guide
 //
 //  Created by 张海勇 on 16/8/3.
@@ -8,7 +8,9 @@
 
 #import "BaseParams.h"
 
-@interface MsgDetailParams : BaseParams
-@property (nonatomic,strong)NSString *id;
+@interface PackageParams : BaseParams
+
+@property (nonatomic,assign)int rows;
+@property (nonatomic,assign)int page;
 
 @end

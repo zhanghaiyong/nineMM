@@ -7,9 +7,10 @@
 //
 
 #import "MsgDetailViewController.h"
-#import "MsgDetailParams.h"
-@interface MsgDetailViewController ()
 
+@interface MsgDetailViewController ()<UIWebViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
 @end
 
 @implementation MsgDetailViewController
@@ -17,37 +18,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self loadMsgDetail];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.title = @"消息详情";
+    
+    NSString *urlStr = [NSString stringWithFormat:@"http://9mama.top/notify/mobile/%@.page?sessionId=%@",self.ID,[Uitils getUserDefaultsForKey:TOKEN]];
+    NSURL *url = [NSURL URLWithString:urlStr];
+    
+    [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+    
 }
 
-- (void)loadMsgDetail {
-    
-    [[HUDConfig shareHUD]alwaysShow];
-    
-    MsgDetailParams *params = [[MsgDetailParams alloc]init];
-    params.id = self.ID;
+#pragma mark UIWebViewDelegate
+- (void)webViewDidStartLoad:(UIWebView *)webView {
 
-    [KSMNetworkRequest postRequest:KNotificationContent params:params.mj_keyValues success:^(NSDictionary *dataDic) {
-        
-        FxLog(@"loadMsgDetail = %@",dataDic);
+    [[HUDConfig shareHUD] alwaysShow];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+
+    [[HUDConfig shareHUD] dismiss];
     
-        
-        if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
-            
-            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
-            
-            if (![[dataDic objectForKey:@"retObj"] isEqual:[NSNull null]]) {
-                
-            }
-            
-        }else {
-            
-            [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
-        }
-        
-    } failure:^(NSError *error) {
-        
-    }];
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+
+    [[HUDConfig shareHUD] dismiss];
 }
 
 @end

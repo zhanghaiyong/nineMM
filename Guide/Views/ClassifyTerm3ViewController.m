@@ -44,7 +44,7 @@
     if (_storesParams == nil) {
         
         ProduceStoresParams *storesParams = [[ProduceStoresParams alloc]init];
-        storesParams.productId = self.produceModel.id;
+        storesParams.productId = self.produceId;
         storesParams.page = 0;
         storesParams.rows = 20;
         _storesParams = storesParams;
@@ -71,7 +71,7 @@
     storeIds     = [NSMutableArray array];
     
     
-    if (self.produceModel) {
+    if (self.produceId.length > 0) {
         
         [self produceArreaData];
         
@@ -97,7 +97,7 @@
     [[HUDConfig shareHUD]alwaysShow];
     
     ProduceAreaIDParams *params = [[ProduceAreaIDParams alloc]init];
-    params.productId = self.produceModel.id;
+    params.productId = self.produceId;
     
     [KSMNetworkRequest postRequest:KGetProductAreaIds params:params.mj_keyValues success:^(NSDictionary *dataDic) {
         
@@ -241,7 +241,7 @@
 - (void)initSubViews {
     
     //分类
-    if (self.produceModel) {
+    if (self.produceId.length > 0) {
         
        
         TableHeight = 40*5+10;
@@ -295,7 +295,7 @@
     line3.backgroundColor = lineColor;
     [self.view addSubview:line3];
     
-    if (self.produceModel) {
+    if (self.produceId.length > 0) {
     
         searchBar = [[UITextField alloc]initWithFrame:CGRectMake(20, tableV2.bottom+10, SCREEN_WIDTH-40, 30)];
         searchBar.font = lever2Font;
