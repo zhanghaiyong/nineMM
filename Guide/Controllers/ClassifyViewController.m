@@ -269,13 +269,20 @@
 }
 
 #pragma mark Term3Delegate
-- (void)areaIdOrStoresId:(NSString *)ids type:(NSString *)type {
+- (void)areaIdOrStoresId:(NSArray *)model type:(NSString *)type {
 
     UIButton *button = [head viewWithTag:1002];
     button.selected = NO;
     [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    NSLog(@"SFASf = %@",ids);
-    self.produceParams.qryAreaIds = ids;
+    NSLog(@"SFASf = %@",model);
+    
+    NSMutableArray *array = [NSMutableArray array];
+    for (NSDictionary *dic in model) {
+        
+        [array addObject:[dic objectForKey:@"i"]];
+    }
+    
+    self.produceParams.qryAreaIds = [array componentsJoinedByString:@","];
     [typeTableView.mj_header beginRefreshing];
 }
 

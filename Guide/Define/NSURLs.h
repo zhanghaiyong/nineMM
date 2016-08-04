@@ -90,6 +90,9 @@
 //打包商品列表
 #define KPackageList [BaseURLString stringByAppendingString:@"/gw?cmd=appAdvresPackagedProductList"]
 
+//打包商品Banner
+#define KArticleList [BaseURLString stringByAppendingString:@"/gw?cmd=appArticleList"]
+
 //打包商品详情
 #define KPackageDetail [BaseURLString stringByAppendingString:@"/gw?cmd=appAdvresPackagedProductDetail"]
 

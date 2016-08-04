@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="113" id="KGk-i7-Jjw" customClass="PackageMealBannerCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="113"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="112.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view tag="100" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UZd-Tw-1Jo" customClass="ZHYBannerView">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="112.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="UZd-Tw-1Jo" secondAttribute="bottom" id="CZQ-v8-lL8"/>
+                    <constraint firstItem="UZd-Tw-1Jo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="HKW-Yz-jEp"/>
+                    <constraint firstAttribute="trailing" secondItem="UZd-Tw-1Jo" secondAttribute="trailing" id="clV-Lr-vO1"/>
+                    <constraint firstItem="UZd-Tw-1Jo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="k9D-MN-jKT"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="316" y="268.5"/>
+        </tableViewCell>
+    </objects>
+</document>

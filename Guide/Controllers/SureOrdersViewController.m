@@ -11,6 +11,9 @@
 #import "SubOrderModel.h"
 #import "UserSourceModel.h"
 #import "OrderDetailTabViewCtrl.h"
+
+#import "Produce1Model.h"
+#import "ProduceStoresModel.h"
 @interface SureOrdersViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     sureOrderCell3 *cell3;
@@ -90,7 +93,13 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     
     if (section == 2) {
+        
+        if (self.packageId.length != 0) {
+            
+            return SCREEN_HEIGHT-64-80-120;
+        }
         return SCREEN_HEIGHT-64-110-80-120;
+        
     }
     return 10;
 
@@ -105,31 +114,91 @@
         
         [footer nowBuyProduce:^{
             
-            SubOrderModel *subOrderModel     = [[SubOrderModel alloc]init];
-            subOrderModel.productId          = [self.produceId intValue];
-            subOrderModel.quantity           = 1;
-            subOrderModel.storeSelectingType = self.proPriceByStoreParams.storeSelectingType;
-            subOrderModel.stores             = self.proPriceByStoreParams.storeIds;
-            subOrderModel.areas              = self.proPriceByStoreParams.areaIds;
-            NSMutableArray *userSourceId     = [NSMutableArray array];
-            for (UserSourceModel *model in self.userSourceArr) {
+            
+            if (self.packageId.length == 0) {
+            
+                SubOrderModel *subOrderModel     = [[SubOrderModel alloc]init];
+                subOrderModel.productId          = [self.produceId intValue];
+                subOrderModel.quantity           = 1;
+                subOrderModel.storeSelectingType = self.proPriceByStoreParams.storeSelectingType;
+                subOrderModel.stores             = self.proPriceByStoreParams.storeIds;
+                subOrderModel.areas              = self.proPriceByStoreParams.areaIds;
+                NSMutableArray *userSourceId     = [NSMutableArray array];
+                for (UserSourceModel *model in self.userSourceArr) {
+                    
+                    [userSourceId addObject:model.id];
+                }
+                subOrderModel.items   = [userSourceId componentsJoinedByString:@","];
                 
-                [userSourceId addObject:model.id];
+                itemModel *itemM      = [[itemModel alloc]init];
+                NSArray *itemArr      = [NSArray arrayWithObject:subOrderModel.mj_keyValues];
+                itemM.items           = itemArr;
+                NSArray *array        = [NSArray arrayWithObject:itemM.mj_keyValues];
+                
+                NSString *jsonString  = [array mj_JSONString];
+                self.params.orders = jsonString;
+                
+            }else {
+            
+                
+                itemModel *itemM      = [[itemModel alloc]init];
+                itemM.packagedProduceId = self.packageId;
+                NSMutableArray *itemArray = [NSMutableArray array];
+                for (int i = 0; i < self.packageproduce.count; i++) {
+                    
+                    Produce1Model *produce = self.packageproduce[i];
+                    
+                    SubOrderModel *subOrderModel     = [[SubOrderModel alloc]init];
+                    //商品id
+                    subOrderModel.productId          = [produce.id intValue];
+                    //数量
+//                    subOrderModel.quantity           = 1;
+                    //门店或者区域
+                    if (![self.storeOrArea[i] isEqualToString:@"0"]) {
+                        subOrderModel.storeSelectingType = self.storeOrArea[i];
+                        
+                        if ([self.allStoreArea[i] isKindOfClass:[NSArray class]]) {
+                           
+                            if ([self.storeOrArea[i] isEqualToString:@"store"]) {
+                                
+                                NSMutableArray *array = [NSMutableArray array];
+                                for (ProduceStoresModel *model in self.allStoreArea[i]) {
+                                    [array addObject:model.id];
+                                }
+                                subOrderModel.stores             = [array componentsJoinedByString:@","];
+                            }else {
+                            
+                                NSMutableArray *array = [NSMutableArray array];
+                                for (NSDictionary *dic in self.allStoreArea[i]) {
+                                    [array addObject:[dic objectForKey:@"i"]];
+                                }
+                                subOrderModel.areas             = [array componentsJoinedByString:@","];
+                            }
+                        }
+                    }
+                    
+                    if ([self.allSource[i] isKindOfClass:[NSArray class]]) {
+                        
+                        NSMutableArray *userSourceId     = [NSMutableArray array];
+                        for (UserSourceModel *model in self.allSource) {
+                            [userSourceId addObject:model.id];
+                        }
+                        subOrderModel.items   = [userSourceId componentsJoinedByString:@","];
+                    }
+                    
+                    [itemArray addObject:subOrderModel.mj_keyValues];
+                    
+                }
+                
+                itemM.items           = itemArray;
+                NSArray *array        = [NSArray arrayWithObject:itemM.mj_keyValues];
+                NSString *jsonString  = [array mj_JSONString];
+                self.params.orders = jsonString;
+                
             }
-            subOrderModel.items   = [userSourceId componentsJoinedByString:@","];
-            NSLog(@"subOrderModel = %@",subOrderModel.mj_keyValues);
-
-            itemModel *itemM      = [[itemModel alloc]init];
-            NSArray *itemArr      = [NSArray arrayWithObject:subOrderModel.mj_keyValues];
-            itemM.items           = itemArr;
-            NSLog(@"itemM         = %@",itemM.mj_keyValues);
-            NSArray *array        = [NSArray arrayWithObject:itemM.mj_keyValues];
-
-            NSString *jsonString  = [array mj_JSONString];
-            self.params.orders = jsonString;
+            
             
             if (self.params.paymentMethod.length == 0) {
-                
                 [[HUDConfig shareHUD]Tips:@"请选择支付币种" delay:DELAY];
                 return;
             }
@@ -161,6 +230,10 @@
 
     switch (indexPath.section) {
         case 0:
+            
+            if (self.packageId.length != 0) {
+                return 0;
+            }
             return 110;
             
             break;

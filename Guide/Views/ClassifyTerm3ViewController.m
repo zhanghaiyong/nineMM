@@ -111,14 +111,13 @@
 
                 [produceAreas addObjectsFromArray:[[dataDic objectForKey:@"retObj"] objectForKey:@"ids"]];
                 
-                
                 NSString *rootPath = [HYSandbox docPath];
                 NSString *filePath = [NSString stringWithFormat:@"%@/%@",rootPath,ARESTREE];
                 NSArray *areaTree  = [NSArray arrayWithContentsOfFile:filePath];
-//                NSLog(@"areaTreeareaTree = %@",areaTree);
+                FxLog(@"asfasfds = %@",areaTree);
+
                 //筛选一级
                 NSMutableArray *Filter1 = [NSMutableArray array];
-                FxLog(@"areaTree1 = %ld",Filter1.count);
                 [produceAreas enumerateObjectsUsingBlock:^(NSString *str, NSUInteger idx, BOOL * _Nonnull stop) {
                     [areaTree enumerateObjectsUsingBlock:^(NSDictionary *dic, NSUInteger idx, BOOL * _Nonnull stop) {
                         
@@ -127,9 +126,6 @@
                             if (![Filter1 containsObject:dic]) {
                                 [Filter1 addObject:dic];
                             }
-                            
-                            
-                            FxLog(@"areaTree1 = %ld",Filter1.count);
                         }
                     }];
                 }];
@@ -157,13 +153,10 @@
                             
                             }];
                         
-                        NSLog(@"dddddd= =%ld",array.count);
                             [Filter2[idOne] setObject:array forKey:@"c"];
                         }
                     }];
                     
-                
-//                FxLog(@"areaTree1 = %ld",((NSArray *)([Filter2[0] objectForKey:@"c"])).count);
                 
                 //筛选三级
                 NSMutableArray *Filter3 = [Filter2 mutableCopy];
@@ -208,19 +201,6 @@
                 NSLog(@"dataArr1 = %@",Filter3);
                 
                 [dataArr1 addObjectsFromArray:Filter3];
-                
-//                if (dataArr1.count > 0) {
-//                   
-//                    if ([((NSDictionary *)dataArr1[0]).allKeys containsObject:@"c"]) {
-//                        [dataArr2 addObjectsFromArray:[dataArr1[0] objectForKey:@"c"]];
-//                    }
-//                }
-//                
-//                if (dataArr2.count > 0) {
-//                    if ([((NSDictionary *)dataArr2[0]).allKeys containsObject:@"c"]) {
-//                        [dataArr3 addObjectsFromArray:[dataArr2[0] objectForKey:@"c"]];
-//                    }
-//                }
                 
                 [tableV1 reloadData];
                 [tableV2 reloadData];
@@ -541,16 +521,16 @@
             [TableAreaId2 removeAllObjects];
             [TableAreaId3 removeAllObjects];
             
-            if ([TableAreaId1 containsObject:[dic1 objectForKey:@"i"]]) {
+            if ([TableAreaId1 containsObject:dic1]) {
                 
-                [TableAreaId1 removeObject:[dic1 objectForKey:@"i"]];
+                [TableAreaId1 removeObject:dic1];
                 cell.textLabel.textColor = [UIColor blackColor];
                 
                 if (TableAreaId1.count == 1) {
                     
                     for (NSDictionary *dic in dataArr1) {
                         
-                        if ([[NSString stringWithFormat:@"%@",[dic objectForKey:@"i"]] isEqualToString:[NSString stringWithFormat:@"%@",TableAreaId1[0]]]) {
+                        if ([dic isEqual:TableAreaId1[0]]) {
                             
                             if ([dic.allKeys containsObject:@"c"]) {
                                 
@@ -563,7 +543,7 @@
                 
             }else {
             
-                [TableAreaId1 addObject:[dic1 objectForKey:@"i"]];
+                [TableAreaId1 addObject:dic1];
                 cell.textLabel.textColor = MainColor;
                 
                 if (TableAreaId1.count == 1) {
@@ -585,17 +565,16 @@
             [dataArr3 removeAllObjects];
             [TableAreaId3 removeAllObjects];
             
-            if ([TableAreaId2 containsObject:[dic1 objectForKey:@"i"]]) {
+            if ([TableAreaId2 containsObject:dic1]) {
                 
-                [TableAreaId2 removeObject:[dic1 objectForKey:@"i"]];
+                [TableAreaId2 removeObject:dic1];
                 cell.textLabel.textColor = [UIColor blackColor];
                 
                 if (TableAreaId2.count == 1) {
                     
                     for (NSDictionary *dic in dataArr2) {
                         
-                        if ([[NSString stringWithFormat:@"%@",[dic objectForKey:@"i"]] isEqualToString:[NSString stringWithFormat:@"%@",TableAreaId2[0]]]) {
-                            
+                        if ([dic isEqual:TableAreaId2[0]]) {
                             
                             if ([dic.allKeys containsObject:@"c"]) {
                                 
@@ -607,7 +586,7 @@
                 
             }else {
                 
-                [TableAreaId2 addObject:[dic1 objectForKey:@"i"]];
+                [TableAreaId2 addObject:dic1];
                 cell.textLabel.textColor = MainColor;
                 
                 if (TableAreaId2.count == 1) {
@@ -625,35 +604,45 @@
         
             NSDictionary *dic1 = dataArr3[indexPath.row];
             
-            if ([TableAreaId3 containsObject:[dic1 objectForKey:@"i"]]) {
+            if ([TableAreaId3 containsObject:dic1]) {
                 
                 cell.textLabel.textColor = [UIColor blackColor];
-                [TableAreaId3 removeObject:[dic1 objectForKey:@"i"]];
+                [TableAreaId3 removeObject:dic1];
                 
             }else {
                 
-                [TableAreaId3 addObject:[dic1 objectForKey:@"i"]];
+                [TableAreaId3 addObject:dic1];
                 cell.textLabel.textColor = MainColor;
             }
         }
         
-        
-//        NSMutableArray *finalAreaId = [NSMutableArray array];
-//        [finalAreaId addObjectsFromArray:TableAreaId1];
-//        [finalAreaId addObjectsFromArray:TableAreaId2];
-//        [finalAreaId addObjectsFromArray:TableAreaId3];
-        
         NSString *areaIds;
         if (TableAreaId3.count > 0) {
         
-            areaIds = [TableAreaId3 componentsJoinedByString:@","];
+            NSMutableArray *array = [NSMutableArray array];
+            for (NSDictionary *dic in TableAreaId3) {
+                
+                [array addObject:[dic objectForKey:@"i"]];
+            }
+            areaIds = [array componentsJoinedByString:@","];
             
         }else if (TableAreaId2.count > 0) {
         
-            areaIds = [TableAreaId2 componentsJoinedByString:@","];
+            NSMutableArray *array = [NSMutableArray array];
+            for (NSDictionary *dic in TableAreaId2) {
+                
+                [array addObject:[dic objectForKey:@"i"]];
+            }
+            areaIds = [array componentsJoinedByString:@","];
+            
         }else {
         
-            areaIds = [TableAreaId1 componentsJoinedByString:@","];
+            NSMutableArray *array = [NSMutableArray array];
+            for (NSDictionary *dic in TableAreaId1) {
+                
+                [array addObject:[dic objectForKey:@"i"]];
+            }
+            areaIds = [array componentsJoinedByString:@","];
         }
         
         self.storesParams.areaIds = areaIds;
@@ -679,16 +668,16 @@
         
         if (indexPath.row > 0) {
             ProduceStoresModel *model = storesArr[indexPath.row-1];
-            if ([storeIds containsObject:model.id]) {
+            if ([storeIds containsObject:model]) {
                 
-                [storeIds removeObject:model.id];
+                [storeIds removeObject:model];
                 cell.logoBtn.selected        = NO;
                 cell.meumNameLabel.textColor = [UIColor blackColor];
                 cell.dataLabel.textColor     = [UIColor blackColor];
                 
             }else {
             
-                [storeIds addObject:model.id];
+                [storeIds addObject:model];
                 
                 cell.logoBtn.selected        = YES;
                 cell.meumNameLabel.textColor = MainColor;
@@ -702,24 +691,35 @@
 
     if ([self.delegate respondsToSelector:@selector(areaIdOrStoresId:type:)]) {
         
-        NSString *ids;
+        NSArray *ids;
         NSString *type;
         if (storeIds.count > 0) {
             
-            ids = [storeIds componentsJoinedByString:@","];
+            ids = storeIds;
             type = @"storeId";
             
         }else {
         
-            ids = self.storesParams.areaIds;
+            if (TableAreaId3.count > 0) {
+                
+                ids = TableAreaId3;
+                
+            }else if (TableAreaId2.count > 0) {
+                
+                ids = TableAreaId2;
+                
+            }else {
+                ids = TableAreaId1;
+            }
+            
             type = @"areaId";
         }
+        
         [self.delegate areaIdOrStoresId:ids type:type];
         
         [self.navigationController popViewControllerAnimated:YES];
         
     }
-    
 }
 
 #pragma mark UITextFieldDelegate

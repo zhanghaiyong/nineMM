@@ -10,18 +10,21 @@
 #import "ProduceDetailModel.h"
 #import "ProPriceByStoreParams.h"
 #import "SureOrdersViewController.h"
+#import "ProduceStoresModel.h"
 @interface ProduceDetailViewController ()<UITableViewDelegate,UITableViewDataSource,Term3Delegate,UserSourceDelegate>{
 
     //资源 档期 样刊切换标示
     NSInteger typeFlag;
     ProduceDetailModel *produceDetail;
     NSString    *areaOrStore;
-    NSArray     *userSource;
+    NSMutableArray     *userSource;
+    NSMutableArray     *storeAreaModel;
     CGFloat webViewHeight;
     ProDetailCell2 *cell3;
     NSString  *price;
     BOOL      isRefreshWebViewH;
 }
+@property (weak, nonatomic) IBOutlet UIButton *nowBuyButton;
 @property (nonatomic,strong)MeumList *meumList;
 @property (nonatomic,strong)ProPriceByStoreParams *proPriceByStoreParams;
 @property (nonatomic,strong)NSArray *meumTitles;
@@ -86,10 +89,16 @@
     [super viewDidLoad];
     
     self.title = @"资源详情";
+    storeAreaModel = [NSMutableArray array];
+    userSource = [NSMutableArray array];
     
     self.tableView.tableFooterView = [[UIView alloc]init];
     [self produceDetailData];
     isRefreshWebViewH = YES;
+    if (_fromPackage) {
+        
+        [self.nowBuyButton setTitle:@"确认" forState:UIControlStateNormal];
+    }
 }
 
 
@@ -378,6 +387,17 @@
         }
     }
     
+    UIButton *button = (UIButton *)sender;
+    if ([button.currentTitle isEqualToString:@"确认"]) {
+        
+        NSLog(@"afssdf = %ld",userSource.count);
+        
+        self.block(storeAreaModel,userSource,self.proPriceByStoreParams.storeSelectingType);
+        
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+    
     UIStoryboard *SB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
     SureOrdersViewController *sureOrder = [SB instantiateViewControllerWithIdentifier:@"SureOrdersViewController"];
     sureOrder.userSourceArr = userSource;
@@ -394,24 +414,43 @@
 
 }
 
+- (void)fullPackageMsg:(ProDetailBlock)block {
+    
+    _block = block;
+}
+
 #pragma mark UserSourceViewController Delegate
 - (void)chosedUserSource:(NSArray *)array {
 
-    userSource = [NSArray arrayWithArray:array];
+    [userSource addObjectsFromArray:array];
 }
 
 #pragma mark Term3Delegate
-- (void)areaIdOrStoresId:(NSString *)ids type:(NSString *)type {
+- (void)areaIdOrStoresId:(NSArray *)model type:(NSString *)type {
 
-    NSLog(@"dzfsdg =  %@%@",ids,type);
+    NSLog(@"dzfsdg =  %@%@",model,type);
     
-    areaOrStore = ids;
+     [storeAreaModel addObjectsFromArray:model];
+    
     if ([type isEqualToString:@"storeId"]) {
-        self.proPriceByStoreParams.storeIds = ids;
+        
+        NSMutableArray *array = [NSMutableArray array];
+        for (ProduceStoresModel *m in model) {
+            [array addObject:m.id];
+        }
+        areaOrStore = [array componentsJoinedByString:@","];
+        self.proPriceByStoreParams.storeIds = areaOrStore;
         self.proPriceByStoreParams.storeSelectingType = @"store";
     }else {
+        
+        NSMutableArray *array = [NSMutableArray array];
+        for (NSDictionary *dic in model) {
+            [array addObject:[dic objectForKey:@"i"]];
+        }
+        areaOrStore = [array componentsJoinedByString:@","];
+        
         self.proPriceByStoreParams.storeSelectingType = @"area";
-        self.proPriceByStoreParams.areaIds = ids;
+        self.proPriceByStoreParams.areaIds = areaOrStore;
     }
     
     [[HUDConfig shareHUD]alwaysShow];

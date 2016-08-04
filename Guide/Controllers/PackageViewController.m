@@ -10,15 +10,28 @@
 #import "PackageParams.h"
 #import "PackageModel.h"
 #import "PackageMealCell.h"
+#import "PackageMealBannerCell.h"
 #import "PackageDetailViewController.h"
-@interface PackageViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "PackageBannerModel.h"
+#import "ZHYBannerView.h"
+@interface PackageViewController ()<UITableViewDelegate,UITableViewDataSource,ZHYBannerViewDelegte>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,strong)NSMutableArray *packageArray;
+@property (nonatomic,strong)NSMutableArray *bannerArray;
 @property (nonatomic,strong)PackageParams *params;
 @end
 
 @implementation PackageViewController
+
+-(NSMutableArray *)bannerArray {
+    
+    if (_bannerArray == nil) {
+        NSMutableArray *bannerArray = [NSMutableArray array];
+        _bannerArray = bannerArray;
+    }
+    return _bannerArray;
+}
 
 -(NSMutableArray *)packageArray {
 
@@ -46,6 +59,8 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.tableView.tableFooterView = [[UIView alloc]init];
     
+    [self loadBanners];
+    
     //刷新
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
@@ -64,6 +79,44 @@
     }];
     
     [self.tableView.mj_header beginRefreshing];
+}
+
+
+- (void)loadBanners {
+
+    [[HUDConfig shareHUD]alwaysShow];
+    
+    NSDictionary *dic = @{@"categoryName":@"套餐轮播",@"rows":@"100",@"page":@"1"};
+    
+    FxLog(@"loadBanners = %@",dic);
+    
+    [KSMNetworkRequest postRequest:KArticleList params:dic success:^(NSDictionary *dataDic) {
+        
+        FxLog(@"loadBanners = %@",dataDic);
+        if ([[dataDic objectForKey:@"retCode"]integerValue] == 0) {
+            
+            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            
+            if (![[dataDic objectForKey:@"retObj"] isEqual:[NSNull null]]) {
+                
+                NSArray *rows = [[dataDic objectForKey:@"retObj"] objectForKey:@"rows"];
+            
+                self.bannerArray = [PackageBannerModel mj_objectArrayWithKeyValuesArray:rows];
+               
+                //一个section刷新
+                NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:0];
+                [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
+            }
+            
+        }else {
+            
+            [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+        }
+        
+    } failure:^(NSError *error) {
+        
+    }];
+
 }
 
 
@@ -124,28 +177,59 @@
 }
 
 #pragma mark UITableViewDelegate&&UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+
+    return self.packageArray.count+1;
+}
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return self.packageArray.count;
+    return 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    return 90;
+    if (indexPath.section == 0) {
+        return 180;
+    }
+    return 100;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
 
     return 5;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 
     return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
+    
+    if (indexPath.section == 0) {
+        
+        PackageMealBannerCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"PackageMealBannerCell" owner:self options:nil] lastObject];
+        
+        if (self.bannerArray.count > 0) {
+            
+            //滚动试图
+            ZHYBannerView *bannerView = [cell.contentView viewWithTag:100];
+            bannerView.delegate = self;
+            bannerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 180);
+            NSMutableArray *topImages = [NSMutableArray array];
+            for (PackageBannerModel *bannerModel in self.bannerArray) {
+                
+                [topImages addObject:bannerModel.id];
+            }
+            bannerView.imageArray = topImages;
+        }
+        return cell;
+        
+    }else {
+    
     static NSString *identifier = @"cell";
     PackageMealCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
@@ -153,7 +237,7 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"PackageMealCell" owner:self options:nil] lastObject];
     }
     
-    PackageModel *model = self.packageArray[indexPath.row];
+    PackageModel *model = self.packageArray[indexPath.section-1];
     cell.nameLabel.text = model.name;
     cell.priceLabel.text = model.price;
     cell.stockLabel.text = [NSString stringWithFormat:@"库存 %@",model.stock];
@@ -164,19 +248,24 @@
         coinImg.hidden = NO;
         coinImg.image  = [UIImage imageNamed:[Uitils toImageName:model.acceptableCoinTypes[i]]];
     }
-    
     return cell;
+    }
+    
+    return nil;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    PackageModel *model = self.packageArray[indexPath.row];
-    UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
-    PackageDetailViewController *packageDetailVC = [mainSB instantiateViewControllerWithIdentifier:@"PackageDetailViewController"];
-    packageDetailVC.packageModel = model;
-    [self.navigationController pushViewController:packageDetailVC animated:YES];
+    if (indexPath.section != 0) {
+     
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        
+        PackageModel *model = self.packageArray[indexPath.section-1];
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        PackageDetailViewController *packageDetailVC = [mainSB instantiateViewControllerWithIdentifier:@"PackageDetailViewController"];
+        packageDetailVC.packageModel = model;
+        [self.navigationController pushViewController:packageDetailVC animated:YES];
+    }
 }
 
 @end

@@ -177,8 +177,6 @@
             }
         }
     
-    
-    
     cellHead.countLabel.text = [NSString stringWithFormat:@"已选商品（%ld）",selectArr.count];
     
 }

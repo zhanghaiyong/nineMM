@@ -10,7 +10,7 @@
 #import "MainProduceModel.h"
 @protocol Term3Delegate <NSObject>
 
-- (void)areaIdOrStoresId:(NSString *)ids type:(NSString *)type;
+- (void)areaIdOrStoresId:(NSArray *)model type:(NSString *)type;
 
 @end
 
