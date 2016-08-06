@@ -17,18 +17,10 @@
                     <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="imZ-k1-uLJ">
                         <rect key="frame" x="106" y="0.0" width="106.5" height="41.5"/>
                         <color key="backgroundColor" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="44" id="v8Q-df-ywQ"/>
-                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <state key="normal" title="档期规格">
                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="v8Q-df-ywQ"/>
-                            </mask>
-                        </variation>
                         <connections>
                             <action selector="typeAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="23t-yC-8Ta"/>
                         </connections>
@@ -36,18 +28,10 @@
                     <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TlV-H9-cvC">
                         <rect key="frame" x="213" y="0.0" width="106.5" height="41.5"/>
                         <color key="backgroundColor" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="44" id="B28-rZ-AgE"/>
-                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <state key="normal" title="样刊案例">
                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="B28-rZ-AgE"/>
-                            </mask>
-                        </variation>
                         <connections>
                             <action selector="typeAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="gWY-ir-Wec"/>
                         </connections>
@@ -55,18 +39,10 @@
                     <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48R-Ef-vQ0">
                         <rect key="frame" x="0.0" y="0.0" width="106.5" height="41.5"/>
                         <color key="backgroundColor" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="44" id="v1p-ag-5qg"/>
-                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <state key="normal" title="资源描述">
                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="v1p-ag-5qg"/>
-                            </mask>
-                        </variation>
                         <connections>
                             <action selector="typeAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="d5J-m9-DKu"/>
                         </connections>

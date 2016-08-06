@@ -8,7 +8,7 @@
 
 #import "BaseTableViewController.h"
 
-@interface OrderDetailTabViewCtrl : BaseTableViewController
+@interface OrderDetailTabViewCtrl : BaseViewController
 
 @property (nonnull,strong)NSString *orderId;
 @property (nonatomic,assign)BOOL surePayProduce;

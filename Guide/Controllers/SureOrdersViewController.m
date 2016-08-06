@@ -143,6 +143,7 @@
                 
                 itemModel *itemM      = [[itemModel alloc]init];
                 itemM.packagedProduceId = self.packageId;
+                
                 NSMutableArray *itemArray = [NSMutableArray array];
                 for (int i = 0; i < self.packageproduce.count; i++) {
                     
@@ -152,42 +153,40 @@
                     //商品id
                     subOrderModel.productId          = [produce.id intValue];
                     //数量
-//                    subOrderModel.quantity           = 1;
+                    subOrderModel.quantity           = 1;
                     //门店或者区域
                     if (![self.storeOrArea[i] isEqualToString:@"0"]) {
                         subOrderModel.storeSelectingType = self.storeOrArea[i];
+                    }
+                    
+                    if ([self.allStoreArea[i] isKindOfClass:[NSArray class]]) {
                         
-                        if ([self.allStoreArea[i] isKindOfClass:[NSArray class]]) {
-                           
-                            if ([self.storeOrArea[i] isEqualToString:@"store"]) {
-                                
-                                NSMutableArray *array = [NSMutableArray array];
-                                for (ProduceStoresModel *model in self.allStoreArea[i]) {
-                                    [array addObject:model.id];
-                                }
-                                subOrderModel.stores             = [array componentsJoinedByString:@","];
-                            }else {
+                        if ([self.storeOrArea[i] isEqualToString:@"store"]) {
                             
-                                NSMutableArray *array = [NSMutableArray array];
-                                for (NSDictionary *dic in self.allStoreArea[i]) {
-                                    [array addObject:[dic objectForKey:@"i"]];
-                                }
-                                subOrderModel.areas             = [array componentsJoinedByString:@","];
+                            NSMutableArray *array = [NSMutableArray array];
+                            for (ProduceStoresModel *model in self.allStoreArea[i]) {
+                                [array addObject:model.id];
                             }
+                            subOrderModel.stores             = [array componentsJoinedByString:@","];
+                        }else {
+                            
+                            NSMutableArray *array = [NSMutableArray array];
+                            for (NSDictionary *dic in self.allStoreArea[i]) {
+                                [array addObject:[dic objectForKey:@"i"]];
+                            }
+                            subOrderModel.areas             = [array componentsJoinedByString:@","];
                         }
                     }
                     
                     if ([self.allSource[i] isKindOfClass:[NSArray class]]) {
                         
                         NSMutableArray *userSourceId     = [NSMutableArray array];
-                        for (UserSourceModel *model in self.allSource) {
+                        for (UserSourceModel *model in self.allSource[i]) {
                             [userSourceId addObject:model.id];
                         }
                         subOrderModel.items   = [userSourceId componentsJoinedByString:@","];
                     }
-                    
                     [itemArray addObject:subOrderModel.mj_keyValues];
-                    
                 }
                 
                 itemM.items           = itemArray;

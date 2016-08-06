@@ -129,19 +129,20 @@
         
     }else {
     
-        if (packageDetailModel) {
-            Produce1Model *model = packageDetailModel.products[section-1];
-            NSInteger row = 1;
-            if ([model.itemSelecting integerValue] != -1) {
-                row ++;
-            }
-            
-            if ([model.shopSelecting integerValue] != 0) {
-                row ++;
-            }
-            return row;
-        }
-        return 0;
+//        if (packageDetailModel) {
+//            Produce1Model *model = packageDetailModel.products[section-1];
+//            
+//            NSInteger row = 1;
+//            if ([model.itemSelecting integerValue] != -1) {
+//                row ++;
+//            }
+//            
+//            if ([model.shopSelecting integerValue] != 0) {
+//                row ++;
+//            }
+//            return row;
+//        }
+        return 3;
     }
     return 0;
 }
@@ -150,6 +151,44 @@
 
     if (indexPath.section == 0) {
         return 80;
+    }else {
+    
+        if (packageDetailModel) {
+            Produce1Model *model = packageDetailModel.products[indexPath.section-1];
+            
+            switch (indexPath.row) {
+                case 0:{
+                
+                    return 40;
+                }
+                    break;
+                case 1:{
+                
+                    if ([model.shopSelecting integerValue] == 0) {
+                        return 0;
+                    }else {
+                        
+                        return 40;
+                    }
+                }
+                    break;
+                case 2:{
+                
+                    if ([model.itemSelecting integerValue] == -1) {
+                        return 0;
+                    }else {
+                        
+                        return 40;
+                    }
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+            
+        }
+        return 40;
     }
     return 40;
 }
@@ -213,7 +252,6 @@
                 PackageDetailCell2 *cell2 = [[[NSBundle mainBundle] loadNibNamed:@"PackageDetailCell2" owner:self options:nil] lastObject];
                 
                 if (storeOrAreaModel.count > 0) {
-                    
                     cell2.areaLabel.text = [NSString stringWithFormat:@"%ld个门店/区域",storeOrAreaModel.count];
                 }
                 
@@ -224,7 +262,6 @@
                 PackageDetailCell3 *cell3 = [[[NSBundle mainBundle] loadNibNamed:@"PackageDetailCell3" owner:self options:nil] lastObject];
                 
                 if (userSource.count > 0) {
-                    
                     NSLog(@"afssdf = %ld",userSource.count);
                     cell3.sourceLabel.text = [NSString stringWithFormat:@"%ld个酒品",userSource.count];
                 }
@@ -250,34 +287,46 @@
         
         [produceDetail fullPackageMsg:^(NSArray *storeAreaModel, NSArray *sources, NSString *storeOrArea) {
             
-            if ([allSource[indexPath.section-1] isKindOfClass:[NSArray class]]) {
+            if (sources.count > 0) {
                 
-                [allSource replaceObjectAtIndex:indexPath.section-1 withObject:sources];
-                
-            }else {
+                if (![allSource[indexPath.section-1] isKindOfClass:[NSArray class]]) {
+                    
+                    [allSource replaceObjectAtIndex:indexPath.section-1 withObject:sources];
+                    
+                }else {
+                    
+                    [allSource replaceObjectAtIndex:indexPath.section-1 withObject:@"0"];
+                }
+            }
+
             
-                [allSource replaceObjectAtIndex:indexPath.section-1 withObject:@"0"];
+            if (storeAreaModel.count > 0) {
+                
+                if (![allStore[indexPath.section-1] isKindOfClass:[NSArray class]]) {
+                    
+                    [allStore replaceObjectAtIndex:indexPath.section-1 withObject:storeAreaModel];
+                    
+                }else {
+                    
+                    [allStore replaceObjectAtIndex:indexPath.section-1 withObject:@"0"];
+                }
+            }
+
+            
+            if (storeOrArea.length > 0) {
+                
+                if (![store_Area[indexPath.section -1] isEqualToString:@"0"]) {
+                    
+                    [store_Area replaceObjectAtIndex:indexPath.section-1 withObject:storeOrArea];
+                }else {
+                    
+                    [store_Area replaceObjectAtIndex:indexPath.section-1 withObject:@"0"];
+                }
             }
             
-            if ([allStore[indexPath.section-1] isKindOfClass:[NSArray class]]) {
-                
-                [allStore replaceObjectAtIndex:indexPath.section-1 withObject:storeAreaModel];
-                
-            }else {
-                
-                [allStore replaceObjectAtIndex:indexPath.section-1 withObject:@"0"];
-            }
-            
-            if ([store_Area[indexPath.section -1] isEqualToString:@"0"]) {
-                
-                [store_Area replaceObjectAtIndex:indexPath.section-1 withObject:storeOrArea];
-            }else {
-            
-                [store_Area replaceObjectAtIndex:indexPath.section-1 withObject:@"0"];
-            }
-            
-            
+            [userSource removeAllObjects];
             [userSource addObjectsFromArray:sources];
+            [storeOrAreaModel removeAllObjects];
             [storeOrAreaModel addObjectsFromArray:storeAreaModel];
             
             NSIndexSet *set = [[NSIndexSet alloc]initWithIndex:indexPath.section];
@@ -297,6 +346,9 @@
     SureOrdersViewController *sureOrder = [SB instantiateViewControllerWithIdentifier:@"SureOrdersViewController"];
     sureOrder.allSource = allSource;
     sureOrder.allStoreArea = allStore;
+    
+    NSLog(@"allSource = %@",allSource);
+    NSLog(@"allStore = %@",allStore);
 
     sureOrder.packageId = packageDetailModel.id;
     sureOrder.storeOrArea = store_Area;

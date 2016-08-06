@@ -9,63 +9,18 @@
 #import "OrderDetailTabViewCtrl.h"
 #import "OrderDetailParams.h"
 #import "OrderDetailModel.h"
-@interface OrderDetailTabViewCtrl ()<UITableViewDataSource,UITableViewDelegate>
-/**
- *  图片
- */
-@property (weak, nonatomic) IBOutlet UIImageView *image;
-/**
- *  商品名称
- */
-@property (weak, nonatomic) IBOutlet UILabel *goodsName;
-/**
- *  酒币
- */
-@property (weak, nonatomic) IBOutlet UILabel *wineCoin;
-/**
- *  库存
- */
-@property (weak, nonatomic) IBOutlet UILabel *stock;
-/**
- *  合计
- */
-@property (weak, nonatomic) IBOutlet UILabel *totalPrice;
-/**
- *  订单编号
- */
-@property (weak, nonatomic) IBOutlet UILabel *orderCode;
-/**
- *  订单状态
- */
-@property (weak, nonatomic) IBOutlet UILabel *orderStatus;
-/**
- *  订单时间
- */
-@property (weak, nonatomic) IBOutlet UILabel *orderTime;
-/**
- *  指定商品
- */
-@property (weak, nonatomic) IBOutlet UILabel *pointGoods;
-/**
- *  酒币图片
- */
-@property (weak, nonatomic) IBOutlet UIImageView *coinImage;
-/**
- *  支付币种
- */
-@property (weak, nonatomic) IBOutlet UILabel *coinType;
-/**
- *  下单人
- */
-@property (weak, nonatomic) IBOutlet UILabel *orderMan;
-/**
- *  购买单位
- */
-@property (weak, nonatomic) IBOutlet UILabel *payUnit;
-/**
- *  订单总额
- */
-@property (weak, nonatomic) IBOutlet UILabel *orderTotalWineCoin;
+#import "OrderItemModel.h"
+#import "OrderDetailCell1.h"
+#import "OrderDetailCell2.h"
+#import "OrderDetailCell3.h"
+#import "OrderDetailCell4.h"
+
+@interface OrderDetailTabViewCtrl ()<UITableViewDataSource,UITableViewDelegate>{
+
+    OrderDetailModel *orderDetail;
+}
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 
 @end
 
@@ -76,21 +31,109 @@
 
     self.title = @"订单详情";
     [self setNavigationLeft:@"返回"];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     
     [self orderDetail];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+#pragma  mark UITableViewDelegate&&UITableViewDatSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    if (section == 0) {
-        return 0;
-    }
-    return 10;
+    return 2;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 0.1;
+    if (section == 0) {
+        
+        return orderDetail.orderItems.count;;
+    }else {
+    
+        return 3;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    if (indexPath.section == 0) {
+        
+        return 80;
+        
+    }else {
+    
+        switch (indexPath.row) {
+            case 0:
+                return 165;
+                break;
+            case 1:
+                return 90;
+                break;
+            case 2:
+                return 120;
+                break;
+                
+            default:
+                break;
+        }
+    }
+    return 0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    if (indexPath.section == 0) {
+        static NSString *identifier = @"cell";
+        OrderDetailCell1 *cell1 = [tableView dequeueReusableCellWithIdentifier:identifier];
+        if (!cell1) {
+            cell1 = [[[NSBundle mainBundle] loadNibNamed:@"OrderDetailCell1" owner:self options:nil] lastObject];
+            
+            OrderItemModel *orderItem = orderDetail.orderItems[indexPath.row];
+            cell1.productName.text = orderItem.goodsName;
+            cell1.priceLabel.text = orderItem.price;
+            cell1.stockLabel.text = orderItem.quantity;
+            
+            return cell1;
+        }
+    }else {
+    
+        switch (indexPath.row) {
+            case 0:{
+            
+                OrderDetailCell2 *cell2 = [[[NSBundle mainBundle] loadNibNamed:@"OrderDetailCell2" owner:self options:nil] lastObject];
+                cell2.orderCode.text = orderDetail.orderSn;
+                cell2.orderStatus.text = orderDetail.orderStepName;
+                cell2.orderStatus.textColor = [Uitils colorWithHex:(unsigned long)orderDetail.orderStepName];
+                cell2.orderTime.text = orderDetail.orderCreateDate;
+                return cell2;
+            }
+                
+                break;
+            case 1:{
+                
+                OrderDetailCell3 *cell3 = [[[NSBundle mainBundle] loadNibNamed:@"OrderDetailCell3" owner:self options:nil] lastObject];
+//                cell3.pointProduct.text = orderDetail.
+                NSString *coinName = [orderDetail.paymentMethodCode stringByReplacingOccurrencesOfString:@"Coin" withString:@""];
+                cell3.payCoinImage.image = [UIImage imageNamed:[Uitils toImageName:coinName]];
+                cell3.payCoinName.text = [Uitils toChinses:coinName];
+                return cell3;
+            }
+                
+                break;
+            case 2:{
+                
+                OrderDetailCell4 *cell4 = [[[NSBundle mainBundle] loadNibNamed:@"OrderDetailCell4" owner:self options:nil] lastObject];
+                cell4.OrderPeople.text = [orderDetail.address objectForKey:@"consignee"];
+                cell4.orderTotalPrice.text = orderDetail.totalPrice;
+                return cell4;
+            }
+                
+                break;
+                
+            default:
+                break;
+        }
+    }
+    return nil;
 }
 
 - (void)orderDetail {
@@ -113,25 +156,9 @@
             if (![[dataDic objectForKey:@"retObj"] isEqual:[NSNull null]]) {
                 
                 NSDictionary *retObj = [dataDic objectForKey:@"retObj"];
-               OrderDetailModel *orderDetail = [OrderDetailModel mj_objectWithKeyValues:retObj];
+               orderDetail = [OrderDetailModel mj_objectWithKeyValues:retObj];
                 
-                self.goodsName.text = orderDetail.goodsName;
-                self.wineCoin.text = orderDetail.price;
-                self.stock.text = [NSString stringWithFormat:@"x%@",orderDetail.quantity];
-                self.totalPrice.text = orderDetail.totalPrice;
-                self.orderCode.text = orderDetail.orderSn;
-                self.orderStatus.text = orderDetail.orderStepName;
-                self.orderStatus.textColor = [Uitils colorWithHex:(unsigned long)orderDetail.orderStepTextColor];
-                self.orderTime.text = orderDetail.orderCreateDate;
-                
-                self.pointGoods.text = orderDetail.productName;
-                
-                NSString *coinType = [orderDetail.paymentMethodCode stringByReplacingOccurrencesOfString:@"Coin" withString:@""];
-                self.coinImage.image = [UIImage imageNamed:[Uitils toImageName:coinType]];
-                self.coinType.text = orderDetail.paymentMethodName;
-                self.orderMan.text = [orderDetail.address objectForKey:@"consignee"];
-//                self.payUnit.text = orderDetail.
-                self.orderTotalWineCoin.text = orderDetail.totalPrice;
+                [self.tableView reloadData];
             }
             
         }else {
@@ -143,10 +170,9 @@
     }];
 }
 
-- (void)doBack:(UIButton *)sender
-{
+- (void)doBack:(UIButton *)sender {
+    
     if (self.surePayProduce) {
-        
         [self.navigationController popToRootViewControllerAnimated:YES];
     }else {
     

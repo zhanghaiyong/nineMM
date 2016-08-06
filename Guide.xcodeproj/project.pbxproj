@@ -63,6 +63,15 @@
 		BF40865C1D12EF7600E11065 /* ShortcutsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF40865B1D12EF7600E11065 /* ShortcutsModel.m */; };
 		BF40865F1D12EF8500E11065 /* GroupButtonsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF40865E1D12EF8500E11065 /* GroupButtonsModel.m */; };
 		BF4086621D12EF9500E11065 /* TopBannersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF4086611D12EF9500E11065 /* TopBannersModel.m */; };
+		BF5829EC1D55944D00951730 /* OrderDetailCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5829EA1D55944D00951730 /* OrderDetailCell1.m */; };
+		BF5829ED1D55944D00951730 /* OrderDetailCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF5829EB1D55944D00951730 /* OrderDetailCell1.xib */; };
+		BF5829F11D55956D00951730 /* OrderDetailCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5829EF1D55956D00951730 /* OrderDetailCell2.m */; };
+		BF5829F21D55956D00951730 /* OrderDetailCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF5829F01D55956D00951730 /* OrderDetailCell2.xib */; };
+		BF5829F61D55964A00951730 /* OrderDetailCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5829F41D55964A00951730 /* OrderDetailCell3.m */; };
+		BF5829F71D55964A00951730 /* OrderDetailCell3.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF5829F51D55964A00951730 /* OrderDetailCell3.xib */; };
+		BF5829FB1D55969A00951730 /* OrderDetailCell4.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5829F91D55969A00951730 /* OrderDetailCell4.m */; };
+		BF5829FC1D55969A00951730 /* OrderDetailCell4.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF5829FA1D55969A00951730 /* OrderDetailCell4.xib */; };
+		BF5829FF1D559E1800951730 /* OrderItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5829FE1D559E1800951730 /* OrderItemModel.m */; };
 		BF59C5381D44E861007A2E84 /* ProDetailCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = BF59C5361D44E861007A2E84 /* ProDetailCell3.m */; };
 		BF59C5391D44E861007A2E84 /* ProDetailCell3.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF59C5371D44E861007A2E84 /* ProDetailCell3.xib */; };
 		BF59C53C1D453082007A2E84 /* URLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF59C53B1D453082007A2E84 /* URLViewController.m */; };
@@ -317,6 +326,20 @@
 		BF40865E1D12EF8500E11065 /* GroupButtonsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupButtonsModel.m; sourceTree = "<group>"; };
 		BF4086601D12EF9500E11065 /* TopBannersModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopBannersModel.h; sourceTree = "<group>"; };
 		BF4086611D12EF9500E11065 /* TopBannersModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopBannersModel.m; sourceTree = "<group>"; };
+		BF5829E91D55944D00951730 /* OrderDetailCell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailCell1.h; sourceTree = "<group>"; };
+		BF5829EA1D55944D00951730 /* OrderDetailCell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailCell1.m; sourceTree = "<group>"; };
+		BF5829EB1D55944D00951730 /* OrderDetailCell1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetailCell1.xib; sourceTree = "<group>"; };
+		BF5829EE1D55956D00951730 /* OrderDetailCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailCell2.h; sourceTree = "<group>"; };
+		BF5829EF1D55956D00951730 /* OrderDetailCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailCell2.m; sourceTree = "<group>"; };
+		BF5829F01D55956D00951730 /* OrderDetailCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetailCell2.xib; sourceTree = "<group>"; };
+		BF5829F31D55964A00951730 /* OrderDetailCell3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailCell3.h; sourceTree = "<group>"; };
+		BF5829F41D55964A00951730 /* OrderDetailCell3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailCell3.m; sourceTree = "<group>"; };
+		BF5829F51D55964A00951730 /* OrderDetailCell3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetailCell3.xib; sourceTree = "<group>"; };
+		BF5829F81D55969A00951730 /* OrderDetailCell4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailCell4.h; sourceTree = "<group>"; };
+		BF5829F91D55969A00951730 /* OrderDetailCell4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailCell4.m; sourceTree = "<group>"; };
+		BF5829FA1D55969A00951730 /* OrderDetailCell4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetailCell4.xib; sourceTree = "<group>"; };
+		BF5829FD1D559E1800951730 /* OrderItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderItemModel.h; sourceTree = "<group>"; };
+		BF5829FE1D559E1800951730 /* OrderItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderItemModel.m; sourceTree = "<group>"; };
 		BF59C5351D44E861007A2E84 /* ProDetailCell3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProDetailCell3.h; sourceTree = "<group>"; };
 		BF59C5361D44E861007A2E84 /* ProDetailCell3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProDetailCell3.m; sourceTree = "<group>"; };
 		BF59C5371D44E861007A2E84 /* ProDetailCell3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProDetailCell3.xib; sourceTree = "<group>"; };
@@ -925,6 +948,8 @@
 				BF8600CF1D3B26F900BCA60A /* OrderModel.m */,
 				BF8601071D3E765E00BCA60A /* OrderDetailModel.h */,
 				BF8601081D3E765E00BCA60A /* OrderDetailModel.m */,
+				BF5829FD1D559E1800951730 /* OrderItemModel.h */,
+				BF5829FE1D559E1800951730 /* OrderItemModel.m */,
 				BF5D3F6A1D50D38200AD7A44 /* MemberInfoModel.h */,
 				BF5D3F6B1D50D38200AD7A44 /* MemberInfoModel.m */,
 			);
@@ -1268,6 +1293,18 @@
 				BFED9BA91D2A52E4000175C5 /* OrderCell.h */,
 				BFED9BAA1D2A52E4000175C5 /* OrderCell.m */,
 				BFED9BAB1D2A52E4000175C5 /* OrderCell.xib */,
+				BF5829E91D55944D00951730 /* OrderDetailCell1.h */,
+				BF5829EA1D55944D00951730 /* OrderDetailCell1.m */,
+				BF5829EB1D55944D00951730 /* OrderDetailCell1.xib */,
+				BF5829EE1D55956D00951730 /* OrderDetailCell2.h */,
+				BF5829EF1D55956D00951730 /* OrderDetailCell2.m */,
+				BF5829F01D55956D00951730 /* OrderDetailCell2.xib */,
+				BF5829F31D55964A00951730 /* OrderDetailCell3.h */,
+				BF5829F41D55964A00951730 /* OrderDetailCell3.m */,
+				BF5829F51D55964A00951730 /* OrderDetailCell3.xib */,
+				BF5829F81D55969A00951730 /* OrderDetailCell4.h */,
+				BF5829F91D55969A00951730 /* OrderDetailCell4.m */,
+				BF5829FA1D55969A00951730 /* OrderDetailCell4.xib */,
 			);
 			name = OrderCell;
 			sourceTree = "<group>";
@@ -1437,6 +1474,7 @@
 			files = (
 				BF5D3F791D50EA5900AD7A44 /* MsgCenterCell.xib in Resources */,
 				BF8600F01D3D46EA00BCA60A /* sureOrderCell2.xib in Resources */,
+				BF5829FC1D55969A00951730 /* OrderDetailCell4.xib in Resources */,
 				786B637C1CC71F9F00362DBF /* ProgressHUD.bundle in Resources */,
 				BF5D3F871D50F6A900AD7A44 /* MsgListCell.xib in Resources */,
 				789E789A1CB60D080039AC69 /* Assets.xcassets in Resources */,
@@ -1450,6 +1488,7 @@
 				BF8600F51D3D472F00BCA60A /* sureOrderCell3.xib in Resources */,
 				BFC50EFE1CFC1B7300CA7CD5 /* Main1Cell.xib in Resources */,
 				BF9468291D22852C00143B91 /* SourceListCell.xib in Resources */,
+				BF5829F21D55956D00951730 /* OrderDetailCell2.xib in Resources */,
 				BF3C3C291D39CEE1000E3027 /* CoinRechargeCell3.xib in Resources */,
 				BF8600EB1D3D46AC00BCA60A /* sureOrdercell1.xib in Resources */,
 				BF93CED61D5247C500767C0C /* PackageDetailHeadCell.xib in Resources */,
@@ -1474,12 +1513,14 @@
 				BF99BC6E1D5372E80015FA24 /* PackageMealBannerCell.xib in Resources */,
 				BF99BC7B1D5378D20015FA24 /* PackageDetailCell2.xib in Resources */,
 				788A56471CB7907E00A58302 /* TabBar.plist in Resources */,
+				BF5829ED1D55944D00951730 /* OrderDetailCell1.xib in Resources */,
 				BFF8D4101D18F5740039600B /* ProDetailCell1.xib in Resources */,
 				BF4086561D12E59000E11065 /* SearchBar.xib in Resources */,
 				BFE59B211D48BABD00E1DB2A /* MyCoinsCell1.xib in Resources */,
 				788836D41CBCC9D30030909E /* BirthdayView.xib in Resources */,
 				BFC50F031CFC1BAF00CA7CD5 /* Main2Cell.xib in Resources */,
 				BFD887D01CF976CF00C9DF44 /* MethodBagCell.xib in Resources */,
+				BF5829F71D55964A00951730 /* OrderDetailCell3.xib in Resources */,
 				BFEEA58F1D19996200B261BF /* ProDetailCell.xib in Resources */,
 				BFE59B261D48BAEA00E1DB2A /* MyCoinsCell2.xib in Resources */,
 				BFA2B7041CF6D33E00EB460E /* MainView.storyboard in Resources */,
@@ -1574,9 +1615,11 @@
 				BFE59B2A1D48BB1800E1DB2A /* MyCoinsCell3.m in Sources */,
 				BFED9BAC1D2A52E4000175C5 /* OrderCell.m in Sources */,
 				BF8600DC1D3B7FFF00BCA60A /* ProduceAreaIDParams.m in Sources */,
+				BF5829FB1D55969A00951730 /* OrderDetailCell4.m in Sources */,
 				BF3C3C091D375121000E3027 /* ProduceDetailParams.m in Sources */,
 				BF3509921D13AFB300F2BCC5 /* MainProduceModel.m in Sources */,
 				BFF578B71D2F6C4C00EC9400 /* ZZPhotoPickerCell.m in Sources */,
+				BF5829EC1D55944D00951730 /* OrderDetailCell1.m in Sources */,
 				BF93CED51D5247C500767C0C /* PackageDetailHeadCell.m in Sources */,
 				BFEEA5891D198ADF00B261BF /* ProDetailCell2.m in Sources */,
 				786B637D1CC71F9F00362DBF /* ProgressHUD.m in Sources */,
@@ -1658,6 +1701,7 @@
 				789E78DA1CB632FC0039AC69 /* Uitils.m in Sources */,
 				782800801CD1BD9100F760EF /* SDKKey.m in Sources */,
 				BF93CEAE1D52257200767C0C /* PackageViewController.m in Sources */,
+				BF5829F11D55956D00951730 /* OrderDetailCell2.m in Sources */,
 				789E78DD1CB633580039AC69 /* NSString+HYExtension.m in Sources */,
 				BF35098C1D13A3C900F2BCC5 /* MainProduceListParams.m in Sources */,
 				BF59C5381D44E861007A2E84 /* ProDetailCell3.m in Sources */,
@@ -1671,6 +1715,7 @@
 				7871FC2B1CBF6E0500E2608C /* CALayer+TextFieldBoardColor.m in Sources */,
 				BF93CEB81D5237D900767C0C /* PackageMealCell.m in Sources */,
 				BF9468281D22852C00143B91 /* SourceListCell.m in Sources */,
+				BF5829F61D55964A00951730 /* OrderDetailCell3.m in Sources */,
 				789E78D71CB632950039AC69 /* HYSandbox.m in Sources */,
 				789231321CD87EF100E69A94 /* KSMNetworkRequest.m in Sources */,
 				BFC50F071CFC1BD800CA7CD5 /* Main3Cell.m in Sources */,
@@ -1689,6 +1734,7 @@
 				BF99BC751D5378430015FA24 /* PackageDetailCell1.m in Sources */,
 				BFA2B70F1CF6E85400EB460E /* LoginViewController.m in Sources */,
 				BF3C3C131D38AC51000E3027 /* PersionModel.m in Sources */,
+				BF5829FF1D559E1800951730 /* OrderItemModel.m in Sources */,
 				789E78C41CB631360039AC69 /* NSDate+HYExtension.m in Sources */,
 				BF5D3F821D50F60D00AD7A44 /* MsgListModel.m in Sources */,
 				BF7F92771D26937D0081578F /* BaseParams.m in Sources */,

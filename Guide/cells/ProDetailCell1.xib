@@ -124,7 +124,6 @@
                     <constraint firstAttribute="trailing" secondItem="jz6-8K-caI" secondAttribute="trailing" id="b6F-bd-8ox"/>
                     <constraint firstItem="Sug-Uj-M46" firstAttribute="centerY" secondItem="s37-nw-Lg1" secondAttribute="centerY" id="g4F-Rn-Chf"/>
                     <constraint firstItem="yhK-b0-QW5" firstAttribute="centerY" secondItem="hHu-cz-tbm" secondAttribute="centerY" id="huX-iB-Pae"/>
-                    <constraint firstItem="hHu-cz-tbm" firstAttribute="leading" secondItem="gqA-n0-Q0z" secondAttribute="trailing" constant="10" id="ieJ-Cu-ZPp"/>
                     <constraint firstItem="yhK-b0-QW5" firstAttribute="leading" secondItem="hHu-cz-tbm" secondAttribute="trailing" constant="5" id="lja-Lg-tTT"/>
                     <constraint firstItem="jz6-8K-caI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="mav-8V-8TF"/>
                     <constraint firstAttribute="bottom" secondItem="jz6-8K-caI" secondAttribute="bottom" id="nZS-Zz-sXo"/>
@@ -135,11 +134,6 @@
                     <constraint firstAttribute="trailing" secondItem="aHm-vk-hy0" secondAttribute="trailing" id="yv1-2m-0u9"/>
                     <constraint firstItem="s37-nw-Lg1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="zfb-7V-eB1"/>
                 </constraints>
-                <variation key="default">
-                    <mask key="constraints">
-                        <exclude reference="ieJ-Cu-ZPp"/>
-                    </mask>
-                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="Banner" destination="aHm-vk-hy0" id="ZDP-0j-DVd"/>
