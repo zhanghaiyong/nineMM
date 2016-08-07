@@ -90,7 +90,7 @@
             OrderItemModel *orderItem = orderDetail.orderItems[indexPath.row];
             cell1.productName.text = orderItem.goodsName;
             cell1.priceLabel.text = orderItem.price;
-            cell1.stockLabel.text = orderItem.quantity;
+            cell1.stockLabel.text = [NSString stringWithFormat:@"x%@",orderItem.quantity];;
             
             return cell1;
         }

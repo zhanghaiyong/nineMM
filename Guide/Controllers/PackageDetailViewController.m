@@ -355,6 +355,7 @@
     sureOrder.acceptableCoinTypes = self.packageModel.acceptableCoinTypes;
     sureOrder.packageproduce = packageDetailModel.products;
     sureOrder.proPrice = packageDetailModel.price;
+    sureOrder.produceId = self.packageModel.id;
     
     [self.navigationController pushViewController:sureOrder animated:YES];
     

@@ -114,7 +114,6 @@
         
         [footer nowBuyProduce:^{
             
-            
             if (self.packageId.length == 0) {
             
                 SubOrderModel *subOrderModel     = [[SubOrderModel alloc]init];

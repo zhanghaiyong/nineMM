@@ -227,7 +227,10 @@
     cell.nowPriceLabel.text = model.price;
 //    cell.coinType1.text = ;
 //    cell.coinType2.text = ;
-    cell.collectLabel.text = [NSString stringWithFormat:@"x%@",model.quantity];
+    if (model.quantity) {
+    
+        cell.collectLabel.text = [NSString stringWithFormat:@"x%@",model.quantity];
+    }
     cell.nowPriceRed.text = model.price;
 //    cell.oriPrice.text = model.totalPrice;
     
