@@ -10,7 +10,7 @@
 
 @interface itemModel : NSObject
 
-@property (nonatomic,strong)NSString *packagedProduceId;
+@property (nonatomic,assign)int packagedProductId;
 @property (nonatomic,strong)NSArray *items;
 
 @end

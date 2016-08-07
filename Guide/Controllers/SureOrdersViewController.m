@@ -141,7 +141,7 @@
             
                 
                 itemModel *itemM      = [[itemModel alloc]init];
-                itemM.packagedProduceId = self.packageId;
+                itemM.packagedProductId = [self.packageId intValue];
                 
                 NSMutableArray *itemArray = [NSMutableArray array];
                 for (int i = 0; i < self.packageproduce.count; i++) {
