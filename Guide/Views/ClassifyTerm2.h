@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BirthdayView.h"
+#import "DatePickerView.h"
 
 @protocol ClassifyTerm2Delegate <NSObject>
 
@@ -16,11 +16,10 @@
 
 @end
 
-@interface ClassifyTerm2 : UIView<BirthdayViewDelegate,UITextFieldDelegate>
+@interface ClassifyTerm2 : UIView<DatePickerViewDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *startDateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *endDateLabel;
 
-@property (weak, nonatomic) IBOutlet UIButton *dateButton;
-@property (weak, nonatomic) IBOutlet UITextField *startDayLabel;
-@property (weak, nonatomic) IBOutlet UITextField *endDayLabel;
 
 @property (nonatomic,assign)id<ClassifyTerm2Delegate>delegate;
 

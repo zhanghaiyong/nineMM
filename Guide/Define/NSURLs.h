@@ -96,6 +96,9 @@
 //打包商品详情
 #define KPackageDetail [BaseURLString stringByAppendingString:@"/gw?cmd=appAdvresPackagedProductDetail"]
 
+//更新登录用户的基础信息
+#define KUpdateUserInfo [BaseURLString stringByAppendingString:@"/gw?cmd=updateLoginMemberInfo"]
+
 #pragma mark LinkAction-----------------
 //根据特征查找商品列表
 #define appQueryProductListByFeature [BaseURLString stringByAppendingString:@"/gw?cmd=appQueryProductListByFeature"]

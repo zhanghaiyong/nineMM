@@ -12,7 +12,7 @@
 #import "PageInfo.h"
 #import "LoginParams.h"
 
-@interface LoginViewController ()
+@interface LoginViewController ()<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *accountTF;
 @property (weak, nonatomic) IBOutlet UITextField *pwdTF;
@@ -62,9 +62,23 @@
     }
 }
 
+#pragma mark UITextField
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+
+    [textField resignFirstResponder];
+    [self loginMethod];
+    
+    return YES;
+}
+
 - (IBAction)loginAction:(id)sender {
     
-//    [self presentViewController:[PageInfo pageControllers] animated:YES completion:nil];
+    [self loginMethod];
+}
+
+- (void)loginMethod {
+
+    //    [self presentViewController:[PageInfo pageControllers] animated:YES completion:nil];
     
     if (_accountTF.text.length == 0) {
         
@@ -100,13 +114,14 @@
             [self dismissViewControllerAnimated:YES completion:nil];
             
         }else {
-        
+            
             [[HUDConfig shareHUD] ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
         }
         
     } failure:^(NSError *error) {
-         
+        
     }];
+    
 }
 
 

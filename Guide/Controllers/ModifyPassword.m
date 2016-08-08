@@ -12,8 +12,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.oldPwdTF.text = [Uitils getUserDefaultsForKey:PASSWORD];
 
 }
 
@@ -24,10 +22,12 @@
         
         button.selected               = YES;
         _pwdNewTF.secureTextEntry     = NO;
+        _oldPwdTF.secureTextEntry     = NO;
         _sureNewPwdTF.secureTextEntry = NO;
     }else {
         
         button.selected = NO;
+        _oldPwdTF.secureTextEntry     = YES;
         _pwdNewTF.secureTextEntry     = YES;
         _sureNewPwdTF.secureTextEntry = YES;
     }
@@ -75,7 +75,6 @@
      if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
      
          [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
-         [Uitils setUserDefaultsObject:self.pwdNewTF.text ForKey:PASSWORD];
          [self.navigationController popViewControllerAnimated:YES];
      
      }else {

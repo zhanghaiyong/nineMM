@@ -43,7 +43,6 @@
     [super viewDidLoad];
     
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    self.title = @"消息列表";
     self.tableView.tableFooterView = [[UIView alloc]init];
     self.tableView.estimatedRowHeight = 60;
     self.tableView.rowHeight = UITableViewAutomaticDimension;

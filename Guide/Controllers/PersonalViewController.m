@@ -4,21 +4,27 @@
 #import "OrderComplainCtrl.h"
 #import "PersionModel.h"
 #import "MyCoinsController.h"
-@interface PersonalViewController ()<UITableViewDelegate,UITableViewDataSource,ButtonViewDeleage>
+#import "TakePhotoViewController.h"
+#import "updateUserInfoParams.h"
+#import <AFNetworking.h>
+@interface PersonalViewController ()<UITableViewDelegate,UITableViewDataSource,ButtonViewDeleage,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 {
     PersionModel *persionModel;
+    NSData *avatarData;
 }
 @property (weak, nonatomic) IBOutlet UIImageView *avatar;
 @property (weak, nonatomic) IBOutlet UILabel *userName;
 @property (weak, nonatomic) IBOutlet UILabel *userType;
 @property (weak, nonatomic) IBOutlet UILabel *collectCount;
 @property (weak, nonatomic) IBOutlet UILabel *browseCount;
+
 @end
 
 @implementation PersonalViewController
 
-- (void)awakeFromNib {
 
+- (void)awakeFromNib {
+    
     NSIndexPath *indexPath1 = [NSIndexPath indexPathForRow:0 inSection:0];
     UITableViewCell *cell1  = [self.tableView cellForRowAtIndexPath:indexPath1];
     
@@ -65,7 +71,121 @@
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clearPersionModel:) name:@"clearPersionDara" object:nil];
 
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapToSetAvatar)];
+    [self.avatar addGestureRecognizer:tap];
 }
+
+- (void)tapToSetAvatar {
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+    [alert addAction:[UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        [self takePhoto];
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"从手机相册选择" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self LocalPhoto];
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:nil]];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+#pragma mark customAction-----------------------
+#pragma mark 开始拍照
+-(void)takePhoto {
+    UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
+    if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        //设置拍照后的图片可被编辑
+        picker.allowsEditing = YES;
+        picker.sourceType = sourceType;
+        [self presentViewController:picker animated:YES completion:^{}];
+    }else {
+        KSMLog(@"模拟其中无法打开照相机,请在真机中使用");
+    }
+}
+
+#pragma mark 打开本地相册
+-(void)LocalPhoto {
+    
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    picker.delegate = self;
+    //设置选择后的图片可被编辑
+    picker.allowsEditing = YES;
+    [self presentViewController:picker animated:YES completion:^{}];
+}
+
+
+#pragma  mark  UIImagePickerDelegate-----------------
+#pragma mark 当选择一张图片后进入这里
+-(void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
+    
+    //当选择的类型是图片
+    if ([type isEqualToString:@"public.image"]) {
+        //先把图片转成NSData
+        UIImage* image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+        UIImage *newImage = [Uitils imageWithImage:image scaledToSize:self.avatar.size];
+        avatarData = UIImageJPEGRepresentation(newImage, 1);
+        
+        [self performSelector:@selector(delayShowAlert) withObject:self afterDelay:1];
+        
+        self.avatar.image = image;
+        
+        [picker dismissViewControllerAnimated:YES completion:^{}];
+    }
+}
+
+- (void)delayShowAlert {
+
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"是否上传？" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"是" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        [self postAvatar];
+        
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"否" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }]];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+
+- (void)postAvatar {
+
+    [[HUDConfig shareHUD]alwaysShow];
+    
+    updateUserInfoParams *updateParams = [[updateUserInfoParams alloc]init];
+    updateParams.avatarId = @"1";
+    
+    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+    [session POST:KUpdateUserInfo parameters:updateParams.mj_keyValues constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        
+        [formData appendPartWithFileData:avatarData name:@"avatarId" fileName:@"" mimeType:@"image/jpg/file"];
+        
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    
+        
+        NSLog(@"%@",responseObject);
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        [[HUDConfig shareHUD]dismiss];
+    }];
+}
+
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    KSMLog(@"您取消了选择图片");
+    [picker dismissViewControllerAnimated:YES completion:^{}];
+}
+
 
 - (void)clearPersionModel:(NSNotification *)sender {
 
@@ -98,16 +218,13 @@
                 for (int i = 0; i<persionModel.coins.count; i++) {
                     
                     NSDictionary *dic  = persionModel.coins[i];
-//                    ButtonView *coinBV = (ButtonView *)[cell2.contentView viewWithTag:i+200];
-//                    coinBV.labelTitle = [Uitils toChinses:dic.allKeys[0]];
-//                    coinBV.imageName =  [Uitils toImageName:dic.allKeys[0]];
                     ButtonView *coinBV = [[ButtonView alloc]initWithFrame:CGRectMake(i*SCREEN_WIDTH/persionModel.coins.count, 44, SCREEN_WIDTH/persionModel.coins.count, cell2.height) title:[Uitils toChinses:dic.allKeys[0]] image:[Uitils toImageName:dic.allKeys[0]]];
                     coinBV.imageSize = CGSizeMake(25, 25);
                     [cell2.contentView addSubview:coinBV];
                 }
                 
                 //头像
-                [Uitils cacheImagwWithSize:_avatar.size imageID:[persionModel.memberInfo objectForKey:@"avatarImgId"] imageV:_avatar placeholder:@"组-23"];
+                [Uitils cacheImagwWithSize:_avatar.size imageID:[persionModel.memberInfo objectForKey:@"avatarImgId"] imageV:_avatar placeholder:@""];
                 //用户名
                 _userName.text = [persionModel.memberInfo objectForKey:@"departmentName"];
                 _userType.text = [persionModel.memberInfo objectForKey:@"nick"];
@@ -156,11 +273,6 @@
     return 0.1;
 }
 
-- (IBAction)msgCenterAction:(id)sender {
-    
-     [[HUDConfig shareHUD]Tips:@"即将上线，敬请期待" delay:DELAY];
-}
-
 /**
  *  ButtonViewDeleage
  *
@@ -177,12 +289,6 @@
         orderType.orderType = aFlag;
         [self.navigationController pushViewController:orderType animated:YES];
     }
-//    else if () {
-//    
-//        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
-//        OrderComplainCtrl *OrderComplain = [mainSB instantiateViewControllerWithIdentifier:@"OrderComplainCtrl"];
-//        [self.navigationController pushViewController:OrderComplain animated:YES];
-//    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

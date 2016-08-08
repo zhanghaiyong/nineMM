@@ -208,6 +208,7 @@
     if (textField.text.length != 0) {
 //        self.produceListParams.qryKeyword = textField.text;
 //        [self.tableView.mj_header beginRefreshing];
+        textField.text = @"";
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"search" object:self userInfo:@{@"keyword":textField.text}];
         
@@ -352,7 +353,7 @@
             for (int i = 0; i<self.mainStaticModel.groupButtons.count; i++) {
                 UIImageView *imageV = [cell.contentView viewWithTag:i+200];
                 GroupButtonsModel *groupButton = self.mainStaticModel.groupButtons[i];
-                [Uitils cacheImagwWithSize:CGSizeMake(imageV.size.width*2, imageV.size.height*2) imageID:groupButton.imageId imageV:imageV placeholder:@"组-23"];
+                [Uitils cacheImagwWithSize:CGSizeMake(imageV.size.width*2, imageV.size.height*2) imageID:groupButton.imageId imageV:imageV placeholder:@""];
             }
             
             
@@ -367,7 +368,7 @@
             for (int i = 0; i<self.mainStaticModel.secondBanner.count; i++) {
                 UIImageView *imageV = [cell.contentView viewWithTag:i+100];
                 SecondBannerModel *groupButton = self.mainStaticModel.secondBanner[i];
-                [Uitils cacheImagwWithSize:CGSizeMake(imageV.size.width*2, imageV.size.height*2) imageID:groupButton.imageId imageV:imageV placeholder:@"组-23"];
+                [Uitils cacheImagwWithSize:CGSizeMake(imageV.size.width*2, imageV.size.height*2) imageID:groupButton.imageId imageV:imageV placeholder:@""];
             }
             
             return cell;

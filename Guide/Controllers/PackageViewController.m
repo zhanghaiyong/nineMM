@@ -191,19 +191,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     if (indexPath.section == 0) {
-        return 180;
+        return 220;
     }
     return 100;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-
-    return 5;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-
-    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -218,7 +208,7 @@
             //滚动试图
             ZHYBannerView *bannerView = [cell.contentView viewWithTag:100];
             bannerView.delegate = self;
-            bannerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 180);
+            bannerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 220);
             NSMutableArray *topImages = [NSMutableArray array];
             for (PackageBannerModel *bannerModel in self.bannerArray) {
                 

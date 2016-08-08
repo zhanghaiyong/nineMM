@@ -156,7 +156,7 @@
             }
             //用户信息
             UIImageView *avatar = [cell.contentView viewWithTag:100];
-            [Uitils cacheImagwWithSize:avatar.size imageID:[self.persionModel.memberInfo objectForKey:@"avatarImgId"] imageV:avatar placeholder:@"组-23"];
+            [Uitils cacheImagwWithSize:avatar.size imageID:[self.persionModel.memberInfo objectForKey:@"avatarImgId"] imageV:avatar placeholder:@""];
             
             UILabel *userName = [cell.contentView viewWithTag:101];
             userName.text = [self.persionModel.memberInfo objectForKey:@"departmentName"];

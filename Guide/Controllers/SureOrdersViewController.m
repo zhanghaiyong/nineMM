@@ -7,7 +7,6 @@
 #import "sureOrderFoorView.h"
 
 #import "AppSubOrderParams.h"
-#import "itemModel.h"
 #import "SubOrderModel.h"
 #import "UserSourceModel.h"
 #import "OrderDetailTabViewCtrl.h"
@@ -129,19 +128,25 @@
                 }
                 subOrderModel.items   = [userSourceId componentsJoinedByString:@","];
                 
-                itemModel *itemM      = [[itemModel alloc]init];
-                NSArray *itemArr      = [NSArray arrayWithObject:subOrderModel.mj_keyValues];
-                itemM.items           = itemArr;
-                NSArray *array        = [NSArray arrayWithObject:itemM.mj_keyValues];
                 
+                //@property (nonatomic,assign)int packagedProductId;
+//                @property (nonatomic,strong)NSArray *items;
+                
+                NSMutableDictionary *itemM = [NSMutableDictionary dictionary];
+//                itemModel *itemM      = [[itemModel alloc]init];
+                NSArray *itemArr      = [NSArray arrayWithObject:subOrderModel.mj_keyValues];
+                [itemM setObject:itemArr forKey:@"items"];
+                NSArray *array        = [NSArray arrayWithObject:itemM];
                 NSString *jsonString  = [array mj_JSONString];
                 self.params.orders = jsonString;
                 
             }else {
             
                 
-                itemModel *itemM      = [[itemModel alloc]init];
-                itemM.packagedProductId = [self.packageId intValue];
+//                itemModel *itemM      = [[itemModel alloc]init];
+                NSMutableDictionary *itemM = [NSMutableDictionary dictionary];
+//                itemM.packagedProductId = [self.packageId intValue];
+                [itemM setObject:[NSNumber numberWithInt:[self.packageId intValue]] forKey:@"packagedProductId"];
                 
                 NSMutableArray *itemArray = [NSMutableArray array];
                 for (int i = 0; i < self.packageproduce.count; i++) {
@@ -188,8 +193,8 @@
                     [itemArray addObject:subOrderModel.mj_keyValues];
                 }
                 
-                itemM.items           = itemArray;
-                NSArray *array        = [NSArray arrayWithObject:itemM.mj_keyValues];
+                [itemM setObject:itemArray forKey:@"items"];
+                NSArray *array        = [NSArray arrayWithObject:itemM];
                 NSString *jsonString  = [array mj_JSONString];
                 self.params.orders = jsonString;
                 

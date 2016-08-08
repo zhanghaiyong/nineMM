@@ -544,13 +544,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="260"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="背景" translatesAutoresizingMaskIntoConstraints="NO" id="Q3c-6b-OFQ">
+                                                <imageView contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="背景" translatesAutoresizingMaskIntoConstraints="NO" id="Q3c-6b-OFQ">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="200" id="wy4-hm-GXc"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="组-23" translatesAutoresizingMaskIntoConstraints="NO" id="9Z4-Ip-35k">
+                                                <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="组-23" translatesAutoresizingMaskIntoConstraints="NO" id="9Z4-Ip-35k">
                                                     <rect key="frame" x="120" y="35" width="80" height="80"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="1QZ-pO-NUK"/>
@@ -585,7 +585,7 @@
                                                     <state key="normal" image="消息"/>
                                                     <state key="selected" image="消息有提示"/>
                                                     <connections>
-                                                        <action selector="msgCenterAction:" destination="4t9-9k-iDN" eventType="touchUpInside" id="p8N-zu-uGM"/>
+                                                        <segue destination="V5E-Ck-KIl" kind="show" id="Iwn-x8-jfH"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上海玖酷有限公司" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAJ-n2-0PJ">

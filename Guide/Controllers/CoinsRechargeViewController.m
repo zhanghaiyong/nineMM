@@ -140,9 +140,8 @@
             }
             
         }else {
-            
+            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
             coinRechargeCell1.priceLabel.text = @"";
-            [[HUDConfig shareHUD] dismiss];
         }
         
     } failure:^(NSError *error) {
@@ -165,7 +164,7 @@
         
         if (section == 1) {
             
-            return 10;
+            return SCREEN_HEIGHT-64-310-140-50;
         }
             return 0.1;
     }
@@ -179,10 +178,10 @@
         
         switch (indexPath.section) {
             case 0:
-                return 330;
+                return 310;
                 break;
             case 1:
-                return SCREEN_HEIGHT-330-50-64-10;
+                return 140;
                 break;
             case 2:
                 return 50;
@@ -241,6 +240,7 @@
                     
                     coinRechargeCell3.sureRechargeBtn.alpha = 0.5;
                     coinRechargeCell3.sureRechargeBtn.userInteractionEnabled = NO;
+                    coinRechargeCell3.moneyLabel.text = @"";
                     [coinRechargeCell1.priceLabel resignFirstResponder];
                     
                 }];
@@ -249,7 +249,7 @@
                 [coinRechargeCell1 sureRechargeBlock:^{
                     //充值金额
                     self.calculateCoinParams.rmb = [coinRechargeCell1.priceLabel.text intValue];
-                    
+                    [coinRechargeCell1.priceLabel resignFirstResponder];
                     //选择了
                     if (packageIndex < packageArr.count) {
                      
@@ -330,10 +330,12 @@
     
     if ([self.packageParams.coinTypeCode isEqualToString:@"red"]) {
         
-       cell.label1.text = [NSString stringWithFormat:@"有效期:%@",model.expiryDate];
+       cell.label2.text = [NSString stringWithFormat:@"有效期:%@",model.expiryDate];
+       cell.label2.textColor = [UIColor grayColor];
         
     }
-    cell.label2.text = [NSString stringWithFormat:@"(%@)",model.name];
+    cell.label1.text = [NSString stringWithFormat:@"(%@)",model.name];
+    cell.label1.textColor = [UIColor redColor];
     
     return cell;
 }
@@ -360,6 +362,7 @@
         coinRechargeCell1.priceLabel.text = @"";
         coinRechargeCell3.sureRechargeBtn.alpha = 0.5;
         coinRechargeCell3.sureRechargeBtn.userInteractionEnabled = NO;
+        coinRechargeCell3.moneyLabel.text = @"";
         [coinRechargeCell1.priceLabel resignFirstResponder];
         
         //记录选中的套餐

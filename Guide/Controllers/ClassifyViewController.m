@@ -17,6 +17,7 @@
     NSArray *typeArray;
     ClassifyDetailHead *head;
     UITextField *searchBar;
+    NSString  *searchKeyWork;
     
 
 }
@@ -73,6 +74,9 @@
             
             if (![qryCategoryId isEqual:@"YES"]) {
                 
+                self.produceParams.qryScheduleDateFrom = nil;
+                self.produceParams.qryScheduleDateTo = nil;
+                self.produceParams.qryAreaIds = nil;
                 self.produceParams.qryCategoryId = qryCategoryId;
                 
                 [typeTableView.mj_header beginRefreshing];
@@ -102,7 +106,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(beginSearch:) name:@"search" object:nil];
 }
 
-
 - (void)viewDidLoad {
     
     [super viewDidLoad];
@@ -112,7 +115,7 @@
 - (void)beginSearch:(NSNotification *)notifation {
 
     NSLog(@"%@",notifation);
-    searchBar.text = notifation.userInfo[@"keyword"];
+    searchKeyWork = notifation.userInfo[@"keyword"];
     self.produceParams.qryKeyword = notifation.userInfo[@"keyword"];
     [typeTableView.mj_header beginRefreshing];
 }
@@ -126,6 +129,7 @@
     searchBar.returnKeyType = UIReturnKeySearch;
     searchBar.clearButtonMode = UITextFieldViewModeWhileEditing;
     searchBar.delegate = self;
+    searchBar.text = searchKeyWork;
     searchBar.placeholder = @"输入商品名字，编号";
     searchBar.font = lever2Font;
     searchBar.layer.borderColor = lineColor.CGColor;
@@ -256,6 +260,7 @@
     
     self.produceParams.qryScheduleDateFrom = start;
     self.produceParams.qryScheduleDateTo = end;
+    self.produceParams.qryAreaIds = nil;
     [typeTableView.mj_header beginRefreshing];
 }
 
@@ -482,7 +487,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    MainProduceModel *model = self.produces[indexPath.row];
+    MainProduceModel *model = self.produces[indexPath.section];
     UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
     ProduceDetailViewController *produceDetail = [mainSB instantiateViewControllerWithIdentifier:@"ProduceDetailViewController"];
     produceDetail.produceId = model.id;

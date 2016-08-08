@@ -26,7 +26,7 @@
                     <constraint firstItem="UZd-Tw-1Jo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="k9D-MN-jKT"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="316" y="268.5"/>
+            <point key="canvasLocation" x="315" y="212.5"/>
         </tableViewCell>
     </objects>
 </document>

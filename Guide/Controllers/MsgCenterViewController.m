@@ -127,7 +127,7 @@
     UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
     MsgListViewController *msgList = [mainSB instantiateViewControllerWithIdentifier:@"MsgListViewController"];
     msgList.categoryCode = model.code;
-    
+    msgList.title = model.title;
     [self.navigationController pushViewController:msgList animated:YES];
 }
 

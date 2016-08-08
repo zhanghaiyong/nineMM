@@ -7,7 +7,7 @@
 //
 
 #import "PayAlertViewController.h"
-
+#import "OrderTypeTableVC.h"
 @interface PayAlertViewController ()
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
@@ -20,7 +20,7 @@
     
     self.title = @"线下支付";
     
-    NSString *strUrl = [NSString stringWithFormat:@"http://9mama.top:8080/offlinePaymentInfo/%@.page",self.orderId];
+    NSString *strUrl = [NSString stringWithFormat:@"%@/offlinePaymentInfo/%@.page",BaseURLString,self.orderId];
     NSURL *url = [[NSURL alloc]initWithString:strUrl];
     self.webView.scrollView.showsVerticalScrollIndicator = NO;
     self.webView.scrollView.bounces = NO;
@@ -31,6 +31,9 @@
 
 - (IBAction)sureAction:(id)sender {
     
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+    OrderTypeTableVC *orderType = [mainSB instantiateViewControllerWithIdentifier:@"OrderTypeTableVC"];
+    orderType.orderType = 100;
+    [self.navigationController pushViewController:orderType animated:YES];
 }
 @end
