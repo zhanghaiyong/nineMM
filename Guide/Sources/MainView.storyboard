@@ -454,7 +454,7 @@
                                             </mask>
                                         </variation>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10500" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="d4W-Mk-nFQ">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="d4W-Mk-nFQ">
                                         <rect key="frame" x="160" y="0.0" width="60" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="e6q-Ch-27f"/>
@@ -500,6 +500,10 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DgF-Wt-Wa0">
                                 <rect key="frame" x="0.0" y="20" width="320" height="498"/>
                                 <color key="backgroundColor" red="0.90588235289999997" green="0.92156862750000001" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="lFY-MM-gi7" id="Mfa-Is-Khe"/>
+                                    <outlet property="delegate" destination="lFY-MM-gi7" id="YHP-oK-6II"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -889,6 +893,39 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="65" id="zJE-sT-w7Y">
+                                        <rect key="frame" x="0.0" y="491" width="320" height="65"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zJE-sT-w7Y" id="A0N-cB-EYP">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HeI-gX-V9a">
+                                                    <rect key="frame" x="10" y="15" width="300" height="44"/>
+                                                    <color key="backgroundColor" red="0.85098039219999999" green="0.62352941179999999" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="44" id="skO-3X-Q7h"/>
+                                                    </constraints>
+                                                    <state key="normal" title="退出帐号">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="6"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="logoutAction:" destination="d7X-ml-9sy" eventType="touchUpInside" id="BSr-ZR-luC"/>
+                                                        <action selector="logoutAction:" destination="4t9-9k-iDN" eventType="touchUpInside" id="iSL-LX-a6g"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="HeI-gX-V9a" firstAttribute="leading" secondItem="A0N-cB-EYP" secondAttribute="leading" constant="10" id="A8U-aG-e67"/>
+                                                <constraint firstAttribute="trailing" secondItem="HeI-gX-V9a" secondAttribute="trailing" constant="10" id="aIk-HU-Foz"/>
+                                                <constraint firstItem="HeI-gX-V9a" firstAttribute="top" secondItem="A0N-cB-EYP" secondAttribute="top" constant="15" id="wvc-xn-BJQ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -930,7 +967,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="87.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="组-23" translatesAutoresizingMaskIntoConstraints="NO" id="2yF-W5-UKw" customClass="icon_head_default_iphone">
+                                                <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="组-23" translatesAutoresizingMaskIntoConstraints="NO" id="2yF-W5-UKw" customClass="icon_head_default_iphone">
                                                     <rect key="frame" x="10" y="10" width="66" height="66"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="66" id="at7-9x-XL0"/>
@@ -1387,6 +1424,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="ID" destination="nmP-w5-hQk" id="IMZ-yb-7eB"/>
+                        <outlet property="avatar" destination="2yF-W5-UKw" id="2jl-mJ-Xj5"/>
                         <outlet property="email" destination="5rh-Sn-blZ" id="Lvv-du-FYK"/>
                         <outlet property="name" destination="xH1-qB-8Dc" id="Gh4-2Y-aCY"/>
                         <outlet property="phone" destination="fBp-3b-ksT" id="llU-4j-DPj"/>
@@ -2619,7 +2657,7 @@
                                     <action selector="collectAction:" destination="ARt-US-iNM" eventType="touchUpInside" id="bge-Ag-Ca4"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Caj-AI-FJ6">
+                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Caj-AI-FJ6" userLabel="购物车">
                                 <rect key="frame" x="65" y="519" width="65" height="49"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="65" id="Jtw-Gg-nj1"/>
@@ -2628,20 +2666,20 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <inset key="titleEdgeInsets" minX="-15" minY="0.0" maxX="0.0" maxY="-20"/>
                                 <inset key="imageEdgeInsets" minX="13" minY="0.0" maxX="0.0" maxY="20"/>
-                                <state key="normal" title="方案报" image="下载(3)">
+                                <state key="normal" title="购物车" image="下载(3)">
                                     <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="packageAction:" destination="ARt-US-iNM" eventType="touchUpInside" id="A54-BL-fRS"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TIx-T7-4GC">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TIx-T7-4GC" userLabel="加入购物车">
                                 <rect key="frame" x="130" y="519" width="95" height="49"/>
                                 <color key="backgroundColor" red="0.90196078431372551" green="0.47450980392156861" blue="0.11764705882352941" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="49" id="tvo-QN-5R7"/>
                                 </constraints>
-                                <state key="normal" title="加入方案包">
+                                <state key="normal" title="加入购物车">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -2706,6 +2744,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="addShoppCarButton" destination="TIx-T7-4GC" id="aKn-B9-ihq"/>
                         <outlet property="nowBuyButton" destination="vdI-fC-VEN" id="c9v-tv-VX9"/>
                         <outlet property="tableView" destination="12U-ya-6ID" id="EqC-XN-Xen"/>
                     </connections>

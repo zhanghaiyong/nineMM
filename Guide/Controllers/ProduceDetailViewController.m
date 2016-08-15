@@ -11,6 +11,7 @@
 #import "ProPriceByStoreParams.h"
 #import "SureOrdersViewController.h"
 #import "ProduceStoresModel.h"
+#import "ShopingCarModel.h"
 @interface ProduceDetailViewController ()<UITableViewDelegate,UITableViewDataSource,Term3Delegate,UserSourceDelegate>{
 
     //资源 档期 样刊切换标示
@@ -24,13 +25,13 @@
     NSString  *price;
     BOOL      isRefreshWebViewH;
 }
+@property (weak, nonatomic) IBOutlet UIButton *addShoppCarButton;
 @property (weak, nonatomic) IBOutlet UIButton *nowBuyButton;
 @property (nonatomic,strong)MeumList *meumList;
 @property (nonatomic,strong)ProPriceByStoreParams *proPriceByStoreParams;
 @property (nonatomic,strong)NSArray *meumTitles;
 @property (nonatomic,strong)NSArray *meumLogos;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
 
 @end
 
@@ -121,6 +122,14 @@
             if (((NSDictionary *)[dataDic objectForKey:@"retObj"]).count !=0) {
                 
                 NSDictionary *retObj = [dataDic objectForKey:@"retObj"];
+                
+//                NSMutableArray *shoppings = [Uitils getUserDefaultsForKey:SHOPPING_CAR];
+//                if ([shoppings containsObject:retObj]) {
+//                    
+//                    self.addShoppCarButton.alpha = 0.5;
+//                    self.addShoppCarButton.userInteractionEnabled = NO;
+//                }
+                
                 produceDetail = [ProduceDetailModel mj_objectWithKeyValues:retObj];
                 
                 self.tableView.delegate = self;
@@ -302,7 +311,7 @@
         cell3 = [[[NSBundle mainBundle] loadNibNamed:@"ProDetailCell2" owner:self options:nil] lastObject];
         NSArray *tabs = produceDetail.tabs;
         NSDictionary *dic = tabs[typeFlag];
-        NSString *urlStr = [NSString stringWithFormat:@"%@%@/%@.page",HTMLURL,self.produceId,[dic objectForKey:@"tab"]];
+        NSString *urlStr = [NSString stringWithFormat:@"%@/product/mobile/%@/%@.page",BaseURLString,self.produceId,[dic objectForKey:@"tab"]];
         NSLog(@"zfzsdgd =%@",urlStr);
         NSURL *url = [NSURL URLWithString:urlStr];
         cell3.isRefreshWebView = isRefreshWebViewH;
@@ -350,24 +359,85 @@
     }
 }
 
-- (void)showMeumList {
-    if (_meumList == nil) {
-        
-        self.meumList.titleArr = self.meumTitles;
-        self.meumList.imageArr = self.meumLogos;
-       [self.navigationController.view addSubview:self.meumList];
+//- (void)showMeumList {
+//    if (_meumList == nil) {
+//        
+//        self.meumList.titleArr = self.meumTitles;
+//        self.meumList.imageArr = self.meumLogos;
+//       [self.navigationController.view addSubview:self.meumList];
+//        
+//    }else {
+//     
+//        [_meumList removeFromSuperview];
+//        _meumList = nil;
+//    }
+//}
+
+- (IBAction)collectAction:(id)sender {
+    
+}
+
+//购物车
+- (IBAction)packageAction:(id)sender {
+    
+}
+
+//加入购物车
+- (IBAction)addPackageAction:(id)sender {
+    
+    
+    //必须按的情况下，判断是否选择了资源
+    if ([produceDetail.itemSelecting integerValue] == 1) {
+        if (userSource.count == 0) {
+            [[HUDConfig shareHUD]Tips:@"请选择商品资源" delay:DELAY];
+            return;
+        }
+    }
+    
+    if ([produceDetail.shopSelecting integerValue] == 1) {
+        if (areaOrStore.length == 0) {
+            [[HUDConfig shareHUD]Tips:@"请选择门店及区域" delay:DELAY];
+            return;
+        }
+    }
+    
+    [[HUDConfig shareHUD]alwaysShow];
+    
+    ShopingCarModel *shopCarModel = [[ShopingCarModel alloc]init];
+    shopCarModel.fullName = produceDetail.fullName;
+    shopCarModel.productId = self.produceId;
+    shopCarModel.storeSelectingType = self.proPriceByStoreParams.storeSelectingType;
+    shopCarModel.storesId = self.proPriceByStoreParams.storeIds;
+    shopCarModel.areasId = self.proPriceByStoreParams.areaIds;
+    shopCarModel.items = userSource;
+    if ([produceDetail.isPackagePrice integerValue] == 1) {
+        shopCarModel.amount = produceDetail.price;
+    }else {
+        shopCarModel.amount = price;
+    }
+    
+    
+    NSString *filePath = [NSString stringWithFormat:@"%@/%@",[HYSandbox docPath],SHOPPING_CAR];
+    NSArray *shoppings = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+    NSMutableArray *array = [NSMutableArray array];
+    
+    if (shoppings) {
+        [array addObjectsFromArray:shoppings];
+        [array addObject:shopCarModel];
+        self.addShoppCarButton.alpha = 0.5;
+        self.addShoppCarButton.userInteractionEnabled = NO;
+        [[HUDConfig shareHUD]SuccessHUD:@"成功加入" delay:DELAY];
         
     }else {
-     
-        [_meumList removeFromSuperview];
-        _meumList = nil;
+        
+        [array addObject:shopCarModel];
+        self.addShoppCarButton.alpha = 0.5;
+        self.addShoppCarButton.userInteractionEnabled = NO;
+        [[HUDConfig shareHUD]SuccessHUD:@"成功加入" delay:DELAY];
     }
-}
-- (IBAction)collectAction:(id)sender {
-}
-- (IBAction)packageAction:(id)sender {
-}
-- (IBAction)addPackageAction:(id)sender {
+    
+    [NSKeyedArchiver archiveRootObject:array toFile:filePath];
+//    [Uitils setUserDefaultsObject:newData ForKey:SHOPPING_CAR];
 }
 
 - (IBAction)buyNowAction:(id)sender {

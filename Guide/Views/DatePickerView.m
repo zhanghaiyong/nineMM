@@ -26,22 +26,45 @@
     return self;
 }
 
+- (void)layoutSubviews {
+
+    [super layoutSubviews];
+    
+    
+    if (self.nowDate) {
+        
+        self.datePicker.date = self.nowDate;
+    }
+    
+    if (self.minDate) {
+        
+        self.datePicker.minimumDate = self.minDate;
+    }
+    
+    if (self.maxDate) {
+        
+        self.datePicker.maximumDate = self.maxDate;
+    }
+    
+}
+
 -(void)setNowDate:(NSDate *)nowDate {
 
     _nowDate = nowDate;
-    self.datePicker.date = nowDate;
+    
 }
+
 
 -(void)setMinDate:(NSDate *)minDate {
 
     _minDate = minDate;
-    self.datePicker.minimumDate = minDate;
+    
 }
 
 - (void)setMaxDate:(NSDate *)maxDate {
 
     _maxDate = maxDate;
-    self.datePicker.maximumDate = maxDate;
+    
 }
 
 - (IBAction)clickSureBtn:(id)sender {

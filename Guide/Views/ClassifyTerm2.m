@@ -14,43 +14,25 @@
 
 @implementation ClassifyTerm2
 
-- (instancetype)initWithCoder:(NSCoder *)coder
-{
-    self = [super initWithCoder:coder];
-    if (self) {
-        NSLog(@"zxvzx = %@%@",startDate,endDate);
-    }
-    return self;
-}
-
-//-(void)awakeFromNib {
-//
-//    NSDate *now = [NSDate date];
-//    NSCalendar *calendar = [NSCalendar currentCalendar];
-//    NSUInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth;
-//    NSDateComponents *dateComponent = [calendar components:unitFlags fromDate:now];
-//    yearString = [NSString stringWithFormat:@"%ld",[dateComponent year]];
-//    monthString = [NSString stringWithFormat:@"%ld",[dateComponent month]];
-//    dayCount = [Uitils dayCountWithYear:[dateComponent year] month:[dateComponent month]];
-//    [self.dateButton setTitle:[NSString stringWithFormat:@"%@年%@月",yearString,monthString] forState:UIControlStateNormal];
-//    
-//    self.startDayLabel.delegate = self;
-//    self.endDayLabel.delegate = self;
-//}
-
 //确定日期
 - (IBAction)sureDateAction:(id)sender {
     
-//    if ([self.delegate respondsToSelector:@selector(classsifyTrem2Start:end:)]) {
-//    
-//        NSDate *start    = [[NSString stringWithFormat:@"%@-%@-%ld",yearString,monthString,[self.startDayLabel.text integerValue]] dateWithFormate:@"yyyy-MM-dd"];
-//        NSDate *end      = [[NSString stringWithFormat:@"%@-%@-%ld",yearString,monthString,[self.endDayLabel.text integerValue]] dateWithFormate:@"yyyy-MM-dd"];
-//        NSString *startS = [start toYMDString];
-//        NSString *endS   = [end toYMDString];
-//        FxLog(@"%@ ....%@",startS,endS);
-//        
-//        [self.delegate classsifyTrem2Start:startS end:endS];
-//    }
+    if ([self.startDateLabel.text isEqualToString:@"开始时间"]) {
+        
+        [[HUDConfig shareHUD]Tips:@"请选择开始时间" delay:DELAY];
+        return;
+    }
+    
+    if ([self.endDateLabel.text isEqualToString:@"结束时间"]) {
+        
+        [[HUDConfig shareHUD]Tips:@"请选择结束时间" delay:DELAY];
+        return;
+    }
+        
+    if ([self.delegate respondsToSelector:@selector(classsifyTrem2Start:end:)]) {
+        
+        [self.delegate classsifyTrem2Start:self.startDateLabel.text end:self.endDateLabel.text];
+    }
 }
 
 - (IBAction)showDatePicker:(id)sender {
@@ -61,7 +43,7 @@
     //开始按钮
     if (button.tag == 100) {
         
-        if ([endDate isEqual:[NSNull null]]) {
+        if (endDate) {
             
             dateP.maxDate = endDate;
             
@@ -72,7 +54,7 @@
         
     }else {
     
-        if (![startDate isEqual:[NSNull null]]) {
+        if (startDate) {
             
             dateP.minDate = startDate;
             
@@ -94,11 +76,14 @@
     switch (btnTag) {
         case 100:
             
+            startDate = date;
+            
             self.startDateLabel.text = [date toYMDString];
             
             break;
         case 101:
             
+            endDate = date;
             self.endDateLabel.text = [date toYMDString];
             
             break;
@@ -116,35 +101,6 @@
     [dateP removeFromSuperview];
     dateP = nil;
 }
-
-////显示年月选择器
-//- (IBAction)TimeSelector:(id)sender {
-//    
-//    if (_birthdayView == nil) {
-//        
-//        [self addSubview:self.birthdayView];
-//    }else {
-//    
-//        [_birthdayView removeFromSuperview];
-//        _birthdayView = nil;
-//    }
-//}
-//
-//#pragma mark BirthdayViewDelegate
-//- (void)selectedYear:(NSString *)year month:(NSString *)month {
-//
-//    [_birthdayView removeFromSuperview];
-//    _birthdayView = nil;
-//    
-//    yearString = year;
-//    monthString = month;
-//    
-//    dayCount = [Uitils dayCountWithYear:[year integerValue] month:[month integerValue]];
-//    
-//    [self.dateButton setTitle:[NSString stringWithFormat:@"%@年%@月",year,month] forState:UIControlStateNormal];
-//    
-//}
-
 
 #pragma mark UITextField
 - (void)textFieldDidEndEditing:(UITextField *)textField {

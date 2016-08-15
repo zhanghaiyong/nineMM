@@ -128,10 +128,6 @@
                 }
                 subOrderModel.items   = [userSourceId componentsJoinedByString:@","];
                 
-                
-                //@property (nonatomic,assign)int packagedProductId;
-//                @property (nonatomic,strong)NSArray *items;
-                
                 NSMutableDictionary *itemM = [NSMutableDictionary dictionary];
 //                itemModel *itemM      = [[itemModel alloc]init];
                 NSArray *itemArr      = [NSArray arrayWithObject:subOrderModel.mj_keyValues];

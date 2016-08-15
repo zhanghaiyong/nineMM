@@ -7,7 +7,6 @@
 //
 
 #import "LoginViewController.h"
-#import "MethodGetPwdViewController.h"
 #import "TabBarViewController.h"
 #import "PageInfo.h"
 #import "LoginParams.h"

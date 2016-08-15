@@ -5,8 +5,9 @@
 #import "PersionModel.h"
 #import "MyCoinsController.h"
 #import "TakePhotoViewController.h"
-#import "updateUserInfoParams.h"
 #import <AFNetworking.h>
+#import "UpdateAvatarParams.h"
+#import "UpdateUserInfoParams.h"
 @interface PersonalViewController ()<UITableViewDelegate,UITableViewDataSource,ButtonViewDeleage,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 {
     PersionModel *persionModel;
@@ -147,7 +148,7 @@
         [self postAvatar];
         
     }]];
-    [alert addAction:[UIAlertAction actionWithTitle:@"否" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    [alert addAction:[UIAlertAction actionWithTitle:@"否" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
         
     }]];
     
@@ -159,24 +160,57 @@
 
     [[HUDConfig shareHUD]alwaysShow];
     
-    updateUserInfoParams *updateParams = [[updateUserInfoParams alloc]init];
-    updateParams.avatarId = @"1";
+    UpdateAvatarParams *avatarParams = [[UpdateAvatarParams alloc]init];
+    avatarParams.category = @"avatar";
+    avatarParams.fileTitle = @"userAvatar";
+    avatarParams.fileIntro = @"userAvatar";
     
-    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-    [session POST:KUpdateUserInfo parameters:updateParams.mj_keyValues constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    NSLog(@"updateParams = %@",avatarParams.mj_keyValues);
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/plain", nil];
+    
+    [manager POST:KUpdateAvatar parameters:avatarParams.mj_keyValues constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         
-        [formData appendPartWithFileData:avatarData name:@"avatarId" fileName:@"" mimeType:@"image/jpg/file"];
+        //name是文件参数   filename是存储到服务器的名字
+        [formData appendPartWithFileData:avatarData name:@"file" fileName:@"userAvatar.png" mimeType:@"image/png"];
         
     } progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-    
+        NSLog(@"上传陈宫 = %@",responseObject);
         
-        NSLog(@"%@",responseObject);
+        if ([[responseObject objectForKey:@"retCode"] integerValue] == 0) {
+            
+            UpdateUserInfoParams *infoParams = [[UpdateUserInfoParams alloc]init];
+            infoParams.avatarId = [[responseObject objectForKey:@"retObj"] objectForKey:@"imgId"];
+            
+            [KSMNetworkRequest postRequest:KUpdateUserInfo params:infoParams.mj_keyValues success:^(NSDictionary *dataDic) {
+                
+                NSLog(@"更新头像ID ＝ %@",dataDic);
+                
+                if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
+                    
+                    [[HUDConfig shareHUD]SuccessHUD:@"上传成功" delay:DELAY];
+                }
+                
+                
+            } failure:^(NSError *error) {
+                
+                [[HUDConfig shareHUD]ErrorHUD:@"上传失败" delay:DELAY];
+                
+            }];
+        }else {
+        
+             [[HUDConfig shareHUD]ErrorHUD:@"上传失败" delay:DELAY];
+            [[HUDConfig shareHUD]dismiss];
+        }
+        
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+       
         [[HUDConfig shareHUD]dismiss];
+         [[HUDConfig shareHUD]ErrorHUD:@"上传失败" delay:DELAY];
     }];
 }
 
@@ -190,6 +224,15 @@
 - (void)clearPersionModel:(NSNotification *)sender {
 
     persionModel = nil;
+    //头像
+    _avatar.image = [UIImage imageNamed:@"组-23"];
+    //用户名
+    _userName.text = @"";
+    _userType.text = @"";
+    //收藏
+    _collectCount.text = @"0";
+    //浏览
+    _browseCount.text = @"0";
 }
 
 - (void)loadPersionData {
@@ -224,7 +267,7 @@
                 }
                 
                 //头像
-                [Uitils cacheImagwWithSize:_avatar.size imageID:[persionModel.memberInfo objectForKey:@"avatarImgId"] imageV:_avatar placeholder:@""];
+                [Uitils cacheImagwWithSize:_avatar.size imageID:[persionModel.memberInfo objectForKey:@"avatarImgId"] imageV:_avatar placeholder:nil];
                 //用户名
                 _userName.text = [persionModel.memberInfo objectForKey:@"departmentName"];
                 _userType.text = [persionModel.memberInfo objectForKey:@"nick"];
@@ -271,6 +314,35 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 
     return 0.1;
+}
+
+- (IBAction)logoutAction:(id)sender {
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否注销此账号?" preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"是" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        [Uitils UserDefaultRemoveObjectForKey:TOKEN];
+        [Uitils UserDefaultRemoveObjectForKey:PASSWORD];
+        self.tabBarController.selectedIndex = 0;
+        
+         persionModel = nil;
+        //头像
+        _avatar.image = [UIImage imageNamed:@"组-23"];
+        //用户名
+        _userName.text = @"";
+        _userType.text = @"";
+        //收藏
+        _collectCount.text = @"0";
+        //浏览
+        _browseCount.text = @"0";
+        
+    }]];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"否" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        
+    }]];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 /**

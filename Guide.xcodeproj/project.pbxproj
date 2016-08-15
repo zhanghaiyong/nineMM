@@ -33,9 +33,13 @@
 		789E78DD1CB633580039AC69 /* NSString+HYExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 789E78DC1CB633580039AC69 /* NSString+HYExtension.m */; };
 		789E78E41CB63E7E0039AC69 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 789E78E31CB63E7E0039AC69 /* BaseViewController.m */; };
 		A55FFC3F52EF8FC613B238CB /* libPods-Guide.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD770AF8A4235D3FEBA684A1 /* libPods-Guide.a */; };
-		BF2655EE1D587C980094A1A9 /* updateUserInfoParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2655ED1D587C980094A1A9 /* updateUserInfoParams.m */; };
 		BF2655F21D58D6E20094A1A9 /* DatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2655F01D58D6E20094A1A9 /* DatePickerView.m */; };
 		BF2655F31D58D6E20094A1A9 /* DatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF2655F11D58D6E20094A1A9 /* DatePickerView.xib */; };
+		BF2655F91D59BC5F0094A1A9 /* ValidCodeParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2655F81D59BC5F0094A1A9 /* ValidCodeParams.m */; };
+		BF2655FC1D59C4440094A1A9 /* ResetPwdParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2655FB1D59C4440094A1A9 /* ResetPwdParams.m */; };
+		BF2656021D5E26480094A1A9 /* UpdateAvatarParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2656011D5E26480094A1A9 /* UpdateAvatarParams.m */; };
+		BF2656051D5E2B4E0094A1A9 /* UpdateUserInfoParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2656041D5E2B4E0094A1A9 /* UpdateUserInfoParams.m */; };
+		BF2656091D60BFA80094A1A9 /* ShopingCarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2656081D60BFA80094A1A9 /* ShopingCarModel.m */; };
 		BF35098C1D13A3C900F2BCC5 /* MainProduceListParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BF35098B1D13A3C900F2BCC5 /* MainProduceListParams.m */; };
 		BF35098F1D13AE1D00F2BCC5 /* HUDConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = BF35098E1D13AE1D00F2BCC5 /* HUDConfig.m */; };
 		BF3509921D13AFB300F2BCC5 /* MainProduceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3509911D13AFB300F2BCC5 /* MainProduceModel.m */; };
@@ -141,9 +145,7 @@
 		BFA2B7041CF6D33E00EB460E /* MainView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFA2B7031CF6D33E00EB460E /* MainView.storyboard */; };
 		BFA2B70C1CF6D85600EB460E /* ButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA2B70B1CF6D85600EB460E /* ButtonView.m */; };
 		BFA2B70F1CF6E85400EB460E /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA2B70E1CF6E85400EB460E /* LoginViewController.m */; };
-		BFA2B7121CF6E88200EB460E /* RepeatPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA2B7111CF6E88200EB460E /* RepeatPwdViewController.m */; };
 		BFA2B7151CF6E8AD00EB460E /* FindPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA2B7141CF6E8AD00EB460E /* FindPwdViewController.m */; };
-		BFA2B7181CF6E8C600EB460E /* MethodGetPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA2B7171CF6E8C600EB460E /* MethodGetPwdViewController.m */; };
 		BFA2B71B1CF6E92E00EB460E /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA2B71A1CF6E92E00EB460E /* TabBarViewController.m */; };
 		BFA2B7211CF6E96000EB460E /* ClassifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA2B7201CF6E96000EB460E /* ClassifyViewController.m */; };
 		BFA2B7231CF6EE1B00EB460E /* PageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA2B7221CF6EE1B00EB460E /* PageInfo.m */; };
@@ -272,11 +274,19 @@
 		789E78E21CB63E7E0039AC69 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		789E78E31CB63E7E0039AC69 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		BD770AF8A4235D3FEBA684A1 /* libPods-Guide.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Guide.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BF2655EC1D587C980094A1A9 /* updateUserInfoParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = updateUserInfoParams.h; sourceTree = "<group>"; };
-		BF2655ED1D587C980094A1A9 /* updateUserInfoParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = updateUserInfoParams.m; sourceTree = "<group>"; };
 		BF2655EF1D58D6E20094A1A9 /* DatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerView.h; sourceTree = "<group>"; };
 		BF2655F01D58D6E20094A1A9 /* DatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerView.m; sourceTree = "<group>"; };
 		BF2655F11D58D6E20094A1A9 /* DatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerView.xib; sourceTree = "<group>"; };
+		BF2655F71D59BC5F0094A1A9 /* ValidCodeParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidCodeParams.h; sourceTree = "<group>"; };
+		BF2655F81D59BC5F0094A1A9 /* ValidCodeParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidCodeParams.m; sourceTree = "<group>"; };
+		BF2655FA1D59C4440094A1A9 /* ResetPwdParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetPwdParams.h; sourceTree = "<group>"; };
+		BF2655FB1D59C4440094A1A9 /* ResetPwdParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetPwdParams.m; sourceTree = "<group>"; };
+		BF2656001D5E26480094A1A9 /* UpdateAvatarParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateAvatarParams.h; sourceTree = "<group>"; };
+		BF2656011D5E26480094A1A9 /* UpdateAvatarParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateAvatarParams.m; sourceTree = "<group>"; };
+		BF2656031D5E2B4E0094A1A9 /* UpdateUserInfoParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateUserInfoParams.h; sourceTree = "<group>"; };
+		BF2656041D5E2B4E0094A1A9 /* UpdateUserInfoParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateUserInfoParams.m; sourceTree = "<group>"; };
+		BF2656071D60BFA80094A1A9 /* ShopingCarModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopingCarModel.h; sourceTree = "<group>"; };
+		BF2656081D60BFA80094A1A9 /* ShopingCarModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopingCarModel.m; sourceTree = "<group>"; };
 		BF35098A1D13A3C900F2BCC5 /* MainProduceListParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainProduceListParams.h; sourceTree = "<group>"; };
 		BF35098B1D13A3C900F2BCC5 /* MainProduceListParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainProduceListParams.m; sourceTree = "<group>"; };
 		BF35098D1D13AE1800F2BCC5 /* HUDConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HUDConfig.h; sourceTree = "<group>"; };
@@ -463,12 +473,8 @@
 		BFA2B70B1CF6D85600EB460E /* ButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonView.m; sourceTree = "<group>"; };
 		BFA2B70D1CF6E85400EB460E /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		BFA2B70E1CF6E85400EB460E /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		BFA2B7101CF6E88200EB460E /* RepeatPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatPwdViewController.h; sourceTree = "<group>"; };
-		BFA2B7111CF6E88200EB460E /* RepeatPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatPwdViewController.m; sourceTree = "<group>"; };
 		BFA2B7131CF6E8AD00EB460E /* FindPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindPwdViewController.h; sourceTree = "<group>"; };
 		BFA2B7141CF6E8AD00EB460E /* FindPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindPwdViewController.m; sourceTree = "<group>"; };
-		BFA2B7161CF6E8C600EB460E /* MethodGetPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MethodGetPwdViewController.h; sourceTree = "<group>"; };
-		BFA2B7171CF6E8C600EB460E /* MethodGetPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MethodGetPwdViewController.m; sourceTree = "<group>"; };
 		BFA2B7191CF6E92E00EB460E /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
 		BFA2B71A1CF6E92E00EB460E /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		BFA2B71C1CF6E94200EB460E /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -780,6 +786,7 @@
 				BF3C3C101D38AC25000E3027 /* 个人中心 */,
 				BFA2B7241CF6EE3600EB460E /* PageInfo.h */,
 				BFA2B7221CF6EE1B00EB460E /* PageInfo.m */,
+				BF2656061D60BF930094A1A9 /* 购物车 */,
 				BF93CEBD1D523E5B00767C0C /* 打包套餐 */,
 				BF5D3F731D50E9E100AD7A44 /* 消息中心 */,
 			);
@@ -883,6 +890,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		BF2656061D60BF930094A1A9 /* 购物车 */ = {
+			isa = PBXGroup;
+			children = (
+				BF2656071D60BFA80094A1A9 /* ShopingCarModel.h */,
+				BF2656081D60BFA80094A1A9 /* ShopingCarModel.m */,
+			);
+			name = "购物车";
+			sourceTree = "<group>";
+		};
 		BF3509891D13A3B200F2BCC5 /* Params */ = {
 			isa = PBXGroup;
 			children = (
@@ -926,8 +942,14 @@
 				BF5D3F7E1D50F1FF00AD7A44 /* MsgListParams.m */,
 				BF93CEAF1D52275F00767C0C /* PackageParams.h */,
 				BF93CEB01D52275F00767C0C /* PackageParams.m */,
-				BF2655EC1D587C980094A1A9 /* updateUserInfoParams.h */,
-				BF2655ED1D587C980094A1A9 /* updateUserInfoParams.m */,
+				BF2655F71D59BC5F0094A1A9 /* ValidCodeParams.h */,
+				BF2655F81D59BC5F0094A1A9 /* ValidCodeParams.m */,
+				BF2655FA1D59C4440094A1A9 /* ResetPwdParams.h */,
+				BF2655FB1D59C4440094A1A9 /* ResetPwdParams.m */,
+				BF2656001D5E26480094A1A9 /* UpdateAvatarParams.h */,
+				BF2656011D5E26480094A1A9 /* UpdateAvatarParams.m */,
+				BF2656031D5E2B4E0094A1A9 /* UpdateUserInfoParams.h */,
+				BF2656041D5E2B4E0094A1A9 /* UpdateUserInfoParams.m */,
 			);
 			name = Params;
 			path = Controllers;
@@ -1172,10 +1194,6 @@
 				BFA2B70E1CF6E85400EB460E /* LoginViewController.m */,
 				BFA2B7131CF6E8AD00EB460E /* FindPwdViewController.h */,
 				BFA2B7141CF6E8AD00EB460E /* FindPwdViewController.m */,
-				BFA2B7161CF6E8C600EB460E /* MethodGetPwdViewController.h */,
-				BFA2B7171CF6E8C600EB460E /* MethodGetPwdViewController.m */,
-				BFA2B7101CF6E88200EB460E /* RepeatPwdViewController.h */,
-				BFA2B7111CF6E88200EB460E /* RepeatPwdViewController.m */,
 			);
 			name = "登录和找回密码";
 			sourceTree = "<group>";
@@ -1589,11 +1607,12 @@
 				BFED9BC41D2BAD7F000175C5 /* CoinsRechargeViewController.m in Sources */,
 				BF4086591D12EE6C00E11065 /* MainStaticModel.m in Sources */,
 				BF3C3C2D1D39E448000E3027 /* PackageCell.m in Sources */,
-				BFA2B7121CF6E88200EB460E /* RepeatPwdViewController.m in Sources */,
 				BF5D3F6F1D50E3A300AD7A44 /* UpdatePwdParams.m in Sources */,
+				BF2655FC1D59C4440094A1A9 /* ResetPwdParams.m in Sources */,
 				BFD69E641CF7FA7900B50A6E /* ClassifyDetailHead.m in Sources */,
 				BF4086541D12E58100E11065 /* SearchBar.m in Sources */,
 				788836CC1CBC9BA30030909E /* SelectEDU.m in Sources */,
+				BF2656091D60BFA80094A1A9 /* ShopingCarModel.m in Sources */,
 				BFA2B7231CF6EE1B00EB460E /* PageInfo.m in Sources */,
 				7828007D1CD1B89600F760EF /* JiPush.m in Sources */,
 				BF3C3C281D39CEE1000E3027 /* CoinRechargeCell3.m in Sources */,
@@ -1622,11 +1641,11 @@
 				BFF578B71D2F6C4C00EC9400 /* ZZPhotoPickerCell.m in Sources */,
 				BF5829EC1D55944D00951730 /* OrderDetailCell1.m in Sources */,
 				BF93CED51D5247C500767C0C /* PackageDetailHeadCell.m in Sources */,
+				BF2656021D5E26480094A1A9 /* UpdateAvatarParams.m in Sources */,
 				BFEEA5891D198ADF00B261BF /* ProDetailCell2.m in Sources */,
 				786B637D1CC71F9F00362DBF /* ProgressHUD.m in Sources */,
 				BF8600C91D3A2B4400BCA60A /* CoinsDetailModel.m in Sources */,
 				BFED9B881D290234000175C5 /* ClassifyTerm1.m in Sources */,
-				BF2655EE1D587C980094A1A9 /* updateUserInfoParams.m in Sources */,
 				BFA2B70C1CF6D85600EB460E /* ButtonView.m in Sources */,
 				BFF433A91D15200200D21427 /* ModifyPassword.m in Sources */,
 				BF8600E21D3BDA4800BCA60A /* ProduceStoresModel.m in Sources */,
@@ -1640,6 +1659,7 @@
 				BFC50F021CFC1BAF00CA7CD5 /* Main2Cell.m in Sources */,
 				787226EC1CC5D53500BFB45F /* TakePhotoViewController.m in Sources */,
 				788A56341CB77A6200A58302 /* BaseTableViewController.m in Sources */,
+				BF2655F91D59BC5F0094A1A9 /* ValidCodeParams.m in Sources */,
 				BFA2B7151CF6E8AD00EB460E /* FindPwdViewController.m in Sources */,
 				BF3C3C0C1D376A47000E3027 /* LoginParams.m in Sources */,
 				BFED9BA71D2A5275000175C5 /* OrderTypeTableVC.m in Sources */,
@@ -1650,10 +1670,10 @@
 				BF3C3C1E1D38F66D000E3027 /* CoinRechargeCell1.m in Sources */,
 				BFED9BA31D2A3E16000175C5 /* ClassifyTerm3ViewController.m in Sources */,
 				BF59C5451D453616007A2E84 /* GoodsViewController.m in Sources */,
-				BFA2B7181CF6E8C600EB460E /* MethodGetPwdViewController.m in Sources */,
 				BF8600E51D3D3D0900BCA60A /* ProPriceByStoreParams.m in Sources */,
 				BFE59B1A1D48ACFD00E1DB2A /* NoChatList.m in Sources */,
 				BFF433D51D152B9A00D21427 /* MeumList.m in Sources */,
+				BF2656051D5E2B4E0094A1A9 /* UpdateUserInfoParams.m in Sources */,
 				BF3C3C0F1D378D9D000E3027 /* ProduceDetailModel.m in Sources */,
 				BF3C3C161D38EF71000E3027 /* CoinRechargePackageParams.m in Sources */,
 				BFF433AC1D15202800D21427 /* ModifyEmail.m in Sources */,

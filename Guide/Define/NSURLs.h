@@ -4,10 +4,15 @@
 //http://9mama.top:8080
 //http://101.200.131.198:8090/promot
 #define  BaseURLString (@"http://9mama.top:80")
-#define  BaseImageURL  (@"http://9mama.top:80/dimg/")
-#define HTMLURL (@"http://9mama.top:80/product/mobile/")
+
 
 #endif /* NSURLs_h */
+
+//上传头像
+#define KUpdateAvatar [BaseURLString stringByAppendingString:@"/dimg/upload"]
+
+//更新登录用户的基础信息
+#define KUpdateUserInfo [BaseURLString stringByAppendingString:@"/gw?cmd=updateLoginMemberInfo"]
 
 //获取sessionID
 #define KGetSessionID [BaseURLString stringByAppendingString:@"/gw?cmd=hello"]
@@ -97,7 +102,13 @@
 #define KPackageDetail [BaseURLString stringByAppendingString:@"/gw?cmd=appAdvresPackagedProductDetail"]
 
 //更新登录用户的基础信息
-#define KUpdateUserInfo [BaseURLString stringByAppendingString:@"/gw?cmd=updateLoginMemberInfo"]
+//#define KUpdateUserInfo [BaseURLString stringByAppendingString:@"/gw?cmd=updateLoginMemberInfo"]
+
+//获取手机验证码
+#define KValidCode [BaseURLString stringByAppendingString:@"/gw?cmd=getMobileValidCode"]
+
+//通过手机验证码重置密码
+#define KResetPwd [BaseURLString stringByAppendingString:@"/gw?cmd=resetPasswordByMobile"]
 
 #pragma mark LinkAction-----------------
 //根据特征查找商品列表

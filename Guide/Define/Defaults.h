@@ -49,15 +49,38 @@
 #define USERSOURCE    (@"userSource")
 #define DELAY 2
 #define PASSWORD      (@"password")
-//资源
-#define queryGoodsFeature    (@"queryGoodsFeature")
-//外网、内网
-#define openUri              (@"openUri")
+#define SHOPPING_CAR  (@"shopping_car.plist")
+
+//指定场景商品列表 eg: action:showGoodsListByTag:2
 #define showGoodsListByTag   (@"showGoodsListByTag")
-//酒币充值
+
+//显示商品详情 eg: action:showGoodsDetail:1
+#define showGoodsDetail      (@"showGoodsDetail")
+
+//打开指定文章内容页 ${文章ID} eg:action:showArticleContent:1
+#define showArticleContent   (@"showArticleContent")
+
+//打开指定类型商品列表 eg: action:showGoodsListByCategory:2
+#define showGoodsListByCategory (@"showGoodsListByCategory")
+
+//打开指定文章列表页 ${栏目ID} eg: action:showArticleListByCategory:1
+#define showArticleListByCategory (@"showArticleListByCategory")
+
+//内网 http://服务器地址/article/mobile/id.page
+#define openUri              (@"openUri")
+
+//外网  action:openUrl:http://www.baidu.com
+#define openUrl              (@"openUrl")
+
+//酒币充值 eg: action:openCoinRechargePage
 #define openCoinRechargePage (@"openCoinRechargePage")
+
 //打包套餐
 #define queryPackagedGoods   (@"queryPackagedGoods")
+
+//资源 eg:  action:queryGoodsFeature:base
+#define queryGoodsFeature    (@"queryGoodsFeature")
+
 
 
 

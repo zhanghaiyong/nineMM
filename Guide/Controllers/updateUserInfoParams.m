@@ -1,13 +1,13 @@
 //
-//  updateUserInfoParams.m
+//  UpdateUserInfoParams.m
 //  Guide
 //
-//  Created by 张海勇 on 16/8/8.
+//  Created by 张海勇 on 16/8/13.
 //  Copyright © 2016年 ksm. All rights reserved.
 //
 
-#import "updateUserInfoParams.h"
+#import "UpdateUserInfoParams.h"
 
-@implementation updateUserInfoParams
+@implementation UpdateUserInfoParams
 
 @end

@@ -18,6 +18,8 @@
 - (IBAction)addAction:(id)sender {
     
     _count.text = [NSString stringWithFormat:@"%ld",[_count.text integerValue]+1];
+    
+    self.block(self.count.text,@"add");
 }
 
 - (IBAction)reduceAction:(id)sender {
@@ -26,6 +28,13 @@
         
         _count.text = [NSString stringWithFormat:@"%ld",[_count.text integerValue]-1];
     }
+    
+    self.block(self.count.text,@"reduce");
+}
+
+- (void)repeatCount:(MethodBagCellBlock)block {
+
+    _block = block;
 }
 
 @end

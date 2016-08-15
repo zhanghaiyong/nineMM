@@ -9,5 +9,5 @@
 #import "BaseViewController.h"
 
 @interface FindPwdViewController : BaseViewController
-@property (nonatomic,assign)NSInteger type;
+
 @end
