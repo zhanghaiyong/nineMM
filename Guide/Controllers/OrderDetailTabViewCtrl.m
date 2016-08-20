@@ -11,8 +11,6 @@
 #import "OrderDetailModel.h"
 #import "OrderItemModel.h"
 #import "OrderDetailCell1.h"
-#import "OrderDetailCell2.h"
-#import "OrderDetailCell3.h"
 #import "OrderDetailCell4.h"
 
 @interface OrderDetailTabViewCtrl ()<UITableViewDataSource,UITableViewDelegate>{
@@ -46,10 +44,9 @@
 
     if (section == 0) {
         
-        return orderDetail.orderItems.count;;
+        return 1;
     }else {
-    
-        return 3;
+        return orderDetail.orderItems.count;;
     }
 }
 
@@ -57,31 +54,54 @@
 
     if (indexPath.section == 0) {
         
-        return 80;
+        return 330;
         
     }else {
     
-        switch (indexPath.row) {
-            case 0:
-                return 165;
-                break;
-            case 1:
-                return 90;
-                break;
-            case 2:
-                return 120;
-                break;
-                
-            default:
-                break;
-        }
+        return 80;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+
+    if (section == 1) {
+        return 40;
     }
     return 0;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+
+    return 0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
+    label.text = @"  订单项目";
+    label.font = [UIFont systemFontOfSize:15];
+    label.backgroundColor = [UIColor lightGrayColor];
+    return label;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     if (indexPath.section == 0) {
+        
+        OrderDetailCell4 *cell = [[[NSBundle mainBundle] loadNibNamed:@"OrderDetailCell4" owner:self options:nil] lastObject];
+        cell.orderCode.text = orderDetail.orderSn;
+        cell.orderStatus.text = orderDetail.orderStepName;
+        cell.orderStatus.textColor = [Uitils colorWithHex:(unsigned long)orderDetail.orderStepName];
+        cell.orderTime.text = orderDetail.orderCreateDate;
+        cell.OrderPeople.text = [orderDetail.address objectForKey:@"consignee"];
+        cell.orderTotalPrice.text = orderDetail.totalPrice;
+        NSString *coinName = [orderDetail.paymentMethodCode stringByReplacingOccurrencesOfString:@"Coin" withString:@""];
+        cell.payMethod.text = [NSString stringWithFormat:@"%@支付",[Uitils toChinses:coinName]];
+
+        return cell;
+        
+    }else {
+    
         static NSString *identifier = @"cell";
         OrderDetailCell1 *cell1 = [tableView dequeueReusableCellWithIdentifier:identifier];
         if (!cell1) {
@@ -94,44 +114,7 @@
             
             return cell1;
         }
-    }else {
-    
-        switch (indexPath.row) {
-            case 0:{
-            
-                OrderDetailCell2 *cell2 = [[[NSBundle mainBundle] loadNibNamed:@"OrderDetailCell2" owner:self options:nil] lastObject];
-                cell2.orderCode.text = orderDetail.orderSn;
-                cell2.orderStatus.text = orderDetail.orderStepName;
-                cell2.orderStatus.textColor = [Uitils colorWithHex:(unsigned long)orderDetail.orderStepName];
-                cell2.orderTime.text = orderDetail.orderCreateDate;
-                return cell2;
-            }
-                
-                break;
-            case 1:{
-                
-                OrderDetailCell3 *cell3 = [[[NSBundle mainBundle] loadNibNamed:@"OrderDetailCell3" owner:self options:nil] lastObject];
-//                cell3.pointProduct.text = orderDetail.
-                NSString *coinName = [orderDetail.paymentMethodCode stringByReplacingOccurrencesOfString:@"Coin" withString:@""];
-                cell3.payCoinImage.image = [UIImage imageNamed:[Uitils toImageName:coinName]];
-                cell3.payCoinName.text = [Uitils toChinses:coinName];
-                return cell3;
-            }
-                
-                break;
-            case 2:{
-                
-                OrderDetailCell4 *cell4 = [[[NSBundle mainBundle] loadNibNamed:@"OrderDetailCell4" owner:self options:nil] lastObject];
-                cell4.OrderPeople.text = [orderDetail.address objectForKey:@"consignee"];
-                cell4.orderTotalPrice.text = orderDetail.totalPrice;
-                return cell4;
-            }
-                
-                break;
-                
-            default:
-                break;
-        }
+        
     }
     return nil;
 }

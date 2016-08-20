@@ -36,4 +36,5 @@
  *  价格
  */
 @property (nonatomic,strong)NSString *amount;
+@property (nonatomic,strong)NSArray  *acceptableCoinTypes;
 @end

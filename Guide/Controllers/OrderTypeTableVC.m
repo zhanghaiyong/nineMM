@@ -15,7 +15,7 @@
 @interface OrderTypeTableVC ()<UITableViewDelegate,UITableViewDataSource>
 {
 
-    NSMutableDictionary *_showDic;//用来判断分组展开和关闭
+//    NSMutableDictionary *_showDic;//用来判断分组展开和关闭
     NSMutableArray *orderListArr;
 }
 @property (nonatomic,strong)OrderListParams *params;
@@ -182,9 +182,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if ([_showDic objectForKey:[NSString stringWithFormat:@"%ld",indexPath.section]]) {
-        return 165+135;
-    }
+//    if ([_showDic objectForKey:[NSString stringWithFormat:@"%ld",indexPath.section]]) {
+//        return 165+135;
+//    }
     return 165;
 }
 
@@ -210,12 +210,12 @@
     if (!cell) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"OrderCell" owner:self options:nil] lastObject];
     }
-    if ([_showDic objectForKey:[NSString stringWithFormat:@"%ld",indexPath.section]]) {
-        cell.detailViewHeight.constant = 160;
-    }else {
+//    if ([_showDic objectForKey:[NSString stringWithFormat:@"%ld",indexPath.section]]) {
+//        cell.detailViewHeight.constant = 160;
+//    }else {
     
         cell.detailViewHeight.constant = 0;
-    }
+//    }
     
     OrderModel *model = orderListArr[indexPath.section];
     
@@ -223,6 +223,7 @@
     [cell.orderStatusButton setTitle:[NSString stringWithFormat:@"  %@  ",model.orderStepName] forState:UIControlStateNormal];
     [cell.orderStatusButton setTitleColor:[Uitils colorWithHex:(unsigned long)model.orderStepTextColor] forState:UIControlStateNormal];
     cell.orderStatusButton.layer.borderColor = [Uitils colorWithHex:(unsigned long)model.orderStepTextColor].CGColor;
+    
     cell.produceName.text = model.goodsName;
     cell.nowPriceLabel.text = model.price;
 //    cell.coinType1.text = ;
@@ -253,30 +254,6 @@
     
     return cell;
 
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
-//    if (_showDic == nil) {
-//        
-//        _showDic = [[NSMutableDictionary alloc]init];
-//    }
-//    
-//    NSString *key = [NSString stringWithFormat:@"%ld",indexPath.section];
-//    
-//    if (![_showDic objectForKey:key]) {
-//        [_showDic setObject:@"1" forKey:key];
-//        
-//    }else {
-//        
-//        [_showDic removeObjectForKey:key];
-//    }
-//    [self.tableView beginUpdates];
-//    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-//    [self.tableView endUpdates];
-    
-
-//    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 

@@ -85,7 +85,6 @@
 - (void)loadBanners {
 
     [[HUDConfig shareHUD]alwaysShow];
-    
     NSDictionary *dic = @{@"categoryName":@"套餐轮播",@"rows":@"100",@"page":@"1"};
     
     FxLog(@"loadBanners = %@",dic);
@@ -212,7 +211,7 @@
             NSMutableArray *topImages = [NSMutableArray array];
             for (PackageBannerModel *bannerModel in self.bannerArray) {
                 
-                [topImages addObject:bannerModel.id];
+                [topImages addObject:bannerModel.thumbnail];
             }
             bannerView.imageArray = topImages;
         }

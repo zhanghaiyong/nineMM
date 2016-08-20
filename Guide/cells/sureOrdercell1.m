@@ -7,7 +7,7 @@
 //
 
 #import "sureOrdercell1.h"
-#import "UserSourceModel.h"
+
 @implementation sureOrdercell1
 
 - (void)awakeFromNib {
@@ -39,8 +39,7 @@
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
-    UserSourceModel *model = self.sourceData[indexPath.row];
-    cell.textLabel.text = model.name;
+    cell.textLabel.text = self.sourceData[indexPath.row];
     cell.selectionStyle =  UITableViewCellSelectionStyleNone;
     cell.textLabel.font = [UIFont systemFontOfSize:14];
     return cell;

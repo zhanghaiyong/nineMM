@@ -23,4 +23,6 @@
  */
 @property (weak, nonatomic) IBOutlet UILabel *explainLabel;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *PriceLending;
+
 @end

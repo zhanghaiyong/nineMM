@@ -202,7 +202,7 @@
                 
                 
                 [Uitils cacheImagwWithSize:_avatar.size imageID:memberInfo.avatarId imageV:_avatar placeholder:nil];
-                self.name.text = memberInfo.name;
+                self.name.text = memberInfo.username;
                 self.ID.text = [NSString stringWithFormat:@"ID：%@",memberInfo.id];
                 self.phone.text = memberInfo.phone;
 //                self.email.text = memb

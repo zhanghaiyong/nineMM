@@ -37,4 +37,18 @@
     _block = block;
 }
 
+- (IBAction)selectedAction:(id)sender {
+    
+    UIButton *button = (UIButton *)sender;
+    
+    if (button.selected) {
+        
+        self.isSelected.selected = NO;
+    }else {
+    
+        self.isSelected.selected = YES;
+    }
+    
+}
+
 @end

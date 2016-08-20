@@ -5,12 +5,12 @@
 #import "sureOrderFoorView.h"
 #import "SourceListViewController.h"
 #import "sureOrderFoorView.h"
-
+#import "UserSourceModel.h"
 #import "AppSubOrderParams.h"
 #import "SubOrderModel.h"
 #import "UserSourceModel.h"
-#import "OrderDetailTabViewCtrl.h"
-
+#import "OrderTypeTableVC.h"
+#import "ShopingCarModel.h"
 #import "Produce1Model.h"
 #import "ProduceStoresModel.h"
 @interface SureOrdersViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -43,6 +43,9 @@
     
     self.title = @"确认下单";
     self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.tableView.bounces = NO;
+    
+    NSLog(@"sfsdgdfh = %ld ",self.ProduceBag.count);
 }
 
 - (void)subOrder {
@@ -60,9 +63,7 @@
             [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
             
             UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
-            OrderDetailTabViewCtrl *orderDetail = [mainSB instantiateViewControllerWithIdentifier:@"OrderDetailTabViewCtrl"];
-            orderDetail.orderId = [[dataDic objectForKey:@"retObj"] objectForKey:@"orderId"][0];
-            orderDetail.surePayProduce = YES;
+            OrderTypeTableVC *orderDetail = [mainSB instantiateViewControllerWithIdentifier:@"OrderTypeTableVC"];
             [self.navigationController pushViewController:orderDetail animated:YES];
             
         }else {
@@ -72,9 +73,7 @@
     } failure:^(NSError *error) {
         
     }];
-    
 
-    
 }
 
 #pragma mark UITableViewDelegate&&UITableViewDataSource
@@ -92,11 +91,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     
     if (section == 2) {
-        
-        if (self.packageId.length != 0) {
-            
-            return SCREEN_HEIGHT-64-80-120;
-        }
+
         return SCREEN_HEIGHT-64-110-80-120;
         
     }
@@ -112,36 +107,10 @@
         footer.frame = CGRectMake(0, 0, self.tableView.width, 50);
         
         [footer nowBuyProduce:^{
-            
-            if (self.packageId.length == 0) {
-            
-                SubOrderModel *subOrderModel     = [[SubOrderModel alloc]init];
-                subOrderModel.productId          = [self.produceId intValue];
-                subOrderModel.quantity           = 1;
-                subOrderModel.storeSelectingType = self.proPriceByStoreParams.storeSelectingType;
-                subOrderModel.stores             = self.proPriceByStoreParams.storeIds;
-                subOrderModel.areas              = self.proPriceByStoreParams.areaIds;
-                NSMutableArray *userSourceId     = [NSMutableArray array];
-                for (UserSourceModel *model in self.userSourceArr) {
-                    
-                    [userSourceId addObject:model.id];
-                }
-                subOrderModel.items   = [userSourceId componentsJoinedByString:@","];
-                
+    
+            //套餐
+            if (self.packageId.length > 0) {
                 NSMutableDictionary *itemM = [NSMutableDictionary dictionary];
-//                itemModel *itemM      = [[itemModel alloc]init];
-                NSArray *itemArr      = [NSArray arrayWithObject:subOrderModel.mj_keyValues];
-                [itemM setObject:itemArr forKey:@"items"];
-                NSArray *array        = [NSArray arrayWithObject:itemM];
-                NSString *jsonString  = [array mj_JSONString];
-                self.params.orders = jsonString;
-                
-            }else {
-            
-                
-//                itemModel *itemM      = [[itemModel alloc]init];
-                NSMutableDictionary *itemM = [NSMutableDictionary dictionary];
-//                itemM.packagedProductId = [self.packageId intValue];
                 [itemM setObject:[NSNumber numberWithInt:[self.packageId intValue]] forKey:@"packagedProductId"];
                 
                 NSMutableArray *itemArray = [NSMutableArray array];
@@ -154,11 +123,12 @@
                     subOrderModel.productId          = [produce.id intValue];
                     //数量
                     subOrderModel.quantity           = 1;
-                    //门店或者区域
+                    //门店或者区域标示
                     if (![self.storeOrArea[i] isEqualToString:@"0"]) {
                         subOrderModel.storeSelectingType = self.storeOrArea[i];
                     }
                     
+                    //门店或区域id
                     if ([self.allStoreArea[i] isKindOfClass:[NSArray class]]) {
                         
                         if ([self.storeOrArea[i] isEqualToString:@"store"]) {
@@ -167,17 +137,18 @@
                             for (ProduceStoresModel *model in self.allStoreArea[i]) {
                                 [array addObject:model.id];
                             }
-                            subOrderModel.stores             = [array componentsJoinedByString:@","];
+                            subOrderModel.stores  = [array componentsJoinedByString:@","];
                         }else {
                             
                             NSMutableArray *array = [NSMutableArray array];
                             for (NSDictionary *dic in self.allStoreArea[i]) {
                                 [array addObject:[dic objectForKey:@"i"]];
                             }
-                            subOrderModel.areas             = [array componentsJoinedByString:@","];
+                            subOrderModel.areas  = [array componentsJoinedByString:@","];
                         }
                     }
                     
+                    //所对应的资源id
                     if ([self.allSource[i] isKindOfClass:[NSArray class]]) {
                         
                         NSMutableArray *userSourceId     = [NSMutableArray array];
@@ -194,8 +165,57 @@
                 NSString *jsonString  = [array mj_JSONString];
                 self.params.orders = jsonString;
                 
-            }
+            }else if (self.ProduceBag.count > 0) { //购物车
             
+                NSMutableDictionary *itemM = [NSMutableDictionary dictionary];
+                NSMutableArray *itemArray = [NSMutableArray array];
+                
+                for (ShopingCarModel *model in self.ProduceBag) {
+                    
+                    SubOrderModel *subOrderModel     = [[SubOrderModel alloc]init];
+                    subOrderModel.productId = [model.productId intValue];
+                    subOrderModel.quantity           = 1;
+                    subOrderModel.storeSelectingType = model.storeSelectingType;
+                    subOrderModel.stores             = model.storesId;
+                    subOrderModel.areas              = model.areasId;
+                    
+                    NSMutableArray *userSourceId     = [NSMutableArray array];
+                    //资源id
+                    for (UserSourceModel *source in model.items) {
+                        [userSourceId addObject:source.id];
+                    }
+                    subOrderModel.items   = [userSourceId componentsJoinedByString:@","];
+                    [itemArray addObject:subOrderModel.mj_keyValues];
+                }
+                
+                [itemM setObject:itemArray forKey:@"items"];
+                NSArray *array        = [NSArray arrayWithObject:itemM];
+                NSString *jsonString  = [array mj_JSONString];
+                self.params.orders = jsonString;
+                
+            }else { //普通商品下单
+            
+                SubOrderModel *subOrderModel     = [[SubOrderModel alloc]init];
+                subOrderModel.productId          = [self.produceId intValue];
+                subOrderModel.quantity           = 1;
+                subOrderModel.storeSelectingType = self.proPriceByStoreParams.storeSelectingType;
+                subOrderModel.stores             = self.proPriceByStoreParams.storeIds;
+                subOrderModel.areas              = self.proPriceByStoreParams.areaIds;
+                
+                NSMutableArray *userSourceId     = [NSMutableArray array];
+                //资源id
+                for (UserSourceModel *model in self.userSourceArr) {
+                    [userSourceId addObject:model.id];
+                }
+                subOrderModel.items   = [userSourceId componentsJoinedByString:@","];
+                
+                NSMutableDictionary *itemM = [NSMutableDictionary dictionary];
+                NSArray *itemArr      = [NSArray arrayWithObject:subOrderModel.mj_keyValues];
+                [itemM setObject:itemArr forKey:@"items"];
+                NSArray *array        = [NSArray arrayWithObject:itemM];
+                NSString *jsonString  = [array mj_JSONString];
+                self.params.orders = jsonString;
+            }
             
             if (self.params.paymentMethod.length == 0) {
                 [[HUDConfig shareHUD]Tips:@"请选择支付币种" delay:DELAY];
@@ -230,9 +250,9 @@
     switch (indexPath.section) {
         case 0:
             
-            if (self.packageId.length != 0) {
-                return 0;
-            }
+//            if (self.packageId.length != 0) {
+//                return 0;
+//            }
             return 110;
             
             break;
@@ -256,7 +276,26 @@
     switch (indexPath.section) {
         case 0:{
             sureOrdercell1 *cell1 = [[[NSBundle mainBundle] loadNibNamed:@"sureOrdercell1" owner:self options:nil] lastObject];
-            cell1.sourceData = self.userSourceArr;
+            
+            NSMutableArray *goods = [NSMutableArray array];
+            if (self.packageId.length != 0) { //套餐
+                
+                for (Produce1Model *produce in self.packageproduce) {
+                    [goods addObject:produce.fullName];
+                }
+                
+            }else if (self.ProduceBag.count >0 ){ //套餐
+                
+                for (ShopingCarModel *shopModel in self.ProduceBag) {
+                    [goods addObject:shopModel.fullName];
+                }
+                
+            }else {
+            
+                [goods addObject:self.fullName];
+            }
+            cell1.sourceData = goods;
+            cell1.countLabel.text = [NSString stringWithFormat:@"共计：%ld",goods.count];
             return cell1;
         }
             break;
@@ -342,24 +381,24 @@
     return nil;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
-    switch (indexPath.section) {
-        case 0:
-            
-            if (indexPath.row == 0) {
-                
-                UIStoryboard *SB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
-                SourceListViewController *sourceList = [SB instantiateViewControllerWithIdentifier:@"SourceListViewController"];
-                sourceList.userSourceArr = self.userSourceArr;
-                [self.navigationController pushViewController:sourceList animated:YES];
-            }
-            
-            break;
-            
-        default:
-            break;
-    }
-}
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//
+//    switch (indexPath.section) {
+//        case 0:
+//            
+//            if (indexPath.row == 0) {
+//                
+//                UIStoryboard *SB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+//                SourceListViewController *sourceList = [SB instantiateViewControllerWithIdentifier:@"SourceListViewController"];
+//                sourceList.userSourceArr = self.userSourceArr;
+//                [self.navigationController pushViewController:sourceList animated:YES];
+//            }
+//            
+//            break;
+//            
+//        default:
+//            break;
+//    }
+//}
 
 @end

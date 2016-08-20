@@ -12,6 +12,7 @@
 #import "SureOrdersViewController.h"
 #import "ProduceStoresModel.h"
 #import "ShopingCarModel.h"
+#import "MethodBagViewController.h"
 @interface ProduceDetailViewController ()<UITableViewDelegate,UITableViewDataSource,Term3Delegate,UserSourceDelegate>{
 
     //资源 档期 样刊切换标示
@@ -93,6 +94,20 @@
     storeAreaModel = [NSMutableArray array];
     userSource = [NSMutableArray array];
     
+    NSString *filePath = [NSString stringWithFormat:@"%@/%@",[HYSandbox docPath],SHOPPING_CAR];
+    NSArray *shoppings = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+    [shoppings enumerateObjectsUsingBlock:^(ShopingCarModel *model, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        NSLog(@"%@",model.mj_keyValues);
+        
+        if ([model.productId isEqual:self.produceId]) {
+            
+            self.addShoppCarButton.alpha = 0.5;
+            self.addShoppCarButton.userInteractionEnabled = NO;
+        }
+        
+    }];
+    
     self.tableView.tableFooterView = [[UIView alloc]init];
     [self produceDetailData];
     isRefreshWebViewH = YES;
@@ -129,7 +144,6 @@
 //                    self.addShoppCarButton.alpha = 0.5;
 //                    self.addShoppCarButton.userInteractionEnabled = NO;
 //                }
-                
                 produceDetail = [ProduceDetailModel mj_objectWithKeyValues:retObj];
                 
                 self.tableView.delegate = self;
@@ -145,8 +159,8 @@
             [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
             UIStoryboard *SB = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
             LoginViewController *loginVC = [SB instantiateViewControllerWithIdentifier:@"LoginViewController"];
-            UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:loginVC];
-            [self presentViewController:navi animated:YES completion:^{
+//            UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:loginVC];
+            [self presentViewController:loginVC animated:YES completion:^{
                 
                 [self.navigationController popViewControllerAnimated:YES];
             }];
@@ -232,6 +246,14 @@
     if (indexPath.section == 0) {
         
         ProDetailCell1 *cell = [[[NSBundle mainBundle] loadNibNamed:@"ProDetailCell1" owner:self options:nil] lastObject];
+        
+        for (int i = 0; i<produceDetail.acceptableCoinTypes.count; i++) {
+            
+            UIImageView *coinImg = (UIImageView *)[cell.contentView viewWithTag:i+500];
+            coinImg.hidden = NO;
+            coinImg.image  = [UIImage imageNamed:[Uitils toImageName:produceDetail.acceptableCoinTypes[i]]];
+        }
+        cell.PriceLending.constant = 10+produceDetail.acceptableCoinTypes.count*25;
         
         if (produceDetail.images.count > 0) {
             //滚动试图
@@ -380,6 +402,9 @@
 //购物车
 - (IBAction)packageAction:(id)sender {
     
+    UIStoryboard *SB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+    MethodBagViewController *sureOrder = [SB instantiateViewControllerWithIdentifier:@"MethodBagViewController"];
+    [self.navigationController pushViewController:sureOrder animated:YES];
 }
 
 //加入购物车
@@ -410,11 +435,15 @@
     shopCarModel.storesId = self.proPriceByStoreParams.storeIds;
     shopCarModel.areasId = self.proPriceByStoreParams.areaIds;
     shopCarModel.items = userSource;
+    shopCarModel.acceptableCoinTypes = produceDetail.acceptableCoinTypes;
+    
     if ([produceDetail.isPackagePrice integerValue] == 1) {
         shopCarModel.amount = produceDetail.price;
     }else {
         shopCarModel.amount = price;
     }
+    
+    NSLog(@"shopCarModel = %@",shopCarModel.mj_keyValues);
     
     
     NSString *filePath = [NSString stringWithFormat:@"%@/%@",[HYSandbox docPath],SHOPPING_CAR];
@@ -470,11 +499,18 @@
     
     UIStoryboard *SB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
     SureOrdersViewController *sureOrder = [SB instantiateViewControllerWithIdentifier:@"SureOrdersViewController"];
+    //资源
     sureOrder.userSourceArr = userSource;
+    //商品id
     sureOrder.produceId = self.produceId;
+    //商品名称
+    sureOrder.fullName = produceDetail.fullName;
+    //酒币类型
     sureOrder.acceptableCoinTypes = produceDetail.acceptableCoinTypes;
+    //门店或区域类型和门店或区域id
     sureOrder.proPriceByStoreParams = self.proPriceByStoreParams;
     
+    //商品价格
     if ([produceDetail.isPackagePrice integerValue] == 1) {
         sureOrder.proPrice = produceDetail.price;
     }else {

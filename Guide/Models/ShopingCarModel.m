@@ -19,6 +19,7 @@
     [aCoder encodeObject:_areasId forKey:@"areasId"];
     [aCoder encodeObject:_items forKey:@"items"];
     [aCoder  encodeObject:_amount forKey:@"amount"];
+    [aCoder  encodeObject:_acceptableCoinTypes forKey:@"acceptableCoinTypes"];
 }
 
 //解的时候调用，告诉系统哪个属性要解档，如何解档
@@ -32,6 +33,7 @@
         _areasId  = [aDecoder decodeObjectForKey:@"areasId"];
         _items  = [aDecoder decodeObjectForKey:@"items"];
         _amount  = [aDecoder decodeObjectForKey:@"amount"];
+        _acceptableCoinTypes  = [aDecoder decodeObjectForKey:@"acceptableCoinTypes"];
     }
     return self;
 }

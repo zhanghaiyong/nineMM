@@ -106,10 +106,18 @@
                 [self.tableView reloadData];
             }
             
-        }else {
+        }else if ([[dataDic objectForKey:@"retCode"]integerValue] == -2){
             
             [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            UIStoryboard *SB = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+            LoginViewController *loginVC = [SB instantiateViewControllerWithIdentifier:@"LoginViewController"];
+            UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:loginVC];
+            [self presentViewController:navi animated:YES completion:^{
+                
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
         }
+        
     } failure:^(NSError *error) {
         
     }];

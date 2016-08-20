@@ -2,10 +2,12 @@
 #import "MethodBagCell.h"
 #import "NoChatList.h"
 #import "ShopingCarModel.h"
+#import "SureOrdersViewController.h"
 @interface MethodBagViewController ()<UITableViewDelegate,UITableViewDataSource>{
 
     NSArray *productArr;
-    NSMutableArray *countArray;
+    NSMutableArray *SelectProArray;
+    
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableV;
 @property (weak, nonatomic) IBOutlet UIButton *checkoutOrDelete;
@@ -32,6 +34,7 @@
     
 //    self.tableV.delegate = self;
 //    self.tableV.dataSource = self;
+    SelectProArray = [NSMutableArray array];
     
     
     //刷新
@@ -40,17 +43,16 @@
         NSString *filePath = [NSString stringWithFormat:@"%@/%@",[HYSandbox docPath],SHOPPING_CAR];
         productArr = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
         
-        countArray = [NSMutableArray array];
-        for (int i = 0; i<productArr.count; i++) {
-            
-            [countArray addObject:@"1"];
-        }
+//        countArray = [NSMutableArray array];
+//        for (int i = 0; i<productArr.count; i++) {
+//            
+//            [countArray addObject:@"1"];
+//        }
         
         [self.tableV reloadData];
         [self.tableV.mj_header endRefreshing];
         
     }];
-    
     
     [self.tableV.mj_header beginRefreshing];
     
@@ -91,76 +93,77 @@
     if (!cell) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"MethodBagCell" owner:nil options:nil] lastObject];
     }
-    ShopingCarModel *model = productArr[indexPath.section];
-    
-    [cell repeatCount:^(NSString *count,NSString *add_reduce) {
-        
-        
-        if ([add_reduce isEqualToString:@"add"]) {
-            
-            self.totalPrice.text = [NSString stringWithFormat:@"%ld",[self.totalPrice.text integerValue] + [model.amount integerValue]];
-            
-        }else {
-        
-            self.totalPrice.text = [NSString stringWithFormat:@"%ld",[self.totalPrice.text integerValue] - [model.amount integerValue]];
-        }
-        
-        
-        [countArray replaceObjectAtIndex:indexPath.section withObject:count];
-        cell.price.text = [NSString stringWithFormat:@"酒币：%ld",[model.amount integerValue]*[cell.count.text integerValue]];
-        
-    }];
-    
-//    NSLog(@"awfSDF = %@",dic);
+    ShopingCarModel *model = productArr[indexPath.row];
     cell.produceName.text = model.fullName;
-    cell.count.text = countArray[indexPath.section];
-    cell.price.text = [NSString stringWithFormat:@"酒币：%ld",[model.amount integerValue]*[cell.count.text integerValue]];
+    cell.price.text = model.amount;
+    NSLog(@"%@",model.mj_keyValues);
     
-//    if (isEdit) {
-//        
-//        cell.isSelected.hidden = NO;
-//        cell.selectedBtnWidth.constant = 19;
-//        
-//    }else {
-//        
-//        cell.isSelected.hidden = YES;
-//        cell.selectedBtnWidth.constant = 0;
-//    }
-    
-    
-    cell.tag = 100+indexPath.row;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
     MethodBagCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    ShopingCarModel *model = productArr[indexPath.row];
+    
     
     if (cell.isSelected.selected) {
     
         cell.isSelected.selected = NO;
         self.totalPrice.text = [NSString stringWithFormat:@"%ld",[self.totalPrice.text integerValue] - [cell.price.text integerValue]];
+        [SelectProArray removeObject:model];
         
     }else {
+        
         cell.isSelected.selected = YES;
-        
+        [SelectProArray addObject:model];
         self.totalPrice.text = [NSString stringWithFormat:@"%ld",[self.totalPrice.text integerValue] + [cell.price.text integerValue]];
-    
-        
     }
 }
 
-- (void)viewDidLayoutSubviews {
-    
-    [super viewDidLayoutSubviews];
-    self.tableV.separatorInset = UIEdgeInsetsZero;
-    self.tableV.layoutMargins = UIEdgeInsetsZero;
-}
+//- (void)viewDidLayoutSubviews {
+//    
+//    [super viewDidLayoutSubviews];
+//    self.tableV.separatorInset = UIEdgeInsetsZero;
+//    self.tableV.layoutMargins = UIEdgeInsetsZero;
+//}
+//
+//- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+//    
+//    self.tableV.separatorInset = UIEdgeInsetsZero;
+//    self.tableV.layoutMargins = UIEdgeInsetsZero;
+//}
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+- (IBAction)selectAllAction:(id)sender {
     
-    self.tableV.separatorInset = UIEdgeInsetsZero;
-    self.tableV.layoutMargins = UIEdgeInsetsZero;
+    UIButton *button = (UIButton *)sender;
+    
+    if (button.selected) {
+        
+        [SelectProArray removeAllObjects];
+        self.totalPrice.text = @"0";
+        for (int i = 0; i< productArr.count; i++) {
+            
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+            MethodBagCell *cell = [self.tableV cellForRowAtIndexPath:indexPath];
+            button.selected = NO;
+            cell.isSelected.selected = NO;
+            
+        }
+        
+    }else {
+        
+        [SelectProArray addObjectsFromArray:productArr];
+        for (int i = 0; i< productArr.count; i++) {
+            
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+            MethodBagCell *cell = [self.tableV cellForRowAtIndexPath:indexPath];
+            self.totalPrice.text = [NSString stringWithFormat:@"%ld",[self.totalPrice.text integerValue] + [cell.price.text integerValue]];
+            button.selected = YES;
+            cell.isSelected.selected = YES;
+        }
+    }
+
 }
 
 - (void)edit:(UIButton *)sender {
@@ -183,4 +186,53 @@
 
 }
 
+- (IBAction)nowBuyAvtion:(id)sender {
+    
+    if (SelectProArray.count == 0) {
+        
+        [[HUDConfig shareHUD]Tips:@"请选择你要购买的商品" delay:DELAY];
+        return;
+    }
+    
+    
+    NSMutableArray *totalCoin = [NSMutableArray array];
+    NSMutableArray *acceptableCoinTypes = [NSMutableArray arrayWithArray:((ShopingCarModel *)SelectProArray[0]).acceptableCoinTypes];
+    if (SelectProArray.count > 0) {
+        
+        for (int i = 1; i<SelectProArray.count; i++) {
+            
+            ShopingCarModel *model = SelectProArray[i];
+            [totalCoin removeAllObjects];
+            [totalCoin addObjectsFromArray:acceptableCoinTypes];
+            [acceptableCoinTypes removeAllObjects];
+            
+            for (int x = 0; x<totalCoin.count; x++) {
+                
+                for (int y = 0; y<model.acceptableCoinTypes.count; y++) {
+                    
+                    if ([totalCoin[x] isEqualToString:model.acceptableCoinTypes[y]]) {
+                        
+                        if (![acceptableCoinTypes containsObject:model.acceptableCoinTypes[y]]) {
+                            
+                            [acceptableCoinTypes addObject:model.acceptableCoinTypes[y]];
+                            
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    NSLog(@"acceptableCoinTypes = %@",acceptableCoinTypes);;
+
+    
+    
+    UIStoryboard *SB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+    SureOrdersViewController *sureOrder = [SB instantiateViewControllerWithIdentifier:@"SureOrdersViewController"];
+    sureOrder.ProduceBag = SelectProArray;
+    sureOrder.proPrice = self.totalPrice.text;
+    sureOrder.acceptableCoinTypes = acceptableCoinTypes;
+    [self.navigationController pushViewController:sureOrder animated:YES];
+    
+}
 @end

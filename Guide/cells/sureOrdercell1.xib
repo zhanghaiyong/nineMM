@@ -32,7 +32,7 @@
                         <rect key="frame" x="0.0" y="10" width="209" height="89.5"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tableView>
-                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="箭头" translatesAutoresizingMaskIntoConstraints="NO" id="pdR-EZ-9Kp">
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="箭头" translatesAutoresizingMaskIntoConstraints="NO" id="pdR-EZ-9Kp">
                         <rect key="frame" x="295" y="45" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="20" id="OC2-Rf-OhA"/>

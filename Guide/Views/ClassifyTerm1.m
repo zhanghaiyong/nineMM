@@ -297,6 +297,11 @@
 - (void)delayBlock {
 
     self.block(categoryId);
+    
+    if ([self.delegate respondsToSelector:@selector(closeClassifyTerm1)]) {
+        
+        [self.delegate closeClassifyTerm1];
+    }
 }
 
 

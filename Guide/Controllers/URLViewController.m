@@ -17,6 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSLog(@"urlString = %@",self.urlString);
+    
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
     NSURL *url = [[NSURL alloc]initWithString:self.urlString];

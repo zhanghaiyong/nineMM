@@ -9,7 +9,7 @@
 #import "ClassifyTerm3ViewController.h"
 #import "ProduceDetailViewController.h"
 #import "MainProduceListParams.h"
-@interface ClassifyViewController ()<UITableViewDataSource,UITableViewDelegate,ClassifyDetailHeadDelegate,ClassifyTerm2Delegate,Term3Delegate,UITextFieldDelegate>
+@interface ClassifyViewController ()<UITableViewDataSource,UITableViewDelegate,ClassifyDetailHeadDelegate,ClassifyTerm2Delegate,Term3Delegate,UITextFieldDelegate,ClassifyTerm1Delegate>
 {
     //分类列表
     UITableView *typeTableView;
@@ -18,6 +18,7 @@
     ClassifyDetailHead *head;
     UITextField *searchBar;
     NSString  *searchKeyWork;
+    UIButton *closeBtn;
     
 
 }
@@ -58,6 +59,7 @@
     if (_term1 == nil) {
         
         ClassifyTerm1 *term1 = [[ClassifyTerm1 alloc]initWithFrame:CGRectMake(0, head.bottom, SCREEN_WIDTH, SCREEN_HEIGHT-64-44)];
+        term1.delegate = self;
         NSString *rootPath = [HYSandbox docPath];
         NSString *filePath = [NSString stringWithFormat:@"%@/%@",rootPath,CategoryTree];
         NSArray *array = [NSArray arrayWithContentsOfFile:filePath];
@@ -67,10 +69,19 @@
             
             NSLog(@"qryCategoryId = %@",qryCategoryId);
             
-            [term1 removeFromSuperview];
-            UIButton *button = [head viewWithTag:1000];
-            button.selected = NO;
-            [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//            UIButton *button = [head viewWithTag:1000];
+//            [button setTitleColor:MainColor forState:UIControlStateNormal];
+//            button.selected = YES;
+            
+            //选择了左边的条件，恢复右边的条件
+            
+            UIButton *button1 = [head viewWithTag:1001];
+            button1.selected = NO;
+            [button1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            
+            UIButton *button2 = [head viewWithTag:1002];
+            button2.selected = NO;
+            [button2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             
             if (![qryCategoryId isEqual:@"YES"]) {
                 
@@ -106,6 +117,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(beginSearch:) name:@"search" object:nil];
 }
 
+
 - (void)viewDidLoad {
     
     [super viewDidLoad];
@@ -114,15 +126,25 @@
 
 - (void)beginSearch:(NSNotification *)notifation {
 
-    NSLog(@"%@",notifation);
+    NSLog(@"sfse = %@",notifation);
     searchKeyWork = notifation.userInfo[@"keyword"];
+    searchBar.text = searchKeyWork;
     self.produceParams.qryKeyword = notifation.userInfo[@"keyword"];
     [typeTableView.mj_header beginRefreshing];
 }
 
 - (void)initTableViews {
     
-    [self setNavigationRightTitle:@"清除选择"];
+    closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [closeBtn setTitle:@"清除选择" forState:UIControlStateNormal];
+    closeBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+    [closeBtn sizeToFit];
+    closeBtn.titleLabel.font = lever2Font;
+    [closeBtn setTitleColor:lever1Color forState:UIControlStateNormal];
+    [closeBtn addTarget:self action:@selector(closeParams) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:closeBtn];
+    self.navigationItem.rightBarButtonItem = item;
+    
     //搜索框
     searchBar = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-120, 30)];
     searchBar.layer.cornerRadius = 15;
@@ -135,14 +157,14 @@
     searchBar.layer.borderColor = lineColor.CGColor;
     searchBar.layer.borderWidth = 0.8;
     
-    self.navigationItem.titleView = searchBar;
-    
     searchBar.leftViewMode = UITextFieldViewModeAlways;
     UIImageView *searchIcon = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"iconfont-fangdajing"]];
     //将左边的图片向右移动一定距离
     searchIcon.width +=10;
     searchIcon.contentMode = UIViewContentModeCenter;
     searchBar.leftView = searchIcon;
+    
+    self.navigationItem.titleView = searchBar;
     
     //分类头部
     head = [[[NSBundle mainBundle] loadNibNamed:@"ClassifyDetailHead" owner:self options:nil] lastObject];
@@ -186,6 +208,10 @@
     FxLog(@"produceListParams = %@",self.produceParams.mj_keyValues);
     
     [KSMNetworkRequest postRequest:KHomePageProcudeList params:self.produceParams.mj_keyValues success:^(NSDictionary *dataDic) {
+        
+        
+        closeBtn.userInteractionEnabled = YES;
+        closeBtn.alpha = 1;
         
         FxLog(@"loadProduceList = %@",dataDic);
         if ([[dataDic objectForKey:@"retCode"]integerValue] == 0) {
@@ -248,13 +274,24 @@
     return YES;
 }
 
+#pragma mark ClassifyTrem1Delegate
+-(void)closeClassifyTerm1 {
+
+    [_term1 removeFromSuperview];
+    _term1 = nil;
+}
 
 #pragma mark ClassifyTerm2Delegate
 - (void)classsifyTrem2Start:(NSString *)start end:(NSString *)end {
 
     [_term2 removeFromSuperview];
     _term2 = nil;
-    UIButton *button = [head viewWithTag:1001];
+    
+//    UIButton *mainBtn = [head viewWithTag:1001];
+//    [mainBtn setTitleColor:MainColor forState:UIControlStateNormal];
+//    mainBtn.selected = YES;
+    
+    UIButton *button = [head viewWithTag:1002];
     button.selected = NO;
     [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
@@ -268,17 +305,17 @@
 
     [_term2 removeFromSuperview];
     _term2 = nil;
-    UIButton *button = [head viewWithTag:1001];
-    button.selected = NO;
-    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    UIButton *button = [head viewWithTag:1001];
+//    button.selected = NO;
+//    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 }
 
 #pragma mark Term3Delegate
 - (void)areaIdOrStoresId:(NSArray *)model type:(NSString *)type {
 
-    UIButton *button = [head viewWithTag:1002];
-    button.selected = NO;
-    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    UIButton *mainBtn = [head viewWithTag:1002];
+//    [mainBtn setTitleColor:MainColor forState:UIControlStateNormal];
+//    mainBtn.selected = YES;
     NSLog(@"SFASf = %@",model);
     
     NSMutableArray *array = [NSMutableArray array];
@@ -301,10 +338,6 @@
                 
                 [_term2 removeFromSuperview];
                 _term2 = nil;
-                
-                UIButton *button = [head viewWithTag:1001];
-                button.selected = NO;
-                [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             }
             
             if (_term1) {
@@ -312,10 +345,15 @@
                 [_term1 removeFromSuperview];
                 _term1 = nil;
                 
-                UIButton *button = [head viewWithTag:1000];
-                button.selected = NO;
-                [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                if (!self.produceParams.qryCategoryId) {
+                    
+                    UIButton *button1 = [head viewWithTag:buttonTag];
+                    button1.selected = NO;
+                    [button1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                }
+
             }else {
+                
                 [[UIApplication sharedApplication].keyWindow addSubview:self.term1];
             }
             
@@ -327,20 +365,17 @@
                 [_term1 removeFromSuperview];
                 _term1 = nil;
                 
-                UIButton *button = [head viewWithTag:1000];
-                button.selected = NO;
-                [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             }
-            
             if (_term2) {
                 
                 [_term2 removeFromSuperview];
                 _term2 = nil;
-                
-                UIButton *button = [head viewWithTag:1001];
-                button.selected = NO;
-                [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-                
+                if (self.produceParams.qryScheduleDateFrom.length == 0) {
+                    UIButton *button1 = [head viewWithTag:buttonTag];
+                    button1.selected = NO;
+                    [button1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                }
+
             }else {
                 
                 [[UIApplication sharedApplication].keyWindow addSubview:self.term2];
@@ -353,25 +388,13 @@
                 
                 [_term1 removeFromSuperview];
                 _term1 = nil;
-                
-                UIButton *button = [head viewWithTag:1000];
-                button.selected = NO;
-                [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             }
             
             if (_term2) {
                 
                 [_term2 removeFromSuperview];
                 _term2 = nil;
-                
-                UIButton *button = [head viewWithTag:1001];
-                button.selected = NO;
-                [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             }
-            
-            UIButton *button = [head viewWithTag:1002];
-            button.selected = NO;
-            [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             
             UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
             ClassifyTerm3ViewController *term3 = [mainSB instantiateViewControllerWithIdentifier:@"ClassifyTerm3ViewController"];
@@ -386,15 +409,15 @@
     }
 }
 
-#pragma mark ClassifyTerm2Delegate
-- (void)classsifyTrem2SureData:(NSString *)someString {
-
-    [_term2 removeFromSuperview];
-    _term2 = nil;
-    
-    UIButton *button = [head viewWithTag:1001];
-    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-}
+//#pragma mark ClassifyTerm2Delegate
+//- (void)classsifyTrem2SureData:(NSString *)someString {
+//
+//    [_term2 removeFromSuperview];
+//    _term2 = nil;
+//    
+////    UIButton *button = [head viewWithTag:1001];
+////    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//}
 
 #pragma mark UITableViewDelegate&&dataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -507,12 +530,35 @@
     typeTableView.layoutMargins = UIEdgeInsetsZero;
 }
 
-- (void)doRight:(UIButton *)sender
-{
+- (void)closeParams {
+    
     if (_produceParams) {
         _produceParams = nil;
     }
     
+    if (_term2) {
+        
+        [_term2 removeFromSuperview];
+        _term2 = nil;
+    }
+    
+    if (_term1) {
+        
+        [_term1 removeFromSuperview];
+        _term1 = nil;
+    }
+    
+    closeBtn.userInteractionEnabled = NO;
+    closeBtn.alpha = 0.5;
+    
+    for (int i = 0; i<3; i++) {
+       
+        UIButton *button1 = [head viewWithTag:1000+i];
+        button1.selected = NO;
+        [button1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    }
+    
+    searchBar.text = @"";
     [typeTableView.mj_header beginRefreshing];
 }
 

@@ -61,6 +61,7 @@
     return _produceListParams;
 }
 
+/*
 - (void)showTabBar {
     if (self.tabBarController.tabBar.hidden == NO) {
         return;
@@ -78,12 +79,13 @@
     self.tabBarController.tabBar.hidden = NO;
     
 }
+ */
 
 - (void)viewWillAppear:(BOOL)animated {
 
     [super viewWillAppear:animated];
-    [self showTabBar];
-    
+//    [self showTabBar];
+    self.tabBarController.tabBar.hidden = NO;
     
     //隐藏
     self.navigationController.navigationBar.hidden = YES;
@@ -208,10 +210,9 @@
     if (textField.text.length != 0) {
 //        self.produceListParams.qryKeyword = textField.text;
 //        [self.tableView.mj_header beginRefreshing];
-        textField.text = @"";
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"search" object:self userInfo:@{@"keyword":textField.text}];
-        
+        textField.text = @"";
         self.tabBarController.selectedIndex = 1;
     }
     
@@ -446,12 +447,14 @@
     
     if (indexPath.section == 3) {
         
+        self.tabBarController.tabBar.hidden=YES;
+        self.hidesBottomBarWhenPushed=YES;
         MainProduceModel *model = self.produces[indexPath.row];
-        
         UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
         ProduceDetailViewController *produceDetail = [mainSB instantiateViewControllerWithIdentifier:@"ProduceDetailViewController"];
         produceDetail.produceId = model.id;
         [self.navigationController pushViewController:produceDetail animated:YES];
+        self.hidesBottomBarWhenPushed=NO;
     }
 }
 
@@ -484,7 +487,7 @@
         UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
         URLViewController *URLVC = [mainSB instantiateViewControllerWithIdentifier:@"URLViewController"];
         URLVC.title = model.title;
-        URLVC.urlString = [NSString stringWithFormat:@"%@:%@",BaseURLString,array.lastObject];
+        URLVC.urlString = [NSString stringWithFormat:@"%@%@?sessionId=%@",BaseURLString,array.lastObject,[Uitils getUserDefaultsForKey:TOKEN]];
         [self.navigationController pushViewController:URLVC animated:YES];
         
     }else if ([array containsObject:queryGoodsFeature]) { //资源 通过feature来获取
@@ -534,7 +537,7 @@
         UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
         URLViewController *URLVC = [mainSB instantiateViewControllerWithIdentifier:@"URLViewController"];
         URLVC.title = model.title;
-        URLVC.urlString = [NSString stringWithFormat:@"%@:%@",array[2],array[3]];
+        URLVC.urlString = [NSString stringWithFormat:@"%@%@?sessionId=%@",BaseURLString,array.lastObject,[Uitils getUserDefaultsForKey:TOKEN]];
         [self.navigationController pushViewController:URLVC animated:YES];
         
     }else if ([array containsObject:openUrl]) { //外网
@@ -568,7 +571,7 @@
         UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
         URLViewController *URLVC = [mainSB instantiateViewControllerWithIdentifier:@"URLViewController"];
         URLVC.title = model.title;
-        URLVC.urlString = [NSString stringWithFormat:@"%@:%@",array[2],array[3]];
+        URLVC.urlString = [NSString stringWithFormat:@"%@%@?sessionId=%@",BaseURLString,array.lastObject,[Uitils getUserDefaultsForKey:TOKEN]];
         [self.navigationController pushViewController:URLVC animated:YES];
         
     }else if ([array containsObject:openUrl]) { //外网
@@ -594,13 +597,14 @@
 
     NewsModel *model = self.mainStaticModel.news[imageTag-100];
     NSArray *array = [model.linkAction componentsSeparatedByString:@":"];
+    NSLog(@"%ld ",model.linkAction.length); //0
     
     if ([array containsObject:openUri]) { //内网
         
         UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
         URLViewController *URLVC = [mainSB instantiateViewControllerWithIdentifier:@"URLViewController"];
         URLVC.title = model.title;
-        URLVC.urlString = [NSString stringWithFormat:@"%@:%@",array[2],array[3]];
+        URLVC.urlString = [NSString stringWithFormat:@"%@%@?sessionId=%@",BaseURLString,array.lastObject,[Uitils getUserDefaultsForKey:TOKEN]];
         [self.navigationController pushViewController:URLVC animated:YES];
         
     }else if ([array containsObject:openUrl]) { //外网
