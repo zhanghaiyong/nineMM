@@ -16,6 +16,12 @@
 
 @implementation MyCoinsController
 
+- (void)viewWillAppear:(BOOL)animated {
+
+    [super viewWillAppear:animated];
+    [self balanceData];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -23,8 +29,6 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
     NSLog(@"我的酒币 = %@",self.persionModel.mj_keyValues);
-    
-    [self balanceData];
 
 }
 

@@ -18,4 +18,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *orderTotalPrice;
 @property (weak, nonatomic) IBOutlet UILabel *payMethod;
 
+@property (weak, nonatomic) IBOutlet UILabel *packageName;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *packageH;
 @end

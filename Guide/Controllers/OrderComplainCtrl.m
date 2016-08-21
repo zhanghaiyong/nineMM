@@ -94,9 +94,9 @@
     UITapGestureRecognizer *tap5 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(selectImage:)];
     [self.imageView5 addGestureRecognizer:tap5];
     
-    self.goodsName.text     = self.orderModel.goodsName;
-    self.wineCoin.text      = self.orderModel.price;
-    self.stock.text         = self.orderModel.quantity;
+//    self.goodsName.text     = self.orderModel.goodsName;
+//    self.wineCoin.text      = self.orderModel.price;
+//    self.stock.text         = self.orderModel.quantity;
     self.totalWinecoin.text = self.orderModel.totalPrice;
     self.orderCode.text     = self.orderModel.orderSn;
 }

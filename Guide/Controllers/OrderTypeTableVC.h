@@ -10,4 +10,5 @@
 
 @interface OrderTypeTableVC : BaseTableViewController
 @property (nonatomic,assign) NSInteger orderType;
+@property (nonatomic,strong) NSString  *fromRecharge;
 @end

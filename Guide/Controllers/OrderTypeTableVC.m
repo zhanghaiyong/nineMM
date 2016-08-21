@@ -7,7 +7,8 @@
 //
 
 #import "OrderTypeTableVC.h"
-#import "OrderCell.h"
+#import "PackageOrderCell.h"
+#import "OtherOrderCell.h"
 #import "OrderDetailTabViewCtrl.h"
 #import "OrderListParams.h"
 #import "OrderModel.h"
@@ -15,7 +16,6 @@
 @interface OrderTypeTableVC ()<UITableViewDelegate,UITableViewDataSource>
 {
 
-//    NSMutableDictionary *_showDic;//用来判断分组展开和关闭
     NSMutableArray *orderListArr;
 }
 @property (nonatomic,strong)OrderListParams *params;
@@ -23,13 +23,6 @@
 @end
 
 @implementation OrderTypeTableVC
-
-//- (void)viewWillAppear:(BOOL)animated {
-//    
-//    [super viewWillAppear:animated];
-//    self.navigationController.navigationBar.hidden = NO;
-//}
-
 
 -(OrderListParams *)params {
 
@@ -70,6 +63,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setNavigationLeft:@"返回"];
+    
     orderListArr = [NSMutableArray array];
     
     switch (self.orderType) {
@@ -94,9 +89,6 @@
         default:
             break;
     }
-    
-//    [self getOrderList];
-    
     
     //刷新
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -182,10 +174,22 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-//    if ([_showDic objectForKey:[NSString stringWithFormat:@"%ld",indexPath.section]]) {
-//        return 165+135;
-//    }
-    return 165;
+    OrderModel *model = orderListArr[indexPath.section];
+    
+    if ([model.orderType isEqualToString:@"payment"] && model.packagedProductName.length != 0) { //套餐
+        
+        return 120 + model.orderItems.count+60;
+    
+    }else if ([model.orderType isEqualToString:@"payment"] && model.packagedProductName.length == 0) { //购物车
+        
+        return 80+model.orderItems.count*30;
+        
+    }else if ([model.orderType isEqualToString:@"coinRecharge"]) { // 酒币
+    
+        return 80+60;
+    }
+    
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -205,6 +209,24 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    
+    OrderModel *model = orderListArr[indexPath.section];
+    
+    if ([model.orderType isEqualToString:@"coinRecharge"]) { // 酒币
+    
+        OtherOrderCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"OtherOrderCell" owner:self options:nil] lastObject];
+        cell.orderModel = model;
+        return cell;
+    }else {
+    
+        PackageOrderCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"PackageOrderCell" owner:self options:nil] lastObject];
+        cell.orderModel = model;
+        return cell;
+    }
+    
+    
+    
+    /*
     static NSString *identtifier = @"cell";
     OrderCell *cell = [tableView dequeueReusableCellWithIdentifier:identtifier];
     if (!cell) {
@@ -253,7 +275,33 @@
     }];
     
     return cell;
+     */
+//    return nil;
+}
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    OrderModel *model = orderListArr[indexPath.section];
+    UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+    OrderDetailTabViewCtrl *orderDetail = [mainSB instantiateViewControllerWithIdentifier:@"OrderDetailTabViewCtrl"];
+    orderDetail.orderId = model.orderId;
+    [self.navigationController pushViewController:orderDetail animated:YES];
+}
+
+- (void)doBack:(UIButton *)sender {
+    
+    if (self.fromRecharge) {
+        
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        
+    }else {
+    
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
+    
 }
 
 

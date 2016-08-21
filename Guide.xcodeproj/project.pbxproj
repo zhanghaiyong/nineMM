@@ -80,7 +80,6 @@
 		BF5829ED1D55944D00951730 /* OrderDetailCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF5829EB1D55944D00951730 /* OrderDetailCell1.xib */; };
 		BF5829FB1D55969A00951730 /* OrderDetailCell4.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5829F91D55969A00951730 /* OrderDetailCell4.m */; };
 		BF5829FC1D55969A00951730 /* OrderDetailCell4.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF5829FA1D55969A00951730 /* OrderDetailCell4.xib */; };
-		BF5829FF1D559E1800951730 /* OrderItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5829FE1D559E1800951730 /* OrderItemModel.m */; };
 		BF59C5381D44E861007A2E84 /* ProDetailCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = BF59C5361D44E861007A2E84 /* ProDetailCell3.m */; };
 		BF59C5391D44E861007A2E84 /* ProDetailCell3.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF59C5371D44E861007A2E84 /* ProDetailCell3.xib */; };
 		BF59C53C1D453082007A2E84 /* URLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF59C53B1D453082007A2E84 /* URLViewController.m */; };
@@ -223,6 +222,8 @@
 		BFF578BB1D2F79AE00EC9400 /* MsgCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF578BA1D2F79AE00EC9400 /* MsgCenterViewController.m */; };
 		BFF8D40F1D18F5740039600B /* ProDetailCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF8D40D1D18F5740039600B /* ProDetailCell1.m */; };
 		BFF8D4101D18F5740039600B /* ProDetailCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFF8D40E1D18F5740039600B /* ProDetailCell1.xib */; };
+		BFFACEA21D6A0EAA007EA38A /* OrderDetailCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = BFFACEA01D6A0EAA007EA38A /* OrderDetailCell2.m */; };
+		BFFACEA31D6A0EAA007EA38A /* OrderDetailCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFFACEA11D6A0EAA007EA38A /* OrderDetailCell2.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -358,8 +359,6 @@
 		BF5829F81D55969A00951730 /* OrderDetailCell4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailCell4.h; sourceTree = "<group>"; };
 		BF5829F91D55969A00951730 /* OrderDetailCell4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailCell4.m; sourceTree = "<group>"; };
 		BF5829FA1D55969A00951730 /* OrderDetailCell4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetailCell4.xib; sourceTree = "<group>"; };
-		BF5829FD1D559E1800951730 /* OrderItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderItemModel.h; sourceTree = "<group>"; };
-		BF5829FE1D559E1800951730 /* OrderItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderItemModel.m; sourceTree = "<group>"; };
 		BF59C5351D44E861007A2E84 /* ProDetailCell3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProDetailCell3.h; sourceTree = "<group>"; };
 		BF59C5361D44E861007A2E84 /* ProDetailCell3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProDetailCell3.m; sourceTree = "<group>"; };
 		BF59C5371D44E861007A2E84 /* ProDetailCell3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProDetailCell3.xib; sourceTree = "<group>"; };
@@ -608,6 +607,9 @@
 		BFF8D40C1D18F5740039600B /* ProDetailCell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProDetailCell1.h; sourceTree = "<group>"; };
 		BFF8D40D1D18F5740039600B /* ProDetailCell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProDetailCell1.m; sourceTree = "<group>"; };
 		BFF8D40E1D18F5740039600B /* ProDetailCell1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProDetailCell1.xib; sourceTree = "<group>"; };
+		BFFACE9F1D6A0EAA007EA38A /* OrderDetailCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailCell2.h; sourceTree = "<group>"; };
+		BFFACEA01D6A0EAA007EA38A /* OrderDetailCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailCell2.m; sourceTree = "<group>"; };
+		BFFACEA11D6A0EAA007EA38A /* OrderDetailCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetailCell2.xib; sourceTree = "<group>"; };
 		DEF3765A6EB40C9BAAA74DBE /* Pods-Guide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guide.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Guide/Pods-Guide.debug.xcconfig"; sourceTree = "<group>"; };
 		FCCFA29195E5FFABD0D2B018 /* Pods-Guide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guide.release.xcconfig"; path = "Pods/Target Support Files/Pods-Guide/Pods-Guide.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -975,8 +977,6 @@
 				BF8600CF1D3B26F900BCA60A /* OrderModel.m */,
 				BF8601071D3E765E00BCA60A /* OrderDetailModel.h */,
 				BF8601081D3E765E00BCA60A /* OrderDetailModel.m */,
-				BF5829FD1D559E1800951730 /* OrderItemModel.h */,
-				BF5829FE1D559E1800951730 /* OrderItemModel.m */,
 				BF5D3F6A1D50D38200AD7A44 /* MemberInfoModel.h */,
 				BF5D3F6B1D50D38200AD7A44 /* MemberInfoModel.m */,
 			);
@@ -1328,6 +1328,9 @@
 				BF5829E91D55944D00951730 /* OrderDetailCell1.h */,
 				BF5829EA1D55944D00951730 /* OrderDetailCell1.m */,
 				BF5829EB1D55944D00951730 /* OrderDetailCell1.xib */,
+				BFFACE9F1D6A0EAA007EA38A /* OrderDetailCell2.h */,
+				BFFACEA01D6A0EAA007EA38A /* OrderDetailCell2.m */,
+				BFFACEA11D6A0EAA007EA38A /* OrderDetailCell2.xib */,
 				BF5829F81D55969A00951730 /* OrderDetailCell4.h */,
 				BF5829F91D55969A00951730 /* OrderDetailCell4.m */,
 				BF5829FA1D55969A00951730 /* OrderDetailCell4.xib */,
@@ -1547,6 +1550,7 @@
 				BF2656181D66DB0F0094A1A9 /* SmallOrderCell1.xib in Resources */,
 				BFD887D01CF976CF00C9DF44 /* MethodBagCell.xib in Resources */,
 				BF2655F31D58D6E20094A1A9 /* DatePickerView.xib in Resources */,
+				BFFACEA31D6A0EAA007EA38A /* OrderDetailCell2.xib in Resources */,
 				BFEEA58F1D19996200B261BF /* ProDetailCell.xib in Resources */,
 				BFE59B261D48BAEA00E1DB2A /* MyCoinsCell2.xib in Resources */,
 				BFA2B7041CF6D33E00EB460E /* MainView.storyboard in Resources */,
@@ -1660,6 +1664,7 @@
 				BFF433A91D15200200D21427 /* ModifyPassword.m in Sources */,
 				BF8600E21D3BDA4800BCA60A /* ProduceStoresModel.m in Sources */,
 				BF5D3F7F1D50F1FF00AD7A44 /* MsgListParams.m in Sources */,
+				BFFACEA21D6A0EAA007EA38A /* OrderDetailCell2.m in Sources */,
 				BF8600D01D3B26F900BCA60A /* OrderModel.m in Sources */,
 				BF8601091D3E765E00BCA60A /* OrderDetailModel.m in Sources */,
 				BFF8D40F1D18F5740039600B /* ProDetailCell1.m in Sources */,
@@ -1764,7 +1769,6 @@
 				BF99BC751D5378430015FA24 /* PackageDetailCell1.m in Sources */,
 				BFA2B70F1CF6E85400EB460E /* LoginViewController.m in Sources */,
 				BF3C3C131D38AC51000E3027 /* PersionModel.m in Sources */,
-				BF5829FF1D559E1800951730 /* OrderItemModel.m in Sources */,
 				789E78C41CB631360039AC69 /* NSDate+HYExtension.m in Sources */,
 				BF5D3F821D50F60D00AD7A44 /* MsgListModel.m in Sources */,
 				BF7F92771D26937D0081578F /* BaseParams.m in Sources */,

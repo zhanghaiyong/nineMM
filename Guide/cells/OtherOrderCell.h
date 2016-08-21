@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "OrderModel.h"
 @interface OtherOrderCell : UITableViewCell
+
+@property (nonatomic,strong)OrderModel *orderModel;
+
+@property (weak, nonatomic) IBOutlet UILabel *orderCode;
+@property (weak, nonatomic) IBOutlet UIButton *orderStatus;
+@property (weak, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet UILabel *coins;
+@property (weak, nonatomic) IBOutlet UILabel *orderTime;
+@property (weak, nonatomic) IBOutlet UILabel *rmb;
 
 @end

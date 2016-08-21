@@ -10,9 +10,5 @@
 
 @implementation OrderDetailModel
 
-+ (NSDictionary *)objectClassInArray {
-    
-    return @{@"orderItems":[OrderItemModel class]};
-}
 
 @end

@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface SmallOrderCell1 : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet UILabel *sourceCount;
+@property (weak, nonatomic) IBOutlet UILabel *storeCount;
+@property (weak, nonatomic) IBOutlet UILabel *coins;
 
 @end

@@ -14,22 +14,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="天猫期间" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dxl-06-0Oc">
-                        <rect key="frame" x="0.0" y="0.0" width="56" height="43.5"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="30" id="gnv-8R-sn8"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="gnv-8R-sn8"/>
-                            </mask>
-                        </variation>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000酒币x1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAR-Wl-ZyH">
-                        <rect key="frame" x="246" y="0.0" width="74" height="43.5"/>
+                        <rect key="frame" x="236" y="0.0" width="74" height="43.5"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="Lcb-pW-PgD"/>
                         </constraints>
@@ -42,16 +28,34 @@
                             </mask>
                         </variation>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="天猫期间" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dxl-06-0Oc">
+                        <rect key="frame" x="10" y="0.0" width="56" height="43.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="gnv-8R-sn8"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="gnv-8R-sn8"/>
+                            </mask>
+                        </variation>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="dxl-06-0Oc" secondAttribute="bottom" id="5oc-6H-Y8L"/>
                     <constraint firstItem="YAR-Wl-ZyH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ESf-mv-qgR"/>
-                    <constraint firstItem="dxl-06-0Oc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="JLw-P8-z1B"/>
-                    <constraint firstAttribute="trailing" secondItem="YAR-Wl-ZyH" secondAttribute="trailing" id="TfA-qn-gn8"/>
+                    <constraint firstItem="dxl-06-0Oc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="JLw-P8-z1B"/>
+                    <constraint firstAttribute="trailing" secondItem="YAR-Wl-ZyH" secondAttribute="trailing" constant="10" id="TfA-qn-gn8"/>
                     <constraint firstItem="dxl-06-0Oc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="h68-rh-ja6"/>
                     <constraint firstAttribute="bottom" secondItem="YAR-Wl-ZyH" secondAttribute="bottom" id="pul-rd-IT3"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="coins" destination="YAR-Wl-ZyH" id="g5S-Lc-giP"/>
+                <outlet property="name" destination="dxl-06-0Oc" id="lar-K6-vYU"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>

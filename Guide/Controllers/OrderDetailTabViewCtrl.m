@@ -9,13 +9,14 @@
 #import "OrderDetailTabViewCtrl.h"
 #import "OrderDetailParams.h"
 #import "OrderDetailModel.h"
-#import "OrderItemModel.h"
 #import "OrderDetailCell1.h"
+#import "OrderDetailCell2.h"
 #import "OrderDetailCell4.h"
 
 @interface OrderDetailTabViewCtrl ()<UITableViewDataSource,UITableViewDelegate>{
 
     OrderDetailModel *orderDetail;
+    NSMutableDictionary *sourceDic;//用来判断资源分组展开和关闭
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -54,11 +55,40 @@
 
     if (indexPath.section == 0) {
         
+        if ([orderDetail.orderType isEqualToString:@"payment"]) {
+            
+            return 370;
+        }
         return 330;
         
     }else {
+        
+        if ([orderDetail.orderType isEqualToString:@"payment"]) {
+            
+            NSDictionary *dic = orderDetail.orderItems[indexPath.row];
+            CGFloat H = 140;
+            
+            if ([[dic objectForKey:@"itemsCount"] integerValue] > 0) {
+                H += 40;
+            }
+            
+            if ([[dic objectForKey:@"shopCount"] integerValue] > 0) {
+                
+                H += 40;
+            }
+            
+            if ([sourceDic objectForKey:[NSString stringWithFormat:@"%ld",indexPath.row]]) {
+                
+//                OrderDetailCell1 *cell1 = [tableView cellForRowAtIndexPath:indexPath];
+//                cell1.sourceData = [orderDetail.orderItems[indexPath.row] objectForKey:@"items"];
+                
+                return H += ((NSArray *)[dic objectForKey:@"items"]).count * 30;
+            }
+            
+            return H;
+        }
     
-        return 80;
+        return 180;
     }
 }
 
@@ -95,26 +125,67 @@
         cell.orderTime.text = orderDetail.orderCreateDate;
         cell.OrderPeople.text = [orderDetail.address objectForKey:@"consignee"];
         cell.orderTotalPrice.text = orderDetail.totalPrice;
-        NSString *coinName = [orderDetail.paymentMethodCode stringByReplacingOccurrencesOfString:@"Coin" withString:@""];
-        cell.payMethod.text = [NSString stringWithFormat:@"%@支付",[Uitils toChinses:coinName]];
+        cell.payMethod.text = [NSString stringWithFormat:@"%@",orderDetail.paymentMethodName];
+        cell.packageName.text = orderDetail.packagedProductName;
+        cell.buyUnit.text = orderDetail.departmentName;
 
         return cell;
         
     }else {
+        
+         if ([orderDetail.orderType isEqualToString:@"payment"]) {
     
-        static NSString *identifier = @"cell";
-        OrderDetailCell1 *cell1 = [tableView dequeueReusableCellWithIdentifier:identifier];
-        if (!cell1) {
-            cell1 = [[[NSBundle mainBundle] loadNibNamed:@"OrderDetailCell1" owner:self options:nil] lastObject];
-            
-            OrderItemModel *orderItem = orderDetail.orderItems[indexPath.row];
-            cell1.productName.text = orderItem.goodsName;
-            cell1.priceLabel.text = orderItem.price;
-            cell1.stockLabel.text = [NSString stringWithFormat:@"x%@",orderItem.quantity];;
+             NSDictionary *orderItem = orderDetail.orderItems[indexPath.row];
+             
+            OrderDetailCell1 *cell1 = [[[NSBundle mainBundle] loadNibNamed:@"OrderDetailCell1" owner:self options:nil] lastObject];
+             
+             if ([sourceDic objectForKey:[NSString stringWithFormat:@"%ld",indexPath.row]]) {
+                 cell1.sourceTableViewH.constant = ((NSArray *)[orderItem objectForKey:@"items"]).count * 30;
+                 cell1.sourceData = [orderDetail.orderItems[indexPath.row] objectForKey:@"items"];
+             }
+             
+    
+            cell1.productName.text = [orderItem objectForKey:@"productName"];
+            cell1.priceLabel.text = [NSString stringWithFormat:@"%@",[orderItem objectForKey:@"price"]];
+            cell1.stockLabel.text = [NSString stringWithFormat:@"%@",[orderItem objectForKey:@"quantity"]];
+            cell1.sourceCount.text = [NSString stringWithFormat:@"%@项（点击查看详情）",[orderItem objectForKey:@"itemsCount"]];
+            cell1.storeCount.text = [NSString stringWithFormat:@"%@家（点击查看详情）",[orderItem objectForKey:@"itemsCount"]];
+             
+             [cell1 tapToShowSource:^(NSString *aFlag) {
+                 
+                 if ([aFlag isEqualToString:@"source"]) {
+                     
+                     if (sourceDic == nil) {
+                         sourceDic = [[NSMutableDictionary alloc]init];
+                     }
+                     
+                     if (![sourceDic objectForKey:[NSString stringWithFormat:@"%ld",indexPath.row]]) {
+                         [sourceDic setObject:@"1" forKey:[NSString stringWithFormat:@"%ld",indexPath.row]];
+                         
+                         
+                     }else {
+                         
+                         [sourceDic removeObjectForKey:[NSString stringWithFormat:@"%ld",indexPath.row]];
+                     }
+                     
+                     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                 }
+                 
+             }];
             
             return cell1;
-        }
-        
+             
+         }else {
+         
+             OrderDetailCell2 *cell2 = [[[NSBundle mainBundle] loadNibNamed:@"OrderDetailCell2" owner:self options:nil] lastObject];
+             NSDictionary *orderItem = orderDetail.orderItems[indexPath.row];
+             cell2.packageName.text = [orderItem objectForKey:@"coinRechargePackageName"];
+             cell2.coinType.text = [orderItem objectForKey:@"coinType"];
+             cell2.number.text = [NSString stringWithFormat:@"%@",[orderItem objectForKey:@"coinAmount"]];
+             cell2.money.text = [NSString stringWithFormat:@"%@",[orderItem objectForKey:@"rmbAmount"]];
+             
+            return cell2;
+         }
     }
     return nil;
 }

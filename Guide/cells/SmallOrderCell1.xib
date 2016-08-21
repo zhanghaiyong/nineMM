@@ -14,8 +14,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="67.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="天猫期间" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cj5-vb-VnT">
-                        <rect key="frame" x="0.0" y="0.0" width="56" height="30"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cj5-vb-VnT">
+                        <rect key="frame" x="10" y="0.0" width="28" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="uHr-la-cvy"/>
                         </constraints>
@@ -23,8 +23,8 @@
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000酒币 x 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRx-64-Mqq">
-                        <rect key="frame" x="228" y="0.0" width="82" height="30"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="酒币" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRx-64-Mqq">
+                        <rect key="frame" x="282" y="0.0" width="28" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="2fB-W8-c7D"/>
                         </constraints>
@@ -32,8 +32,8 @@
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已选商品 x 3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SUP-Wt-2uS">
-                        <rect key="frame" x="0.0" y="30" width="80" height="30"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已选商品 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SUP-Wt-2uS">
+                        <rect key="frame" x="10" y="30" width="60" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="XgZ-F1-Ptt"/>
                         </constraints>
@@ -41,8 +41,8 @@
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已选门店 x 3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2j6-02-7Wb">
-                        <rect key="frame" x="100" y="30" width="80" height="30"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已选门店 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2j6-02-7Wb">
+                        <rect key="frame" x="90" y="30" width="60" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="ro1-1M-2D4"/>
                         </constraints>
@@ -50,19 +50,37 @@
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="虚线" translatesAutoresizingMaskIntoConstraints="NO" id="bch-Bh-sPM">
+                        <rect key="frame" x="0.0" y="66.5" width="320" height="1"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="rXR-YJ-jm1"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="SUP-Wt-2uS" firstAttribute="top" secondItem="cj5-vb-VnT" secondAttribute="bottom" id="4cu-og-4sY"/>
                     <constraint firstItem="cj5-vb-VnT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="7Ju-KG-atD"/>
+                    <constraint firstAttribute="trailing" secondItem="bch-Bh-sPM" secondAttribute="trailing" id="Cwp-UW-DUB"/>
                     <constraint firstItem="2j6-02-7Wb" firstAttribute="leading" secondItem="SUP-Wt-2uS" secondAttribute="trailing" constant="20" id="JGn-W1-1TR"/>
+                    <constraint firstItem="bch-Bh-sPM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Ltg-Z8-dpB"/>
                     <constraint firstAttribute="trailing" secondItem="sRx-64-Mqq" secondAttribute="trailing" constant="10" id="bdv-tM-S7X"/>
-                    <constraint firstItem="cj5-vb-VnT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="pb5-bl-29c"/>
+                    <constraint firstAttribute="bottom" secondItem="bch-Bh-sPM" secondAttribute="bottom" id="pRN-Qc-qjy"/>
+                    <constraint firstItem="cj5-vb-VnT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="pb5-bl-29c"/>
                     <constraint firstItem="sRx-64-Mqq" firstAttribute="centerY" secondItem="cj5-vb-VnT" secondAttribute="centerY" id="qJH-S6-evK"/>
-                    <constraint firstItem="SUP-Wt-2uS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="vfo-SH-axz"/>
+                    <constraint firstItem="SUP-Wt-2uS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="vfo-SH-axz"/>
                     <constraint firstItem="2j6-02-7Wb" firstAttribute="centerY" secondItem="SUP-Wt-2uS" secondAttribute="centerY" id="w6j-7J-C1O"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="coins" destination="sRx-64-Mqq" id="Djh-kA-mg0"/>
+                <outlet property="name" destination="cj5-vb-VnT" id="qhy-aC-vVI"/>
+                <outlet property="sourceCount" destination="SUP-Wt-2uS" id="Dse-BN-heE"/>
+                <outlet property="storeCount" destination="2j6-02-7Wb" id="zVh-GG-eGX"/>
+            </connections>
             <point key="canvasLocation" x="164" y="286"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="虚线" width="318" height="1"/>
+    </resources>
 </document>

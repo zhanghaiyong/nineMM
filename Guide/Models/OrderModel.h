@@ -10,20 +10,22 @@
 
 @interface OrderModel : NSObject
 
-@property (nonatomic,strong)NSString *goodsName;
-@property (nonatomic,strong)NSString *orderCreateDate;
-@property (nonatomic,strong)NSString *orderId;
-@property (nonatomic,strong)NSString *orderOrderStatus;
-@property (nonatomic,strong)NSString *orderSn;
-@property (nonatomic,strong)NSString *orderStepCode;
-@property (nonatomic,strong)NSString *orderStepName;
-@property (nonatomic,strong)NSString *orderStepTextColor;
-@property (nonatomic,strong)NSString *paymentTime;
-@property (nonatomic,strong)NSString *price;
-@property (nonatomic,strong)NSString *productId;;
-@property (nonatomic,strong)NSString *productImageId;
-@property (nonatomic,strong)NSString *productName;
-@property (nonatomic,strong)NSString *quantity;
-@property (nonatomic,strong)NSString *totalPrice;
+@property (nonatomic,strong) NSString *departmentId;
+@property (nonatomic,strong) NSString *departmentName;
+@property (nonatomic,strong) NSString *orderCreateDate;
+@property (nonatomic,strong) NSString *orderId;
+@property (nonatomic,strong) NSArray  *orderItems;
+@property (nonatomic,strong) NSString *orderOrderStatus;
+@property (nonatomic,strong) NSString *orderSn;
+@property (nonatomic,strong) NSString *orderStepCode;
+@property (nonatomic,strong) NSString *orderStepName;
+@property (nonatomic,strong) NSString *orderStepTextColor;
+@property (nonatomic,strong) NSString *orderType;
+@property (nonatomic,strong) NSString *orderTypeName;
+@property (nonatomic,strong) NSString *paymentMethodCode;
+@property (nonatomic,strong) NSString *paymentMethodName;
+@property (nonatomic,strong) NSString *paymentTime;
+@property (nonatomic,strong) NSString *totalPrice;
+@property (nonatomic,strong) NSString *packagedProductName;
 
 @end
