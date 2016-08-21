@@ -5,7 +5,7 @@
 #import "SureOrdersViewController.h"
 @interface MethodBagViewController ()<UITableViewDelegate,UITableViewDataSource>{
 
-    NSArray *productArr;
+    NSMutableArray *productArr;
     NSMutableArray *SelectProArray;
     
 }
@@ -188,11 +188,30 @@
 
 - (IBAction)nowBuyAvtion:(id)sender {
     
+    
     if (SelectProArray.count == 0) {
         
         [[HUDConfig shareHUD]Tips:@"请选择你要购买的商品" delay:DELAY];
         return;
     }
+    
+    UIButton *button = (UIButton *)sender;
+    if ([button.currentTitle isEqualToString:@"删除"]) {
+        
+        for (ShopingCarModel *model in SelectProArray) {
+            
+            [productArr removeObject:model];
+        }
+        
+        NSString *filePath = [NSString stringWithFormat:@"%@/%@",[HYSandbox docPath],SHOPPING_CAR];
+        [NSKeyedArchiver archiveRootObject:productArr toFile:filePath];
+        [self.tableV reloadData];
+        
+        return;
+    }
+    
+    
+    
     
     
     NSMutableArray *totalCoin = [NSMutableArray array];
