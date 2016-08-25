@@ -53,10 +53,10 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     if ([self.orderModel.orderType isEqualToString:@"payment"] && self.orderModel.packagedProductName!=nil) { //套餐
-        return 60;
+        return 80;
     }else {
     
-        return 30;
+        return 40;
     }
 }
 

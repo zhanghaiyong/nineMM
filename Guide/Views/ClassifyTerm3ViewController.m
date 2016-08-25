@@ -30,6 +30,7 @@
     NSMutableArray *TableAreaId3;
     NSMutableArray *storeIds;
     UITextField *searchBar;
+    UIButton *sureButton;
     
 }
 
@@ -325,13 +326,15 @@
         [storeTable.mj_header beginRefreshing];
     }
     
-    UIButton *sender = [[UIButton alloc]initWithFrame:CGRectMake(10, SCREEN_HEIGHT-55-60, self.view.width-20, 44)];
-    [sender setTitle:@"确定" forState:UIControlStateNormal];
-    [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    sender.backgroundColor = MainColor;
-    [sender addTarget:self action:@selector(sureAction) forControlEvents:UIControlEventTouchUpInside];
-    sender.layer.cornerRadius = 5;
-    [self.view addSubview:sender];
+    sureButton = [[UIButton alloc]initWithFrame:CGRectMake(10, SCREEN_HEIGHT-55-60, self.view.width-20, 44)];
+    [sureButton setTitle:@"确定" forState:UIControlStateNormal];
+    sureButton.userInteractionEnabled = NO;
+    sureButton.alpha = 0.5;
+    [sureButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    sureButton.backgroundColor = MainColor;
+    [sureButton addTarget:self action:@selector(sureAction) forControlEvents:UIControlEventTouchUpInside];
+    sureButton.layer.cornerRadius = 5;
+    [self.view addSubview:sureButton];
     
 }
 
@@ -444,27 +447,44 @@
             
             cell.meumNameLabel.text = @"全部";
             cell.dataLabel.text = [NSString stringWithFormat:@"%ld家门店",storesArr.count];
-            
-            cell.meumNameLabel.textColor = lineColor;
-            cell.dataLabel.textColor     = lineColor;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            if ([storeIds containsObject:@"allStore"]) {
+                
+                cell.logoBtn.selected        = YES;
+                cell.meumNameLabel.textColor = MainColor;
+                cell.dataLabel.textColor     = MainColor;
+            }
+            
             
         }else {
         
-        ProduceStoresModel *model = storesArr[indexPath.row-1];
-        if ([storeIds containsObject:model.id]) {
             
-            cell.logoBtn.selected        = YES;
-            cell.meumNameLabel.textColor = MainColor;
-            cell.dataLabel.textColor     = MainColor;
-        }
-        cell.meumNameLabel.text = model.name;
-        cell.dataLabel.text = model.createDate;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        }
+            ProduceStoresModel *model = storesArr[indexPath.row-1];
+            if ([storeIds containsObject:@"allStore"]) {
+                
+                cell.logoBtn.selected        = YES;
+                cell.meumNameLabel.textColor = MainColor;
+                cell.dataLabel.textColor     = MainColor;
+                
+            }else {
+                if ([storeIds containsObject:model.id]) {
+                    
+                    cell.logoBtn.selected        = YES;
+                    cell.meumNameLabel.textColor = MainColor;
+                    cell.dataLabel.textColor     = MainColor;
+                }
+            }
+            
+            cell.meumNameLabel.text = model.name;
+            cell.dataLabel.text = model.createDate;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                
+            }
         return cell;
         
     } else {
+        
         static NSString *identifier = @"table";
         UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         cell.textLabel.font = lever2Font;
@@ -498,8 +518,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    
+    //区域
     if (tableView != storeTable) {
-        
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         //将点击的cell移动到中间位置
         CGFloat offset = cell.center.y - tableView.height/2;
@@ -536,11 +557,9 @@
                                 
                                 [dataArr2 addObjectsFromArray:[dic objectForKey:@"c"]];
                             }
-                            
                         }
                     }
                 }
-                
             }else {
             
                 [TableAreaId1 addObject:dic1];
@@ -618,6 +637,9 @@
         
         NSString *areaIds;
         if (TableAreaId3.count > 0) {
+            
+            sureButton.userInteractionEnabled = YES;
+            sureButton.alpha = 1;
         
             NSMutableArray *array = [NSMutableArray array];
             for (NSDictionary *dic in TableAreaId3) {
@@ -627,6 +649,9 @@
             areaIds = [array componentsJoinedByString:@","];
             
         }else if (TableAreaId2.count > 0) {
+            
+            sureButton.userInteractionEnabled = YES;
+            sureButton.alpha = 1;
         
             NSMutableArray *array = [NSMutableArray array];
             for (NSDictionary *dic in TableAreaId2) {
@@ -635,14 +660,22 @@
             }
             areaIds = [array componentsJoinedByString:@","];
             
-        }else {
+        }else if (TableAreaId1.count > 0){
         
+            sureButton.userInteractionEnabled = YES;
+            sureButton.alpha = 1;
+            
             NSMutableArray *array = [NSMutableArray array];
             for (NSDictionary *dic in TableAreaId1) {
                 
                 [array addObject:[dic objectForKey:@"i"]];
             }
             areaIds = [array componentsJoinedByString:@","];
+            
+        }else {
+        
+            sureButton.userInteractionEnabled = NO;
+            sureButton.alpha = 0.5;
         }
         
         self.storesParams.areaIds = areaIds;
@@ -650,8 +683,8 @@
         NSLog(@"%@",areaIds);
         
         [storeTable.mj_header beginRefreshing];
-
         
+        //门店
     }else {
         
         Term1Cell *cell = (Term1Cell *)[tableView cellForRowAtIndexPath:indexPath];
@@ -667,22 +700,104 @@
         [tableView setContentOffset:CGPointMake(0, offset) animated:YES];
         
         if (indexPath.row > 0) {
+            
             ProduceStoresModel *model = storesArr[indexPath.row-1];
-            if ([storeIds containsObject:model]) {
+            
+            if ([storeIds containsObject:@"allStore"]) {
                 
-                [storeIds removeObject:model];
-                cell.logoBtn.selected        = NO;
-                cell.meumNameLabel.textColor = [UIColor blackColor];
-                cell.dataLabel.textColor     = [UIColor blackColor];
+                NSIndexPath *index0 = [NSIndexPath indexPathForRow:0 inSection:0];
+                Term1Cell *cell0 = [storeTable cellForRowAtIndexPath:index0];
+                cell0.logoBtn.selected        = NO;
+                cell0.meumNameLabel.textColor = [UIColor blackColor];
+                cell0.dataLabel.textColor     = [UIColor blackColor];
+                
+                Term1Cell *cellx = [storeTable cellForRowAtIndexPath:indexPath];
+                cellx.logoBtn.selected        = NO;
+                cellx.meumNameLabel.textColor = [UIColor blackColor];
+                cellx.dataLabel.textColor     = [UIColor blackColor];
+                
+                [storeIds removeObject:@"allStore"];
+                
+                for (int i = 0; i<storesArr.count; i++) {
+                    
+                    if (i != indexPath.row-1) {
+                        
+                        ProduceStoresModel *other = storesArr[i];
+                        [storeIds addObject:other];
+                        
+                        NSLog(@"createDate = %@",other.name);
+                        
+                    }
+                }
                 
             }else {
             
-                [storeIds addObject:model];
+                if ([storeIds containsObject:model]) {
+                    
+                    [storeIds removeObject:model];
+                    cell.logoBtn.selected        = NO;
+                    cell.meumNameLabel.textColor = [UIColor blackColor];
+                    cell.dataLabel.textColor     = [UIColor blackColor];
+                    
+                }else {
                 
-                cell.logoBtn.selected        = YES;
-                cell.meumNameLabel.textColor = MainColor;
-                cell.dataLabel.textColor     = MainColor;
+                    [storeIds addObject:model];
+                    
+                    cell.logoBtn.selected        = YES;
+                    cell.meumNameLabel.textColor = MainColor;
+                    cell.dataLabel.textColor     = MainColor;
+                }
             }
+        }else {
+        
+            if ([storeIds containsObject:@"allStore"]) {
+                
+                for (int i = 0; i<=storesArr.count; i++) {
+                    
+                    NSIndexPath *index = [NSIndexPath indexPathForRow:i inSection:0];
+                    Term1Cell *storeCell = [storeTable cellForRowAtIndexPath:index];
+                    storeCell.logoBtn.selected        = NO;
+                    storeCell.meumNameLabel.textColor = [UIColor blackColor];
+                    storeCell.dataLabel.textColor     = [UIColor blackColor];
+                }
+                
+                [storeIds removeObject:@"allStore"];
+                
+            }else {
+                
+                
+                for (int i = 0; i<=storesArr.count; i++) {
+                    
+                    NSIndexPath *index = [NSIndexPath indexPathForRow:i inSection:0];
+                    Term1Cell *storeCell = [storeTable cellForRowAtIndexPath:index];
+                    storeCell.logoBtn.selected        = YES;
+                    storeCell.meumNameLabel.textColor = MainColor;
+                    storeCell.dataLabel.textColor     = MainColor;
+                    
+                    NSLog(@"%@  %@",storeCell.meumNameLabel.text,storeCell.dataLabel.text);
+                }
+                [storeIds removeAllObjects];
+                [storeIds addObject:@"allStore"];
+              }
+          }
+        
+            
+        if (self.storesParams.areaIds.length == 0) {
+            
+            if (storeIds.count == 0 || [storeIds containsObject:@"allStore"]) {
+             
+                sureButton.userInteractionEnabled = NO;
+                sureButton.alpha = 0.5;
+            }else  {
+            
+                sureButton.userInteractionEnabled = YES;
+                sureButton.alpha = 1;
+            }
+            
+        }else {
+        
+            sureButton.userInteractionEnabled = YES;
+            sureButton.alpha = 1;
         }
     }
 }
@@ -693,10 +808,30 @@
         
         NSArray *ids;
         NSString *type;
+        
         if (storeIds.count > 0) {
             
-            ids = storeIds;
-            type = @"storeId";
+            if ([storeIds containsObject:@"allStore"]) {
+                
+                if (TableAreaId3.count > 0) {
+                    
+                    ids = TableAreaId3;
+                    
+                }else if (TableAreaId2.count > 0) {
+                    
+                    ids = TableAreaId2;
+                    
+                }else {
+                    ids = TableAreaId1;
+                }
+                
+                type = @"areaId";
+                
+            }else {
+            
+                ids = storeIds;
+                type = @"storeId";
+            }
             
         }else {
         

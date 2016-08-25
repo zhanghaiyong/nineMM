@@ -81,6 +81,62 @@
 }
  */
 
+- (void)awakeFromNib {
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(LoginLinkAction:) name:@"LoginLinkAction" object:nil];
+}
+
+- (void)LoginLinkAction:(NSNotification *)notifation {
+
+    NSLog(@"FZzsfg = %@",notifation.userInfo);
+    NSArray *array = [[notifation.userInfo objectForKey:@"linkAction"] componentsSeparatedByString:@":"];
+    //酒币充值
+    if ([array containsObject:openCoinRechargePage]) {
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        CoinsRechargeViewController *CoinsRechargeVC = [mainSB instantiateViewControllerWithIdentifier:@"CoinsRechargeViewController"];
+        [self.navigationController pushViewController:CoinsRechargeVC animated:YES];
+        
+        
+    }else if ([array containsObject:openUri]) { //内网
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        URLViewController *URLVC = [mainSB instantiateViewControllerWithIdentifier:@"URLViewController"];
+        URLVC.urlString = [NSString stringWithFormat:@"%@%@?sessionId=%@",BaseURLString,array.lastObject,[Uitils getUserDefaultsForKey:TOKEN]];
+        [self.navigationController pushViewController:URLVC animated:YES];
+        
+    }else if ([array containsObject:queryGoodsFeature]) { //资源 通过feature来获取
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        FeatureViewController *FeatureVC = [mainSB instantiateViewControllerWithIdentifier:@"FeatureViewController"];
+        FeatureVC.feature = array.lastObject;
+        [self.navigationController pushViewController:FeatureVC animated:YES];
+        
+    }else if ([array containsObject:showGoodsListByTag]) { //指定场景商品列表
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        GoodsViewController *GoodsVC = [mainSB instantiateViewControllerWithIdentifier:@"GoodsViewController"];
+        GoodsVC.tag = array.lastObject;
+        [self.navigationController pushViewController:GoodsVC animated:YES];
+        
+    }else if ([array containsObject:queryPackagedGoods]) { //打包套餐
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        PackageViewController *packageVC = [mainSB instantiateViewControllerWithIdentifier:@"PackageViewController"];
+        [self.navigationController pushViewController:packageVC animated:YES];
+        
+    }else if ([array containsObject:openUrl]) { //外网
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        URLViewController *URLVC = [mainSB instantiateViewControllerWithIdentifier:@"URLViewController"];
+        URLVC.urlString = [NSString stringWithFormat:@"%@:%@",array[2],array[3]];
+        [self.navigationController pushViewController:URLVC animated:YES];
+    }
+    
+    NSLog(@"%@",array);
+    
+}
+
 - (void)viewWillAppear:(BOOL)animated {
 
     [super viewWillAppear:animated];

@@ -3,6 +3,7 @@
 #import <AFNetworking.h>
 #import "UpdateAvatarParams.h"
 #import "UpdateUserInfoParams.h"
+#import "ModifyEmail.h"
 @interface ControlAccount ()<UITableViewDataSource,UITableViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 {
 
@@ -258,6 +259,25 @@
     return 11;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
+    
+    if (indexPath.section == 0 && indexPath.row == 2) {
+    
+    
+        UIStoryboard *SB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        ModifyEmail *modifyEmail = [SB instantiateViewControllerWithIdentifier:@"ModifyEmail"];
+        
+        modifyEmail.title = @"修改邮箱";
+        
+        [modifyEmail returnModifiedEmail:^(NSString *email) {
+            
+            self.email.text = email;
+            
+        }];
+        [self.navigationController pushViewController:modifyEmail animated:YES];
+        
+    }
+}
 
 @end

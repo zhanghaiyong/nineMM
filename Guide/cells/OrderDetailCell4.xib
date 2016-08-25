@@ -300,14 +300,14 @@
                 <variation key="default">
                     <mask key="constraints">
                         <exclude reference="kIU-yB-mQ7"/>
+                        <exclude reference="A4v-ac-6xF"/>
+                        <exclude reference="rax-JC-cdJ"/>
                         <exclude reference="INU-Vx-mTe"/>
                         <exclude reference="tTE-vs-Pjy"/>
                         <exclude reference="WNL-3u-CQr"/>
                         <exclude reference="x3m-Co-b2u"/>
                         <exclude reference="Due-Xf-aq9"/>
                         <exclude reference="ke4-qu-QlB"/>
-                        <exclude reference="A4v-ac-6xF"/>
-                        <exclude reference="rax-JC-cdJ"/>
                         <exclude reference="Cs6-SJ-lvv"/>
                         <exclude reference="4yH-zp-xae"/>
                         <exclude reference="idN-Wu-A2w"/>

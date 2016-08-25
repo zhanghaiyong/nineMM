@@ -178,11 +178,11 @@
     
     if ([model.orderType isEqualToString:@"payment"] && model.packagedProductName.length != 0) { //套餐
         
-        return 120 + model.orderItems.count+60;
+        return 120 + model.orderItems.count*80;
     
     }else if ([model.orderType isEqualToString:@"payment"] && model.packagedProductName.length == 0) { //购物车
         
-        return 80+model.orderItems.count*30;
+        return 80+model.orderItems.count*40;
         
     }else if ([model.orderType isEqualToString:@"coinRecharge"]) { // 酒币
     

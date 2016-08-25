@@ -38,6 +38,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
     self.visualView.hidden = YES;
     [_accountTF setValue:@5 forKey:@"paddingLeft"];
     [_pwdTF setValue:@5 forKey:@"paddingLeft"];
@@ -110,7 +111,30 @@
             
             [Uitils setUserDefaultsObject:_pwdTF.text ForKey:PASSWORD];
             
-            [self dismissViewControllerAnimated:YES completion:nil];
+            
+            if (![[dataDic objectForKey:@"retObj"] isEqual:[NSNull null]]) {
+                
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:[[[dataDic objectForKey:@"retObj"]objectForKey:@"alertMsg"] objectForKey:@"msg"] preferredStyle:UIAlertControllerStyleAlert];
+                [alert addAction:[UIAlertAction actionWithTitle:@"是" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginLinkAction" object:self userInfo:[[dataDic objectForKey:@"retObj"] objectForKey:@"alertMsg"]];
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                    
+                }]];
+                [alert addAction:[UIAlertAction actionWithTitle:@"否" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+                    
+                     [self dismissViewControllerAnimated:YES completion:nil];
+                    
+                }]];
+                
+                [self presentViewController:alert animated:YES completion:nil];
+                
+            }else {
+            
+                 [self dismissViewControllerAnimated:YES completion:nil];
+            }
+
+            
             
         }else {
             

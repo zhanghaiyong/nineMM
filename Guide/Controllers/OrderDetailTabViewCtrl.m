@@ -55,7 +55,7 @@
 
     if (indexPath.section == 0) {
         
-        if ([orderDetail.orderType isEqualToString:@"payment"]) {
+        if (orderDetail.packagedProductName.length != 0) {
             
             return 370;
         }
@@ -79,10 +79,7 @@
             
             if ([sourceDic objectForKey:[NSString stringWithFormat:@"%ld",indexPath.row]]) {
                 
-//                OrderDetailCell1 *cell1 = [tableView cellForRowAtIndexPath:indexPath];
-//                cell1.sourceData = [orderDetail.orderItems[indexPath.row] objectForKey:@"items"];
-                
-                return H += ((NSArray *)[dic objectForKey:@"items"]).count * 30;
+                return H += ((NSArray *)[dic objectForKey:@"items"]).count * 40;
             }
             
             return H;
@@ -126,6 +123,12 @@
         cell.OrderPeople.text = [orderDetail.address objectForKey:@"consignee"];
         cell.orderTotalPrice.text = orderDetail.totalPrice;
         cell.payMethod.text = [NSString stringWithFormat:@"%@",orderDetail.paymentMethodName];
+        
+        if (orderDetail.packagedProductName.length == 0) {
+            
+            cell.packageH.constant = 0;
+        }
+        
         cell.packageName.text = orderDetail.packagedProductName;
         cell.buyUnit.text = orderDetail.departmentName;
 
@@ -139,8 +142,10 @@
              
             OrderDetailCell1 *cell1 = [[[NSBundle mainBundle] loadNibNamed:@"OrderDetailCell1" owner:self options:nil] lastObject];
              
+             
+             
              if ([sourceDic objectForKey:[NSString stringWithFormat:@"%ld",indexPath.row]]) {
-                 cell1.sourceTableViewH.constant = ((NSArray *)[orderItem objectForKey:@"items"]).count * 30;
+                 cell1.sourceTableViewH.constant = ((NSArray *)[orderItem objectForKey:@"items"]).count * 40;
                  cell1.sourceData = [orderDetail.orderItems[indexPath.row] objectForKey:@"items"];
              }
              
@@ -148,8 +153,18 @@
             cell1.productName.text = [orderItem objectForKey:@"productName"];
             cell1.priceLabel.text = [NSString stringWithFormat:@"%@",[orderItem objectForKey:@"price"]];
             cell1.stockLabel.text = [NSString stringWithFormat:@"%@",[orderItem objectForKey:@"quantity"]];
-            cell1.sourceCount.text = [NSString stringWithFormat:@"%@项（点击查看详情）",[orderItem objectForKey:@"itemsCount"]];
-            cell1.storeCount.text = [NSString stringWithFormat:@"%@家（点击查看详情）",[orderItem objectForKey:@"itemsCount"]];
+             
+             if ([[orderItem objectForKey:@"itemsCount"] integerValue] > 0) {
+                 
+                 cell1.sourceViewH.constant = 40;
+                 cell1.sourceCount.text = [NSString stringWithFormat:@"%@项（点击查看详情）",[orderItem objectForKey:@"itemsCount"]];
+             }
+             
+             if ([[orderItem objectForKey:@"shopCount"] integerValue] == 0) {
+                 
+                 cell1.storeViewH.constant = 40;
+                 cell1.storeCount.text = [NSString stringWithFormat:@"%@家（点击查看详情）",[orderItem objectForKey:@"shopCount"]];
+             }
              
              [cell1 tapToShowSource:^(NSString *aFlag) {
                  
