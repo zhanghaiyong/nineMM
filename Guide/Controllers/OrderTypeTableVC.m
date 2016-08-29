@@ -65,6 +65,8 @@
     
     [self setNavigationLeft:@"返回"];
     
+    self.title = @"订单列表";
+    
     orderListArr = [NSMutableArray array];
     
     switch (self.orderType) {

@@ -34,7 +34,7 @@
     UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
     OrderTypeTableVC *orderType = [mainSB instantiateViewControllerWithIdentifier:@"OrderTypeTableVC"];
     orderType.orderType = 100;
-    
+    orderType.fromRecharge = @"YES";
     [self.navigationController pushViewController:orderType animated:YES];
 }
 @end

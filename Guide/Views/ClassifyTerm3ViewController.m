@@ -323,7 +323,7 @@
             [self loadStores];
         }];
         
-        [storeTable.mj_header beginRefreshing];
+//        [storeTable.mj_header beginRefreshing];
     }
     
     sureButton = [[UIButton alloc]initWithFrame:CGRectMake(10, SCREEN_HEIGHT-55-60, self.view.width-20, 44)];
@@ -411,7 +411,14 @@
         
     }else {
     
-        return storesArr.count+1;
+        if (storesArr.count == 0) {
+            
+            return storesArr.count;
+            
+        }else {
+        
+            return storesArr.count+1;
+        }
     }
 }
 
@@ -678,11 +685,19 @@
             sureButton.alpha = 0.5;
         }
         
-        self.storesParams.areaIds = areaIds;
+
+        if (areaIds.length == 0) {
+            
+            [storesArr removeAllObjects];
+            [storeTable reloadData];
+        }else {
         
-        NSLog(@"%@",areaIds);
-        
-        [storeTable.mj_header beginRefreshing];
+            self.storesParams.areaIds = areaIds;
+            
+            NSLog(@"%@",areaIds);
+            
+            [storeTable.mj_header beginRefreshing];
+        }
         
         //门店
     }else {

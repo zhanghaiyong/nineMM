@@ -43,7 +43,7 @@
     
     [KSMNetworkRequest postRequest:KGetLoginMemberCoinBalance params:params.mj_keyValues success:^(NSDictionary *dataDic) {
         
-        FxLog(@"balanceData = %@",dataDic);
+        
         
         if ([[dataDic objectForKey:@"retCode"]integerValue] == 0) {
             
@@ -58,6 +58,8 @@
 //                self.golden.text = model.golden;
 //                self.green.text = model.green;
 //                self.red.text = model.red;
+                
+                FxLog(@"coinModel = %@",coinModel);
                 
                 [self.tableView reloadData];
 //                
@@ -193,11 +195,19 @@
                 cell = [[[NSBundle mainBundle] loadNibNamed:@"MyCoinsCell3" owner:self options:nil] lastObject];
             }
             
+            switch (indexPath.row) {
+                case 0:
+                    
+                    break;
+                    
+                default:
+                    break;
+            }
+            
             NSDictionary *coins = self.persionModel.coins[indexPath.row];
             cell.coinImage.image = [UIImage imageNamed:[Uitils toImageName:coins.allKeys[0]]];
             cell.coinName.text = [Uitils toChinses:coins.allKeys[0]];
-            cell.usableCoin.text = [NSString stringWithFormat:@"%@",coins.allValues[0]];
-            
+            cell.usableCoin.text = [NSString stringWithFormat:@"%@",[coinModel objectForKey:coins.allKeys[0]]];
             
             if ([coins.allKeys[0] isEqualToString:@"red"]) {
                 

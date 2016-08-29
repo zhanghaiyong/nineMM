@@ -64,6 +64,7 @@
             
             UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
             OrderTypeTableVC *orderDetail = [mainSB instantiateViewControllerWithIdentifier:@"OrderTypeTableVC"];
+            orderDetail.fromRecharge = @"YES";
             [self.navigationController pushViewController:orderDetail animated:YES];
             
         }else {
@@ -105,6 +106,8 @@
         
         sureOrderFoorView *footer = [[[NSBundle mainBundle]loadNibNamed:@"sureOrderFoorView" owner:self options:nil]lastObject];
         footer.frame = CGRectMake(0, 0, self.tableView.width, 50);
+        
+        footer.totalPrice.text = self.proPrice;
         
         [footer nowBuyProduce:^{
     

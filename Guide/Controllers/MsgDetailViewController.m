@@ -18,6 +18,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    /**
+     *  禁止识别
+     */
+    self.webView.dataDetectorTypes = UIDataDetectorTypeNone;
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.title = @"消息详情";
     

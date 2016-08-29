@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Guide/Controllers/SureOrdersViewController.m"
-            timestampString = "493277626.78939"
+            timestampString = "494145484.112937"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
             landmarkName = "-tableView:viewForFooterInSection:"
             landmarkType = "5">
             <Locations>
@@ -42,11 +42,11 @@
                   moduleName = "Guide"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhanghaiyong/Desktop/Guide/Guide/Controllers/SureOrdersViewController.m"
-                  timestampString = "493834086.824684"
+                  timestampString = "494147204.319464"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "168"
-                  endingLineNumber = "168"
+                  startingLineNumber = "171"
+                  endingLineNumber = "171"
                   offsetFromSymbolStart = "3840">
                </Location>
                <Location
@@ -57,11 +57,11 @@
                   moduleName = "Guide"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhanghaiyong/Desktop/Guide/Guide/Controllers/SureOrdersViewController.m"
-                  timestampString = "493834086.824806"
+                  timestampString = "494147204.319593"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "168"
-                  endingLineNumber = "168"
+                  startingLineNumber = "171"
+                  endingLineNumber = "171"
                   offsetFromSymbolStart = "3912">
                </Location>
             </Locations>
