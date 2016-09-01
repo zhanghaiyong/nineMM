@@ -482,7 +482,7 @@
                         if (((NSString *)model.tags[i]).length > 0) {
                             UIButton *tagsButton = (UIButton *)[cell.contentView viewWithTag:i+200];
                             tagsButton.hidden    = NO;
-                            [tagsButton setTitle:model.tags[i] forState:UIControlStateNormal];
+                            [tagsButton setTitle:[NSString stringWithFormat:@" %@ ",model.tags[i]] forState:UIControlStateNormal];
                         }
                     }
             }
@@ -503,14 +503,14 @@
     
     if (indexPath.section == 3) {
         
-        self.tabBarController.tabBar.hidden=YES;
-        self.hidesBottomBarWhenPushed=YES;
+//        self.tabBarController.tabBar.hidden=YES;
+//        self.hidesBottomBarWhenPushed=YES;
         MainProduceModel *model = self.produces[indexPath.row];
         UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
         ProduceDetailViewController *produceDetail = [mainSB instantiateViewControllerWithIdentifier:@"ProduceDetailViewController"];
         produceDetail.produceId = model.id;
         [self.navigationController pushViewController:produceDetail animated:YES];
-        self.hidesBottomBarWhenPushed=NO;
+//        self.hidesBottomBarWhenPushed=NO;
     }
 }
 
@@ -576,8 +576,30 @@
         URLVC.title = model.title;
         URLVC.urlString = [NSString stringWithFormat:@"%@:%@",array[2],array[3]];
         [self.navigationController pushViewController:URLVC animated:YES];
-    }
+        
+    }else if ([array containsObject:showGoodsDetail]) {
+        
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        ProduceDetailViewController *produceDetail = [mainSB instantiateViewControllerWithIdentifier:@"ProduceDetailViewController"];
+        produceDetail.produceId = array.lastObject;
+        [self.navigationController pushViewController:produceDetail animated:YES];
+        
+    }else if ([array containsObject:showArticleListByCategory]) { //打开指定文章列表页
+        
+        
+    }else if ([array containsObject:showArticleContent]) { //打开指定文章内容页
+        
+        
+    }else if (model.linkAction.length == 0) {
     
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        URLViewController *URLVC = [mainSB instantiateViewControllerWithIdentifier:@"URLViewController"];
+        URLVC.title = model.title;
+        URLVC.urlString = [NSString stringWithFormat:@"%@/%@.page",KArticleHtml,model.imageId];
+        [self.navigationController pushViewController:URLVC animated:YES];
+        
+    }
     NSLog(@"%@",array);
 }
 
@@ -588,13 +610,44 @@
     TopBannersModel *model = self.mainStaticModel.topBanners[imageTag-1000];
     NSArray *array = [model.linkAction componentsSeparatedByString:@":"];
     
-    if ([array containsObject:openUri]) { //内网
+    //酒币充值
+    if ([array containsObject:openCoinRechargePage]) {
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        CoinsRechargeViewController *CoinsRechargeVC = [mainSB instantiateViewControllerWithIdentifier:@"CoinsRechargeViewController"];
+        [self.navigationController pushViewController:CoinsRechargeVC animated:YES];
+        
+        
+    }else if ([array containsObject:openUri]) { //内网
         
         UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
         URLViewController *URLVC = [mainSB instantiateViewControllerWithIdentifier:@"URLViewController"];
         URLVC.title = model.title;
         URLVC.urlString = [NSString stringWithFormat:@"%@%@?sessionId=%@",BaseURLString,array.lastObject,[Uitils getUserDefaultsForKey:TOKEN]];
         [self.navigationController pushViewController:URLVC animated:YES];
+        
+    }else if ([array containsObject:queryGoodsFeature]) { //资源 通过feature来获取
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        FeatureViewController *FeatureVC = [mainSB instantiateViewControllerWithIdentifier:@"FeatureViewController"];
+        FeatureVC.feature = array.lastObject;
+        FeatureVC.title = model.title;
+        [self.navigationController pushViewController:FeatureVC animated:YES];
+        
+    }else if ([array containsObject:showGoodsListByTag]) { //指定场景商品列表
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        GoodsViewController *GoodsVC = [mainSB instantiateViewControllerWithIdentifier:@"GoodsViewController"];
+        GoodsVC.tag = array.lastObject;
+        GoodsVC.title = model.title;
+        [self.navigationController pushViewController:GoodsVC animated:YES];
+        
+    }else if ([array containsObject:queryPackagedGoods]) { //打包套餐
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        PackageViewController *packageVC = [mainSB instantiateViewControllerWithIdentifier:@"PackageViewController"];
+        packageVC.title = model.title;
+        [self.navigationController pushViewController:packageVC animated:YES];
         
     }else if ([array containsObject:openUrl]) { //外网
         
@@ -604,14 +657,29 @@
         URLVC.urlString = [NSString stringWithFormat:@"%@:%@",array[2],array[3]];
         [self.navigationController pushViewController:URLVC animated:YES];
         
+    }else if ([array containsObject:showGoodsDetail]) {
+        
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        ProduceDetailViewController *produceDetail = [mainSB instantiateViewControllerWithIdentifier:@"ProduceDetailViewController"];
+        produceDetail.produceId = array.lastObject;
+        [self.navigationController pushViewController:produceDetail animated:YES];
+        
     }else if ([array containsObject:showArticleListByCategory]) { //打开指定文章列表页
         
         
     }else if ([array containsObject:showArticleContent]) { //打开指定文章内容页
         
         
+    }else if (model.linkAction.length == 0) {
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        URLViewController *URLVC = [mainSB instantiateViewControllerWithIdentifier:@"URLViewController"];
+        URLVC.title = model.title;
+        URLVC.urlString = [NSString stringWithFormat:@"%@/%@.page",KArticleHtml,model.imageId];
+        [self.navigationController pushViewController:URLVC animated:YES];
+        
     }
-    
     NSLog(@"%@",array);
     
 }
@@ -622,13 +690,44 @@
     GroupButtonsModel *model = self.mainStaticModel.groupButtons[imageTag-200];
     NSArray *array = [model.linkAction componentsSeparatedByString:@":"];
     
-    if ([array containsObject:openUri]) { //内网
+    //酒币充值
+    if ([array containsObject:openCoinRechargePage]) {
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        CoinsRechargeViewController *CoinsRechargeVC = [mainSB instantiateViewControllerWithIdentifier:@"CoinsRechargeViewController"];
+        [self.navigationController pushViewController:CoinsRechargeVC animated:YES];
+        
+        
+    }else if ([array containsObject:openUri]) { //内网
         
         UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
         URLViewController *URLVC = [mainSB instantiateViewControllerWithIdentifier:@"URLViewController"];
         URLVC.title = model.title;
         URLVC.urlString = [NSString stringWithFormat:@"%@%@?sessionId=%@",BaseURLString,array.lastObject,[Uitils getUserDefaultsForKey:TOKEN]];
         [self.navigationController pushViewController:URLVC animated:YES];
+        
+    }else if ([array containsObject:queryGoodsFeature]) { //资源 通过feature来获取
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        FeatureViewController *FeatureVC = [mainSB instantiateViewControllerWithIdentifier:@"FeatureViewController"];
+        FeatureVC.feature = array.lastObject;
+        FeatureVC.title = model.title;
+        [self.navigationController pushViewController:FeatureVC animated:YES];
+        
+    }else if ([array containsObject:showGoodsListByTag]) { //指定场景商品列表
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        GoodsViewController *GoodsVC = [mainSB instantiateViewControllerWithIdentifier:@"GoodsViewController"];
+        GoodsVC.tag = array.lastObject;
+        GoodsVC.title = model.title;
+        [self.navigationController pushViewController:GoodsVC animated:YES];
+        
+    }else if ([array containsObject:queryPackagedGoods]) { //打包套餐
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        PackageViewController *packageVC = [mainSB instantiateViewControllerWithIdentifier:@"PackageViewController"];
+        packageVC.title = model.title;
+        [self.navigationController pushViewController:packageVC animated:YES];
         
     }else if ([array containsObject:openUrl]) { //外网
         
@@ -638,11 +737,27 @@
         URLVC.urlString = [NSString stringWithFormat:@"%@:%@",array[2],array[3]];
         [self.navigationController pushViewController:URLVC animated:YES];
         
+    }else if ([array containsObject:showGoodsDetail]) {
+        
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        ProduceDetailViewController *produceDetail = [mainSB instantiateViewControllerWithIdentifier:@"ProduceDetailViewController"];
+        produceDetail.produceId = array.lastObject;
+        [self.navigationController pushViewController:produceDetail animated:YES];
+        
     }else if ([array containsObject:showArticleListByCategory]) { //打开指定文章列表页
         
         
     }else if ([array containsObject:showArticleContent]) { //打开指定文章内容页
         
+        
+    }else if (model.linkAction.length == 0) {
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        URLViewController *URLVC = [mainSB instantiateViewControllerWithIdentifier:@"URLViewController"];
+        URLVC.title = model.title;
+        URLVC.urlString = [NSString stringWithFormat:@"%@/%@.page",KArticleHtml,model.imageId];
+        [self.navigationController pushViewController:URLVC animated:YES];
         
     }
     NSLog(@"%@",array);
@@ -655,13 +770,44 @@
     NSArray *array = [model.linkAction componentsSeparatedByString:@":"];
     NSLog(@"%ld ",model.linkAction.length); //0
     
-    if ([array containsObject:openUri]) { //内网
+    //酒币充值
+    if ([array containsObject:openCoinRechargePage]) {
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        CoinsRechargeViewController *CoinsRechargeVC = [mainSB instantiateViewControllerWithIdentifier:@"CoinsRechargeViewController"];
+        [self.navigationController pushViewController:CoinsRechargeVC animated:YES];
+        
+        
+    }else if ([array containsObject:openUri]) { //内网
         
         UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
         URLViewController *URLVC = [mainSB instantiateViewControllerWithIdentifier:@"URLViewController"];
         URLVC.title = model.title;
         URLVC.urlString = [NSString stringWithFormat:@"%@%@?sessionId=%@",BaseURLString,array.lastObject,[Uitils getUserDefaultsForKey:TOKEN]];
         [self.navigationController pushViewController:URLVC animated:YES];
+        
+    }else if ([array containsObject:queryGoodsFeature]) { //资源 通过feature来获取
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        FeatureViewController *FeatureVC = [mainSB instantiateViewControllerWithIdentifier:@"FeatureViewController"];
+        FeatureVC.feature = array.lastObject;
+        FeatureVC.title = model.title;
+        [self.navigationController pushViewController:FeatureVC animated:YES];
+        
+    }else if ([array containsObject:showGoodsListByTag]) { //指定场景商品列表
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        GoodsViewController *GoodsVC = [mainSB instantiateViewControllerWithIdentifier:@"GoodsViewController"];
+        GoodsVC.tag = array.lastObject;
+        GoodsVC.title = model.title;
+        [self.navigationController pushViewController:GoodsVC animated:YES];
+        
+    }else if ([array containsObject:queryPackagedGoods]) { //打包套餐
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        PackageViewController *packageVC = [mainSB instantiateViewControllerWithIdentifier:@"PackageViewController"];
+        packageVC.title = model.title;
+        [self.navigationController pushViewController:packageVC animated:YES];
         
     }else if ([array containsObject:openUrl]) { //外网
         
@@ -671,11 +817,27 @@
         URLVC.urlString = [NSString stringWithFormat:@"%@:%@",array[2],array[3]];
         [self.navigationController pushViewController:URLVC animated:YES];
         
+    }else if ([array containsObject:showGoodsDetail]) {
+        
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        ProduceDetailViewController *produceDetail = [mainSB instantiateViewControllerWithIdentifier:@"ProduceDetailViewController"];
+        produceDetail.produceId = array.lastObject;
+        [self.navigationController pushViewController:produceDetail animated:YES];
+        
     }else if ([array containsObject:showArticleListByCategory]) { //打开指定文章列表页
         
         
     }else if ([array containsObject:showArticleContent]) { //打开指定文章内容页
         
+        
+    }else if (model.linkAction.length == 0) {
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        URLViewController *URLVC = [mainSB instantiateViewControllerWithIdentifier:@"URLViewController"];
+        URLVC.title = model.title;
+        URLVC.urlString = [NSString stringWithFormat:@"%@/%@.page",KArticleHtml,model.imageId];
+        [self.navigationController pushViewController:URLVC animated:YES];
         
     }
     

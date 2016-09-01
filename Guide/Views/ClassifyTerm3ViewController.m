@@ -346,6 +346,13 @@
         
         FxLog(@"loadStores = %@",dataDic);
         
+        
+//        storeTable.userInteractionEnabled = YES;
+        tableV1.userInteractionEnabled = YES;
+        tableV2.userInteractionEnabled = YES;
+        tableV3.userInteractionEnabled = YES;
+        
+        
         if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
             
             [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
@@ -501,16 +508,30 @@
             NSDictionary *dic = dataArr1[indexPath.row];
             cell.textLabel.text = [dic objectForKey:@"n"];
             
+            if ([TableAreaId1 containsObject:dic]) {
+                
+                cell.textLabel.textColor = MainColor;
+            }
+            
         }else if (tableView == tableV2) {
             
             NSDictionary *dic = dataArr2[indexPath.row];
             cell.textLabel.text = [dic objectForKey:@"n"];
+            
+            if ([TableAreaId2 containsObject:dic]) {
+                
+                cell.textLabel.textColor = MainColor;
+            }
             
         }else {
             
             NSDictionary *dic = dataArr3[indexPath.row];
             cell.textLabel.text = [dic objectForKey:@"n"];
             
+            if ([TableAreaId3 containsObject:dic]) {
+                
+                cell.textLabel.textColor = MainColor;
+            }
         }
         
         if (tableView == tableV1) {
@@ -525,6 +546,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+//    storeTable.userInteractionEnabled = NO;
+    tableV1.userInteractionEnabled = NO;
+    tableV2.userInteractionEnabled = NO;
+    tableV3.userInteractionEnabled = NO;
     
     //区域
     if (tableView != storeTable) {

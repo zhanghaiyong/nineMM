@@ -43,6 +43,8 @@
     self.orderStatus.layer.borderColor = [Uitils colorWithHex:(unsigned long)orderModel.orderStepTextColor].CGColor;
     self.orderTime.text = orderModel.orderCreateDate;
     self.coins.text = [NSString stringWithFormat:@"%@ %@",orderModel.totalPrice,[orderModel.paymentMethodName stringByReplacingOccurrencesOfString:@"支付" withString:@""]];
+    
+    [self.tableV reloadData];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -64,6 +66,9 @@
 
     if ([self.orderModel.orderType isEqualToString:@"payment"] && self.orderModel.packagedProductName!=nil) { //套餐
         SmallOrderCell1 *cell1 = [[[NSBundle mainBundle] loadNibNamed:@"SmallOrderCell1" owner:self options:nil] lastObject];
+        NSDictionary *dic = self.orderModel.orderItems[indexPath.row];
+        cell1.name.text = [dic objectForKey:@"productName"];
+        cell1.coins.text = [NSString stringWithFormat:@"%@酒币 x %@",[dic objectForKey:@"price"],[dic objectForKey:@"quantity"]];
         
         return cell1;
         

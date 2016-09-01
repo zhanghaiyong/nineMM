@@ -14,6 +14,6 @@ pod 'IQKeyboardManager','3.3.7'
 
 pod 'SVProgressHUD'
 
-pod 'JPush', '~> 2.1.6'
+pod 'JPush-iOS-SDK'
 
 end

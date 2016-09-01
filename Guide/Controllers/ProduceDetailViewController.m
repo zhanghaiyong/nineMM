@@ -13,7 +13,8 @@
 #import "ProduceStoresModel.h"
 #import "ShopingCarModel.h"
 #import "MethodBagViewController.h"
-@interface ProduceDetailViewController ()<UITableViewDelegate,UITableViewDataSource,Term3Delegate,UserSourceDelegate>{
+#import "URLViewController.h"
+@interface ProduceDetailViewController ()<UITableViewDelegate,UITableViewDataSource,Term3Delegate,UserSourceDelegate,ZHYBannerViewDelegte>{
 
     //资源 档期 样刊切换标示
     NSInteger typeFlag;
@@ -98,7 +99,7 @@
     NSArray *shoppings = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
     [shoppings enumerateObjectsUsingBlock:^(ShopingCarModel *model, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        NSLog(@"%@",model.mj_keyValues);
+        NSLog(@" 本地购物车 ＝ %@",model.mj_keyValues);
         
         if ([model.productId isEqual:self.produceId]) {
             
@@ -137,21 +138,11 @@
             if (((NSDictionary *)[dataDic objectForKey:@"retObj"]).count !=0) {
                 
                 NSDictionary *retObj = [dataDic objectForKey:@"retObj"];
-                
-//                NSMutableArray *shoppings = [Uitils getUserDefaultsForKey:SHOPPING_CAR];
-//                if ([shoppings containsObject:retObj]) {
-//                    
-//                    self.addShoppCarButton.alpha = 0.5;
-//                    self.addShoppCarButton.userInteractionEnabled = NO;
-//                }
                 produceDetail = [ProduceDetailModel mj_objectWithKeyValues:retObj];
                 
                 self.tableView.delegate = self;
                 self.tableView.dataSource = self;
                 [self.tableView reloadData];
-                
-//                NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:2];
-//                [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
             }
             
         }else if ([[dataDic objectForKey:@"retCode"]integerValue] == -2){
@@ -164,6 +155,10 @@
                 
                 [self.navigationController popViewControllerAnimated:YES];
             }];
+        }else {
+        
+            [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            
         }
     } failure:^(NSError *error) {
         
@@ -262,6 +257,7 @@
                 
                 [topImages addObject:[NSString stringWithFormat:@"%@",imageName]];
             }
+            cell.Banner.delegate = self;
             cell.Banner.imageArray = topImages;
         }
         cell.nameLabel.text = produceDetail.fullName;
@@ -379,6 +375,20 @@
                 break;
         }
     }
+}
+
+
+#pragma mark BanndrDelegate
+- (void)tapBannerImage:(NSInteger)imageTag {
+
+    NSLog(@"fsdgd %ld",imageTag);
+    
+    NSString *imageID = produceDetail.images[imageTag-1000];
+    UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+    URLViewController *URLVC = [mainSB instantiateViewControllerWithIdentifier:@"URLViewController"];
+    URLVC.title = @"文章页";
+    URLVC.urlString = [NSString stringWithFormat:@"%@/%@.page",KArticleHtml,imageID];
+    [self.navigationController pushViewController:URLVC animated:YES];
 }
 
 //- (void)showMeumList {

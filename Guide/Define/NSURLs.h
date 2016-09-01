@@ -3,13 +3,15 @@
 
 //http://9mama.top:8080
 //http://101.200.131.198:8090/promot
-#define  BaseURLString (@"http://9mama.top:80")
-
+#define  BaseURLString (@"http://9mama.top:8080")
 
 #endif /* NSURLs_h */
 
 //上传头像
 #define KUpdateAvatar [BaseURLString stringByAppendingString:@"/dimg/upload"]
+
+//文章页
+#define KArticleHtml [BaseURLString stringByAppendingString:@"/article/mobile"]
 
 //更新登录用户的基础信息
 #define KUpdateUserInfo [BaseURLString stringByAppendingString:@"/gw?cmd=updateLoginMemberInfo"]
