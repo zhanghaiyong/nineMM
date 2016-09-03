@@ -498,12 +498,10 @@
             if (((NSString *)model.tags[i]).length > 0) {
                 UIButton *tagsButton = (UIButton *)[cell.contentView viewWithTag:i+200];
                 tagsButton.hidden    = NO;
-                [tagsButton setTitle:model.tags[i] forState:UIControlStateNormal];
+                [tagsButton setTitle:[NSString stringWithFormat:@" %@ ",model.tags[i]] forState:UIControlStateNormal];
             }
         }
-        
     }
-
     
     return cell;
 }

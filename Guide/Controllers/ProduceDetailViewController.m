@@ -420,7 +420,6 @@
 //加入购物车
 - (IBAction)addPackageAction:(id)sender {
     
-    
     //必须按的情况下，判断是否选择了资源
     if ([produceDetail.itemSelecting integerValue] == 1) {
         if (userSource.count == 0) {

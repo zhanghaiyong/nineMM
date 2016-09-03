@@ -547,10 +547,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
 //    storeTable.userInteractionEnabled = NO;
-    tableV1.userInteractionEnabled = NO;
-    tableV2.userInteractionEnabled = NO;
-    tableV3.userInteractionEnabled = NO;
     
+    if (self.produceId.length > 0) {
+     
+        tableV1.userInteractionEnabled = NO;
+        tableV2.userInteractionEnabled = NO;
+        tableV3.userInteractionEnabled = NO;
+    }
     //区域
     if (tableView != storeTable) {
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
