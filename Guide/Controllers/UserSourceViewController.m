@@ -23,6 +23,7 @@
     if (_params == nil) {
         UserSourceParams *params = [[UserSourceParams alloc]init];
         params.rows = 20;
+        params.productId = self.productId;
         _params = params;
     }
     return _params;

@@ -67,6 +67,9 @@
 //获取用户可选酒品列表
 #define KUserSource [BaseURLString stringByAppendingString:@"/gw?cmd=appGetMemberWineList"]
 
+//订单详情获取门店
+#define KGetOrderShops [BaseURLString stringByAppendingString:@"/gw?cmd=appGetOrderItemShops"]
+
 //获取商品区域ID列表
 #define KGetProductAreaIds [BaseURLString stringByAppendingString:@"/gw?cmd=getProductAreaIds"]
 
@@ -79,8 +82,12 @@
 //下单
 #define KAppSubOrder [BaseURLString stringByAppendingString:@"/gw?cmd=appSubOrder"]
 
-//查看登录用户的基础信息
-#define KLoginMemberInfo [BaseURLString stringByAppendingString:@"/gw?cmd=getLoginMemberInfo"]
+
+//获取用户信息
+#define KLoginMemberInfo [BaseURLString stringByAppendingString:@"/gw?cmd=getAdvresLoginMemberInfo"]
+
+////查看登录用户的基础信息
+//#define KLoginMemberInfo [BaseURLString stringByAppendingString:@"/gw?cmd=getLoginMemberInfo"]
 
 //修改已登录用户密码
 #define KUpdatePassword [BaseURLString stringByAppendingString:@"/gw?cmd=updateLoginMemberPassword"]
@@ -104,7 +111,7 @@
 #define KPackageDetail [BaseURLString stringByAppendingString:@"/gw?cmd=appAdvresPackagedProductDetail"]
 
 //更新登录用户的基础信息
-//#define KUpdateUserInfo [BaseURLString stringByAppendingString:@"/gw?cmd=updateLoginMemberInfo"]
+#define KModifyInfo [BaseURLString stringByAppendingString:@"/gw?cmd=updateLoginMemberInfo"]
 
 //获取手机验证码
 #define KValidCode [BaseURLString stringByAppendingString:@"/gw?cmd=getMobileValidCode"]

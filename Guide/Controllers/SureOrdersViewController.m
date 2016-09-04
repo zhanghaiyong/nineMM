@@ -60,6 +60,12 @@
         
         if ([[dataDic objectForKey:@"retCode"]integerValue] == 0) {
             
+            
+            if (self.ProduceBag.count > 0) {
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"deleteLocalProduct" object:self userInfo:nil];
+            }
+            
             [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
             
             UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];

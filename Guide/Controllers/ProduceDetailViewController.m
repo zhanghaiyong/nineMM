@@ -357,6 +357,7 @@
                 UIStoryboard *SB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
                 UserSourceViewController *toUSerSource = [SB instantiateViewControllerWithIdentifier:@"UserSourceViewController"];
                 toUSerSource.delegate = self;
+                toUSerSource.productId = self.produceId;
                 toUSerSource.itemsCount = produceDetail.itemsCount;
                 [self.navigationController pushViewController:toUSerSource animated:YES];
             }

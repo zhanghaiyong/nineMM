@@ -203,14 +203,13 @@
                 
                 
                 [Uitils cacheImagwWithSize:_avatar.size imageID:memberInfo.avatarId imageV:_avatar placeholder:nil];
-                self.name.text = memberInfo.username;
-                self.ID.text = [NSString stringWithFormat:@"ID：%@",memberInfo.id];
+                self.name.text = memberInfo.name;
+                self.ID.text = memberInfo.username;
                 self.phone.text = memberInfo.phone;
-//                self.email.text = memb
-//                self.userCode
-                self.userType.text = memberInfo.type;
-//                self.userLevel.text
-                
+                self.email.text = memberInfo.email;
+                self.userCode.text = memberInfo.id;
+                self.userType.text = memberInfo.typeName;
+                self.userLevel.text = memberInfo.levelName;
             }
             
         }else {
@@ -262,8 +261,17 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
     
-    if (indexPath.section == 0 && indexPath.row == 2) {
+    if (indexPath.section == 0) {
     
+        
+//        switch (<#expression#>) {
+//            case <#constant#>:
+//                <#statements#>
+//                break;
+//                
+//            default:
+//                break;
+//        }
     
         UIStoryboard *SB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
         ModifyEmail *modifyEmail = [SB instantiateViewControllerWithIdentifier:@"ModifyEmail"];

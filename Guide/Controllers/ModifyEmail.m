@@ -32,7 +32,7 @@
     UpdateUserInfoParams *params = [[UpdateUserInfoParams alloc]init];
     params.email = self.emailTF.text;
     
-    [KSMNetworkRequest postRequest:KLoginMemberInfo params:params.mj_keyValues success:^(NSDictionary *dataDic) {
+    [KSMNetworkRequest postRequest:KModifyInfo params:params.mj_keyValues success:^(NSDictionary *dataDic) {
         
         FxLog(@"KUpdateEmail = %@",dataDic);
         

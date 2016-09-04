@@ -296,13 +296,13 @@
     }];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
-    if (indexPath.section == 2) {
-        
-        [[HUDConfig shareHUD]Tips:@"即将上线，敬请期待" delay:DELAY];
-    }
-}
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//
+//    if (indexPath.section == 2) {
+//        
+//        [[HUDConfig shareHUD]Tips:@"即将上线，敬请期待" delay:DELAY];
+//    }
+//}
 
 
 #pragma mark UITableViewDelegate&&DataSource

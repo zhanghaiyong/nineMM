@@ -70,6 +70,18 @@
         cell1.name.text = [dic objectForKey:@"productName"];
         cell1.coins.text = [NSString stringWithFormat:@"%@酒币 x %@",[dic objectForKey:@"price"],[dic objectForKey:@"quantity"]];
         
+        if ([dic.allKeys containsObject:@"itemsCount"]) {
+            
+            cell1.sourceCount.text = [NSString stringWithFormat:@"已选商品 x %@",[dic objectForKey:@"itemsCount"]];
+        }
+        
+        if ([dic.allKeys containsObject:@"shopCount"]) {
+            
+            cell1.storeCount.text = [NSString stringWithFormat:@"已选门店 x %@",[dic objectForKey:@"shopCount"]];
+        }
+        
+        
+        
         return cell1;
         
     }else {

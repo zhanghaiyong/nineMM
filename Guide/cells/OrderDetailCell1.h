@@ -26,6 +26,8 @@ typedef void(^browseSourceBlock)(NSString *aFlag);
 @property (weak, nonatomic) IBOutlet UITableView *sourceTableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *sourceTableViewH;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *storeTableViewH;
+@property (weak, nonatomic) IBOutlet UITableView *storeTableView;
 @property (nonatomic,copy)browseSourceBlock block;
 
 - (void)tapToShowSource:(browseSourceBlock) block;

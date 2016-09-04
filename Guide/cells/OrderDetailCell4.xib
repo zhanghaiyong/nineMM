@@ -171,7 +171,7 @@
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   订单明细" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="93E-5a-Zrd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="eYh-GQ-WEF"/>
                             <constraint firstAttribute="width" constant="100" id="lmw-VX-aCj"/>
@@ -308,9 +308,9 @@
                         <exclude reference="x3m-Co-b2u"/>
                         <exclude reference="Due-Xf-aq9"/>
                         <exclude reference="ke4-qu-QlB"/>
-                        <exclude reference="Cs6-SJ-lvv"/>
                         <exclude reference="4yH-zp-xae"/>
                         <exclude reference="idN-Wu-A2w"/>
+                        <exclude reference="Cs6-SJ-lvv"/>
                         <exclude reference="TVj-77-fJG"/>
                         <exclude reference="hWe-O1-VUs"/>
                         <exclude reference="jW3-HK-KFp"/>

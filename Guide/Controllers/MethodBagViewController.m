@@ -38,6 +38,9 @@
 //    self.tableV.dataSource = self;
     SelectProArray = [NSMutableArray array];
     
+        
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteLocalProduct:) name:@"deleteLocalProduct" object:nil];
+    
     
     //刷新
     self.tableV.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -74,6 +77,26 @@
     [editBtn addTarget:self action:@selector(edit:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:editBtn];
     self.navigationItem.rightBarButtonItem = item;
+    
+}
+
+
+#pragma mark notificationAction
+- (void)deleteLocalProduct:(NSNotification *)notifation {
+    
+    NSLog(@"删除已购买的购物车商品");
+    
+    for (ShopingCarModel *model in SelectProArray) {
+        
+        [productArr removeObject:model];
+        
+    }
+    
+    self.totalPrice.text = @"0";
+    [SelectProArray removeAllObjects];
+    NSString *filePath = [NSString stringWithFormat:@"%@/%@",[HYSandbox docPath],SHOPPING_CAR];
+    [NSKeyedArchiver archiveRootObject:productArr toFile:filePath];
+    [self.tableV.mj_header beginRefreshing];
     
 }
 

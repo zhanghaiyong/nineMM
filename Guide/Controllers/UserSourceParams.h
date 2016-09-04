@@ -12,5 +12,6 @@
 
 @property (nonatomic,assign)int rows;
 @property (nonatomic,assign)int page;
+@property (nonatomic,strong)NSString *productId;
 
 @end

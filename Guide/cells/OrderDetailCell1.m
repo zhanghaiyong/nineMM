@@ -15,7 +15,19 @@
     
     self.sourceTableView.delegate = self;
     self.sourceTableView.dataSource = self;
+    
+    self.storeTableView.delegate = self;
+    self.storeTableView.dataSource = self;
+    
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endRefresh:) name:@"endRefresh" object:nil];
+    
 }
+
+//- (void)endRefresh:(NSNotification *)notifation {
+//    
+//    NSLog(@"sfse = %@",notifation);
+//
+//}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

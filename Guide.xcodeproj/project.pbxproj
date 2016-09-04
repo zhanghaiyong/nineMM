@@ -170,6 +170,7 @@
 		BFD887CA1CF9752D00C9DF44 /* MethodBagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD887C81CF9752D00C9DF44 /* MethodBagViewController.m */; };
 		BFD887CF1CF976CF00C9DF44 /* MethodBagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD887CD1CF976CF00C9DF44 /* MethodBagCell.m */; };
 		BFD887D01CF976CF00C9DF44 /* MethodBagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFD887CE1CF976CF00C9DF44 /* MethodBagCell.xib */; };
+		BFE0C0D71D7BE60A0022576C /* GetOrderShopParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BFE0C0D61D7BE60A0022576C /* GetOrderShopParams.m */; };
 		BFE59B1A1D48ACFD00E1DB2A /* NoChatList.m in Sources */ = {isa = PBXBuildFile; fileRef = BFE59B181D48ACFD00E1DB2A /* NoChatList.m */; };
 		BFE59B1B1D48ACFD00E1DB2A /* NoChatList.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFE59B191D48ACFD00E1DB2A /* NoChatList.xib */; };
 		BFE59B201D48BABD00E1DB2A /* MyCoinsCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = BFE59B1E1D48BABD00E1DB2A /* MyCoinsCell1.m */; };
@@ -514,6 +515,8 @@
 		BFD887CC1CF976CF00C9DF44 /* MethodBagCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MethodBagCell.h; sourceTree = "<group>"; };
 		BFD887CD1CF976CF00C9DF44 /* MethodBagCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MethodBagCell.m; sourceTree = "<group>"; };
 		BFD887CE1CF976CF00C9DF44 /* MethodBagCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MethodBagCell.xib; sourceTree = "<group>"; };
+		BFE0C0D51D7BE60A0022576C /* GetOrderShopParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetOrderShopParams.h; sourceTree = "<group>"; };
+		BFE0C0D61D7BE60A0022576C /* GetOrderShopParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetOrderShopParams.m; sourceTree = "<group>"; };
 		BFE59B171D48ACFD00E1DB2A /* NoChatList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoChatList.h; sourceTree = "<group>"; };
 		BFE59B181D48ACFD00E1DB2A /* NoChatList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoChatList.m; sourceTree = "<group>"; };
 		BFE59B191D48ACFD00E1DB2A /* NoChatList.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoChatList.xib; sourceTree = "<group>"; };
@@ -935,6 +938,8 @@
 				BF2656011D5E26480094A1A9 /* UpdateAvatarParams.m */,
 				BF2656031D5E2B4E0094A1A9 /* UpdateUserInfoParams.h */,
 				BF2656041D5E2B4E0094A1A9 /* UpdateUserInfoParams.m */,
+				BFE0C0D51D7BE60A0022576C /* GetOrderShopParams.h */,
+				BFE0C0D61D7BE60A0022576C /* GetOrderShopParams.m */,
 			);
 			name = Params;
 			path = Controllers;
@@ -1653,6 +1658,7 @@
 				BF8600E51D3D3D0900BCA60A /* ProPriceByStoreParams.m in Sources */,
 				BFE59B1A1D48ACFD00E1DB2A /* NoChatList.m in Sources */,
 				BFF433D51D152B9A00D21427 /* MeumList.m in Sources */,
+				BFE0C0D71D7BE60A0022576C /* GetOrderShopParams.m in Sources */,
 				BF2656051D5E2B4E0094A1A9 /* UpdateUserInfoParams.m in Sources */,
 				BF3C3C0F1D378D9D000E3027 /* ProduceDetailModel.m in Sources */,
 				BF3C3C161D38EF71000E3027 /* CoinRechargePackageParams.m in Sources */,

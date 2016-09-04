@@ -12,18 +12,42 @@
 #import "OrderDetailCell1.h"
 #import "OrderDetailCell2.h"
 #import "OrderDetailCell4.h"
-
+#import "GetOrderShopParams.h"
 @interface OrderDetailTabViewCtrl ()<UITableViewDataSource,UITableViewDelegate>{
 
     OrderDetailModel *orderDetail;
     NSMutableDictionary *sourceDic;//用来判断资源分组展开和关闭
+    NSMutableDictionary *storeDic;//用来判断资源分组展开和关闭
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (nonatomic,strong)NSMutableArray *shopCount;
+@property (nonatomic,strong)GetOrderShopParams *shopParams;
 
 
 @end
 
 @implementation OrderDetailTabViewCtrl
+
+- (GetOrderShopParams *)shopParams {
+
+    if (_shopParams == nil) {
+        GetOrderShopParams *shopParams= [[GetOrderShopParams alloc]init];
+        shopParams.rows = 10;
+        _shopParams = shopParams;
+    }
+    return _shopParams;
+}
+
+- (NSMutableArray *)shopCount {
+
+    if (_shopCount == nil) {
+        
+        NSMutableArray *shopCount = [NSMutableArray array];
+        _shopCount = shopCount;
+    }
+    return _shopCount;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -69,17 +93,22 @@
             CGFloat H = 140;
             
             if ([[dic objectForKey:@"itemsCount"] integerValue] > 0) {
-                H += 40;
+                H += 44;
             }
             
             if ([[dic objectForKey:@"shopCount"] integerValue] > 0) {
                 
-                H += 40;
+                H += 44;
             }
             
             if ([sourceDic objectForKey:[NSString stringWithFormat:@"%ld",indexPath.row]]) {
                 
                 return H += ((NSArray *)[dic objectForKey:@"items"]).count * 40;
+            }
+            
+            if ([storeDic objectForKey:[NSString stringWithFormat:@"%ld",indexPath.row]]) {
+                
+                return H += self.shopCount.count * 40;
             }
             
             return H;
@@ -107,7 +136,7 @@
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
     label.text = @"  订单项目";
     label.font = [UIFont systemFontOfSize:15];
-    label.backgroundColor = [UIColor lightGrayColor];
+    label.backgroundColor = [UIColor groupTableViewBackgroundColor];
     return label;
 }
 
@@ -122,7 +151,7 @@
         cell.orderTime.text = orderDetail.orderCreateDate;
         cell.OrderPeople.text = [orderDetail.address objectForKey:@"consignee"];
         cell.orderTotalPrice.text = orderDetail.totalPrice;
-        cell.payMethod.text = [NSString stringWithFormat:@"%@",orderDetail.paymentMethodName];
+        cell.payMethod.text = orderDetail.paymentMethodName;
         
         if (orderDetail.packagedProductName.length == 0) {
             
@@ -142,11 +171,16 @@
              
             OrderDetailCell1 *cell1 = [[[NSBundle mainBundle] loadNibNamed:@"OrderDetailCell1" owner:self options:nil] lastObject];
              
-             
-             
+             //展示商品列表
              if ([sourceDic objectForKey:[NSString stringWithFormat:@"%ld",indexPath.row]]) {
                  cell1.sourceTableViewH.constant = ((NSArray *)[orderItem objectForKey:@"items"]).count * 40;
                  cell1.sourceData = [orderDetail.orderItems[indexPath.row] objectForKey:@"items"];
+             }
+             
+             //展示门店列表
+             if ([storeDic objectForKey:[NSString stringWithFormat:@"%ld",indexPath.row]]) {
+                 cell1.storeTableViewH.constant = self.shopCount.count * 40;
+                 cell1.sourceData = self.shopCount;
              }
              
     
@@ -154,21 +188,26 @@
             cell1.priceLabel.text = [NSString stringWithFormat:@"%@",[orderItem objectForKey:@"price"]];
             cell1.stockLabel.text = [NSString stringWithFormat:@"%@",[orderItem objectForKey:@"quantity"]];
              
+             //如果有商品数，则显示按钮
              if ([[orderItem objectForKey:@"itemsCount"] integerValue] > 0) {
                  
-                 cell1.sourceViewH.constant = 40;
+                 cell1.sourceViewH.constant = 44;
                  cell1.sourceCount.text = [NSString stringWithFormat:@"%@项（点击查看详情）",[orderItem objectForKey:@"itemsCount"]];
              }
              
-             if ([[orderItem objectForKey:@"shopCount"] integerValue] == 0) {
+             //如果有门店数，则显示按钮
+             if ([[orderItem objectForKey:@"shopCount"] integerValue] > 0) {
                  
-                 cell1.storeViewH.constant = 40;
+                 cell1.storeViewH.constant = 44;
                  cell1.storeCount.text = [NSString stringWithFormat:@"%@家（点击查看详情）",[orderItem objectForKey:@"shopCount"]];
              }
+             
              
              [cell1 tapToShowSource:^(NSString *aFlag) {
                  
                  if ([aFlag isEqualToString:@"source"]) {
+                     
+                     storeDic = nil;
                      
                      if (sourceDic == nil) {
                          sourceDic = [[NSMutableDictionary alloc]init];
@@ -184,10 +223,58 @@
                      }
                      
                      [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                     
+                 }else {
+                 
+                     sourceDic = nil;
+                     if (storeDic == nil) {
+                         storeDic = [[NSMutableDictionary alloc]init];
+                     }
+
+                     if ([storeDic objectForKey:[NSString stringWithFormat:@"%ld",indexPath.row]]) {
+                         [storeDic removeObjectForKey:[NSString stringWithFormat:@"%ld",indexPath.row]];
+                         [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                         return;
+                     }
+                     
+                     if (self.shopCount.count > 0) {
+                         
+                         if (![storeDic objectForKey:[NSString stringWithFormat:@"%ld",indexPath.row]]) {
+                             [storeDic setObject:@"1" forKey:[NSString stringWithFormat:@"%ld",indexPath.row]];
+                             
+                         }else {
+                             
+                             [storeDic removeObjectForKey:[NSString stringWithFormat:@"%ld",indexPath.row]];
+                         }
+                         [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                         return;
+                     }
+                     
+                     self.shopParams.id = [orderItem objectForKey:@"orderItemId"];
+                     self.shopParams.page = 1;
+                     [self loadShopIndex:indexPath table:cell1.storeTableView type:nil];
                  }
                  
              }];
-            
+             
+             //刷新
+             cell1.storeTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+                 
+                 FxLog(@"刷新");
+                 self.shopParams.id = [orderItem objectForKey:@"orderItemId"];
+                  self.shopParams.page = 1;
+                  [self loadShopIndex:indexPath table:cell1.storeTableView type:@"refresh"];
+             }];
+             
+             //加载
+             cell1.storeTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+                 
+                 FxLog(@"加载");
+                  self.shopParams.id = [orderItem objectForKey:@"orderItemId"];
+                  self.shopParams.page += 1;
+                  [self loadShopIndex:indexPath table:cell1.storeTableView type:@"loadMore"];
+             }];
+             
             return cell1;
              
          }else {
@@ -203,6 +290,64 @@
          }
     }
     return nil;
+}
+
+- (void)loadShopIndex:(NSIndexPath *)indexPath table:(UITableView *)tableV type:(NSString *)type{
+
+    [[HUDConfig shareHUD]alwaysShow];
+
+    [KSMNetworkRequest postRequest:KGetOrderShops params:self.shopParams.mj_keyValues success:^(NSDictionary *dataDic) {
+        
+        FxLog(@"orderShop = %@  \n%@",dataDic,self.shopParams.mj_keyValues);
+        
+        NSString *jsonStr = [[dataDic objectForKey:@"retObj"] objectForKey:@"rows"];
+        NSData *jsonData = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
+        NSArray *array = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
+        
+        //等于1，说明是刷新
+        if (self.shopParams.page == 1) {
+            
+            [self.shopCount removeAllObjects];
+            [self.shopCount addObjectsFromArray:array];
+            
+        }else {
+            
+            [self.shopCount addObjectsFromArray:array];
+        }
+        
+        if (array.count < self.shopParams.rows) {
+            
+            [tableV.mj_footer endRefreshingWithNoMoreData];
+        }else {
+            
+            [tableV.mj_footer endRefreshing];
+        }
+        
+        if (!type) {
+           
+            if (![storeDic objectForKey:[NSString stringWithFormat:@"%ld",indexPath.row]]) {
+                [storeDic setObject:@"1" forKey:[NSString stringWithFormat:@"%ld",indexPath.row]];
+                
+            }else {
+                
+                [storeDic removeObjectForKey:[NSString stringWithFormat:@"%ld",indexPath.row]];
+            }
+        }
+
+        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
+            
+            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            
+        }else {
+            
+            [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+        }
+        
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 - (void)orderDetail {

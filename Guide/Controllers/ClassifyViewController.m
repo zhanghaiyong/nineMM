@@ -473,7 +473,7 @@
             cell.CoinsLabel.text    = [NSString stringWithFormat:@"%@~%@",model.minPrice,model.maxPrice];
         }
         cell.timeLabel.text     = model.scheduleDesc;
-        cell.termsLabel.text    = [NSString stringWithFormat:@"资源限制说明：%@",model.terms];
+        cell.termsLabel.text    = model.terms;
         cell.StockLabel.text    = [NSString stringWithFormat:@"库存 %@",model.stock];
         
         //是否收藏
@@ -501,6 +501,7 @@
                 [tagsButton setTitle:[NSString stringWithFormat:@" %@ ",model.tags[i]] forState:UIControlStateNormal];
             }
         }
+
     }
     
     return cell;

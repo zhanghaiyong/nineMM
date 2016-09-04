@@ -17,7 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *coinCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *rmbLabel;
 @property (weak, nonatomic) IBOutlet UILabel *finalRmbLabel;
-@property (weak, nonatomic) IBOutlet UILabel *expityLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *expityLabel;
 @end
 
 @implementation ChosePayTypeController
@@ -41,13 +41,13 @@
     
     self.finalRmbLabel.text = [NSString stringWithFormat:@"%@元",self.calculateCoinModel.rmb];
     
-    if ([self.calculateCoinModel.expiryDate integerValue] > 0) {
-        
-        self.expityLabel.text = self.calculateCoinModel.expiryDate;
-    }else {
-        
-        self.expityLabel.text = @"永久";
-    }
+//    if ([self.calculateCoinModel.expiryDate integerValue] > 0) {
+//        
+//        self.expityLabel.text = self.calculateCoinModel.expiryDate;
+//    }else {
+//        
+//        self.expityLabel.text = @"永久";
+//    }
 }
 
 //选择支付方式
@@ -105,7 +105,7 @@
 
     if (section == 2) {
         
-       return SCREEN_HEIGHT-260-64-80;
+       return SCREEN_HEIGHT-260-64-70;
     }
     
     return 15;
