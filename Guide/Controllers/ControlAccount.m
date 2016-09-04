@@ -263,25 +263,41 @@
     
     if (indexPath.section == 0) {
     
-        
-//        switch (<#expression#>) {
-//            case <#constant#>:
-//                <#statements#>
-//                break;
-//                
-//            default:
-//                break;
-//        }
+        NSString *title;
+        switch (indexPath.row) {
+            case 0:
+                title = ModifyName;
+                break;
+            case 1:
+                title = ModifyPhone;
+                break;
+            case 2:
+                title = ModifyEmai;
+                break;
+                
+            default:
+                break;
+        }
     
         UIStoryboard *SB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
         ModifyEmail *modifyEmail = [SB instantiateViewControllerWithIdentifier:@"ModifyEmail"];
         
-        modifyEmail.title = @"修改邮箱";
+        modifyEmail.title = title;
         
-        [modifyEmail returnModifiedEmail:^(NSString *email) {
+        
+        [modifyEmail returnModifiedEmail:^(NSString *modifiedString, NSString *type) {
             
-            self.email.text = email;
-            
+            if ([type isEqualToString:ModifyName]) {
+                
+                self.name.text = modifiedString;
+                
+            }else if ([type isEqualToString:ModifyPhone]) {
+                
+                self.phone.text = modifiedString;
+            }else {
+                
+                self.email.text = modifiedString;
+            }
         }];
         [self.navigationController pushViewController:modifyEmail animated:YES];
         

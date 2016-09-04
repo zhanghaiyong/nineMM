@@ -1,11 +1,11 @@
 
 #import "BaseViewController.h"
 
-typedef void(^modifiedEmailBlock)(NSString *email);
+typedef void(^modifiedEmailBlock)(NSString *modifiedString,NSString *type);
 
 @interface ModifyEmail : BaseViewController
 
-@property (nonatomic,assign)modifiedEmailBlock block;
+@property (nonatomic,copy)modifiedEmailBlock block;
 
 - (void)returnModifiedEmail:(modifiedEmailBlock)block;
 

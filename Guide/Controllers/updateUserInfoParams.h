@@ -11,10 +11,11 @@
 @interface UpdateUserInfoParams : BaseParams
 @property (nonatomic,strong)NSString *type;
 @property (nonatomic,strong)NSString *name;
-@property (nonatomic,strong)NSString *gender;
-@property (nonatomic,strong)NSString *birth;
-@property (nonatomic,strong)NSString *avatarId;
 @property (nonatomic,strong)NSString *email;
+@property (nonatomic,strong)NSString *birth;
+@property (nonatomic,strong)NSString *gender;
+@property (nonatomic,strong)NSString *phone;
+@property (nonatomic,strong)NSString *avatarId;
 @property (nonatomic,strong)NSString *attr1;
 @property (nonatomic,strong)NSString *attr2;
 @property (nonatomic,strong)NSString *attr3;

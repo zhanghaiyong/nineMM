@@ -36,6 +36,10 @@
 #define ORDERTYPE4 @"执行中"
 #define ORDERTYPE5 @"申诉订单"
 
+#define ModifyName  @"修改姓名"
+#define ModifyPhone @"修改手机号"
+#define ModifyEmai @"修改邮箱"
+
 #define MEUM_CELL_H 35
 
 

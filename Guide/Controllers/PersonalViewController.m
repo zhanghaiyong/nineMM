@@ -56,6 +56,7 @@
             
             [self loadPersionData];
         }];
+    
     if (!persionModel) {
         [self.tableView.mj_header beginRefreshing];
     }
@@ -69,7 +70,9 @@
 
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clearPersionModel:) name:@"clearPersionDara" object:nil];
 
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapToSetAvatar)];
