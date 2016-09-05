@@ -124,7 +124,6 @@
                 <outlet property="button2" destination="54J-Aa-iEx" id="Pdr-4a-o8P"/>
                 <outlet property="button3" destination="20B-Tl-cEq" id="3Lm-lI-E8O"/>
                 <outlet property="button4" destination="0gJ-nb-ysH" id="ZYZ-e7-yCY"/>
-                <outlet property="firstBtn" destination="d4x-5Z-gWK" id="yh2-WX-pnr"/>
                 <outlet property="image1" destination="WFe-V5-fQg" id="FeT-Di-mAT"/>
                 <outlet property="image2" destination="wMM-rb-bEE" id="HL8-6t-rRi"/>
                 <outlet property="image3" destination="Dgu-Wc-KmJ" id="ifN-Rm-A0q"/>

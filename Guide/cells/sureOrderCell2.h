@@ -20,7 +20,7 @@ typedef void(^sureOrderCell2Block)(NSString *coinStatus);
 @property (weak, nonatomic) IBOutlet UIImageView *image3;
 @property (weak, nonatomic) IBOutlet UIImageView *image4;
 
-@property (weak, nonatomic) IBOutlet UIButton *firstBtn;
+//@property (weak, nonatomic) IBOutlet UIButton *firstBtn;
 @property (nonatomic,copy)sureOrderCell2Block block;
 
 - (void)choseCoinPay:(sureOrderCell2Block)block;

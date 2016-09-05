@@ -26,12 +26,13 @@
     
     UIButton *button = (UIButton *)sender;
     
-    if (button != self.firstBtn) {
+    for (int i=0; i<4; i++) {
         
-        self.firstBtn.selected = NO;
-        self.firstBtn = button;
-        button.selected = YES;
+        UIButton *btn = [self viewWithTag:i+100];
+        btn.selected = NO;
     }
+    
+    button.selected = YES;
     
     NSString *coinStatus;
     switch (button.tag) {
