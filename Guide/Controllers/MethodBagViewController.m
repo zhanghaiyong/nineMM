@@ -233,7 +233,7 @@
 
     if (SelectProArray.count == 0) {
         
-        [[HUDConfig shareHUD]Tips:@"请选择你要购买的商品" delay:DELAY];
+        [[HUDConfig shareHUD]Tips:@"请选择商品" delay:DELAY];
         
     }else {
     
@@ -243,7 +243,6 @@
             for (ShopingCarModel *model in SelectProArray) {
                 
                 [productArr removeObject:model];
-                
             }
             
             [SelectProArray removeAllObjects];

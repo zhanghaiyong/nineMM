@@ -37,7 +37,7 @@
                                     <action selector="backAction:" destination="bc3-JV-KVt" eventType="touchUpInside" id="8qt-1b-Kyf"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="18780106372" borderStyle="roundedRect" placeholder="用户名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UVq-1Q-U17">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="用户名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UVq-1Q-U17">
                                 <rect key="frame" x="30" y="280" width="260" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="zn4-a2-oJf"/>
@@ -127,7 +127,7 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
                                 </userDefinedRuntimeAttributes>
                             </visualEffectView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="18780106372" borderStyle="roundedRect" placeholder="密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XAs-mi-Kec">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XAs-mi-Kec">
                                 <rect key="frame" x="30" y="335" width="260" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="wZJ-QG-9WA"/>
