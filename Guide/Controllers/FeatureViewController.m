@@ -143,7 +143,15 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return 170;
+    MainProduceModel *model = self.features[indexPath.row];
+    if (model.tags.count > 0) {
+        
+        return 170;
+        
+    }else {
+        
+        return 140;
+    }
 
 }
 

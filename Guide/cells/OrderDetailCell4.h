@@ -20,4 +20,5 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *packageName;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *packageH;
+@property (weak, nonatomic) IBOutlet UILabel *orderType;
 @end

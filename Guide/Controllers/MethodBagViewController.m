@@ -40,6 +40,7 @@
     
         
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteLocalProduct:) name:@"deleteLocalProduct" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addCart:) name:@"addCart" object:nil];
     
     
     //刷新
@@ -48,24 +49,12 @@
         NSString *filePath = [NSString stringWithFormat:@"%@/%@",[HYSandbox docPath],SHOPPING_CAR];
         productArr = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
         
-//        countArray = [NSMutableArray array];
-//        for (int i = 0; i<productArr.count; i++) {
-//            
-//            [countArray addObject:@"1"];
-//        }
-        
         [self.tableV reloadData];
         [self.tableV.mj_header endRefreshing];
         
     }];
     
     [self.tableV.mj_header beginRefreshing];
-    
-//    NoChatList *noChatList = [[[NSBundle mainBundle]loadNibNamed:@"NoChatList" owner:self options:nil] lastObject];
-//    noChatList.frame = self.view.frame;
-//    noChatList.label1.text = @"";
-//    noChatList.label2.text = @"购物车暂时为空";
-//    [self.view addSubview:noChatList];
     
     editBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     editBtn.frame = CGRectMake(0, 0, 60, 44);
@@ -85,11 +74,9 @@
 - (void)deleteLocalProduct:(NSNotification *)notifation {
     
     NSLog(@"删除已购买的购物车商品");
-    
     for (ShopingCarModel *model in SelectProArray) {
         
         [productArr removeObject:model];
-        
     }
     
     self.totalPrice.text = @"0";
@@ -97,7 +84,12 @@
     NSString *filePath = [NSString stringWithFormat:@"%@/%@",[HYSandbox docPath],SHOPPING_CAR];
     [NSKeyedArchiver archiveRootObject:productArr toFile:filePath];
     [self.tableV.mj_header beginRefreshing];
-    
+}
+
+- (void)addCart:(NSNotification *)notifation {
+
+    NSLog(@"加入购物车");
+    [self.tableV.mj_header beginRefreshing];
 }
 
 #pragma mark UITableViewDelegate&&DataSource
@@ -210,8 +202,8 @@
         [sender setTitle:@"编辑" forState:UIControlStateNormal];
         isEdit = NO;
         
-        self.buyBtnWidth.constant = 100;
-        self.totalPrice.hidden = NO;
+//        self.buyBtnWidth.constant = 100;
+//        self.totalPrice.hidden = NO;
         
     }else {
     
@@ -219,8 +211,8 @@
         [self.checkoutOrDelete setTitle:@"删除" forState:UIControlStateNormal];
         [sender setTitle:@"编辑..." forState:UIControlStateNormal];
         
-        self.buyBtnWidth.constant = SCREEN_WIDTH-70;
-        self.totalPrice.hidden = YES;
+//        self.buyBtnWidth.constant = SCREEN_WIDTH-70;
+//        self.totalPrice.hidden = YES;
     }
     
     [self.view layoutIfNeeded];

@@ -10,7 +10,7 @@
 #import "TabBarViewController.h"
 #import "PageInfo.h"
 #import "LoginParams.h"
-
+#import "FindPwdViewController.h"
 @interface LoginViewController ()<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *accountTF;
@@ -147,5 +147,12 @@
     
 }
 
+- (IBAction)forgetPwdAction:(id)sender {
+    
+    UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+    FindPwdViewController *findPwd = [mainSB instantiateViewControllerWithIdentifier:@"FindPwdViewController"];
+    UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:findPwd];
+    [self presentViewController:navi animated:YES completion:nil];
+}
 
 @end

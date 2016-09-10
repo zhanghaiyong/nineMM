@@ -431,8 +431,16 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-
-    return 170;
+    
+    MainProduceModel *model = self.produces[indexPath.row];
+    if (model.tags.count > 0) {
+        
+        return 170;
+        
+    }else {
+        
+        return 140;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

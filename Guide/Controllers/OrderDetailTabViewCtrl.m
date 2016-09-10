@@ -81,9 +81,9 @@
         
         if (orderDetail.packagedProductName.length != 0) {
             
-            return 370;
+            return 410;
         }
-        return 330;
+        return 370;
         
     }else {
         
@@ -152,7 +152,7 @@
         cell.OrderPeople.text = [orderDetail.address objectForKey:@"consignee"];
         cell.orderTotalPrice.text = orderDetail.totalPrice;
         cell.payMethod.text = orderDetail.paymentMethodName;
-        
+        cell.orderType.text = orderDetail.orderTypeName;
         if (orderDetail.packagedProductName.length == 0) {
             
             cell.packageH.constant = 0;

@@ -66,7 +66,7 @@
     
     [KSMNetworkRequest postRequest:KUserSource params:self.params.mj_keyValues success:^(NSDictionary *dataDic) {
         
-        FxLog(@"getUserSource = %@",dataDic);
+        FxLog(@"getUserSource = %@  \n params = %@",dataDic,self.params.mj_keyValues);
         
         if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
             

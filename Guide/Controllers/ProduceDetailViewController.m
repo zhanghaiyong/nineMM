@@ -436,6 +436,9 @@
         }
     }
     
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"addCart" object:self userInfo:nil];
+    
     [[HUDConfig shareHUD]alwaysShow];
     
     ShopingCarModel *shopCarModel = [[ShopingCarModel alloc]init];
@@ -454,7 +457,6 @@
     }
     
     NSLog(@"shopCarModel = %@",shopCarModel.mj_keyValues);
-    
     
     NSString *filePath = [NSString stringWithFormat:@"%@/%@",[HYSandbox docPath],SHOPPING_CAR];
     NSArray *shoppings = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
@@ -476,7 +478,6 @@
     }
     
     [NSKeyedArchiver archiveRootObject:array toFile:filePath];
-//    [Uitils setUserDefaultsObject:newData ForKey:SHOPPING_CAR];
 }
 
 - (IBAction)buyNowAction:(id)sender {
@@ -500,9 +501,7 @@
     if ([button.currentTitle isEqualToString:@"确认"]) {
         
         NSLog(@"afssdf = %ld",userSource.count);
-        
         self.block(storeAreaModel,userSource,self.proPriceByStoreParams.storeSelectingType);
-        
         [self.navigationController popViewControllerAnimated:YES];
         return;
     }
@@ -593,8 +592,6 @@
     } failure:^(NSError *error) {
         
     }];
-
 }
-
 
 @end

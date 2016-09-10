@@ -51,6 +51,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"找回密码";
+    
+    [self setNavigationLeft:@"返回"];
+    
     count = 60;
 }
 
@@ -87,10 +90,7 @@
         [KSMNetworkRequest postRequest:KValidCode params:validCodeParams.mj_keyValues success:^(NSDictionary *dataDic) {
             
             NSLog(@"validCodeParams = %@ \n dataDic = %@",validCodeParams.mj_keyValues,dataDic);
-            if ([[dataDic objectForKey:@"retCode"] integerValue] != 0) {
-                
-                [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
-            }
+            [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
             
         } failure:^(NSError *error) {
             
@@ -167,7 +167,7 @@
         if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
             
             [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
-            [self.navigationController popViewControllerAnimated:YES];
+            [self performSelector:@selector(doBack:) withObject:self afterDelay:1];
             
         }else {
         
@@ -176,10 +176,12 @@
         
     } failure:^(NSError *error) {
         
-        
     }];
+}
 
-
+- (void)doBack:(UIButton *)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
