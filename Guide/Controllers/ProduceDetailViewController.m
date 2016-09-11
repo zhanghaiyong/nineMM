@@ -424,14 +424,14 @@
     //必须按的情况下，判断是否选择了资源
     if ([produceDetail.itemSelecting integerValue] == 1) {
         if (userSource.count == 0) {
-            [[HUDConfig shareHUD]Tips:@"请选择商品资源" delay:DELAY];
+            [[HUDConfig shareHUD]Tips:@"先选择商品资源才能加入购物车" delay:DELAY];
             return;
         }
     }
     
     if ([produceDetail.shopSelecting integerValue] == 1) {
         if (areaOrStore.length == 0) {
-            [[HUDConfig shareHUD]Tips:@"请选择门店及区域" delay:DELAY];
+            [[HUDConfig shareHUD]Tips:@"先选择门店及区域才能加入购物车" delay:DELAY];
             return;
         }
     }

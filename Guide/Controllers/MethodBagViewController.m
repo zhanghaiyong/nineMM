@@ -12,21 +12,18 @@
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableV;
 @property (weak, nonatomic) IBOutlet UIButton *checkoutOrDelete;
-//@property (weak, nonatomic) IBOutlet UIButton *collect;
 @property (weak, nonatomic) IBOutlet UILabel *totalPrice;
 @property (weak, nonatomic) IBOutlet UIButton *selectAll;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *buyBtnWidth;
 
 @end
 
-@implementation MethodBagViewController {
-    BOOL isEdit;
-}
+@implementation MethodBagViewController
 
 -(void)viewWillAppear:(BOOL)animated {
 
     [super viewWillAppear:animated];
-
+    
 }
 
 - (void)viewDidLoad {
@@ -34,8 +31,6 @@
 
     self.title = @"购物车";
     
-//    self.tableV.delegate = self;
-//    self.tableV.dataSource = self;
     SelectProArray = [NSMutableArray array];
     
         
@@ -67,13 +62,15 @@
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:editBtn];
     self.navigationItem.rightBarButtonItem = item;
     
+    FxLog(@"SZF = %d",editBtn.selected);
+    
 }
 
 
 #pragma mark notificationAction
 - (void)deleteLocalProduct:(NSNotification *)notifation {
     
-    NSLog(@"删除已购买的购物车商品");
+    FxLog(@"删除已购买的购物车商品");
     for (ShopingCarModel *model in SelectProArray) {
         
         [productArr removeObject:model];
@@ -88,7 +85,7 @@
 
 - (void)addCart:(NSNotification *)notifation {
 
-    NSLog(@"加入购物车");
+    FxLog(@"加入购物车");
     [self.tableV.mj_header beginRefreshing];
 }
 
@@ -127,9 +124,8 @@
     MethodBagCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     ShopingCarModel *model = productArr[indexPath.row];
     
-    
     if (cell.isSelected.selected) {
-    
+        
         cell.isSelected.selected = NO;
         self.totalPrice.text = [NSString stringWithFormat:@"%ld",[self.totalPrice.text integerValue] - [cell.price.text integerValue]];
         [SelectProArray removeObject:model];
@@ -196,30 +192,20 @@
 
 - (void)edit:(UIButton *)sender {
     
-    if (isEdit) {
-        
+    if (sender.selected) {
         [self.checkoutOrDelete setTitle:@"立即购买" forState:UIControlStateNormal];
         [sender setTitle:@"编辑" forState:UIControlStateNormal];
-        isEdit = NO;
-        
-//        self.buyBtnWidth.constant = 100;
-//        self.totalPrice.hidden = NO;
+        sender.selected = NO;
         
     }else {
     
-        isEdit = YES;
+        sender.selected = YES;
         [self.checkoutOrDelete setTitle:@"删除" forState:UIControlStateNormal];
         [sender setTitle:@"编辑..." forState:UIControlStateNormal];
-        
-//        self.buyBtnWidth.constant = SCREEN_WIDTH-70;
-//        self.totalPrice.hidden = YES;
     }
-    
-    [self.view layoutIfNeeded];
 }
 
 - (IBAction)nowBuyAvtion:(id)sender {
-    
     
     UIButton *button = (UIButton *)sender;
 
@@ -236,16 +222,16 @@
                 
                 [productArr removeObject:model];
             }
-            
-            [SelectProArray removeAllObjects];
             NSString *filePath = [NSString stringWithFormat:@"%@/%@",[HYSandbox docPath],SHOPPING_CAR];
             [NSKeyedArchiver archiveRootObject:productArr toFile:filePath];
+            [SelectProArray removeAllObjects];
             [self.tableV reloadData];
             
         }else {
         
             NSMutableArray *totalCoin = [NSMutableArray array];
             NSMutableArray *acceptableCoinTypes = [NSMutableArray arrayWithArray:((ShopingCarModel *)SelectProArray[0]).acceptableCoinTypes];
+            
             if (SelectProArray.count > 0) {
                 
                 for (int i = 1; i<SelectProArray.count; i++) {
@@ -271,7 +257,7 @@
                 }
             }
             
-            NSLog(@"acceptableCoinTypes = %@",acceptableCoinTypes);;
+            FxLog(@"acceptableCoinTypes = %@",acceptableCoinTypes);;
             
             UIStoryboard *SB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
             SureOrdersViewController *sureOrder = [SB instantiateViewControllerWithIdentifier:@"SureOrdersViewController"];
