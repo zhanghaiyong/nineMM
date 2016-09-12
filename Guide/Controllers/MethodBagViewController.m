@@ -44,9 +44,12 @@
         NSString *filePath = [NSString stringWithFormat:@"%@/%@",[HYSandbox docPath],SHOPPING_CAR];
         productArr = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
         
+        [SelectProArray removeAllObjects];
         [self.tableV reloadData];
         [self.tableV.mj_header endRefreshing];
         
+        
+        FxLog(@"SZF = %ld",SelectProArray.count);
     }];
     
     [self.tableV.mj_header beginRefreshing];
@@ -110,7 +113,28 @@
     
     ShopingCarModel *model = productArr[indexPath.row];
     
-    cell.isSelected.selected = NO;
+    
+//    for (ShopingCarModel *selectedModel in SelectProArray) {
+//        
+//        if ([selectedModel isEqual:model]) {
+//         
+//            cell.isSelected.selected = YES;
+//            
+//        }else {
+//        
+//            
+//        }
+//    }
+    
+//    if ([SelectProArray containsObject:model]) {
+//        
+//        cell.isSelected.selected = YES;
+//        
+//    }else {
+//    
+        cell.isSelected.selected = NO;
+//    }
+//    
     
     cell.produceName.text = model.fullName;
     cell.price.text = model.amount;
@@ -127,14 +151,14 @@
     if (cell.isSelected.selected) {
         
         cell.isSelected.selected = NO;
-        self.totalPrice.text = [NSString stringWithFormat:@"%ld",[self.totalPrice.text integerValue] - [cell.price.text integerValue]];
+        self.totalPrice.text = [NSString stringWithFormat:@"%ld",[self.totalPrice.text integerValue] - [model.amount integerValue]];
         [SelectProArray removeObject:model];
         
     }else {
         
         cell.isSelected.selected = YES;
         [SelectProArray addObject:model];
-        self.totalPrice.text = [NSString stringWithFormat:@"%ld",[self.totalPrice.text integerValue] + [cell.price.text integerValue]];
+        self.totalPrice.text = [NSString stringWithFormat:@"%ld",[self.totalPrice.text integerValue] + [model.amount integerValue]];
     }
     
     if (productArr != SelectProArray) {
@@ -145,18 +169,6 @@
      NSLog(@"DGrg = %ld",SelectProArray.count);
 }
 
-//- (void)viewDidLayoutSubviews {
-//    
-//    [super viewDidLayoutSubviews];
-//    self.tableV.separatorInset = UIEdgeInsetsZero;
-//    self.tableV.layoutMargins = UIEdgeInsetsZero;
-//}
-//
-//- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-//    
-//    self.tableV.separatorInset = UIEdgeInsetsZero;
-//    self.tableV.layoutMargins = UIEdgeInsetsZero;
-//}
 
 - (IBAction)selectAllAction:(id)sender {
     
@@ -166,24 +178,31 @@
         
         [SelectProArray removeAllObjects];
         self.totalPrice.text = @"0";
+        button.selected = NO;
         for (int i = 0; i< productArr.count; i++) {
             
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
             MethodBagCell *cell = [self.tableV cellForRowAtIndexPath:indexPath];
-            button.selected = NO;
             cell.isSelected.selected = NO;
             
         }
         
     }else {
         
+        //在统计总价之前先清零
+        self.totalPrice.text = @"0";
+        //先把已经选择的商品移除
+        [SelectProArray removeAllObjects];
+        //再加入所有商品
         [SelectProArray addObjectsFromArray:productArr];
-        for (int i = 0; i< productArr.count; i++) {
+        button.selected = YES;
+        
+        for (int i = 0; i< SelectProArray.count; i++) {
             
+            ShopingCarModel *model = SelectProArray[i];
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
             MethodBagCell *cell = [self.tableV cellForRowAtIndexPath:indexPath];
-            self.totalPrice.text = [NSString stringWithFormat:@"%ld",[self.totalPrice.text integerValue] + [cell.price.text integerValue]];
-            button.selected = YES;
+            self.totalPrice.text = [NSString stringWithFormat:@"%ld",[self.totalPrice.text integerValue] + [model.amount integerValue]];
             cell.isSelected.selected = YES;
         }
     }
@@ -191,6 +210,8 @@
 }
 
 - (void)edit:(UIButton *)sender {
+    
+     NSLog(@"DGrg = %ld",SelectProArray.count);
     
     if (sender.selected) {
         [self.checkoutOrDelete setTitle:@"立即购买" forState:UIControlStateNormal];
@@ -206,6 +227,9 @@
 }
 
 - (IBAction)nowBuyAvtion:(id)sender {
+    
+    NSLog(@"DGrg = %ld",SelectProArray.count);
+    
     
     UIButton *button = (UIButton *)sender;
 
