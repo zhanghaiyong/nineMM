@@ -436,48 +436,53 @@
         }
     }
     
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"addCart" object:self userInfo:nil];
-    
-    [[HUDConfig shareHUD]alwaysShow];
-    
-    ShopingCarModel *shopCarModel = [[ShopingCarModel alloc]init];
-    shopCarModel.fullName = produceDetail.fullName;
-    shopCarModel.productId = self.produceId;
-    shopCarModel.storeSelectingType = self.proPriceByStoreParams.storeSelectingType;
-    shopCarModel.storesId = self.proPriceByStoreParams.storeIds;
-    shopCarModel.areasId = self.proPriceByStoreParams.areaIds;
-    shopCarModel.items = userSource;
-    shopCarModel.acceptableCoinTypes = produceDetail.acceptableCoinTypes;
-    
-    if ([produceDetail.isPackagePrice integerValue] == 1) {
-        shopCarModel.amount = produceDetail.price;
-    }else {
-        shopCarModel.amount = price;
+    if (produceDetail.fullName.length == 0 || self.produceId.length == 0 || produceDetail.acceptableCoinTypes.count == 0) {
+        return;
     }
     
-    NSLog(@"shopCarModel = %@",shopCarModel.mj_keyValues);
-    
-    NSString *filePath = [NSString stringWithFormat:@"%@/%@",[HYSandbox docPath],SHOPPING_CAR];
-    NSArray *shoppings = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
-    NSMutableArray *array = [NSMutableArray array];
-    
-    if (shoppings) {
-        [array addObjectsFromArray:shoppings];
-        [array addObject:shopCarModel];
-        self.addShoppCarButton.alpha = 0.5;
-        self.addShoppCarButton.userInteractionEnabled = NO;
-        [[HUDConfig shareHUD]SuccessHUD:@"成功加入" delay:DELAY];
+    if (produceDetail.price.length > 0 || price.length > 0) {
         
-    }else {
+        [[HUDConfig shareHUD]alwaysShow];
+        ShopingCarModel *shopCarModel = [[ShopingCarModel alloc]init];
+        shopCarModel.fullName = produceDetail.fullName;
+        shopCarModel.productId = self.produceId;
+        shopCarModel.storeSelectingType = self.proPriceByStoreParams.storeSelectingType;
+        shopCarModel.storesId = self.proPriceByStoreParams.storeIds;
+        shopCarModel.areasId = self.proPriceByStoreParams.areaIds;
+        shopCarModel.items = userSource;
+        shopCarModel.acceptableCoinTypes = produceDetail.acceptableCoinTypes;
         
-        [array addObject:shopCarModel];
-        self.addShoppCarButton.alpha = 0.5;
-        self.addShoppCarButton.userInteractionEnabled = NO;
-        [[HUDConfig shareHUD]SuccessHUD:@"成功加入" delay:DELAY];
+        if ([produceDetail.isPackagePrice integerValue] == 1) {
+            shopCarModel.amount = produceDetail.price;
+        }else {
+            shopCarModel.amount = price;
+        }
+        
+        NSLog(@"shopCarModel = %@",shopCarModel.mj_keyValues);
+        
+        NSString *filePath = [NSString stringWithFormat:@"%@/%@",[HYSandbox docPath],SHOPPING_CAR];
+        NSArray *shoppings = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+        NSMutableArray *array = [NSMutableArray array];
+        
+        if (shoppings) {
+            [array addObjectsFromArray:shoppings];
+            [array addObject:shopCarModel];
+            self.addShoppCarButton.alpha = 0.5;
+            self.addShoppCarButton.userInteractionEnabled = NO;
+            [[HUDConfig shareHUD]SuccessHUD:@"成功加入" delay:DELAY];
+            
+        }else {
+            
+            [array addObject:shopCarModel];
+            self.addShoppCarButton.alpha = 0.5;
+            self.addShoppCarButton.userInteractionEnabled = NO;
+            [[HUDConfig shareHUD]SuccessHUD:@"成功加入" delay:DELAY];
+        }
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"addCart" object:self userInfo:nil];
+        [NSKeyedArchiver archiveRootObject:array toFile:filePath];
     }
     
-    [NSKeyedArchiver archiveRootObject:array toFile:filePath];
 }
 
 - (IBAction)buyNowAction:(id)sender {
