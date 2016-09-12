@@ -148,18 +148,25 @@
     MethodBagCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     ShopingCarModel *model = productArr[indexPath.row];
     
+    
     if (cell.isSelected.selected) {
         
         cell.isSelected.selected = NO;
-        self.totalPrice.text = [NSString stringWithFormat:@"%ld",[self.totalPrice.text integerValue] - [model.amount integerValue]];
         [SelectProArray removeObject:model];
         
     }else {
         
         cell.isSelected.selected = YES;
         [SelectProArray addObject:model];
-        self.totalPrice.text = [NSString stringWithFormat:@"%ld",[self.totalPrice.text integerValue] + [model.amount integerValue]];
     }
+    
+    
+    CGFloat totalPrice = 0.0;
+    for (ShopingCarModel *model in SelectProArray) {
+        
+        totalPrice += [model.amount floatValue];
+    }
+    self.totalPrice.text = [NSString stringWithFormat:@"%.0f",totalPrice];
     
     if (productArr != SelectProArray) {
         
@@ -184,7 +191,6 @@
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
             MethodBagCell *cell = [self.tableV cellForRowAtIndexPath:indexPath];
             cell.isSelected.selected = NO;
-            
         }
         
     }else {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="组-4" translatesAutoresizingMaskIntoConstraints="NO" id="XA7-fw-9iy">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="玖妈妈登陆图" translatesAutoresizingMaskIntoConstraints="NO" id="XA7-fw-9iy">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="XA7-fw-9iy" secondAttribute="height" multiplier="4:3" id="5z0-8D-jm7"/>
@@ -416,7 +416,7 @@
         <image name="已取消" width="20" height="20"/>
         <image name="感叹号" width="18" height="18"/>
         <image name="显示" width="22" height="13"/>
+        <image name="玖妈妈登陆图" width="750" height="640"/>
         <image name="组-1" width="14" height="13"/>
-        <image name="组-4" width="375" height="318"/>
     </resources>
 </document>
