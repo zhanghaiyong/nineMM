@@ -17,6 +17,7 @@
 {
 
     NSMutableArray *orderListArr;
+    BOOL isRefresh;
 }
 @property (nonatomic,strong)OrderListParams *params;
 
@@ -97,6 +98,7 @@
         
         self.params.page = 1;
         
+        isRefresh = YES;
         [self getOrderList];
         
     }];
@@ -106,10 +108,11 @@
         
         self.params.page += 1;
         
+        isRefresh = NO;
         [self getOrderList];
     }];
     
-    [self.tableView.mj_header beginRefreshing];
+    [self getOrderList];
     
 }
 
@@ -121,13 +124,25 @@
         
         FxLog(@"getOrderList = %@",dataDic);
         
+        if (!isRefresh) {
+            
+            [[HUDConfig shareHUD]dismiss];
+        }
         if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
             
-            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            if (isRefresh) {
+                
+                [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            }
             
             if (![[dataDic objectForKey:@"retObj"] isEqual:[NSNull null]]) {
                 
                 NSArray *sourceData = [[dataDic objectForKey:@"retObj"] objectForKey:@"rows"];
+                
+                if (sourceData.count == 0) {
+                    
+                    [[HUDConfig shareHUD]SuccessHUD:@"暂无订单" delay:DELAY];
+                }
                 
                 if (self.params.page == 1) {
                     
@@ -152,9 +167,6 @@
                 [self.tableView reloadData];
             }
             
-        }else {
-            
-            [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
         }
         
     } failure:^(NSError *error) {

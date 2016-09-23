@@ -106,7 +106,6 @@
             self.addShoppCarButton.alpha = 0.5;
             self.addShoppCarButton.userInteractionEnabled = NO;
         }
-        
     }];
     
     self.tableView.tableFooterView = [[UIView alloc]init];
@@ -130,10 +129,11 @@
     
     [KSMNetworkRequest postRequest:KProduceDetail params:params.mj_keyValues success:^(NSDictionary *dataDic) {
         FxLog(@"produceDetailData = %@",dataDic);
-        
+
+        [[HUDConfig shareHUD]dismiss];
         if ([[dataDic objectForKey:@"retCode"]integerValue] == 0) {
             
-            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+//            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
             
             if (((NSDictionary *)[dataDic objectForKey:@"retObj"]).count !=0) {
                 
@@ -440,8 +440,20 @@
         return;
     }
     
-    if (produceDetail.price.length > 0 || price.length > 0) {
+    
+    if ([produceDetail.isPackagePrice integerValue] == 1) {
         
+        if (produceDetail.price.length == 0) {
+            return;
+        }
+    }else {
+        
+        if (price.length == 0) {
+            
+            return;
+        }
+    }
+    
         [[HUDConfig shareHUD]alwaysShow];
         ShopingCarModel *shopCarModel = [[ShopingCarModel alloc]init];
         shopCarModel.fullName = produceDetail.fullName;
@@ -481,7 +493,6 @@
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"addCart" object:self userInfo:nil];
         [NSKeyedArchiver archiveRootObject:array toFile:filePath];
-    }
     
 }
 

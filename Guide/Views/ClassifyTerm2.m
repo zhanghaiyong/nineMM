@@ -141,13 +141,13 @@
 //    }
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-
-    if ([self.delegate respondsToSelector:@selector(closeTerm2View)]) {
-        
-        [self.delegate closeTerm2View];
-    }
-    
-}
+//- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+//
+//    if ([self.delegate respondsToSelector:@selector(closeTerm2View)]) {
+//        
+//        [self.delegate closeTerm2View];
+//    }
+//    
+//}
 
 @end

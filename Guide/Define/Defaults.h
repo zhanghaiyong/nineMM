@@ -51,8 +51,9 @@
 #define ARESTREE      (@"AreasTree")
 #define APPVERSION    (@"appVersion")
 #define USERSOURCE    (@"userSource")
-#define DELAY 2
+#define DELAY 1
 #define PASSWORD      (@"password")
+#define USERNAME      (@"username")
 #define SHOPPING_CAR  (@"shopping_car.plist")
 
 //指定场景商品列表 eg: action:showGoodsListByTag:2

@@ -12,7 +12,10 @@
 #import "MainProduceModel.h"
 #import "ProduceDetailViewController.h"
 #import "NoChatList.h"
-@interface GoodsViewController ()
+@interface GoodsViewController (){
+
+    BOOL isRefresh;
+}
 
 @property (nonatomic,strong)NSMutableArray *produces;
 @property (nonatomic,strong)MainProduceListParams *params;
@@ -50,7 +53,7 @@
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
         self.params.page = 1;
-        
+        isRefresh = YES;
         [self loadProduceList];
         
     }];
@@ -59,11 +62,11 @@
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         
         self.params.page += 1;
-        
+        isRefresh = NO;
         [self loadProduceList];
     }];
     
-    [self.tableView.mj_header beginRefreshing];
+       [self loadProduceList];
     
 }
 
@@ -75,10 +78,17 @@
     
     [KSMNetworkRequest postRequest:KHomePageProcudeList params:self.params.mj_keyValues success:^(NSDictionary *dataDic) {
         
+        if (!isRefresh) {
+            
+            [[HUDConfig shareHUD]dismiss];
+        }
         FxLog(@"loadProduceList = %@",dataDic);
         if ([[dataDic objectForKey:@"retCode"]integerValue] == 0) {
             
-            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            if (isRefresh) {
+                
+                [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            }
             
             if (![[dataDic objectForKey:@"retObj"] isEqual:[NSNull null]]) {
                 
@@ -92,7 +102,6 @@
                     [self.view addSubview:noChatList];
                     return;
                 }
-                
                 
                 //等于1，说明是刷新
                 if (self.params.page == 1) {

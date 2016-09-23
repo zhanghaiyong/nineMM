@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -28,13 +28,13 @@
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="图层-146" translatesAutoresizingMaskIntoConstraints="NO" id="wMM-rb-bEE">
-                        <rect key="frame" x="120.5" y="38" width="27" height="27"/>
+                        <rect key="frame" x="120" y="38" width="27" height="27"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="27" id="E9W-5s-AK3"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="图层-143" translatesAutoresizingMaskIntoConstraints="NO" id="Dgu-Wc-KmJ">
-                        <rect key="frame" x="192.5" y="38" width="27.5" height="27"/>
+                        <rect key="frame" x="192" y="38" width="27.5" height="27"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="27" id="nmk-vQ-Hzd"/>
                         </constraints>
@@ -46,48 +46,52 @@
                         </constraints>
                     </imageView>
                     <button opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999999" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4x-5Z-gWK">
-                        <rect key="frame" x="24" y="42" width="19" height="19"/>
+                        <rect key="frame" x="20" y="41" width="55" height="20"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="19" id="6aX-pZ-bWi"/>
-                            <constraint firstAttribute="width" constant="19" id="886-gr-BZQ"/>
+                            <constraint firstAttribute="height" constant="20" id="6aX-pZ-bWi"/>
+                            <constraint firstAttribute="width" constant="55" id="886-gr-BZQ"/>
                         </constraints>
-                        <state key="normal" title="Button" image="椭圆-6"/>
+                        <inset key="imageEdgeInsets" minX="-30" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" image="椭圆-6"/>
                         <state key="selected" image="组-17"/>
                         <connections>
                             <action selector="coinTypeAction:" destination="1jh-Fe-0DK" eventType="touchUpInside" id="bdN-nb-I8E"/>
                         </connections>
                     </button>
                     <button opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999999" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="54J-Aa-iEx">
-                        <rect key="frame" x="96.5" y="42" width="19" height="19"/>
+                        <rect key="frame" x="92" y="41" width="55" height="20"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="19" id="6f4-ur-o6N"/>
-                            <constraint firstAttribute="height" constant="19" id="lZl-KU-8c0"/>
+                            <constraint firstAttribute="width" constant="55" id="6f4-ur-o6N"/>
+                            <constraint firstAttribute="height" constant="20" id="lZl-KU-8c0"/>
                         </constraints>
-                        <state key="normal" title="Button" image="椭圆-6"/>
+                        <inset key="imageEdgeInsets" minX="-30" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" image="椭圆-6"/>
                         <state key="selected" image="组-17"/>
                         <connections>
                             <action selector="coinTypeAction:" destination="1jh-Fe-0DK" eventType="touchUpInside" id="XA3-Ko-AQE"/>
                         </connections>
                     </button>
                     <button opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999999" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="20B-Tl-cEq">
-                        <rect key="frame" x="168.5" y="42" width="19" height="19"/>
+                        <rect key="frame" x="165" y="41.5" width="55" height="20"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="19" id="M8e-4N-8xc"/>
-                            <constraint firstAttribute="width" constant="19" id="OWU-6j-4gZ"/>
+                            <constraint firstAttribute="height" constant="20" id="M8e-4N-8xc"/>
+                            <constraint firstAttribute="width" constant="55" id="OWU-6j-4gZ"/>
                         </constraints>
-                        <state key="normal" title="Button" image="椭圆-6"/>
+                        <inset key="imageEdgeInsets" minX="-30" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" image="椭圆-6"/>
                         <state key="selected" image="组-17"/>
                         <connections>
                             <action selector="coinTypeAction:" destination="1jh-Fe-0DK" eventType="touchUpInside" id="GBU-c0-jlO"/>
                         </connections>
                     </button>
                     <button opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999999" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0gJ-nb-ysH">
-                        <rect key="frame" x="241" y="42" width="19" height="19"/>
+                        <rect key="frame" x="237" y="41" width="55" height="20"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="19" id="6ny-yt-4m0"/>
-                            <constraint firstAttribute="height" constant="19" id="7tc-dM-fG4"/>
+                            <constraint firstAttribute="width" constant="55" id="6ny-yt-4m0"/>
+                            <constraint firstAttribute="height" constant="20" id="7tc-dM-fG4"/>
                         </constraints>
-                        <state key="normal" title="Button" image="椭圆-6"/>
+                        <inset key="imageEdgeInsets" minX="-30" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" image="椭圆-6"/>
                         <state key="selected" image="组-17"/>
                         <connections>
                             <action selector="coinTypeAction:" destination="1jh-Fe-0DK" eventType="touchUpInside" id="BPf-p2-GI8"/>
@@ -105,6 +109,8 @@
                     <constraint firstAttribute="trailingMargin" secondItem="Ui2-IW-c4V" secondAttribute="trailing" constant="20" id="HiU-u8-bXR"/>
                     <constraint firstItem="Dgu-Wc-KmJ" firstAttribute="top" secondItem="wMM-rb-bEE" secondAttribute="top" id="KKa-Dd-p5c"/>
                     <constraint firstItem="Ui2-IW-c4V" firstAttribute="leading" secondItem="Dgu-Wc-KmJ" secondAttribute="trailing" constant="45" id="MX4-Ic-sAQ"/>
+                    <constraint firstItem="Dgu-Wc-KmJ" firstAttribute="leading" secondItem="20B-Tl-cEq" secondAttribute="trailing" constant="-27.5" id="NEh-Rl-GyY"/>
+                    <constraint firstItem="Dgu-Wc-KmJ" firstAttribute="leading" secondItem="20B-Tl-cEq" secondAttribute="trailing" constant="-27.5" id="Oxf-cY-OqP"/>
                     <constraint firstItem="cI6-Ju-b9W" firstAttribute="leading" secondItem="EiZ-pK-S5P" secondAttribute="leading" constant="10" id="Q5P-oh-hcp"/>
                     <constraint firstItem="Dgu-Wc-KmJ" firstAttribute="width" secondItem="WFe-V5-fQg" secondAttribute="width" id="QNI-c1-fWs"/>
                     <constraint firstItem="wMM-rb-bEE" firstAttribute="width" secondItem="WFe-V5-fQg" secondAttribute="width" id="SGv-OV-Tbr"/>
@@ -113,11 +119,23 @@
                     <constraint firstItem="Ui2-IW-c4V" firstAttribute="leading" secondItem="0gJ-nb-ysH" secondAttribute="trailing" constant="5" id="aue-B7-GmA"/>
                     <constraint firstItem="Ui2-IW-c4V" firstAttribute="width" secondItem="WFe-V5-fQg" secondAttribute="width" id="dMr-ph-VYf"/>
                     <constraint firstItem="wMM-rb-bEE" firstAttribute="leading" secondItem="WFe-V5-fQg" secondAttribute="trailing" constant="45" id="fNZ-Y7-IUh"/>
+                    <constraint firstItem="Ui2-IW-c4V" firstAttribute="leading" secondItem="0gJ-nb-ysH" secondAttribute="trailing" constant="-27" id="hab-7v-5gB"/>
+                    <constraint firstItem="wMM-rb-bEE" firstAttribute="leading" secondItem="54J-Aa-iEx" secondAttribute="trailing" constant="-26.5" id="hlF-E1-2dt"/>
                     <constraint firstItem="WFe-V5-fQg" firstAttribute="top" secondItem="cI6-Ju-b9W" secondAttribute="bottom" constant="10" id="ioS-51-rIC"/>
                     <constraint firstItem="Ui2-IW-c4V" firstAttribute="top" secondItem="Dgu-Wc-KmJ" secondAttribute="top" id="w6j-H8-h9R"/>
                     <constraint firstItem="wMM-rb-bEE" firstAttribute="leading" secondItem="54J-Aa-iEx" secondAttribute="trailing" constant="5" id="x5G-Rf-koZ"/>
+                    <constraint firstItem="WFe-V5-fQg" firstAttribute="leading" secondItem="d4x-5Z-gWK" secondAttribute="trailing" constant="-27" id="zEw-gL-NXM"/>
                     <constraint firstItem="WFe-V5-fQg" firstAttribute="leading" secondItem="d4x-5Z-gWK" secondAttribute="trailing" constant="5" id="zrl-e4-ezo"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="zrl-e4-ezo"/>
+                        <exclude reference="x5G-Rf-koZ"/>
+                        <exclude reference="NEh-Rl-GyY"/>
+                        <exclude reference="ZaU-Ii-dDb"/>
+                        <exclude reference="aue-B7-GmA"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="button1" destination="d4x-5Z-gWK" id="ZOb-uG-y6C"/>

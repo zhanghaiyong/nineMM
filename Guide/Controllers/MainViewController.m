@@ -32,6 +32,7 @@
 {
 
     SearchBar *searchBar;
+    BOOL isRefresh;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -185,6 +186,7 @@
         
         self.produceListParams.page = 1;
         
+        isRefresh = YES;
         [self loadProduceList];
         
     }];
@@ -193,11 +195,11 @@
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         
         self.produceListParams.page += 1;
-        
+        isRefresh = NO;
         [self loadProduceList];
     }];
     
-    [self.tableView.mj_header beginRefreshing];
+    [self loadProduceList];
     
 }
 
@@ -209,10 +211,19 @@
     
     [KSMNetworkRequest postRequest:KHomePageProcudeList params:self.produceListParams.mj_keyValues success:^(NSDictionary *dataDic) {
 
+        
+        if (!isRefresh) {
+
+            [[HUDConfig shareHUD]dismiss];
+        }
+        
         FxLog(@"loadProduceList = %@",dataDic);
         if ([[dataDic objectForKey:@"retCode"]integerValue] == 0) {
             
-            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            if (isRefresh ) {
+             
+                [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            }
             
             if (![[dataDic objectForKey:@"retObj"] isEqual:[NSNull null]]) {
                 

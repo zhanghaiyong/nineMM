@@ -83,6 +83,7 @@
             
             return 410;
         }
+        
         return 370;
         
     }else {
@@ -153,6 +154,7 @@
         cell.orderTotalPrice.text = orderDetail.totalPrice;
         cell.payMethod.text = orderDetail.paymentMethodName;
         cell.orderType.text = orderDetail.orderTypeName;
+
         if (orderDetail.packagedProductName.length == 0) {
             
             cell.packageH.constant = 0;
@@ -298,7 +300,12 @@
 
     [KSMNetworkRequest postRequest:KGetOrderShops params:self.shopParams.mj_keyValues success:^(NSDictionary *dataDic) {
         
+        [[HUDConfig shareHUD]Tips:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+        
         FxLog(@"orderShop = %@  \n%@",dataDic,self.shopParams.mj_keyValues);
+        
+        if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
+            
         
         NSString *jsonStr = [[dataDic objectForKey:@"retObj"] objectForKey:@"rows"];
         NSData *jsonData = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
@@ -335,14 +342,7 @@
         }
 
         [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        
-        if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
             
-            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
-            
-        }else {
-            
-            [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
         }
         
     } failure:^(NSError *error) {

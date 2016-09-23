@@ -12,6 +12,7 @@
 {
     PersionModel *persionModel;
     NSData *avatarData;
+    BOOL isRefresh;
 }
 @property (weak, nonatomic) IBOutlet UIImageView *avatar;
 @property (weak, nonatomic) IBOutlet UILabel *userName;
@@ -54,11 +55,12 @@
         //刷新
         self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
             
+            isRefresh = YES;
             [self loadPersionData];
         }];
     
     if (!persionModel) {
-        [self.tableView.mj_header beginRefreshing];
+        [self loadPersionData];
     }
 }
 
@@ -75,8 +77,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clearPersionModel:) name:@"clearPersionDara" object:nil];
 
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapToSetAvatar)];
-    [self.avatar addGestureRecognizer:tap];
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapToSetAvatar)];
+//    [self.avatar addGestureRecognizer:tap];
 }
 
 - (void)tapToSetAvatar {
@@ -247,11 +249,19 @@
         
         FxLog(@"PersionData = %@",dataDic);
         
+        if (!isRefresh) {
+            
+            [[HUDConfig shareHUD]dismiss];
+        }
+        
         [self.tableView.mj_header endRefreshing];
         
         if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
             
-            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            if (isRefresh) {
+                
+                [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            }
             
             if (![[dataDic objectForKey:@"retObj"] isEqual:[NSNull null]]) {
                 
@@ -270,7 +280,7 @@
                 }
                 
                 //头像
-                [Uitils cacheImagwWithSize:_avatar.size imageID:[persionModel.memberInfo objectForKey:@"avatarImgId"] imageV:_avatar placeholder:nil];
+                [Uitils cacheImagwWithSize:_avatar.size imageID:[persionModel.memberInfo objectForKey:@"avatarImgId"] imageV:_avatar placeholder:@"组-23"];
                 //用户名
                 _userName.text = [persionModel.memberInfo objectForKey:@"departmentName"];
                 _userType.text = [persionModel.memberInfo objectForKey:@"nick"];
@@ -291,6 +301,9 @@
                 self.tabBarController.selectedIndex = 0;
                 
             }];
+        }else {
+        
+            [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
         }
         
     } failure:^(NSError *error) {

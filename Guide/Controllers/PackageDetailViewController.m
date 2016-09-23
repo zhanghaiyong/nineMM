@@ -87,9 +87,10 @@
     [KSMNetworkRequest postRequest:KPackageDetail params:params.mj_keyValues success:^(NSDictionary *dataDic) {
         FxLog(@"packageDetailData = %@",dataDic);
         
+        [[HUDConfig shareHUD]dismiss];
         if ([[dataDic objectForKey:@"retCode"]integerValue] == 0) {
             
-            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+//            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
             
             if (((NSDictionary *)[dataDic objectForKey:@"retObj"]).count !=0) {
                 
@@ -116,6 +117,10 @@
                 
                 [self.navigationController popViewControllerAnimated:YES];
             }];
+            
+        }else {
+        
+            [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
         }
         
     } failure:^(NSError *error) {

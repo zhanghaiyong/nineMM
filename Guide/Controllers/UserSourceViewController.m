@@ -10,6 +10,7 @@
     //选择的数据
     NSMutableArray *selectArr;
     SourceListHead *cellHead;
+    BOOL isRefresh;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,strong)UserSourceParams *params;
@@ -43,7 +44,7 @@
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
         self.params.page = 1;
-        
+        isRefresh = YES;
         [self freshUserSource];
         
     }];
@@ -52,11 +53,11 @@
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         
         self.params.page += 1;
-        
+        isRefresh = NO;
         [self freshUserSource];
     }];
     
-    [self.tableView.mj_header beginRefreshing];
+    [self freshUserSource];
     
 }
 
@@ -68,9 +69,17 @@
         
         FxLog(@"getUserSource = %@  \n params = %@",dataDic,self.params.mj_keyValues);
         
+        if (!isRefresh) {
+            
+            [[HUDConfig shareHUD]dismiss];
+        }
+        
         if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
             
-            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            if (isRefresh) {
+                
+                [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            }
             
             if (![[dataDic objectForKey:@"retObj"] isEqual:[NSNull null]]) {
                 

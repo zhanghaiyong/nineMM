@@ -14,6 +14,7 @@
 @interface CoinsDetailViewCtrl ()<UITableViewDelegate,UITableViewDataSource>{
 
     NSMutableArray *coinsDetailMsgArr;
+    BOOL isRefresh;
 }
 @property (nonatomic,strong)CoinsDetailParams *params;
 @end
@@ -48,7 +49,7 @@
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
         self.params.page = 1;
-        
+        isRefresh = YES;
         [self getCoinsDetail];
         
     }];
@@ -57,11 +58,11 @@
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         
         self.params.page += 1;
-        
+        isRefresh = NO;
         [self getCoinsDetail];
     }];
     
-    [self.tableView.mj_header beginRefreshing];
+    [self getCoinsDetail];
     
 }
 
@@ -74,13 +75,27 @@
         
         FxLog(@"getCoinsDetail = %@",dataDic);
         
+        if (!isRefresh) {
+            
+            [[HUDConfig shareHUD]dismiss];
+        }
+        
         if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
             
-            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            if (isRefresh) {
+                
+                [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            }
             
             if (![[dataDic objectForKey:@"retObj"] isEqual:[NSNull null]]) {
                 
                 NSArray *sourceData = [[dataDic objectForKey:@"retObj"] objectForKey:@"rows"];
+                
+                if (sourceData.count == 0) {
+                    
+                    [[HUDConfig shareHUD]SuccessHUD:@"暂无酒币明细" delay:DELAY];
+                }
+                
                 //等于1，说明是刷新
                 if (self.params.page == 1) {
                     

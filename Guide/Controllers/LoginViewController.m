@@ -42,6 +42,10 @@
     self.visualView.hidden = YES;
     [_accountTF setValue:@5 forKey:@"paddingLeft"];
     [_pwdTF setValue:@5 forKey:@"paddingLeft"];
+    
+    if ([Uitils getUserDefaultsForKey:USERNAME]) {
+        _accountTF.text = [Uitils getUserDefaultsForKey:USERNAME];
+    }
 }
 - (IBAction)backAction:(id)sender {
     
@@ -63,6 +67,28 @@
 }
 
 #pragma mark UITextField
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+    if ([string isEqualToString:@" "] || [string isEqualToString:@"\n"]) {
+        return NO;
+    }
+    
+    if (textField == self.pwdTF) {
+        
+        NSString *tempString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        
+        NSLog(@"%ld",tempString.length);
+        if (tempString.length > 20) {
+            
+            [[HUDConfig shareHUD]Tips:@"密码长度不超过20" delay:DELAY];
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
 
     [textField resignFirstResponder];
@@ -93,6 +119,12 @@
         
     }
     
+    if (_pwdTF.text.length < 6 || _pwdTF.text.length > 20) {
+        
+        [[HUDConfig shareHUD]Tips:@"密码长度应该在6-20" delay:DELAY];
+        return;
+    }
+    
     [[HUDConfig shareHUD] alwaysShow];
     LoginParams *params = [[LoginParams alloc]init];
     params.username     = _accountTF.text;
@@ -104,12 +136,14 @@
     [KSMNetworkRequest postRequest:KLogin params:params.mj_keyValues success:^(NSDictionary *dataDic) {
         
         NSLog(@"dataDic = %@",dataDic);
+        [[HUDConfig shareHUD]dismiss];
         
         if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
             
-            [[HUDConfig shareHUD] SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+//            [[HUDConfig shareHUD] SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
             
             [Uitils setUserDefaultsObject:_pwdTF.text ForKey:PASSWORD];
+            [Uitils setUserDefaultsObject:_accountTF.text ForKey:USERNAME];
             
             
             if (![[dataDic objectForKey:@"retObj"] isEqual:[NSNull null]]) {

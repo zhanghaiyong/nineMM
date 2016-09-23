@@ -19,14 +19,16 @@
     [super viewDidLoad];
     
     self.title = @"线下支付";
-    
+    [self setNavigationLeft:@""];
     NSString *strUrl = [NSString stringWithFormat:@"%@/offlinePaymentInfo/%@.page",BaseURLString,self.orderId];
     NSURL *url = [[NSURL alloc]initWithString:strUrl];
+    //self.webView.scalesPageToFit = NO;
+    //self.webView.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
     self.webView.scrollView.showsVerticalScrollIndicator = NO;
     self.webView.scrollView.bounces = NO;
     self.webView.scrollView.showsHorizontalScrollIndicator = NO;
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
-    
+
 }
 
 - (IBAction)sureAction:(id)sender {
@@ -37,4 +39,10 @@
     orderType.fromRecharge = @"YES";
     [self.navigationController pushViewController:orderType animated:YES];
 }
+
+- (void)doBack:(UIButton *)sender
+{
+    
+}
+
 @end

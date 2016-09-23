@@ -201,8 +201,6 @@
                 
                 memberInfo = [MemberInfoModel mj_objectWithKeyValues:[dataDic objectForKey:@"retObj"]];
                 
-                
-                [Uitils cacheImagwWithSize:_avatar.size imageID:memberInfo.avatarId imageV:_avatar placeholder:nil];
                 self.name.text = memberInfo.name;
                 self.ID.text = memberInfo.username;
                 self.phone.text = memberInfo.phone;
@@ -210,6 +208,7 @@
                 self.userCode.text = memberInfo.id;
                 self.userType.text = memberInfo.typeName;
                 self.userLevel.text = memberInfo.levelName;
+                [Uitils cacheImagwWithSize:_avatar.size imageID:memberInfo.avatarId imageV:_avatar placeholder:@"组-23"];
             }
             
         }else {
@@ -224,24 +223,24 @@
 
 - (IBAction)logoutAction:(id)sender {
     
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否注销此账号?" preferredStyle:UIAlertControllerStyleAlert];
-    [alert addAction:[UIAlertAction actionWithTitle:@"是" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
-        [Uitils UserDefaultRemoveObjectForKey:TOKEN];
-        [Uitils UserDefaultRemoveObjectForKey:PASSWORD];
-        self.tabBarController.selectedIndex = 0;
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"clearPersionDara" object:self userInfo:nil];
-        
-        [self.navigationController popToRootViewControllerAnimated:YES];
-        
-    }]];
-    
-    [alert addAction:[UIAlertAction actionWithTitle:@"否" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        
-    }]];
-    
-    [self presentViewController:alert animated:YES completion:nil];
+//    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否注销此账号?" preferredStyle:UIAlertControllerStyleAlert];
+//    [alert addAction:[UIAlertAction actionWithTitle:@"是" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//        
+//        [Uitils UserDefaultRemoveObjectForKey:TOKEN];
+//        [Uitils UserDefaultRemoveObjectForKey:PASSWORD];
+//        self.tabBarController.selectedIndex = 0;
+//        
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"clearPersionDara" object:self userInfo:nil];
+//        
+//        [self.navigationController popToRootViewControllerAnimated:YES];
+//        
+//    }]];
+//    
+//    [alert addAction:[UIAlertAction actionWithTitle:@"否" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+//        
+//    }]];
+//    
+//    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark UITableViewDelegate&&UITableViewDataSource

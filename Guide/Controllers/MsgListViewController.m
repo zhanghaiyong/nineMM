@@ -11,7 +11,11 @@
 #import "MsgListModel.h"
 #import "MsgListCell.h"
 #import "MsgDetailViewController.h"
-@interface MsgListViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface MsgListViewController ()<UITableViewDelegate,UITableViewDataSource>{
+    
+    BOOL isRefresh;
+}
+
 @property (nonatomic,strong)MsgListParams *params;
 @property (nonatomic,strong)NSMutableArray *msgLists;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -50,7 +54,7 @@
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
         self.params.page = 1;
-        
+        isRefresh = YES;
         [self loadMsgList];
         
     }];
@@ -59,11 +63,11 @@
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         
         self.params.page += 1;
-        
+        isRefresh = NO;
         [self loadMsgList];
     }];
     
-    [self.tableView.mj_header beginRefreshing];
+    [self loadMsgList];
     
 }
 
@@ -76,10 +80,17 @@
     [KSMNetworkRequest postRequest:KNotificationList params:self.params.mj_keyValues success:^(NSDictionary *dataDic) {
         
         FxLog(@"KNotificationList = %@",dataDic);
+        if (!isRefresh) {
+            
+            [[HUDConfig shareHUD]dismiss];
+        }
         
         if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
             
-            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            if (isRefresh) {
+                
+                [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            }
             
             if (![[dataDic objectForKey:@"retObj"] isEqual:[NSNull null]]) {
                 

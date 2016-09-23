@@ -13,7 +13,10 @@
 #import "ProduceDetailViewController.h"
 #import "NoChatList.h"
 @interface FeatureViewController ()
+{
 
+    BOOL isRefresh;
+}
 
 @property (nonatomic,strong)FeatureParams *params;
 @property (nonatomic,strong)NSMutableArray *features;
@@ -49,7 +52,7 @@
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
         self.params.page = 1;
-        
+        isRefresh = YES;
         [self featureList];
         
     }];
@@ -58,11 +61,11 @@
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         
         self.params.page += 1;
-        
+        isRefresh = NO;
         [self featureList];
     }];
     
-    [self.tableView.mj_header beginRefreshing];
+    [self featureList];
     
 }
 
@@ -75,10 +78,18 @@
     
     [KSMNetworkRequest postRequest:appQueryProductListByFeature params:self.params.mj_keyValues success:^(NSDictionary *dataDic) {
         
+        if (!isRefresh) {
+    
+            [[HUDConfig shareHUD]dismiss];
+        }
+    
         FxLog(@"featureList = %@",dataDic);
         if ([[dataDic objectForKey:@"retCode"]integerValue] == 0) {
             
-            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            if (isRefresh) {
+             
+                [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            }
             
             if (![[dataDic objectForKey:@"retObj"] isEqual:[NSNull null]]) {
                 

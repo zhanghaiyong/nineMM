@@ -19,11 +19,8 @@
 }
 
 - (IBAction)updateAction:(id)sender {
-    
-    if (self.emailTF.text.length > 0) {
         
-        [self postData];
-    }   
+    [self postData];
 }
 
 - (void)postData {
@@ -49,6 +46,7 @@
             return;
         }
         params.phone = self.emailTF.text;
+        
     }else {
     
         if (![self.emailTF.text isEmail]) {

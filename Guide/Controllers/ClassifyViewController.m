@@ -19,6 +19,8 @@
     UITextField *searchBar;
     NSString  *searchKeyWork;
     UIButton *closeBtn;
+    BOOL isRefresh;
+    BOOL isSearch;
     
 
 }
@@ -127,6 +129,7 @@
 - (void)beginSearch:(NSNotification *)notifation {
 
     NSLog(@"sfse = %@",notifation);
+    isSearch = YES;
     searchKeyWork = notifation.userInfo[@"keyword"];
     searchBar.text = searchKeyWork;
     self.produceParams.qryKeyword = notifation.userInfo[@"keyword"];
@@ -184,7 +187,7 @@
     typeTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
         self.produceParams.page = 1;
-        
+        isRefresh = YES;
         [self loadProduceList];
         
     }];
@@ -193,11 +196,11 @@
     typeTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         
         self.produceParams.page += 1;
-        
+        isRefresh = NO;
         [self loadProduceList];
     }];
     
-    [typeTableView.mj_header beginRefreshing];
+    [self loadProduceList];
     
 }
 
@@ -213,15 +216,32 @@
         closeBtn.userInteractionEnabled = YES;
         closeBtn.alpha = 1;
         
+        if (!isSearch) {
+         
+            if (!isRefresh) {
+                
+                [[HUDConfig shareHUD]dismiss];
+            }
+        }
         FxLog(@"loadProduceList = %@",dataDic);
         if ([[dataDic objectForKey:@"retCode"]integerValue] == 0) {
             
-            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            if (isRefresh) {
+                
+                [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            }
             
             if (![[dataDic objectForKey:@"retObj"] isEqual:[NSNull null]]) {
                 
                 NSArray *rows = [[dataDic objectForKey:@"retObj"] objectForKey:@"rows"];
                 
+                if (isSearch) {
+                 
+                    if (rows.count == 0) {
+                        
+                        [[HUDConfig shareHUD]SuccessHUD:@"搜索无结果" delay:DELAY];
+                    }
+                }
                 //等于1，说明是刷新
                 if (self.produceParams.page == 1) {
                     
@@ -250,13 +270,21 @@
             [typeTableView.mj_footer endRefreshingWithNoMoreData];
         }
         
+        isSearch = NO;
+        
     } failure:^(NSError *error) {
         
+        isSearch = NO;
         [typeTableView.mj_footer endRefreshing];
     }];
 }
 
 #pragma mark UITextFieldDelegate
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+
+    isSearch = YES;
+}
+
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
     
     [searchBar resignFirstResponder];
@@ -268,6 +296,7 @@
     
     return YES;
 }
+
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField {
 

@@ -99,6 +99,25 @@
     }
 }
 
+#pragma mark UITextField
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+    if ([string isEqualToString:@" "] || [string isEqualToString:@"\n"]) {
+        return NO;
+    }
+    
+    NSString *tempString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    
+    NSLog(@"%ld",tempString.length);
+    if (tempString.length > 20) {
+        
+        [[HUDConfig shareHUD]Tips:@"密码长度不超过20" delay:DELAY];
+        return NO;
+    }
+    
+    return YES;
+}
+
 #pragma mark 验证倒计时
 - (void)countDown:(NSTimer *)time {
     
@@ -146,6 +165,12 @@
         return;
     }
     
+    if (self.resetPwd.text.length < 6 || self.resetPwd.text.length > 20) {
+        
+        [[HUDConfig shareHUD]Tips:@"密码长度应该在6-20" delay:DELAY];
+        return;
+    }
+    
     if (![self.resetPwd.text isEqual:self.repeatPwd.text]) {
         
         [[HUDConfig shareHUD]Tips:@"两次输入的密码不一致" delay:DELAY];
@@ -163,10 +188,11 @@
     
     [KSMNetworkRequest postRequest:KResetPwd params:resetPwdParams.mj_keyValues success:^(NSDictionary *dataDic) {
         
+        [[HUDConfig shareHUD]dismiss];
         NSLog(@"resetPwdParams = %@ \n dataDic = %@",resetPwdParams.mj_keyValues,dataDic);
         if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
             
-            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+//            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
             [self performSelector:@selector(doBack:) withObject:self afterDelay:1];
             
         }else {

@@ -15,6 +15,9 @@
 #import "PackageBannerModel.h"
 #import "ZHYBannerView.h"
 @interface PackageViewController ()<UITableViewDelegate,UITableViewDataSource,ZHYBannerViewDelegte>
+{
+    BOOL isRefresh;
+}
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,strong)NSMutableArray *packageArray;
@@ -65,7 +68,7 @@
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
         self.params.page = 1;
-        
+        isRefresh = YES;
         [self loadPackageData];
         
     }];
@@ -74,11 +77,11 @@
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         
         self.params.page += 1;
-        
+        isRefresh = NO;
         [self loadPackageData];
     }];
     
-    [self.tableView.mj_header beginRefreshing];
+    [self loadPackageData];
 }
 
 
@@ -91,10 +94,17 @@
     
     [KSMNetworkRequest postRequest:KArticleList params:dic success:^(NSDictionary *dataDic) {
         
+        if (!isRefresh) {
+            
+            [[HUDConfig shareHUD]dismiss];
+        }
         FxLog(@"loadBanners = %@",dataDic);
         if ([[dataDic objectForKey:@"retCode"]integerValue] == 0) {
             
-            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            if (isRefresh) {
+                
+                [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            }
             
             if (![[dataDic objectForKey:@"retObj"] isEqual:[NSNull null]]) {
                 

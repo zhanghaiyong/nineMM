@@ -3,6 +3,7 @@
 #import "NoChatList.h"
 #import "ShopingCarModel.h"
 #import "SureOrdersViewController.h"
+#import "ProduceDetailViewController.h"
 @interface MethodBagViewController ()<UITableViewDelegate,UITableViewDataSource>{
 
     NSMutableArray *productArr;
@@ -33,7 +34,17 @@
     
     SelectProArray = [NSMutableArray array];
     
-        
+    editBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    editBtn.frame = CGRectMake(0, 0, 60, 44);
+    [editBtn setTitleColor:lever1Color forState:UIControlStateNormal];
+    editBtn.titleLabel.font = lever2Font;
+    [editBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
+    [editBtn setTitle:@"编辑" forState:UIControlStateNormal];
+    [editBtn setImage:[UIImage imageNamed:@"编辑"] forState:UIControlStateNormal];
+    [editBtn addTarget:self action:@selector(edit:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:editBtn];
+    self.navigationItem.rightBarButtonItem = item;
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteLocalProduct:) name:@"deleteLocalProduct" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addCart:) name:@"addCart" object:nil];
     
@@ -54,19 +65,6 @@
     
     [self.tableV.mj_header beginRefreshing];
     
-    editBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    editBtn.frame = CGRectMake(0, 0, 60, 44);
-    [editBtn setTitleColor:lever1Color forState:UIControlStateNormal];
-    editBtn.titleLabel.font = lever2Font;
-    [editBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
-    [editBtn setTitle:@"编辑" forState:UIControlStateNormal];
-    [editBtn setImage:[UIImage imageNamed:@"编辑"] forState:UIControlStateNormal];
-    [editBtn addTarget:self action:@selector(edit:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:editBtn];
-    self.navigationItem.rightBarButtonItem = item;
-    
-    FxLog(@"SZF = %d",editBtn.selected);
-    
 }
 
 
@@ -84,6 +82,7 @@
     NSString *filePath = [NSString stringWithFormat:@"%@/%@",[HYSandbox docPath],SHOPPING_CAR];
     [NSKeyedArchiver archiveRootObject:productArr toFile:filePath];
     [self.tableV.mj_header beginRefreshing];
+    
 }
 
 - (void)addCart:(NSNotification *)notifation {
@@ -113,6 +112,15 @@
     
     ShopingCarModel *model = productArr[indexPath.row];
     
+    [cell toDetailAction:^{
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        ProduceDetailViewController *produceDetail = [mainSB instantiateViewControllerWithIdentifier:@"ProduceDetailViewController"];
+        produceDetail.produceId = model.productId;
+        [self.navigationController pushViewController:produceDetail animated:YES];
+        
+    }];
+    
     
 //    for (ShopingCarModel *selectedModel in SelectProArray) {
 //        
@@ -133,6 +141,8 @@
 //    }else {
 //    
         cell.isSelected.selected = NO;
+        self.selectAll.selected = NO;
+        self.totalPrice.text = @"0";
 //    }
 //    
     
@@ -168,8 +178,12 @@
     }
     self.totalPrice.text = [NSString stringWithFormat:@"%.0f",totalPrice];
     
-    if (productArr != SelectProArray) {
+    if (productArr.count == SelectProArray.count) {
         
+        self.selectAll.selected = YES;
+        
+    }else {
+    
         self.selectAll.selected = NO;
     }
     
@@ -179,6 +193,11 @@
 
 - (IBAction)selectAllAction:(id)sender {
     
+    if (productArr.count == 0) {
+        
+        return;
+    }
+    
     UIButton *button = (UIButton *)sender;
     
     if (button.selected) {
@@ -186,6 +205,7 @@
         [SelectProArray removeAllObjects];
         self.totalPrice.text = @"0";
         button.selected = NO;
+        
         for (int i = 0; i< productArr.count; i++) {
             
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
@@ -195,20 +215,20 @@
         
     }else {
         
-        //在统计总价之前先清零
-        self.totalPrice.text = @"0";
         //先把已经选择的商品移除
         [SelectProArray removeAllObjects];
         //再加入所有商品
         [SelectProArray addObjectsFromArray:productArr];
         button.selected = YES;
         
+        CGFloat totalPrice = 0.0;
         for (int i = 0; i< SelectProArray.count; i++) {
             
             ShopingCarModel *model = SelectProArray[i];
+            totalPrice += [model.amount floatValue];
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
             MethodBagCell *cell = [self.tableV cellForRowAtIndexPath:indexPath];
-            self.totalPrice.text = [NSString stringWithFormat:@"%ld",[self.totalPrice.text integerValue] + [model.amount integerValue]];
+            self.totalPrice.text = [NSString stringWithFormat:@"%.0f",totalPrice];
             cell.isSelected.selected = YES;
         }
     }
@@ -219,6 +239,11 @@
     
      NSLog(@"DGrg = %ld",SelectProArray.count);
     
+    if (productArr.count == 0) {
+        
+        return;
+    }
+    
     if (sender.selected) {
         [self.checkoutOrDelete setTitle:@"立即购买" forState:UIControlStateNormal];
         [sender setTitle:@"编辑" forState:UIControlStateNormal];
@@ -228,7 +253,7 @@
     
         sender.selected = YES;
         [self.checkoutOrDelete setTitle:@"删除" forState:UIControlStateNormal];
-        [sender setTitle:@"编辑..." forState:UIControlStateNormal];
+        [sender setTitle:@"完成" forState:UIControlStateNormal];
     }
 }
 
@@ -247,6 +272,7 @@
     
         if ([button.currentTitle isEqualToString:@"删除"]) {
             
+            
             self.totalPrice.text = @"0";
             for (ShopingCarModel *model in SelectProArray) {
                 
@@ -256,6 +282,14 @@
             [NSKeyedArchiver archiveRootObject:productArr toFile:filePath];
             [SelectProArray removeAllObjects];
             [self.tableV reloadData];
+            
+            if (productArr.count == 0) {
+                
+                [self.checkoutOrDelete setTitle:@"立即购买" forState:UIControlStateNormal];
+                [editBtn setTitle:@"编辑" forState:UIControlStateNormal];
+                editBtn.selected = NO;
+                self.selectAll.selected = NO;
+            }
             
         }else {
         
