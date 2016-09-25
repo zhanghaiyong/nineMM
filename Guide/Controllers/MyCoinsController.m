@@ -195,19 +195,22 @@
                 cell = [[[NSBundle mainBundle] loadNibNamed:@"MyCoinsCell3" owner:self options:nil] lastObject];
             }
             
-            switch (indexPath.row) {
-                case 0:
-                    
-                    break;
-                    
-                default:
-                    break;
-            }
-            
+
             NSDictionary *coins = self.persionModel.coins[indexPath.row];
             cell.coinImage.image = [UIImage imageNamed:[Uitils toImageName:coins.allKeys[0]]];
             cell.coinName.text = [Uitils toChinses:coins.allKeys[0]];
             cell.usableCoin.text = [NSString stringWithFormat:@"%@",[coinModel objectForKey:coins.allKeys[0]]];
+            
+            
+            for (NSString *key in coinModel.allKeys) {
+                
+//                NSLog(@"yes  %@   %@",coinModel.allKeys,self.persionModel.coins);
+                if([key rangeOfString:coins.allKeys[0]].location != NSNotFound && ![key isEqualToString:coins.allKeys[0]]) {
+                    
+                    NSLog(@"yes  %@",key);
+                    cell.freezeCoin.text = [NSString stringWithFormat:@"%@",[coinModel objectForKey:key]];
+                }
+            }
             
             if ([coins.allKeys[0] isEqualToString:@"red"]) {
                 
