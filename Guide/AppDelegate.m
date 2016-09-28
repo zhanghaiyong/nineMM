@@ -38,6 +38,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    
+    
+    
     [Uitils reach];
     
     //设置键盘自动关闭
@@ -46,7 +49,6 @@
     //推送注册
     [[JiPush shareJpush] registerPush:launchOptions];
     [[JiPush shareJpush]addObserver];
-
     
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     
@@ -66,6 +68,9 @@
     
     return YES;
 }
+
+
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     

@@ -19,13 +19,12 @@
     self.view.backgroundColor = [UIColor whiteColor];
 
     IndicatorView             = [[UIActivityIndicatorView alloc ]initWithFrame:CGRectMake(SCREEN_WIDTH/2-15,SCREEN_HEIGHT/2-15,30.0,30.0)];
-//    IndicatorView.center      = self.view.center;
     IndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
     [self.view addSubview:IndicatorView];
     [IndicatorView startAnimating];//启动
 
     [self getSessionID];
-
+    
 }
 
 //判断是否存储了图片
@@ -51,10 +50,17 @@
     NSMutableDictionary *params = [[NSMutableDictionary alloc]init];
     [params setObject:sessionId forKey:@"sessionId"];
     
-    if (![[Uitils getUserDefaultsForKey:APPVERSION] isEqualToString:app_Version]) {
+    
+    NSString *rootPath = [HYSandbox docPath];
+    NSString *filePath = [NSString stringWithFormat:@"%@/%@",rootPath,ARESTREE];
+    NSArray *areaTree  = [NSArray arrayWithContentsOfFile:filePath];
+    
+    if (![[Uitils getUserDefaultsForKey:APPVERSION] isEqualToString:app_Version] || areaTree.count == 0) {
         
         if ([Uitils getUserDefaultsForKey:APPVERSION]) {
+            
             [params setObject:[Uitils getUserDefaultsForKey:APPVERSION] forKey:@"areaTreeVer"];
+            
         }else {
         
             [params setObject:@"0" forKey:@"areaTreeVer"];
@@ -65,8 +71,8 @@
         [KSMNetworkRequest postRequest:KGetAreasTreeJson params:nil success:^(NSDictionary *dataDic) {
             
             FxLog(@"获取区域树 = %@",dataDic);
-            NSString *rootPath = [HYSandbox docPath];
-            NSString *filePath = [NSString stringWithFormat:@"%@/%@",rootPath,ARESTREE];
+//            NSString *rootPath = [HYSandbox docPath];
+//            NSString *filePath = [NSString stringWithFormat:@"%@/%@",rootPath,ARESTREE];
             NSLog(@"dsgdfg %@",filePath);
             if ([[[dataDic objectForKey:@"retObj"] objectForKey:@"areaTree"] writeToFile:filePath atomically:YES]) {
     

@@ -82,6 +82,8 @@
             [[HUDConfig shareHUD] dismiss];
             
             [[HUDConfig shareHUD]Tips :error.localizedDescription delay:DELAY];
+            
+            failureHandler(error);
             KSMLog(@"------请求失败-------%@",error);
         }];
         

@@ -13,6 +13,10 @@
 //文章页
 #define KArticleHtml [BaseURLString stringByAppendingString:@"/article/mobile"]
 
+
+//版本更新
+#define KVersion [BaseURLString stringByAppendingString:@"/update/ios"]
+
 //更新登录用户的基础信息
 #define KUpdateUserInfo [BaseURLString stringByAppendingString:@"/gw?cmd=updateLoginMemberInfo"]
 

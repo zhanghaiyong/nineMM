@@ -119,12 +119,6 @@
         
     }
     
-    if (_pwdTF.text.length < 6 || _pwdTF.text.length > 20) {
-        
-        [[HUDConfig shareHUD]Tips:@"密码长度应该在6-20" delay:DELAY];
-        return;
-    }
-    
     [[HUDConfig shareHUD] alwaysShow];
     LoginParams *params = [[LoginParams alloc]init];
     params.username     = _accountTF.text;

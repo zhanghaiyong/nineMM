@@ -54,8 +54,15 @@
     _imageArray = imageArray;
     
     self.pageControl.numberOfPages = imageArray.count;
-    self.pageControl.currentPage = 0;
-//            [self addTimer];
+    
+    
+    NSLog(@"sfsd = %ld",self.pageControl.currentPage);
+    
+    
+    if (imageArray.count > 1) {
+     
+        [self addTimer];
+    }
     
     [self.ScrollView setContentSize:CGSizeMake((imageArray.count + 2) * self.width, 0)];
     CGSize scrollViewSize = self.size;
@@ -100,7 +107,7 @@
 }
 
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
         NSInteger page = scrollView.contentOffset.x / scrollView.width;
         FxLog(@"page = %ld",page);
@@ -116,9 +123,39 @@
             self.pageControl.currentPage = 0;
             // 如果是第最后一页就跳转到数组第一个元素的地点
             [scrollView setContentOffset:CGPointMake(scrollView.width, 0)];
-            
         }
 }
+
+- (void)addTimer {
+
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(nextImage) userInfo:nil repeats:YES];
+    
+}
+
+- (void)nextImage {
+    
+    int page = (int)self.pageControl.currentPage;
+    
+    NSLog(@"sfds = %d",page);
+
+    if (page == [self.imageArray count]-1) {
+        
+        page = 0;
+       [self.ScrollView setContentOffset:CGPointMake(0, 0)];
+        
+    }else {
+        
+        page++;
+        
+        [self.ScrollView setContentOffset:CGPointMake(self.ScrollView.width*page, 0)];
+        
+        }
+    
+    self.pageControl.currentPage = page;
+    
+}
+
 
 - (void)imageTap:(UITapGestureRecognizer *)gesture {
 

@@ -196,28 +196,30 @@
             }
             
 
-            NSDictionary *coins = self.persionModel.coins[indexPath.row];
-            cell.coinImage.image = [UIImage imageNamed:[Uitils toImageName:coins.allKeys[0]]];
-            cell.coinName.text = [Uitils toChinses:coins.allKeys[0]];
-            cell.usableCoin.text = [NSString stringWithFormat:@"%@",[coinModel objectForKey:coins.allKeys[0]]];
-            
-            
-            for (NSString *key in coinModel.allKeys) {
+            if (coinModel) {
                 
-//                NSLog(@"yes  %@   %@",coinModel.allKeys,self.persionModel.coins);
-                if([key rangeOfString:coins.allKeys[0]].location != NSNotFound && ![key isEqualToString:coins.allKeys[0]]) {
-                    
-                    NSLog(@"yes  %@",key);
-                    cell.freezeCoin.text = [NSString stringWithFormat:@"%@",[coinModel objectForKey:key]];
+                NSDictionary *coins = self.persionModel.coins[indexPath.row];
+                cell.coinImage.image = [UIImage imageNamed:[Uitils toImageName:coins.allKeys[0]]];
+                cell.coinName.text = [Uitils toChinses:coins.allKeys[0]];
+                cell.usableCoin.text = [NSString stringWithFormat:@"%@",[coinModel objectForKey:coins.allKeys[0]]];
+                
+                
+                for (NSString *key in coinModel.allKeys) {
+                    //                NSLog(@"yes  %@   %@",coinModel.allKeys,self.persionModel.coins);
+                    if([key rangeOfString:coins.allKeys[0]].location != NSNotFound && ![key isEqualToString:coins.allKeys[0]]) {
+                        
+                        NSLog(@"yes  %@",key);
+                        cell.freezeCoin.text = [NSString stringWithFormat:@"%@",[coinModel objectForKey:key]];
+                    }
                 }
-            }
-            
-            if ([coins.allKeys[0] isEqualToString:@"red"]) {
                 
-                if (((NSDictionary *)[coinModel objectForKey:@"expiryInfo"]).count != 0) {
+                if ([coins.allKeys[0] isEqualToString:@"red"]) {
                     
-                    cell.expireLabel.hidden = NO;
-                    cell.expireLabel.text = [NSString stringWithFormat:@"%@到%@过期",[[coinModel objectForKey:@"expiryInfo"] objectForKey:@"amount"],[[[coinModel objectForKey:@"expiryInfo"] objectForKey:@"expiryDate"] substringToIndex:10]];
+                    if (((NSDictionary *)[coinModel objectForKey:@"expiryInfo"]).count != 0) {
+                        
+                        cell.expireLabel.hidden = NO;
+                        cell.expireLabel.text = [NSString stringWithFormat:@"%@到%@过期",[[coinModel objectForKey:@"expiryInfo"] objectForKey:@"amount"],[[[coinModel objectForKey:@"expiryInfo"] objectForKey:@"expiryDate"] substringToIndex:10]];
+                    }
                 }
             }
             

@@ -2574,7 +2574,7 @@
                     <view key="view" contentMode="scaleToFill" id="Q8p-gU-UI7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="TNr-rL-Vdz"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

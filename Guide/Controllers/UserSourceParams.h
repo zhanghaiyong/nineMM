@@ -12,6 +12,7 @@
 
 @property (nonatomic,assign)int rows;
 @property (nonatomic,assign)int page;
-@property (nonatomic,strong)NSString *productId;
+@property (nonatomic,assign)int productId;
+@property (nonatomic,strong)NSString *keyword;
 
 @end

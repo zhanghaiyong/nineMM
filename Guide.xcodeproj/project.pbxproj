@@ -31,6 +31,7 @@
 		789E78DD1CB633580039AC69 /* NSString+HYExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 789E78DC1CB633580039AC69 /* NSString+HYExtension.m */; };
 		789E78E41CB63E7E0039AC69 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 789E78E31CB63E7E0039AC69 /* BaseViewController.m */; };
 		A55FFC3F52EF8FC613B238CB /* libPods-Guide.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD770AF8A4235D3FEBA684A1 /* libPods-Guide.a */; };
+		BF080FA01D98FE7600E5B21E /* VersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF080F9F1D98FE7600E5B21E /* VersionModel.m */; };
 		BF2655F21D58D6E20094A1A9 /* DatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2655F01D58D6E20094A1A9 /* DatePickerView.m */; };
 		BF2655F31D58D6E20094A1A9 /* DatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF2655F11D58D6E20094A1A9 /* DatePickerView.xib */; };
 		BF2655F91D59BC5F0094A1A9 /* ValidCodeParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2655F81D59BC5F0094A1A9 /* ValidCodeParams.m */; };
@@ -271,6 +272,8 @@
 		789E78E21CB63E7E0039AC69 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		789E78E31CB63E7E0039AC69 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		BD770AF8A4235D3FEBA684A1 /* libPods-Guide.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Guide.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF080F9E1D98FE7600E5B21E /* VersionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersionModel.h; sourceTree = "<group>"; };
+		BF080F9F1D98FE7600E5B21E /* VersionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VersionModel.m; sourceTree = "<group>"; };
 		BF2655EF1D58D6E20094A1A9 /* DatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerView.h; sourceTree = "<group>"; };
 		BF2655F01D58D6E20094A1A9 /* DatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerView.m; sourceTree = "<group>"; };
 		BF2655F11D58D6E20094A1A9 /* DatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerView.xib; sourceTree = "<group>"; };
@@ -776,6 +779,8 @@
 				BF3C3C101D38AC25000E3027 /* 个人中心 */,
 				BFA2B7241CF6EE3600EB460E /* PageInfo.h */,
 				BFA2B7221CF6EE1B00EB460E /* PageInfo.m */,
+				BF080F9E1D98FE7600E5B21E /* VersionModel.h */,
+				BF080F9F1D98FE7600E5B21E /* VersionModel.m */,
 				BF2656061D60BF930094A1A9 /* 购物车 */,
 				BF93CEBD1D523E5B00767C0C /* 打包套餐 */,
 				BF5D3F731D50E9E100AD7A44 /* 消息中心 */,
@@ -1744,6 +1749,7 @@
 				BF7F92771D26937D0081578F /* BaseParams.m in Sources */,
 				BFF3DD421D2379AB00F5F9B1 /* SourceListHead.m in Sources */,
 				BFD69E961CF8A5AB00B50A6E /* Produce1Model.m in Sources */,
+				BF080FA01D98FE7600E5B21E /* VersionModel.m in Sources */,
 				BF99BC6D1D5372E80015FA24 /* PackageMealBannerCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

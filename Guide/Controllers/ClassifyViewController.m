@@ -120,6 +120,13 @@
 }
 
 
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    self.tabBarController.tabBar.hidden = NO;
+}
+
+
 - (void)viewDidLoad {
     
     [super viewDidLoad];
@@ -461,15 +468,22 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    MainProduceModel *model = self.produces[indexPath.row];
-    if (model.tags.count > 0) {
+    MainProduceModel *model = self.produces[indexPath.section];
+    
+    CGFloat cellH = 105.0;
+    
+    if (model.terms.length > 0) {
         
-        return 170;
-        
-    }else {
-        
-        return 140;
+        cellH += 30.0;
     }
+    
+    if (model.tags.count > 0) {
+        cellH += 25.0;
+    }
+    
+
+    NSLog(@"sFZasdgxdf = %@",model.terms);
+    return cellH;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -490,6 +504,9 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"Main4Cell" owner:self options:nil] lastObject];
     }
     
+    cell.backgroundColor = [Uitils colorWithHex:0xf4f4f4];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     if (self.produces.count > 0) {
         
         MainProduceModel *model = self.produces[indexPath.section];
@@ -504,24 +521,33 @@
                 
                 cell.CoinsLabel.text    = model.price;
             }
-            
+
         }else {
             
             cell.CoinsLabel.text    = [NSString stringWithFormat:@"%@~%@",model.minPrice,model.maxPrice];
         }
         cell.timeLabel.text     = model.scheduleDesc;
-        cell.termsLabel.text    = model.terms;
         cell.StockLabel.text    = [NSString stringWithFormat:@"库存 %@",model.stock];
         
-        //是否收藏
-        if ([model.favorite integerValue] != 0) {
+        if (model.terms.length > 0) {
             
-            cell.collectBtn.selected = YES;
+            cell.termsHeight.constant = 30;
+            cell.termsLabel.text    = model.terms;
             
         }else {
-            
-            cell.collectBtn.selected = NO;
+        
+            cell.termsHeight.constant = 0;
         }
+        
+//        //是否收藏
+//        if ([model.favorite integerValue] != 0) {
+//            
+//            cell.collectBtn.selected = YES;
+//            
+//        }else {
+//            
+//            cell.collectBtn.selected = NO;
+//        }
         
         for (int i = 0; i<model.acceptableCoinTypes.count; i++) {
             
@@ -546,6 +572,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
+    self.tabBarController.tabBar.hidden = YES;
+    
     MainProduceModel *model = self.produces[indexPath.section];
     UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
     ProduceDetailViewController *produceDetail = [mainSB instantiateViewControllerWithIdentifier:@"ProduceDetailViewController"];

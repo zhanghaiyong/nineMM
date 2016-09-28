@@ -25,6 +25,8 @@
 
     [super viewWillAppear:animated];
     
+    self.tabBarController.tabBar.hidden = NO;
+    
 }
 
 - (void)viewDidLoad {
@@ -113,6 +115,8 @@
     ShopingCarModel *model = productArr[indexPath.row];
     
     [cell toDetailAction:^{
+        
+        self.tabBarController.tabBar.hidden = YES;
         
         UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
         ProduceDetailViewController *produceDetail = [mainSB instantiateViewControllerWithIdentifier:@"ProduceDetailViewController"];

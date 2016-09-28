@@ -155,14 +155,17 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     MainProduceModel *model = self.features[indexPath.row];
-    if (model.tags.count > 0) {
+    CGFloat cellH = 105.0;
+    
+    if (model.terms.length > 0) {
         
-        return 170;
-        
-    }else {
-        
-        return 140;
+        cellH += 30.0;
     }
+    
+    if (model.tags.count > 0) {
+        cellH += 25.0;
+    }
+    return cellH;
 
 }
 
@@ -189,8 +192,16 @@
             }
             
             cell.timeLabel.text     = model.scheduleDesc;
-            cell.termsLabel.text    = model.terms;
             cell.StockLabel.text    = [NSString stringWithFormat:@"库存 %@",model.stock];
+            if (model.terms.length > 0) {
+                
+                cell.termsHeight.constant = 30;
+                cell.termsLabel.text    = model.terms;
+                
+            }else {
+                
+                cell.termsHeight.constant = 0;
+            }
             
             //是否收藏
             if ([model.favorite integerValue] != 0) {

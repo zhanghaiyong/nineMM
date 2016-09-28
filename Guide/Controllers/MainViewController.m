@@ -28,6 +28,7 @@
 #import "GoodsViewController.h"
 #import "PackageViewController.h"
 
+#import "VersionModel.h"
 @interface MainViewController ()<UITableViewDelegate,UITableViewDataSource,ButtonViewDeleage,ZHYBannerViewDelegte,Main2CellDelegate,Main3CellDelegate,UITextFieldDelegate>
 {
 
@@ -141,10 +142,9 @@
 - (void)viewWillAppear:(BOOL)animated {
 
     [super viewWillAppear:animated];
-//    [self showTabBar];
-    self.tabBarController.tabBar.hidden = NO;
-    
     //隐藏
+    
+    self.tabBarController.tabBar.hidden = NO;
     self.navigationController.navigationBar.hidden = YES;
     self.automaticallyAdjustsScrollViewInsets = NO;
 }
@@ -155,9 +155,11 @@
     self.navigationController.navigationBar.hidden = NO;
 }
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //检查版本更新
+//    [self testVersion];
     
     searchBar = [[[NSBundle mainBundle] loadNibNamed:@"SearchBar" owner:self options:nil] lastObject];
     searchBar.frame = CGRectMake(0, 0, SCREEN_WIDTH, 64);
@@ -200,7 +202,40 @@
     }];
     
     [self loadProduceList];
+}
+
+- (void)testVersion {
     
+    [KSMNetworkRequest postRequest:KVersion params:nil success:^(NSDictionary *dataDic) {
+        
+        NSLog(@"xoxoxo =%@",dataDic);
+        
+        VersionModel *model = [VersionModel mj_objectWithKeyValues:[[dataDic objectForKey:@"ios"] objectForKey:@"advres"]];
+        
+        NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+        NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+        
+        if ([app_Version integerValue] != [model.version integerValue]) {
+            
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:model.note preferredStyle:UIAlertControllerStyleAlert];
+            
+            [alert addAction:[UIAlertAction actionWithTitle:@"是" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:model.url]];
+                
+            }]];
+            
+            [alert addAction:[UIAlertAction actionWithTitle:@"否" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            }]];
+            
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+        
+    } failure:^(NSError *error) {
+        
+        NSLog(@"version fail = %@",error);
+        
+    }];
 }
 
 - (void)loadProduceList {
@@ -241,8 +276,6 @@
                     [self.produces addObjectsFromArray:array];
                     
                 }
-                
-                NSLog(@"sdfzdf = %d",self.produceListParams.rows);
                 
                 if (rows.count < self.produceListParams.rows) {
                     
@@ -349,14 +382,17 @@
         case 3:{
             
             MainProduceModel *model = self.produces[indexPath.row];
-            if (model.tags.count > 0) {
-                
-                return 170;
-                
-            }else {
+            CGFloat cellH = 105.0;
             
-                return 140;
+            if (model.terms.length > 0) {
+                
+                cellH += 30.0;
             }
+            
+            if (model.tags.count > 0) {
+                cellH += 25.0;
+            }
+            return cellH;
         }
             break;
         default:
@@ -446,6 +482,7 @@
         case 3:{
             
             Main4Cell *cell = [[[NSBundle mainBundle] loadNibNamed:@"Main4Cell" owner:self options:nil] lastObject];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             if (self.produces.count > 0) {
              
@@ -468,8 +505,16 @@
                 }
                 
                 cell.timeLabel.text     = model.scheduleDesc;
-                cell.termsLabel.text    = model.terms;
                 cell.StockLabel.text    = [NSString stringWithFormat:@"库存 %@",model.stock];
+                if (model.terms.length > 0) {
+                    
+                    cell.termsHeight.constant = 30;
+                    cell.termsLabel.text    = model.terms;
+                    
+                }else {
+                    
+                    cell.termsHeight.constant = 0;
+                }
                 
                 //是否收藏
                 if ([model.favorite integerValue] != 0) {
@@ -514,14 +559,13 @@
     
     if (indexPath.section == 3) {
         
-//        self.tabBarController.tabBar.hidden=YES;
-//        self.hidesBottomBarWhenPushed=YES;
+        self.tabBarController.tabBar.hidden = YES;
+        
         MainProduceModel *model = self.produces[indexPath.row];
         UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
         ProduceDetailViewController *produceDetail = [mainSB instantiateViewControllerWithIdentifier:@"ProduceDetailViewController"];
         produceDetail.produceId = model.id;
         [self.navigationController pushViewController:produceDetail animated:YES];
-//        self.hidesBottomBarWhenPushed=NO;
     }
 }
 

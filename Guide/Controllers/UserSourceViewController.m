@@ -3,7 +3,7 @@
 #import "UserSourceParams.h"
 #import "UserSourceModel.h"
 #import "SourceListHead.h"
-@interface UserSourceViewController ()<UITableViewDelegate,UITableViewDataSource>{
+@interface UserSourceViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>{
 
     //数据源
     NSMutableArray *userSourceArr;
@@ -11,6 +11,7 @@
     NSMutableArray *selectArr;
     SourceListHead *cellHead;
     BOOL isRefresh;
+    UITextField *searchBar;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,strong)UserSourceParams *params;
@@ -24,7 +25,7 @@
     if (_params == nil) {
         UserSourceParams *params = [[UserSourceParams alloc]init];
         params.rows = 20;
-        params.productId = self.productId;
+        params.productId = [self.productId intValue];
         _params = params;
     }
     return _params;
@@ -33,12 +34,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    [self setNavigationRightTitle:@"清除搜索"];
+    
+    //搜索框
+    searchBar = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-120, 30)];
+    searchBar.layer.cornerRadius = 15;
+    searchBar.returnKeyType = UIReturnKeySearch;
+    searchBar.clearButtonMode = UITextFieldViewModeWhileEditing;
+    searchBar.delegate = self;
+    searchBar.placeholder = @"输入商品名字，编号";
+    searchBar.font = lever3Font;
+    searchBar.layer.borderColor = lineColor.CGColor;
+    searchBar.layer.borderWidth = 0.8;
+    
+    searchBar.leftViewMode = UITextFieldViewModeAlways;
+    UIImageView *searchIcon = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"iconfont-fangdajing"]];
+    //将左边的图片向右移动一定距离
+    searchIcon.width +=10;
+    searchIcon.contentMode = UIViewContentModeCenter;
+    searchBar.leftView = searchIcon;
+    self.navigationItem.titleView = searchBar;
+    
     userSourceArr = [NSMutableArray array];
     selectArr     = [NSMutableArray array];
-    
     self.tableView.backgroundColor = backgroudColor;
-//    self.tableView.estimatedRowHeight = 60;
-//    self.tableView.rowHeight = UITableViewAutomaticDimension;
     
     //刷新
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -57,7 +77,7 @@
         [self freshUserSource];
     }];
     
-    [self freshUserSource];
+    [self.tableView.mj_header beginRefreshing];
     
 }
 
@@ -115,6 +135,20 @@
     } failure:^(NSError *error) {
         
     }];
+}
+
+#pragma mark UITextFieldDElegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+
+    if (textField.text.length > 0) {
+        
+        self.params.keyword = textField.text;
+        [self.tableView.mj_header beginRefreshing];
+        
+        [textField resignFirstResponder];
+    }
+    
+    return YES;
 }
 
 #pragma mark UITableView Delegate&DataSource
@@ -197,14 +231,11 @@
 
 - (IBAction)sureAction:(id)sender {
     
-//    [[HUDConfig shareHUD]alwaysShow];
-    
     if (selectArr.count == 0) {
         
         [[HUDConfig shareHUD]Tips:@"你还没有选择资源" delay:DELAY];
         return;
     }
-    
     
     if ([self.delegate respondsToSelector:@selector(chosedUserSource:)]) {
         
@@ -213,25 +244,6 @@
         
         [self.navigationController popViewControllerAnimated:YES];
     }
-    
-//    NSData *cacheData = [NSKeyedArchiver archivedDataWithRootObject:selectArr];
-//    //NSMutableArray *teA = [NSKeyedUnarchiver unarchiveObjectWithData:teD]; 
-//    
-//    NSString *rootPath = [HYSandbox docPath];
-//    NSString *filePath = [NSString stringWithFormat:@"%@/%@",rootPath,USERSOURCE];
-//    NSLog(@"%@",filePath);
-//    if ([cacheData writeToFile:filePath atomically:YES]) {
-//        
-//        FxLog(@"用户资源数据写入成功");
-//        [[HUDConfig shareHUD]Tips:@"成功" delay:DELAY];
-//        
-//        [self performSelector:@selector(backAction:) withObject:self afterDelay:DELAY];
-//        
-//    }else {
-//        
-//        FxLog(@"用户资源数据写入失败");
-//        [[HUDConfig shareHUD]Tips:@"失败" delay:DELAY];
-//    }
 }
 
 - (IBAction)repeatAction:(id)sender {
@@ -239,4 +251,14 @@
     [selectArr removeAllObjects];
     [self.tableView reloadData];
 }
+
+- (void)doRight:(UIButton *)sender {
+
+    self.params.keyword = @"";
+    [self.tableView.mj_header beginRefreshing];
+    
+    [searchBar resignFirstResponder];
+}
+
+
 @end

@@ -165,12 +165,6 @@
         return;
     }
     
-    if (self.resetPwd.text.length < 6 || self.resetPwd.text.length > 20) {
-        
-        [[HUDConfig shareHUD]Tips:@"密码长度应该在6-20" delay:DELAY];
-        return;
-    }
-    
     if (![self.resetPwd.text isEqual:self.repeatPwd.text]) {
         
         [[HUDConfig shareHUD]Tips:@"两次输入的密码不一致" delay:DELAY];
