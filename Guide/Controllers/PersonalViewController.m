@@ -27,6 +27,8 @@
 
 - (void)awakeFromNib {
     
+    [super awakeFromNib];
+    
     NSIndexPath *indexPath1 = [NSIndexPath indexPathForRow:0 inSection:0];
     UITableViewCell *cell1  = [self.tableView cellForRowAtIndexPath:indexPath1];
     

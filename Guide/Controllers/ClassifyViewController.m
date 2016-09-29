@@ -116,6 +116,7 @@
 
 - (void)awakeFromNib {
 
+    [super awakeFromNib];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(beginSearch:) name:@"search" object:nil];
 }
 

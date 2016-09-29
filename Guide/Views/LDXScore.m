@@ -13,8 +13,9 @@
 @implementation LDXScore
 
 
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
+    
+    [super awakeFromNib];
     [self setup];
 }
 

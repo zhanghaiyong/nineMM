@@ -134,7 +134,7 @@
         
         if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
             
-//            [[HUDConfig shareHUD] SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            [[HUDConfig shareHUD] SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
             
             [Uitils setUserDefaultsObject:_pwdTF.text ForKey:PASSWORD];
             [Uitils setUserDefaultsObject:_accountTF.text ForKey:USERNAME];

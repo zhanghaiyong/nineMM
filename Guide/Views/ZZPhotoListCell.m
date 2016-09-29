@@ -48,7 +48,8 @@
     return self;
 }
 - (void)awakeFromNib {
-    // Initialization code
+    
+    [super awakeFromNib];
 }
 
 -(void)loadPhotoListData:(PHAssetCollection *)collectionItem

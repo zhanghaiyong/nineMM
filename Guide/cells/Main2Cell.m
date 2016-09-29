@@ -23,6 +23,8 @@
 
 - (void)awakeFromNib {
     
+    [super awakeFromNib];
+    
     UITapGestureRecognizer *tap0 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(imageTap:)];
     [self.imageV1 addGestureRecognizer:tap0];
     

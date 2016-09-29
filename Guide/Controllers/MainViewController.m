@@ -85,6 +85,7 @@
 
 - (void)awakeFromNib {
     
+    [super awakeFromNib];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(LoginLinkAction:) name:@"LoginLinkAction" object:nil];
 }
 
