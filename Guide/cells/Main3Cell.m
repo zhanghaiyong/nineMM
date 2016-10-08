@@ -24,7 +24,7 @@
         
         [self.delegate main3CellTapImage:imageV.tag];
     }
-    NSLog(@"%ld",imageV.tag);
+    FxLog(@"%ld",imageV.tag);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

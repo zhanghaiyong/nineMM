@@ -28,7 +28,7 @@
     self.title = @"我的酒币";
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
-    NSLog(@"我的酒币 = %@",self.persionModel.mj_keyValues);
+    FxLog(@"我的酒币 = %@",self.persionModel.mj_keyValues);
 
 }
 
@@ -208,7 +208,7 @@
                     //                NSLog(@"yes  %@   %@",coinModel.allKeys,self.persionModel.coins);
                     if([key rangeOfString:coins.allKeys[0]].location != NSNotFound && ![key isEqualToString:coins.allKeys[0]]) {
                         
-                        NSLog(@"yes  %@",key);
+                        FxLog(@"yes  %@",key);
                         cell.freezeCoin.text = [NSString stringWithFormat:@"%@",[coinModel objectForKey:key]];
                     }
                 }

@@ -171,6 +171,8 @@
         
     } failure:^(NSError *error) {
         
+        [self.tableView.mj_header endRefreshing];
+        
     }];
 }
 

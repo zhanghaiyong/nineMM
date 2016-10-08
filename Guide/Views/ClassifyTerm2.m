@@ -93,7 +93,7 @@
     }
     
     NSString *dateStr = [date toYMDString];
-    NSLog(@"%@  %@",dateStr,date);
+    FxLog(@"%@  %@",dateStr,date);
 }
 
 - (void)clearView {

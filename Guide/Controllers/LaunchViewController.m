@@ -73,7 +73,7 @@
             FxLog(@"获取区域树 = %@",dataDic);
 //            NSString *rootPath = [HYSandbox docPath];
 //            NSString *filePath = [NSString stringWithFormat:@"%@/%@",rootPath,ARESTREE];
-            NSLog(@"dsgdfg %@",filePath);
+            FxLog(@"dsgdfg %@",filePath);
             if ([[[dataDic objectForKey:@"retObj"] objectForKey:@"areaTree"] writeToFile:filePath atomically:YES]) {
     
                 FxLog(@"区域树数据写入成功");

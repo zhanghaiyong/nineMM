@@ -115,7 +115,7 @@
 
 + (void)cacheImagwWithSize:(CGSize)size imageID:(NSString *)imageID imageV:(UIImageView *)imageV placeholder:(NSString *)placehImg {
 
-    NSLog(@"%f,,   %f",size.width,size.height);
+    FxLog(@"%f,,   %f",size.width,size.height);
     
     NSString *urlStr = [NSString stringWithFormat:@"%@/dimg/%@_%.0f_%.0f_1.png",BaseURLString,imageID,size.width,size.height];
     NSURL    *url = [NSURL URLWithString:urlStr];

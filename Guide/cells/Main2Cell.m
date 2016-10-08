@@ -18,7 +18,7 @@
         
         [self.delegate main2CellTapImage:imageV.tag];
     }
-    NSLog(@"%ld",imageV.tag);
+    FxLog(@"%ld",imageV.tag);
 }
 
 - (void)awakeFromNib {

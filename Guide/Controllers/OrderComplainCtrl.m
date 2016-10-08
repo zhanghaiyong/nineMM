@@ -117,7 +117,7 @@
 - (void)selectImage:(UITapGestureRecognizer *)gesture {
     
     UIImageView *tapImage = (UIImageView *)gesture.view;
-    NSLog(@"%@",tapImage);
+    FxLog(@"%@",tapImage);
     selectedImageTag = tapImage.tag;
     
     if (!tapImage.highlighted) {

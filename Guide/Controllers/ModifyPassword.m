@@ -105,7 +105,7 @@
 //    NSString *temp = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     NSString *tempString = [textField.text stringByReplacingCharactersInRange:range withString:string];
     
-    NSLog(@"%ld",tempString.length);
+    FxLog(@"%ld",tempString.length);
     if (tempString.length > 20) {
         
         [[HUDConfig shareHUD]Tips:@"密码长度不超过20" delay:DELAY];

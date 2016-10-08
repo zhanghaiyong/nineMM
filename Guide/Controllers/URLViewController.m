@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"urlString = %@",self.urlString);
+    FxLog(@"urlString = %@",self.urlString);
     
     self.webView.dataDetectorTypes = UIDataDetectorTypeNone;
     self.edgesForExtendedLayout = UIRectEdgeNone;

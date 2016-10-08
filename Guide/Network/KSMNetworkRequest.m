@@ -64,7 +64,6 @@
 //    session.responseSerializer= [AFHTTPResponseSerializer serializer];
 //    session.requestSerializer.timeoutInterval = 50;
 //    session.securityPolicy.allowInvalidCertificates = YES;
-//    [session POST:url parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
 
         [session POST:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
             
@@ -79,25 +78,12 @@
             
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             
-            [[HUDConfig shareHUD] dismiss];
-            
             [[HUDConfig shareHUD]Tips :error.localizedDescription delay:DELAY];
+            [[HUDConfig shareHUD] dismiss];
             
             failureHandler(error);
             KSMLog(@"------请求失败-------%@",error);
         }];
-        
-//    } progress:^(NSProgress * _Nonnull uploadProgress) {
-//        
-//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        
-////        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
-//       
-//        
-//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//        
-//
-//    }];
 }
 
 //+ (void)putRequest:(NSString *)url params:(NSDictionary *)params success:(requestSuccessBlock)successHandler failure:(requestFailureBlock)failureHandler {

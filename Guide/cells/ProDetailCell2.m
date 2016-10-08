@@ -31,7 +31,7 @@
     
     NSString *height_str = [webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"];
     float webViewH = [height_str floatValue];
-    NSLog(@"height_str = %lf",webViewH);
+    FxLog(@"height_str = %lf",webViewH);
     
     if (self.isRefreshWebView) {   
         self.block(webViewH);

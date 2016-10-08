@@ -56,7 +56,7 @@
     self.pageControl.numberOfPages = imageArray.count;
     
     
-    NSLog(@"sfsd = %ld",self.pageControl.currentPage);
+    FxLog(@"sfsd = %ld",self.pageControl.currentPage);
     
     
     if (imageArray.count > 1) {
@@ -66,9 +66,6 @@
     
     [self.ScrollView setContentSize:CGSizeMake((imageArray.count + 2) * self.width, 0)];
     CGSize scrollViewSize = self.size;
-    
-    NSLog(@"afssrhfjg = %@",NSStringFromCGSize(scrollViewSize));
-    
     
     // 遍历创建子控件
     [imageArray enumerateObjectsUsingBlock:^(NSString *imageName, NSUInteger idx, BOOL *stop) {
@@ -137,7 +134,7 @@
     
     int page = (int)self.pageControl.currentPage;
     
-    NSLog(@"sfds = %d",page);
+    FxLog(@"sfds = %d",page);
 
     if (page == [self.imageArray count]-1) {
         
@@ -166,7 +163,7 @@
         [self.delegate tapBannerImage:imageV.tag];
     }
     
-    NSLog(@"%ld",imageV.tag);
+    FxLog(@"%ld",imageV.tag);
 }
 
 @end

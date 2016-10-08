@@ -290,8 +290,6 @@
             [self performSelector:@selector(delayBlock) withObject:self afterDelay:0.5];
         }
     }
-    
-//    NSLog(@"categoryId = %@",categoryId);;
 }
 
 - (void)delayBlock {
@@ -320,20 +318,7 @@
 
     _produceSource = produceSource;
     [dataArr1 addObjectsFromArray:produceSource];
-    
-//    if ([((NSDictionary *)dataArr1[0]).allKeys containsObject:@"children"]) {
-//        [dataArr2 addObjectsFromArray:[dataArr1[0] objectForKey:@"children"]];
-//    }
-//    
-//    if ([((NSDictionary *)dataArr2[0]).allKeys containsObject:@"children"]) {
-//        [dataArr3 addObjectsFromArray:[dataArr2[0] objectForKey:@"children"]];
-//    }
-//    
-//    NSLog(@"dataArr1 = %@",dataArr1);
-//    NSLog(@"dataArr2 = %@",dataArr2);
-//    NSLog(@"dataArr3 = %@",dataArr3);
-    
-    
+
     [tableV1 reloadData];
     [tableV2 reloadData];
     [tableV3 reloadData];

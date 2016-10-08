@@ -172,7 +172,7 @@
     avatarParams.fileTitle = @"userAvatar";
     avatarParams.fileIntro = @"userAvatar";
     
-    NSLog(@"updateParams = %@",avatarParams.mj_keyValues);
+    FxLog(@"updateParams = %@",avatarParams.mj_keyValues);
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/plain", nil];
@@ -185,7 +185,7 @@
     } progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"上传陈宫 = %@",responseObject);
+        FxLog(@"上传陈宫 = %@",responseObject);
         
         if ([[responseObject objectForKey:@"retCode"] integerValue] == 0) {
             
@@ -194,7 +194,7 @@
             
             [KSMNetworkRequest postRequest:KUpdateUserInfo params:infoParams.mj_keyValues success:^(NSDictionary *dataDic) {
                 
-                NSLog(@"更新头像ID ＝ %@",dataDic);
+                FxLog(@"更新头像ID ＝ %@",dataDic);
                 
                 if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
                     
@@ -276,7 +276,7 @@
                 for (int i = 0; i<persionModel.coins.count; i++) {
                     
                     NSDictionary *dic  = persionModel.coins[i];
-                    ButtonView *coinBV = [[ButtonView alloc]initWithFrame:CGRectMake(i*SCREEN_WIDTH/persionModel.coins.count, 44, SCREEN_WIDTH/persionModel.coins.count, cell2.height) title:[Uitils toChinses:dic.allKeys[0]] image:[Uitils toImageName:dic.allKeys[0]]];
+                    ButtonView *coinBV = [[ButtonView alloc]initWithFrame:CGRectMake(i*SCREEN_WIDTH/persionModel.coins.count, 44, SCREEN_WIDTH/persionModel.coins.count, cell2.height) title:[NSString stringWithFormat:@"%@ %@",[Uitils toChinses:dic.allKeys[0]],dic.allValues[0]] image:[Uitils toImageName:dic.allKeys[0]]];
                     coinBV.imageSize = CGSizeMake(25, 25);
                     [cell2.contentView addSubview:coinBV];
                 }

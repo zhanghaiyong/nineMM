@@ -56,7 +56,7 @@
     label.textColor = lever1Color;
     label.text = self.labelTitle;
     label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont boldSystemFontOfSize:13];
+    label.font = [UIFont boldSystemFontOfSize:12.5];
     label.adjustsFontSizeToFitWidth = YES;
     [self addSubview:label];
     

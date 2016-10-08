@@ -199,7 +199,7 @@
                     }
                 }];
 
-                NSLog(@"dataArr1 = %@",Filter3);
+                FxLog(@"dataArr1 = %@",Filter3);
                 
                 [dataArr1 addObjectsFromArray:Filter3];
                 
@@ -722,7 +722,7 @@
         
             self.storesParams.areaIds = areaIds;
             
-            NSLog(@"%@",areaIds);
+            FxLog(@"%@",areaIds);
             
             [storeTable.mj_header beginRefreshing];
         }
@@ -768,7 +768,7 @@
                         ProduceStoresModel *other = storesArr[i];
                         [storeIds addObject:other];
                         
-                        NSLog(@"createDate = %@",other.name);
+                        FxLog(@"createDate = %@",other.name);
                         
                     }
                 }
@@ -817,7 +817,7 @@
                     storeCell.meumNameLabel.textColor = MainColor;
                     storeCell.dataLabel.textColor     = MainColor;
                     
-                    NSLog(@"%@  %@",storeCell.meumNameLabel.text,storeCell.dataLabel.text);
+                    FxLog(@"%@  %@",storeCell.meumNameLabel.text,storeCell.dataLabel.text);
                 }
                 [storeIds removeAllObjects];
                 [storeIds addObject:@"allStore"];

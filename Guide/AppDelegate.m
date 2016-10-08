@@ -98,7 +98,7 @@
 #pragma mark JPush method---------
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
-    NSLog(@"%@", [NSString stringWithFormat:@"Device Token: %@", deviceToken]);
+    FxLog(@"%@", [NSString stringWithFormat:@"Device Token: %@", deviceToken]);
     
     //极光推送
     [[JiPush shareJpush]registerDeviceToken:deviceToken];
@@ -112,7 +112,7 @@
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-    NSLog(@"did Fail To Register For Remote Notifications With Error: %@", error);
+    FxLog(@"did Fail To Register For Remote Notifications With Error: %@", error);
 }
 
 
@@ -131,7 +131,7 @@
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:application.applicationIconBadgeNumber + 1];
     
     [[JiPush shareJpush]handleNotification:userInfo];
-    NSLog(@"推送 收到通知:%@", userInfo);
+    FxLog(@"推送 收到通知:%@", userInfo);
     completionHandler(UIBackgroundFetchResultNewData);
 //    [[NSNotificationCenter defaultCenter] postNotificationName:REFRESH_SYSTEM object:self userInfo:nil];
 //    [[NSNotificationCenter defaultCenter] postNotificationName:REFRESH_ORDER object:self userInfo:nil];
@@ -162,7 +162,7 @@
     //cType 会话类型。PR指单聊、 DS指讨论组、 GRP指群组、 CS指客服、SYS指系统会话、 MC指应用内公众服务、 MP指跨应用公众服务。
     //oName 消息类型，参考融云消息类型表.消息标志；可自定义消息类型。
     //tId 接收者的用户 Id。
-    NSLog(@"%@",notification.userInfo);
+    FxLog(@"%@",notification.userInfo);
 }
 
 - (NSString *)logDic:(NSDictionary *)dic {

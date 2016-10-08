@@ -152,7 +152,7 @@
     
     cell.produceName.text = model.fullName;
     cell.price.text = model.amount;
-    NSLog(@"%@",model.mj_keyValues);
+    FxLog(@"%@",model.mj_keyValues);
     
     return cell;
 }
@@ -191,7 +191,7 @@
         self.selectAll.selected = NO;
     }
     
-     NSLog(@"DGrg = %ld",SelectProArray.count);
+     FxLog(@"DGrg = %ld",SelectProArray.count);
 }
 
 
@@ -241,7 +241,7 @@
 
 - (void)edit:(UIButton *)sender {
     
-     NSLog(@"DGrg = %ld",SelectProArray.count);
+     FxLog(@"DGrg = %ld",SelectProArray.count);
     
     if (productArr.count == 0) {
         
@@ -263,7 +263,7 @@
 
 - (IBAction)nowBuyAvtion:(id)sender {
     
-    NSLog(@"DGrg = %ld",SelectProArray.count);
+    FxLog(@"DGrg = %ld",SelectProArray.count);
     
     
     UIButton *button = (UIButton *)sender;

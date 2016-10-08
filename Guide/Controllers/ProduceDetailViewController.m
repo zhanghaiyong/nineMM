@@ -99,7 +99,7 @@
     NSArray *shoppings = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
     [shoppings enumerateObjectsUsingBlock:^(ShopingCarModel *model, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        NSLog(@" 本地购物车 ＝ %@",model.mj_keyValues);
+        FxLog(@" 本地购物车 ＝ %@",model.mj_keyValues);
         
         if ([model.productId isEqual:self.produceId]) {
             
@@ -330,7 +330,7 @@
         NSArray *tabs = produceDetail.tabs;
         NSDictionary *dic = tabs[typeFlag];
         NSString *urlStr = [NSString stringWithFormat:@"%@/product/mobile/%@/%@.page",BaseURLString,self.produceId,[dic objectForKey:@"tab"]];
-        NSLog(@"zfzsdgd =%@",urlStr);
+        FxLog(@"zfzsdgd =%@",urlStr);
         NSURL *url = [NSURL URLWithString:urlStr];
         cell3.isRefreshWebView = isRefreshWebViewH;
         cell3.htmlUrl = url;
@@ -382,7 +382,7 @@
 #pragma mark BanndrDelegate
 - (void)tapBannerImage:(NSInteger)imageTag {
 
-    NSLog(@"fsdgd %ld",imageTag);
+    FxLog(@"fsdgd %ld",imageTag);
     
     NSString *imageID = produceDetail.images[imageTag-1000];
     UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
@@ -470,7 +470,7 @@
             shopCarModel.amount = price;
         }
         
-        NSLog(@"shopCarModel = %@",shopCarModel.mj_keyValues);
+        FxLog(@"shopCarModel = %@",shopCarModel.mj_keyValues);
         
         NSString *filePath = [NSString stringWithFormat:@"%@/%@",[HYSandbox docPath],SHOPPING_CAR];
         NSArray *shoppings = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
@@ -516,7 +516,7 @@
     UIButton *button = (UIButton *)sender;
     if ([button.currentTitle isEqualToString:@"确认"]) {
         
-        NSLog(@"afssdf = %ld",userSource.count);
+        FxLog(@"afssdf = %ld",userSource.count);
         self.block(storeAreaModel,userSource,self.proPriceByStoreParams.storeSelectingType);
         [self.navigationController popViewControllerAnimated:YES];
         return;
@@ -559,7 +559,7 @@
 #pragma mark Term3Delegate
 - (void)areaIdOrStoresId:(NSArray *)model type:(NSString *)type {
 
-    NSLog(@"dzfsdg =  %@%@",model,type);
+    FxLog(@"dzfsdg =  %@%@",model,type);
     
      [storeAreaModel addObjectsFromArray:model];
     

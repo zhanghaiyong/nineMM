@@ -275,7 +275,7 @@
                 PackageDetailCell3 *cell3 = [[[NSBundle mainBundle] loadNibNamed:@"PackageDetailCell3" owner:self options:nil] lastObject];
                 
                 if (userSource.count > 0) {
-                    NSLog(@"afssdf = %ld",userSource.count);
+                    FxLog(@"afssdf = %ld",userSource.count);
                     cell3.sourceLabel.text = [NSString stringWithFormat:@"%ld个酒品",userSource.count];
                 }
                 return cell3;
@@ -360,8 +360,7 @@
     sureOrder.allSource = allSource;
     sureOrder.allStoreArea = allStore;
     
-    NSLog(@"allSource = %@",allSource);
-    NSLog(@"allStore = %@",allStore);
+    FxLog(@"allSource = %@",allSource);
 
     sureOrder.packageId = packageDetailModel.id;
     sureOrder.storeOrArea = store_Area;

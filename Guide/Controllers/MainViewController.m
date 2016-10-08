@@ -91,7 +91,7 @@
 
 - (void)LoginLinkAction:(NSNotification *)notifation {
 
-    NSLog(@"FZzsfg = %@",notifation.userInfo);
+    FxLog(@"FZzsfg = %@",notifation.userInfo);
     NSArray *array = [[notifation.userInfo objectForKey:@"linkAction"] componentsSeparatedByString:@":"];
     //酒币充值
     if ([array containsObject:openCoinRechargePage]) {
@@ -136,7 +136,7 @@
         [self.navigationController pushViewController:URLVC animated:YES];
     }
     
-    NSLog(@"%@",array);
+    FxLog(@"%@",array);
     
 }
 
@@ -160,7 +160,7 @@
     [super viewDidLoad];
     
     //检查版本更新
-//    [self testVersion];
+    [self testVersion];
     
     searchBar = [[[NSBundle mainBundle] loadNibNamed:@"SearchBar" owner:self options:nil] lastObject];
     searchBar.frame = CGRectMake(0, 0, SCREEN_WIDTH, 64);
@@ -209,7 +209,7 @@
     
     [KSMNetworkRequest postRequest:KVersion params:nil success:^(NSDictionary *dataDic) {
         
-        NSLog(@"xoxoxo =%@",dataDic);
+        FxLog(@"c当时的 =%@",dataDic);
         
         VersionModel *model = [VersionModel mj_objectWithKeyValues:[[dataDic objectForKey:@"ios"] objectForKey:@"advres"]];
         
@@ -220,7 +220,7 @@
             
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:model.note preferredStyle:UIAlertControllerStyleAlert];
             
-            [alert addAction:[UIAlertAction actionWithTitle:@"是" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [alert addAction:[UIAlertAction actionWithTitle:@"是" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
                 
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:model.url]];
                 
@@ -234,7 +234,7 @@
         
     } failure:^(NSError *error) {
         
-        NSLog(@"version fail = %@",error);
+        FxLog(@"version fail = %@",error);
         
     }];
 }
@@ -357,10 +357,23 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
 
-    if (section != 2) {
-        return 10;
+    switch (section) {
+        case 0:
+            return 10;
+            break;
+        case 1:
+            return 10;
+            break;
+        case 2:
+            return 0.1;
+            break;
+        case 3:
+            return 20;
+            break;
+        default:
+            break;
     }
-    return 0.1;
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -656,7 +669,7 @@
         [self.navigationController pushViewController:URLVC animated:YES];
         
     }
-    NSLog(@"%@",array);
+    FxLog(@"%@",array);
 }
 
 
@@ -736,7 +749,7 @@
         [self.navigationController pushViewController:URLVC animated:YES];
         
     }
-    NSLog(@"%@",array);
+    FxLog(@"%@",array);
     
 }
 
@@ -816,7 +829,7 @@
         [self.navigationController pushViewController:URLVC animated:YES];
         
     }
-    NSLog(@"%@",array);
+    FxLog(@"%@",array);
 }
 
 #pragma mark Main3CellDelegate
@@ -824,7 +837,7 @@
 
     NewsModel *model = self.mainStaticModel.news[imageTag-100];
     NSArray *array = [model.linkAction componentsSeparatedByString:@":"];
-    NSLog(@"%ld ",model.linkAction.length); //0
+    FxLog(@"%ld ",model.linkAction.length); //0
     
     //酒币充值
     if ([array containsObject:openCoinRechargePage]) {

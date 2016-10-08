@@ -124,7 +124,7 @@
     avatarParams.fileTitle = @"userAvatar";
     avatarParams.fileIntro = @"userAvatar";
     
-    NSLog(@"updateParams = %@",avatarParams.mj_keyValues);
+    FxLog(@"updateParams = %@",avatarParams.mj_keyValues);
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/plain", nil];
@@ -137,7 +137,7 @@
     } progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"上传陈宫 = %@",responseObject);
+        FxLog(@"上传陈宫 = %@",responseObject);
         
         if ([[responseObject objectForKey:@"retCode"] integerValue] == 0) {
             
@@ -146,7 +146,7 @@
             
             [KSMNetworkRequest postRequest:KUpdateUserInfo params:infoParams.mj_keyValues success:^(NSDictionary *dataDic) {
                 
-                NSLog(@"更新头像ID ＝ %@",dataDic);
+                FxLog(@"更新头像ID ＝ %@",dataDic);
                 
                 if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
                     

@@ -69,7 +69,7 @@
         
         [term1 selectedCategoryId:^(NSString *qryCategoryId) {
             
-            NSLog(@"qryCategoryId = %@",qryCategoryId);
+            FxLog(@"qryCategoryId = %@",qryCategoryId);
             
 //            UIButton *button = [head viewWithTag:1000];
 //            [button setTitleColor:MainColor forState:UIControlStateNormal];
@@ -136,7 +136,7 @@
 
 - (void)beginSearch:(NSNotification *)notifation {
 
-    NSLog(@"sfse = %@",notifation);
+    FxLog(@"sfse = %@",notifation);
     isSearch = YES;
     searchKeyWork = notifation.userInfo[@"keyword"];
     searchBar.text = searchKeyWork;
@@ -353,7 +353,7 @@
 //    UIButton *mainBtn = [head viewWithTag:1002];
 //    [mainBtn setTitleColor:MainColor forState:UIControlStateNormal];
 //    mainBtn.selected = YES;
-    NSLog(@"SFASf = %@",model);
+    FxLog(@"SFASf = %@",model);
     
     NSMutableArray *array = [NSMutableArray array];
     for (NSDictionary *dic in model) {
@@ -482,8 +482,6 @@
         cellH += 25.0;
     }
     
-
-    NSLog(@"sFZasdgxdf = %@",model.terms);
     return cellH;
 }
 

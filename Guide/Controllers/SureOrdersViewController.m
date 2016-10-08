@@ -45,14 +45,14 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.tableView.bounces = NO;
     
-    NSLog(@"sfsdgdfh = %ld ",self.ProduceBag.count);
+    FxLog(@"sfsdgdfh = %ld ",self.ProduceBag.count);
 }
 
 - (void)subOrder {
 
     [[HUDConfig shareHUD]alwaysShow];
     
-    NSLog(@"self.params = %@",self.params.mj_keyValues);
+    FxLog(@"self.params = %@",self.params.mj_keyValues);
     
     [KSMNetworkRequest postRequest:KAppSubOrder params:self.params.mj_keyValues success:^(NSDictionary *dataDic) {
         

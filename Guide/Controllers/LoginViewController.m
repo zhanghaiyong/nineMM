@@ -78,7 +78,7 @@
         
         NSString *tempString = [textField.text stringByReplacingCharactersInRange:range withString:string];
         
-        NSLog(@"%ld",tempString.length);
+        FxLog(@"%ld",tempString.length);
         if (tempString.length > 20) {
             
             [[HUDConfig shareHUD]Tips:@"密码长度不超过20" delay:DELAY];
@@ -125,11 +125,11 @@
     params.password     = _pwdTF.text;
     
     
-    NSLog(@"params = %@  %@",params.mj_keyValues,KLogin);
+    FxLog(@"params = %@  %@",params.mj_keyValues,KLogin);
     
     [KSMNetworkRequest postRequest:KLogin params:params.mj_keyValues success:^(NSDictionary *dataDic) {
         
-        NSLog(@"dataDic = %@",dataDic);
+        FxLog(@"dataDic = %@",dataDic);
         [[HUDConfig shareHUD]dismiss];
         
         if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
