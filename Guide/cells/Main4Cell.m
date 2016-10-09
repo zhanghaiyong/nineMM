@@ -3,6 +3,7 @@
 @implementation Main4Cell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     // Initialization code
 }
 

@@ -156,7 +156,6 @@
     //用于显示一个提示框
     //    [[JiPush shareJpush] showLocalNotificationAtFront:notification];
     
-#warning 在这里接受远程消息
     //    [SVProgressHUD show];
     //fId  消息发送者的用户 ID
     //cType 会话类型。PR指单聊、 DS指讨论组、 GRP指群组、 CS指客服、SYS指系统会话、 MC指应用内公众服务、 MP指跨应用公众服务。
@@ -165,24 +164,24 @@
     FxLog(@"%@",notification.userInfo);
 }
 
-- (NSString *)logDic:(NSDictionary *)dic {
-    if (![dic count]) {
-        return nil;
-    }
-    NSString *tempStr1 =
-    [[dic description] stringByReplacingOccurrencesOfString:@"\\u"
-                                                 withString:@"\\U"];
-    NSString *tempStr2 =
-    [tempStr1 stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
-    NSString *tempStr3 =
-    [[@"\"" stringByAppendingString:tempStr2] stringByAppendingString:@"\""];
-    NSData *tempData = [tempStr3 dataUsingEncoding:NSUTF8StringEncoding];
-    NSString *str =
-    [NSPropertyListSerialization propertyListFromData:tempData
-                                     mutabilityOption:NSPropertyListImmutable
-                                               format:NULL
-                                     errorDescription:NULL];
-    return str;
-}
+//- (NSString *)logDic:(NSDictionary *)dic {
+//    if (![dic count]) {
+//        return nil;
+//    }
+//    NSString *tempStr1 =
+//    [[dic description] stringByReplacingOccurrencesOfString:@"\\u"
+//                                                 withString:@"\\U"];
+//    NSString *tempStr2 =
+//    [tempStr1 stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+//    NSString *tempStr3 =
+//    [[@"\"" stringByAppendingString:tempStr2] stringByAppendingString:@"\""];
+//    NSData *tempData = [tempStr3 dataUsingEncoding:NSUTF8StringEncoding];
+//    NSString *str =
+//    [NSPropertyListSerialization propertyListFromData:tempData
+//                                     mutabilityOption:NSPropertyListImmutable
+//                                               format:NULL
+//                                     errorDescription:NULL];
+//    return str;
+//}
 
 @end

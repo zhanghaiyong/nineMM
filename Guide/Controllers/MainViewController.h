@@ -11,3 +11,5 @@
 @interface MainViewController : BaseViewController
 @property(nonatomic,strong)MainStaticModel *mainStaticModel;
 @end
+
+

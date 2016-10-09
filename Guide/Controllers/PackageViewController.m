@@ -56,6 +56,12 @@
     return _params;
 }
 
+#pragma mark ZHYBannerViewDelegte
+- (void)tapBannerImage:(NSInteger)imageTag {
+
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
