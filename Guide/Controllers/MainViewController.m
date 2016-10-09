@@ -211,14 +211,14 @@
         
         FxLog(@"c当时的 =%@",dataDic);
         
-        VersionModel *model = [VersionModel mj_objectWithKeyValues:[[dataDic objectForKey:@"ios"] objectForKey:@"advres"]];
+        VersionModel *model = [VersionModel mj_objectWithKeyValues:[[dataDic objectForKey:@"ios"] objectForKey:@"promot"]];
         
         NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
         NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
         
         if ([app_Version integerValue] != [model.version integerValue]) {
             
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:model.note preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"有新版本，马上升级？" preferredStyle:UIAlertControllerStyleAlert];
             
             [alert addAction:[UIAlertAction actionWithTitle:@"是" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
                 
