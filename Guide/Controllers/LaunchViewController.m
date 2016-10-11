@@ -7,7 +7,6 @@
 
 @interface LaunchViewController ()
 {
-    UIActivityIndicatorView *IndicatorView;
     MainStaticModel *mainStaticModel;
     NSDictionary *sessionDic;
 }
@@ -18,11 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-
-    IndicatorView             = [[UIActivityIndicatorView alloc ]initWithFrame:CGRectMake(SCREEN_WIDTH/2-15,SCREEN_HEIGHT/2-15,30.0,30.0)];
-    IndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-    [self.view addSubview:IndicatorView];
-    [IndicatorView startAnimating];//启动
+    
+    [SVProgressHUD showWithStatus:@"数据更新中，请稍候..."];
 
     [self getSessionID];
     

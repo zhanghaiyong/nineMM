@@ -15,35 +15,35 @@
 
 - (void)Tips:(NSString *)tips delay:(NSTimeInterval)second {
 
-        [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
         [SVProgressHUD showInfoWithStatus:tips];
         [self performSelector:@selector(dismiss) withObject:nil afterDelay:second];
 }
 
 - (void)SuccessHUD:(NSString *)tips delay:(NSTimeInterval)second {
 
-    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     [SVProgressHUD showSuccessWithStatus:tips];
     [self performSelector:@selector(dismiss) withObject:nil afterDelay:second];
 }
 
 - (void)ErrorHUD:(NSString *)tips delay:(NSTimeInterval)second {
     
-    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     [SVProgressHUD showErrorWithStatus:tips];
     [self performSelector:@selector(dismiss) withObject:nil afterDelay:second];
 }
 
 - (void)LoadHUD:(NSString *)tips delay:(NSTimeInterval)second {
 
-    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     [SVProgressHUD showWithStatus:tips];
     [self performSelector:@selector(dismiss) withObject:nil afterDelay:second];
 }
 
 
 - (void)alwaysShow {
-    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     [SVProgressHUD show];
     
 }

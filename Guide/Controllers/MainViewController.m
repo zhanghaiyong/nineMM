@@ -138,6 +138,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
     //检查版本更新
     [self testVersion];
     
@@ -182,6 +183,7 @@
     }];
     
     [self loadProduceList];
+    
 }
 
 - (void)testVersion {
@@ -226,7 +228,6 @@
     
     [KSMNetworkRequest postRequest:KHomePageProcudeList params:self.produceListParams.mj_keyValues success:^(NSDictionary *dataDic) {
 
-        
         if (!isRefresh) {
 
             [[HUDConfig shareHUD]dismiss];
@@ -288,8 +289,6 @@
     [searchBar.searchTF resignFirstResponder];
     
     if (textField.text.length != 0) {
-//        self.produceListParams.qryKeyword = textField.text;
-//        [self.tableView.mj_header beginRefreshing];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"search" object:self userInfo:@{@"keyword":textField.text}];
         textField.text = @"";
@@ -347,12 +346,12 @@
             return 0.1;
             break;
         case 3:
-            return 20;
+            return 0.1;
             break;
         default:
             break;
     }
-    return 0;
+    return 0.1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
