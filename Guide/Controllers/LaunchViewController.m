@@ -9,6 +9,7 @@
 {
     UIActivityIndicatorView *IndicatorView;
     MainStaticModel *mainStaticModel;
+    NSDictionary *sessionDic;
 }
 @end
 
@@ -50,7 +51,6 @@
     NSMutableDictionary *params = [[NSMutableDictionary alloc]init];
     [params setObject:sessionId forKey:@"sessionId"];
     
-    
     NSString *rootPath = [HYSandbox docPath];
     NSString *filePath = [NSString stringWithFormat:@"%@/%@",rootPath,ARESTREE];
     NSArray *areaTree  = [NSArray arrayWithContentsOfFile:filePath];
@@ -71,23 +71,42 @@
         [KSMNetworkRequest postRequest:KGetAreasTreeJson params:nil success:^(NSDictionary *dataDic) {
             
             FxLog(@"获取区域树 = %@",dataDic);
-//            NSString *rootPath = [HYSandbox docPath];
-//            NSString *filePath = [NSString stringWithFormat:@"%@/%@",rootPath,ARESTREE];
-            FxLog(@"dsgdfg %@",filePath);
+
             if ([[[dataDic objectForKey:@"retObj"] objectForKey:@"areaTree"] writeToFile:filePath atomically:YES]) {
     
                 FxLog(@"区域树数据写入成功");
+                
+                [self requestHomeData:[sessionDic objectForKey:@"sessionId"]];
+                
             }else {
     
                 FxLog(@"区域树数据写入失败");
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"资源下载失败，请检查网络并重新下载" preferredStyle:UIAlertControllerStyleAlert];
+                
+                [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+                    
+                    [self getAreasTreeJson:[sessionDic objectForKey:@"sessionId"]];
+                    
+                }]];
+                [self presentViewController:alert animated:YES completion:nil];
             }
             
         } failure:^(NSError *error) {
             
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"资源下载失败，请检查网络并重新下载" preferredStyle:UIAlertControllerStyleAlert];
+            
+            [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+                
+                [self getAreasTreeJson:[sessionDic objectForKey:@"sessionId"]];
+                
+            }]];
+            [self presentViewController:alert animated:YES completion:nil];
+            
         }];
-        
+    }else {
+    
+        [self requestHomeData:[sessionDic objectForKey:@"sessionId"]];
     }
-
 }
 
 
@@ -124,14 +143,13 @@
     [KSMNetworkRequest postRequest:KGetSessionID params:params success:^(NSDictionary *dataDic) {
         
         FxLog(@"sessionID = %@",dataDic);
+        sessionDic = [[NSDictionary alloc]initWithDictionary:dataDic];
         if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
             
             [self getProductCategoryTree:[dataDic objectForKey:@"sessionId"]];
             
             [self getAreasTreeJson:[dataDic objectForKey:@"sessionId"]];
-            
         }
-        [self requestHomeData:[dataDic objectForKey:@"sessionId"]];
         
     } failure:^(NSError *error) {
         

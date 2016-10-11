@@ -82,14 +82,6 @@
         NSString *filePath = [NSString stringWithFormat:@"%@/%@",rootPath,ARESTREE];
         NSArray *areaTree  = [NSArray arrayWithContentsOfFile:filePath];
         [dataArr1 addObjectsFromArray:areaTree];
-        
-//        if ([((NSDictionary *)dataArr1[0]).allKeys containsObject:@"c"]) {
-//            [dataArr2 addObjectsFromArray:[dataArr1[0] objectForKey:@"c"]];
-//        }
-//        
-//        if ([((NSDictionary *)dataArr2[0]).allKeys containsObject:@"c"]) {
-//            [dataArr3 addObjectsFromArray:[dataArr2[0] objectForKey:@"c"]];
-//        }
     }
 }
 
@@ -118,19 +110,28 @@
                 FxLog(@"asfasfds = %@",areaTree);
 
                 //筛选一级
-                NSMutableArray *Filter1 = [NSMutableArray array];
-                [produceAreas enumerateObjectsUsingBlock:^(NSString *str, NSUInteger idx, BOOL * _Nonnull stop) {
-                    [areaTree enumerateObjectsUsingBlock:^(NSDictionary *dic, NSUInteger idx, BOOL * _Nonnull stop) {
-                        
-                        if ([[[NSString stringWithFormat:@"%@",[dic objectForKey:@"i"]] substringToIndex:2] isEqualToString:[[NSString stringWithFormat:@"%@",str] substringToIndex:2]]) {
-                            
-                            if (![Filter1 containsObject:dic]) {
-                                [Filter1 addObject:dic];
-                            }
-                        }
-                    }];
-                }];
                 
+                NSMutableArray *Filter1 = [NSMutableArray array];
+                dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                    [produceAreas enumerateObjectsUsingBlock:^(NSString *str, NSUInteger idx, BOOL * _Nonnull stop) {
+                        [areaTree enumerateObjectsUsingBlock:^(NSDictionary *dic, NSUInteger idx, BOOL * _Nonnull stop) {
+                            
+                            if ([[[NSString stringWithFormat:@"%@",[dic objectForKey:@"i"]] substringToIndex:2] isEqualToString:[[NSString stringWithFormat:@"%@",str] substringToIndex:2]]) {
+                                
+                                if (![Filter1 containsObject:dic]) {
+                                    [Filter1 addObject:dic];
+                                }
+                            }
+                        }];
+                    }];
+                    
+                    // 主线程执行：
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        [dataArr1 addObjectsFromArray:Filter1];
+                        [tableV1 reloadData];
+                    });
+                });
 
                 //筛选二级
                 NSMutableArray *Filter2 = [Filter1 mutableCopy];
@@ -151,7 +152,6 @@
                                 *stop = YES;
                             }
                             }];
-                            
                             }];
                         
                             [Filter2[idOne] setObject:array forKey:@"c"];
@@ -185,28 +185,17 @@
                                     }
                                      *stop = YES;
                                 }
-                                
                             }];
                                 }];
                                 [[Filter3[idOne] objectForKey:@"c"][idTwo] setObject:array forKey:@"c"];
-                           
-                            }
-                             
-                             
-                            
+                            }     
                         }];
-                     
                     }
                 }];
 
                 FxLog(@"dataArr1 = %@",Filter3);
                 
                 [dataArr1 addObjectsFromArray:Filter3];
-                
-                [tableV1 reloadData];
-                [tableV2 reloadData];
-                [tableV3 reloadData];
-                
             }
             
         }else {
