@@ -95,18 +95,18 @@
     storeAreaModel = [NSMutableArray array];
     userSource = [NSMutableArray array];
     
-    NSString *filePath = [NSString stringWithFormat:@"%@/%@",[HYSandbox docPath],SHOPPING_CAR];
-    NSArray *shoppings = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
-    [shoppings enumerateObjectsUsingBlock:^(ShopingCarModel *model, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        FxLog(@" 本地购物车 ＝ %@",model.mj_keyValues);
-        
-        if ([model.productId isEqual:self.produceId]) {
-            
-            self.addShoppCarButton.alpha = 0.5;
-            self.addShoppCarButton.userInteractionEnabled = NO;
-        }
-    }];
+//    NSString *filePath = [NSString stringWithFormat:@"%@/%@",[HYSandbox docPath],SHOPPING_CAR];
+//    NSArray *shoppings = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+//    [shoppings enumerateObjectsUsingBlock:^(ShopingCarModel *model, NSUInteger idx, BOOL * _Nonnull stop) {
+//        
+//        FxLog(@" 本地购物车 ＝ %@",model.mj_keyValues);
+//        
+//        if ([model.productId isEqual:self.produceId]) {
+//            
+//            self.addShoppCarButton.alpha = 0.5;
+//            self.addShoppCarButton.userInteractionEnabled = NO;
+//        }
+//    }];
     
     self.tableView.tableFooterView = [[UIView alloc]init];
     [self produceDetailData];

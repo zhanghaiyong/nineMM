@@ -525,6 +525,7 @@
                     coinImg.image  = [UIImage imageNamed:[Uitils toImageName:model.acceptableCoinTypes[i]]];
                 }
                 
+                
                     for (int i = 0; i< model.tags.count; i++) {
                         
                         if (((NSString *)model.tags[i]).length > 0) {

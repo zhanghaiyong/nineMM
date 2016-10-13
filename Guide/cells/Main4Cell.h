@@ -9,4 +9,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *StockLabel;
 @property (weak, nonatomic) IBOutlet UIButton *collectBtn;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *termsHeight;
+
 @end

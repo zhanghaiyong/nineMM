@@ -276,7 +276,7 @@
                 for (int i = 0; i<persionModel.coins.count; i++) {
                     
                     NSDictionary *dic  = persionModel.coins[i];
-                    ButtonView *coinBV = [[ButtonView alloc]initWithFrame:CGRectMake(i*SCREEN_WIDTH/persionModel.coins.count, 44, SCREEN_WIDTH/persionModel.coins.count, cell2.height) title:[NSString stringWithFormat:@"%@ %@",[Uitils toChinses:dic.allKeys[0]],dic.allValues[0]] image:[Uitils toImageName:dic.allKeys[0]]];
+                    ButtonView *coinBV = [[ButtonView alloc]initWithFrame:CGRectMake(i*SCREEN_WIDTH/persionModel.coins.count, 44, SCREEN_WIDTH/persionModel.coins.count, cell2.height) title:[NSString stringWithFormat:@"%@",dic.allValues[0]] image:[Uitils toImageName:dic.allKeys[0]]];
                     coinBV.imageSize = CGSizeMake(25, 25);
                     [cell2.contentView addSubview:coinBV];
                 }

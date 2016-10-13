@@ -253,6 +253,7 @@
         coinImg.hidden = NO;
         coinImg.image  = [UIImage imageNamed:[Uitils toImageName:model.acceptableCoinTypes[i]]];
     }
+        
     return cell;
     }
     

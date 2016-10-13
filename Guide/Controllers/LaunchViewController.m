@@ -160,7 +160,6 @@
     [KSMNetworkRequest postRequest:KHomePageStatic params:@{@"sessionId":sessionId} success:^(NSDictionary *dataDic) {
         
         FxLog(@"dataDic = %@",dataDic);
-        [IndicatorView stopAnimating];
         
         if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
             
@@ -174,7 +173,6 @@
         
     } failure:^(NSError *error) {
         
-        [IndicatorView stopAnimating ];
     }];
 }
 

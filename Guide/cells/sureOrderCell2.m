@@ -26,7 +26,7 @@
     
     UIButton *button = (UIButton *)sender;
     
-    for (int i=0; i<4; i++) {
+    for (int i=0; i<5; i++) {
         
         UIButton *btn = [self viewWithTag:i+100];
         btn.selected = NO;
@@ -48,7 +48,9 @@
         case 103: //黑币
              coinStatus = @"blackCoin";
             break;
-            
+        case 104: //白币
+            coinStatus = @"whiteCoin";
+            break;
         default:
             break;
     }

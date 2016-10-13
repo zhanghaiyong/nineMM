@@ -98,8 +98,6 @@
         
         if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
             
-            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
-            
             if (![[dataDic objectForKey:@"retObj"] isEqual:[NSNull null]]) {
 
                 [produceAreas addObjectsFromArray:[[dataDic objectForKey:@"retObj"] objectForKey:@"ids"]];
@@ -107,7 +105,6 @@
                 NSString *rootPath = [HYSandbox docPath];
                 NSString *filePath = [NSString stringWithFormat:@"%@/%@",rootPath,ARESTREE];
                 NSArray *areaTree  = [NSArray arrayWithContentsOfFile:filePath];
-                FxLog(@"asfasfds = %@",areaTree);
 
                 //筛选一级
                 
@@ -130,6 +127,8 @@
                         
                         [dataArr1 addObjectsFromArray:Filter1];
                         [tableV1 reloadData];
+                        
+                        [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
                     });
                 });
 
@@ -157,7 +156,6 @@
                             [Filter2[idOne] setObject:array forKey:@"c"];
                         }
                     }];
-                    
                 
                 //筛选三级
                 NSMutableArray *Filter3 = [Filter2 mutableCopy];

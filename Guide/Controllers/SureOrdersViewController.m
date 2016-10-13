@@ -341,6 +341,13 @@
                     cell2.button4.alpha = 1;
                     cell2.image4.alpha = 1;
                 }
+                
+                if ([name isEqualToString:@"white"]) {
+                    
+                    cell2.button5.userInteractionEnabled = YES;
+                    cell2.button5.alpha = 1;
+                    cell2.image5.alpha = 1;
+                }
             }
             
             [cell2 choseCoinPay:^(NSString *coinStatus) {
@@ -364,6 +371,11 @@
                 if ([coinStatus isEqualToString:@"blackCoin"]) {
                     
                     cell3.payCoinType.text = @"支付币种：黑币";
+                    return;
+                }
+                if ([coinStatus isEqualToString:@"whiteCoin"]) {
+                    
+                    cell3.payCoinType.text = @"支付币种：白币";
                     return;
                 }
                 

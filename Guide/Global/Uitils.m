@@ -147,9 +147,13 @@
         imageName = @"图层-144";
         
      //金币
-    }else {
+    }else if ([dataString isEqualToString:@"golden"]){
     
         imageName = @"图层-142";
+        
+    }else {
+    
+        imageName = @"白";
     }
     
     
@@ -170,10 +174,10 @@
         
         chinese = @"蓝币";
         
-        //绿币
-    }else if ([dataString isEqualToString:@"green"]) {
+        //白币
+    }else if ([dataString isEqualToString:@"white"]) {
         
-        chinese = @"绿币";
+        chinese = @"白";
         
         //黑币
     }else if ([dataString isEqualToString:@"black"]) {

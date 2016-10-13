@@ -3,7 +3,7 @@
 
 //http://9mama.top:8080
 //http://101.200.131.198:8090/promot
-#define  BaseURLString (@"http://9mama.top")
+#define  BaseURLString (@"http://9mama.top:8080")
 
 #endif /* NSURLs_h */
 
