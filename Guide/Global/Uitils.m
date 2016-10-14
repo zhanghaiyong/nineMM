@@ -177,7 +177,7 @@
         //白币
     }else if ([dataString isEqualToString:@"white"]) {
         
-        chinese = @"白";
+        chinese = @"白币";
         
         //黑币
     }else if ([dataString isEqualToString:@"black"]) {

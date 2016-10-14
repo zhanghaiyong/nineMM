@@ -33,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (strong, nonatomic) AppSubOrderParams *params;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *toRight;
 @end
 
 @implementation PackageDetailViewController
@@ -66,6 +67,7 @@
         coinImg.hidden = NO;
         coinImg.image  = [UIImage imageNamed:[Uitils toImageName:self.packageModel.acceptableCoinTypes[i]]];
     }
+    self.toRight.constant = self.packageModel.acceptableCoinTypes.count*23+10;
     
     self.priceLabel.text = self.packageModel.price;
     
@@ -89,8 +91,6 @@
         
         [[HUDConfig shareHUD]dismiss];
         if ([[dataDic objectForKey:@"retCode"]integerValue] == 0) {
-            
-//            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
             
             if (((NSDictionary *)[dataDic objectForKey:@"retObj"]).count !=0) {
                 
@@ -141,20 +141,7 @@
         return 1;
         
     }else {
-    
-//        if (packageDetailModel) {
-//            Produce1Model *model = packageDetailModel.products[section-1];
-//            
-//            NSInteger row = 1;
-//            if ([model.itemSelecting integerValue] != -1) {
-//                row ++;
-//            }
-//            
-//            if ([model.shopSelecting integerValue] != 0) {
-//                row ++;
-//            }
-//            return row;
-//        }
+
         return 3;
     }
     return 0;
@@ -275,7 +262,6 @@
                 PackageDetailCell3 *cell3 = [[[NSBundle mainBundle] loadNibNamed:@"PackageDetailCell3" owner:self options:nil] lastObject];
                 
                 if (userSource.count > 0) {
-                    FxLog(@"afssdf = %ld",userSource.count);
                     cell3.sourceLabel.text = [NSString stringWithFormat:@"%ld个酒品",userSource.count];
                 }
                 return cell3;

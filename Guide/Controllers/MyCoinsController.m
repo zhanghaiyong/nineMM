@@ -205,7 +205,6 @@
                 
                 
                 for (NSString *key in coinModel.allKeys) {
-                    //                NSLog(@"yes  %@   %@",coinModel.allKeys,self.persionModel.coins);
                     if([key rangeOfString:coins.allKeys[0]].location != NSNotFound && ![key isEqualToString:coins.allKeys[0]]) {
                         
                         FxLog(@"yes  %@",key);

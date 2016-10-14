@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,7 +13,6 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FFh-qX-v7H">
-                    <rect key="frame" x="304" y="29" width="25" height="25"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="25" id="A4t-GX-tDq"/>
                         <constraint firstAttribute="height" constant="25" id="WCU-v0-Ez2"/>
@@ -24,14 +24,12 @@
                     </connections>
                 </button>
                 <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OU5-JR-ZF5">
-                    <rect key="frame" x="0.0" y="63" width="341" height="1"/>
-                    <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="xeE-Bg-hUT"/>
                     </constraints>
                 </view>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  输入商品编号，编号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zKK-q2-V0v">
-                    <rect key="frame" x="48" y="27" width="244" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="7MK-5n-i8y"/>
                         <constraint firstAttribute="height" constant="32" id="9oW-uv-kEz"/>
@@ -48,7 +46,7 @@
                     </variation>
                 </textField>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="FFh-qX-v7H" secondAttribute="trailing" constant="12" id="36Z-0b-S7t"/>
                 <constraint firstAttribute="trailing" secondItem="zKK-q2-V0v" secondAttribute="trailing" constant="50" id="3Pp-1r-rUo"/>
@@ -74,13 +72,13 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <variation key="default">
                 <mask key="constraints">
-                    <exclude reference="BO1-E6-g9M"/>
-                    <exclude reference="FKK-RT-OiA"/>
                     <exclude reference="3Pp-1r-rUo"/>
                     <exclude reference="71E-Jq-Imy"/>
                     <exclude reference="UTh-Z1-dLu"/>
                     <exclude reference="ZGc-HH-Ftz"/>
                     <exclude reference="oGJ-Ue-K8b"/>
+                    <exclude reference="BO1-E6-g9M"/>
+                    <exclude reference="FKK-RT-OiA"/>
                     <exclude reference="V2v-gW-nvT"/>
                     <exclude reference="Z7V-jY-4fr"/>
                     <exclude reference="g4k-FY-zWq"/>

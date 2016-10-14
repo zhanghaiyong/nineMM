@@ -150,7 +150,6 @@
             [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
             UIStoryboard *SB = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
             LoginViewController *loginVC = [SB instantiateViewControllerWithIdentifier:@"LoginViewController"];
-//            UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:loginVC];
             [self presentViewController:loginVC animated:YES completion:^{
                 
                 [self.navigationController popViewControllerAnimated:YES];
@@ -194,7 +193,7 @@
     
     if (indexPath.section == 0) {
         
-        return 310;
+        return 290;
         
     }else if (indexPath.section == 1) {
         

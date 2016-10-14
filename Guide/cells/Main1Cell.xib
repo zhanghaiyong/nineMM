@@ -14,7 +14,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="373"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TWn-IW-48z" id="6yf-Pl-Y5b">
-                <frame key="frameInset" width="320" height="372.5"/>
+                <frame key="frameInset" width="320" height="372"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view tag="100" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OCg-NM-8Pp" customClass="ZHYBannerView">
@@ -72,8 +72,7 @@
                             <constraint firstAttribute="height" constant="20" id="woj-iz-Gi6"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" tag="113" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="玖妈妈最新动态" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="839-m9-5aF">
-                        <frame key="frameInset" minX="101" minY="351" width="98" height="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" tag="113" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="玖妈妈最新动态" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="839-m9-5aF">
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="VNY-X4-gjA"/>
                         </constraints>
@@ -141,8 +140,7 @@
                             <constraint firstAttribute="height" constant="1" id="D8H-dY-Cmt"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" tag="112" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="五月官网资源全新上线" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lME-23-2hc">
-                        <frame key="frameInset" minX="101" minY="331" width="140" height="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" tag="112" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="五月官网资源全新上线" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lME-23-2hc">
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="yBg-aY-amI"/>
                         </constraints>
@@ -296,11 +294,11 @@
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
+                        <exclude reference="2bD-Fa-N2H"/>
                         <exclude reference="umB-Zt-1Ru"/>
                         <exclude reference="bYt-MF-MNl"/>
-                        <exclude reference="hk7-be-RTl"/>
                         <exclude reference="Lis-f1-6cM"/>
-                        <exclude reference="lD4-LK-b6f"/>
+                        <exclude reference="hk7-be-RTl"/>
                         <exclude reference="4tn-uZ-OIi"/>
                         <exclude reference="5EB-PU-ezb"/>
                         <exclude reference="ADE-c3-jE9"/>
@@ -311,7 +309,7 @@
                         <exclude reference="n28-Ez-bhi"/>
                         <exclude reference="wD3-4V-efn"/>
                         <exclude reference="ykt-tt-xBA"/>
-                        <exclude reference="2bD-Fa-N2H"/>
+                        <exclude reference="lD4-LK-b6f"/>
                         <exclude reference="tlG-Uz-w52"/>
                     </mask>
                 </variation>

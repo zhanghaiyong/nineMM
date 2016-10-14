@@ -180,7 +180,7 @@
             
         }else {
         
-            sourceListHead.titleLabel.text = @"我的酒币(绿币)";
+            sourceListHead.titleLabel.text = @"我的酒币(白币)";
         }
     }
     
