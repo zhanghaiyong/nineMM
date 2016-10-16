@@ -14,6 +14,15 @@
     [super awakeFromNib];
     // Initialization code
 }
+- (IBAction)cancleOrderAction:(id)sender {
+    
+    self.block();
+}
+
+- (void)returnBlock:(cancleBlock)block {
+
+    _block = block;
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

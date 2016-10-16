@@ -133,8 +133,6 @@
         [[HUDConfig shareHUD]dismiss];
         if ([[dataDic objectForKey:@"retCode"]integerValue] == 0) {
             
-//            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
-            
             if (((NSDictionary *)[dataDic objectForKey:@"retObj"]).count !=0) {
                 
                 NSDictionary *retObj = [dataDic objectForKey:@"retObj"];
@@ -593,7 +591,7 @@
         
         if ([[dataDic objectForKey:@"retCode"]integerValue] == 0) {
             
-            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            [[HUDConfig shareHUD]dismiss];
             
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
             ProDetailCell1 *cell = (ProDetailCell1 *)[self.tableView cellForRowAtIndexPath:indexPath];

@@ -13,7 +13,7 @@
 #import "OrderListParams.h"
 #import "OrderModel.h"
 #import "OrderComplainCtrl.h"
-@interface OrderTypeTableVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface OrderTypeTableVC ()<UITableViewDelegate,UITableViewDataSource,cancleOrderSuccessDelegate>
 {
 
     NSMutableArray *orderListArr;
@@ -239,60 +239,6 @@
         cell.orderModel = model;
         return cell;
     }
-    
-    
-    
-    /*
-    static NSString *identtifier = @"cell";
-    OrderCell *cell = [tableView dequeueReusableCellWithIdentifier:identtifier];
-    if (!cell) {
-        cell = [[[NSBundle mainBundle] loadNibNamed:@"OrderCell" owner:self options:nil] lastObject];
-    }
-//    if ([_showDic objectForKey:[NSString stringWithFormat:@"%ld",indexPath.section]]) {
-//        cell.detailViewHeight.constant = 160;
-//    }else {
-    
-        cell.detailViewHeight.constant = 0;
-//    }
-    
-    OrderModel *model = orderListArr[indexPath.section];
-    
-    cell.orderIDLabel.text = model.orderSn;
-    [cell.orderStatusButton setTitle:[NSString stringWithFormat:@"  %@  ",model.orderStepName] forState:UIControlStateNormal];
-    [cell.orderStatusButton setTitleColor:[Uitils colorWithHex:(unsigned long)model.orderStepTextColor] forState:UIControlStateNormal];
-    cell.orderStatusButton.layer.borderColor = [Uitils colorWithHex:(unsigned long)model.orderStepTextColor].CGColor;
-    
-    cell.produceName.text = model.goodsName;
-    cell.nowPriceLabel.text = model.price;
-//    cell.coinType1.text = ;
-//    cell.coinType2.text = ;
-    if (model.quantity) {
-    
-        cell.collectLabel.text = [NSString stringWithFormat:@"x%@",model.quantity];
-    }
-    cell.nowPriceRed.text = model.price;
-//    cell.oriPrice.text = model.totalPrice;
-    
-    [cell tapDealOrder:^{
-        
-        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
-        OrderComplainCtrl *dealOrder = [mainSB instantiateViewControllerWithIdentifier:@"OrderComplainCtrl"];
-        dealOrder.orderModel = model;
-        [self.navigationController pushViewController:dealOrder animated:YES];
-    }];
-    
-    //进入详情
-    [cell tapToChechOrderDetail:^{
-        
-        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
-        OrderDetailTabViewCtrl *orderDetail = [mainSB instantiateViewControllerWithIdentifier:@"OrderDetailTabViewCtrl"];
-        orderDetail.orderId = model.orderId;
-        [self.navigationController pushViewController:orderDetail animated:YES];
-    }];
-    
-    return cell;
-     */
-//    return nil;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -303,7 +249,18 @@
     UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
     OrderDetailTabViewCtrl *orderDetail = [mainSB instantiateViewControllerWithIdentifier:@"OrderDetailTabViewCtrl"];
     orderDetail.orderId = model.orderId;
+    orderDetail.section = indexPath.section;
+    orderDetail.delegate = self;
     [self.navigationController pushViewController:orderDetail animated:YES];
+}
+
+-(void)deleteOrder:(NSInteger)section {
+        
+    [self.tableView beginUpdates];
+    [orderListArr removeObjectAtIndex:section];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:section];
+    [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationRight];
+    [self.tableView endUpdates];
 }
 
 - (void)doBack:(UIButton *)sender {

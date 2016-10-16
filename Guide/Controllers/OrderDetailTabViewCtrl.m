@@ -13,6 +13,7 @@
 #import "OrderDetailCell2.h"
 #import "OrderDetailCell4.h"
 #import "GetOrderShopParams.h"
+#import "CancleOrderParams.h"
 @interface OrderDetailTabViewCtrl ()<UITableViewDataSource,UITableViewDelegate>{
 
     OrderDetailModel *orderDetail;
@@ -154,6 +155,44 @@
         cell.orderTotalPrice.text = orderDetail.totalPrice;
         cell.payMethod.text = orderDetail.paymentMethodName;
         cell.orderType.text = orderDetail.orderTypeName;
+        
+        if ([orderDetail.cancelable integerValue] == 1) {
+            
+            cell.cancleButton.alpha = 1;
+            cell.cancleButton.userInteractionEnabled = YES;
+        }
+        
+        [cell returnBlock:^{
+            
+            [[HUDConfig shareHUD]alwaysShow];
+            CancleOrderParams *cancleParams = [[CancleOrderParams alloc]init];
+            cancleParams.id = [orderDetail.orderId intValue];
+            
+            [KSMNetworkRequest postRequest:KCancleOrder params:cancleParams.mj_keyValues success:^(NSDictionary *dataDic) {
+                
+                NSLog(@"KCancleOrder = %@",dataDic);
+                
+                [[HUDConfig shareHUD]dismiss];
+                
+                if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
+                    
+                    [self doBack:cell.cancleButton];
+                    
+                    if ([self.delegate respondsToSelector:@selector(deleteOrder:)]) {
+                        [self.delegate deleteOrder:_section];
+                    }
+                }
+            
+                [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+                
+            } failure:^(NSError *error) {
+                
+                [[HUDConfig shareHUD]SuccessHUD:@"取消失败" delay:DELAY];
+                NSLog(@"KCancleOrder = %@",error);
+            }];
+            
+        }];
+        
 
         if (orderDetail.packagedProductName.length == 0) {
             
@@ -392,8 +431,6 @@
     
         [self.navigationController popViewControllerAnimated:YES];
     }
-    
 }
-
 
 @end

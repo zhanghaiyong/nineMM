@@ -11,6 +11,7 @@
 @interface OrderDetailModel : NSObject
 
 @property (nonatomic,strong) NSDictionary *address;
+@property (nonatomic,strong) NSString     *cancelable;
 @property (nonatomic,strong) NSString     *departmentId;
 @property (nonatomic,strong) NSString     *departmentName;
 @property (nonatomic,strong) NSString     *orderCreateDate;

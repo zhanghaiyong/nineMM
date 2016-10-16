@@ -6,6 +6,8 @@
 //  Copyright © 2016年 ksm. All rights reserved.
 //
 
+typedef void(^cancleBlock)(void);
+
 #import <UIKit/UIKit.h>
 
 @interface OrderDetailCell4 : UITableViewCell
@@ -21,4 +23,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *packageName;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *packageH;
 @property (weak, nonatomic) IBOutlet UILabel *orderType;
+@property (weak, nonatomic) IBOutlet UIButton *cancleButton;
+
+@property (nonatomic,copy)cancleBlock block;
+
+- (void)returnBlock:(cancleBlock)block;
+
 @end

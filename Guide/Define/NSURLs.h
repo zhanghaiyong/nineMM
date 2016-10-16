@@ -22,6 +22,10 @@
 //获取sessionID
 #define KGetSessionID [BaseURLString stringByAppendingString:@"/gw?cmd=hello"]
 
+//取消订单
+#define KCancleOrder [BaseURLString stringByAppendingString:@"/gw?cmd=appCancelOrder"]
+
+
 //用户登录
 #define KLogin [BaseURLString stringByAppendingString:@"/gw?cmd=memberLogin"]
 

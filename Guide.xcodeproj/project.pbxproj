@@ -75,6 +75,7 @@
 		BF40865C1D12EF7600E11065 /* ShortcutsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF40865B1D12EF7600E11065 /* ShortcutsModel.m */; };
 		BF40865F1D12EF8500E11065 /* GroupButtonsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF40865E1D12EF8500E11065 /* GroupButtonsModel.m */; };
 		BF4086621D12EF9500E11065 /* TopBannersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF4086611D12EF9500E11065 /* TopBannersModel.m */; };
+		BF531CE71DB32386002B3D64 /* CancleOrderParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BF531CE61DB32386002B3D64 /* CancleOrderParams.m */; };
 		BF5829EC1D55944D00951730 /* OrderDetailCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5829EA1D55944D00951730 /* OrderDetailCell1.m */; };
 		BF5829ED1D55944D00951730 /* OrderDetailCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF5829EB1D55944D00951730 /* OrderDetailCell1.xib */; };
 		BF5829FB1D55969A00951730 /* OrderDetailCell4.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5829F91D55969A00951730 /* OrderDetailCell4.m */; };
@@ -350,6 +351,8 @@
 		BF40865E1D12EF8500E11065 /* GroupButtonsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupButtonsModel.m; sourceTree = "<group>"; };
 		BF4086601D12EF9500E11065 /* TopBannersModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopBannersModel.h; sourceTree = "<group>"; };
 		BF4086611D12EF9500E11065 /* TopBannersModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopBannersModel.m; sourceTree = "<group>"; };
+		BF531CE51DB32386002B3D64 /* CancleOrderParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CancleOrderParams.h; sourceTree = "<group>"; };
+		BF531CE61DB32386002B3D64 /* CancleOrderParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CancleOrderParams.m; sourceTree = "<group>"; };
 		BF5829E91D55944D00951730 /* OrderDetailCell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailCell1.h; sourceTree = "<group>"; };
 		BF5829EA1D55944D00951730 /* OrderDetailCell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailCell1.m; sourceTree = "<group>"; };
 		BF5829EB1D55944D00951730 /* OrderDetailCell1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetailCell1.xib; sourceTree = "<group>"; };
@@ -899,6 +902,8 @@
 				BF7F92761D26937D0081578F /* BaseParams.m */,
 				BF3C3C0A1D376A47000E3027 /* LoginParams.h */,
 				BF3C3C0B1D376A47000E3027 /* LoginParams.m */,
+				BF531CE51DB32386002B3D64 /* CancleOrderParams.h */,
+				BF531CE61DB32386002B3D64 /* CancleOrderParams.m */,
 				BF3C3C071D375121000E3027 /* ProduceDetailParams.h */,
 				BF3C3C081D375121000E3027 /* ProduceDetailParams.m */,
 				BF35098A1D13A3C900F2BCC5 /* MainProduceListParams.h */,
@@ -1751,6 +1756,7 @@
 				BFF3DD421D2379AB00F5F9B1 /* SourceListHead.m in Sources */,
 				BFD69E961CF8A5AB00B50A6E /* Produce1Model.m in Sources */,
 				BF080FA01D98FE7600E5B21E /* VersionModel.m in Sources */,
+				BF531CE71DB32386002B3D64 /* CancleOrderParams.m in Sources */,
 				BF99BC6D1D5372E80015FA24 /* PackageMealBannerCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
