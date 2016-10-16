@@ -123,10 +123,9 @@
         
         FxLog(@"计算酒币充值套餐人民币与酒币的换算 = %@",dataDic);
         
-        
         if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
             
-            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:3];
         
             if (![[dataDic objectForKey:@"retObj"] isEqual:[NSNull null]]) {
                 

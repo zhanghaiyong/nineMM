@@ -448,8 +448,19 @@
             cell.userInteractionEnabled = YES;
             for (int i = 0; i<self.mainStaticModel.groupButtons.count; i++) {
                 UIImageView *imageV = [cell.contentView viewWithTag:i+200];
+                
+                NSLog(@"zdvz = %@",NSStringFromCGSize(imageV.size));
+                
+                CGSize imageSize;
+                if (i == 0) {
+                    imageSize = CGSizeMake((SCREEN_WIDTH+20)/2.0, 150);
+                }else {
+                
+                    imageSize = CGSizeMake((SCREEN_WIDTH+20)/2.0, 150/2.0);
+                }
+                
                 GroupButtonsModel *groupButton = self.mainStaticModel.groupButtons[i];
-                [Uitils cacheImagwWithSize:CGSizeMake(imageV.size.width*2, imageV.size.height*2) imageID:groupButton.imageId imageV:imageV placeholder:nil];
+                [Uitils cacheImagwWithSize:CGSizeMake(imageSize.width*2, imageSize.height*2) imageID:groupButton.imageId imageV:imageV placeholder:@""];
             }
             
             return cell;
@@ -463,7 +474,7 @@
             for (int i = 0; i<self.mainStaticModel.secondBanner.count; i++) {
                 UIImageView *imageV = [cell.contentView viewWithTag:i+100];
                 SecondBannerModel *groupButton = self.mainStaticModel.secondBanner[i];
-                [Uitils cacheImagwWithSize:CGSizeMake(imageV.size.width*2, imageV.size.height*2) imageID:groupButton.imageId imageV:imageV placeholder:nil];
+                [Uitils cacheImagwWithSize:CGSizeMake(imageV.size.width*2, imageV.size.height*2) imageID:groupButton.imageId imageV:imageV placeholder:@""];
             }
             
             return cell;

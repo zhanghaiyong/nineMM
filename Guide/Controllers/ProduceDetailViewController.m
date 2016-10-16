@@ -159,6 +159,8 @@
         }
     } failure:^(NSError *error) {
         
+        
+        [[HUDConfig shareHUD]ErrorHUD:@"失败" delay:DELAY];
     }];
 }
 
@@ -191,7 +193,7 @@
     
     if (indexPath.section == 0) {
         
-        return 290;
+        return 300;
         
     }else if (indexPath.section == 1) {
         
@@ -389,20 +391,6 @@
     [self.navigationController pushViewController:URLVC animated:YES];
 }
 
-//- (void)showMeumList {
-//    if (_meumList == nil) {
-//        
-//        self.meumList.titleArr = self.meumTitles;
-//        self.meumList.imageArr = self.meumLogos;
-//       [self.navigationController.view addSubview:self.meumList];
-//        
-//    }else {
-//     
-//        [_meumList removeFromSuperview];
-//        _meumList = nil;
-//    }
-//}
-
 - (IBAction)collectAction:(id)sender {
     
 }
@@ -476,15 +464,15 @@
         if (shoppings) {
             [array addObjectsFromArray:shoppings];
             [array addObject:shopCarModel];
-            self.addShoppCarButton.alpha = 0.5;
-            self.addShoppCarButton.userInteractionEnabled = NO;
+//            self.addShoppCarButton.alpha = 0.5;
+//            self.addShoppCarButton.userInteractionEnabled = NO;
             [[HUDConfig shareHUD]SuccessHUD:@"成功加入" delay:DELAY];
             
         }else {
             
             [array addObject:shopCarModel];
-            self.addShoppCarButton.alpha = 0.5;
-            self.addShoppCarButton.userInteractionEnabled = NO;
+//            self.addShoppCarButton.alpha = 0.5;
+//            self.addShoppCarButton.userInteractionEnabled = NO;
             [[HUDConfig shareHUD]SuccessHUD:@"成功加入" delay:DELAY];
         }
         

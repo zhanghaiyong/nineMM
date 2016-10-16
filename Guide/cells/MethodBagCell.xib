@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <frame key="frameInset" width="320" height="89.5"/>
+                <frame key="frameInset" width="320" height="89"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BLx-h0-lvp">
@@ -54,7 +54,7 @@
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rXz-GC-gpD">
+                            <button hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rXz-GC-gpD">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="f0t-LN-zta"/>
                                 </constraints>
@@ -97,11 +97,10 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="QlA-46-IAJ"/>
-                                <exclude reference="zS0-7J-OfV"/>
                                 <exclude reference="7qe-D2-M7t"/>
                                 <exclude reference="cGv-BX-f1G"/>
-                                <exclude reference="1eg-WP-sJ7"/>
+                                <exclude reference="QlA-46-IAJ"/>
+                                <exclude reference="zS0-7J-OfV"/>
                                 <exclude reference="0KS-Rj-kUU"/>
                                 <exclude reference="43L-iF-kQp"/>
                                 <exclude reference="9Ml-97-MV5"/>
@@ -111,6 +110,7 @@
                                 <exclude reference="dbh-7H-N4l"/>
                                 <exclude reference="kOq-XD-lhe"/>
                                 <exclude reference="yDN-A8-bpD"/>
+                                <exclude reference="1eg-WP-sJ7"/>
                             </mask>
                         </variation>
                     </view>

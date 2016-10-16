@@ -22,7 +22,7 @@
                             <constraint firstAttribute="width" constant="1" id="saF-sC-1TG"/>
                         </constraints>
                     </view>
-                    <imageView tag="200" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kzI-Tv-lyx">
+                    <imageView tag="200" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kzI-Tv-lyx">
                         <constraints>
                             <constraint firstAttribute="height" constant="66" id="E55-W0-kfn"/>
                         </constraints>
@@ -84,18 +84,18 @@
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
-                        <exclude reference="JLr-I4-5IL"/>
-                        <exclude reference="fom-Ws-fHv"/>
-                        <exclude reference="v7Z-kl-kk5"/>
-                        <exclude reference="7GB-b5-li6"/>
-                        <exclude reference="SGY-tc-hSn"/>
-                        <exclude reference="8Yi-GC-6ab"/>
-                        <exclude reference="pS6-42-xkp"/>
-                        <exclude reference="vqo-g4-rML"/>
                         <exclude reference="27c-od-H7z"/>
                         <exclude reference="9jA-hg-v4M"/>
                         <exclude reference="MeR-un-rf5"/>
                         <exclude reference="au9-HV-K2U"/>
+                        <exclude reference="7GB-b5-li6"/>
+                        <exclude reference="SGY-tc-hSn"/>
+                        <exclude reference="JLr-I4-5IL"/>
+                        <exclude reference="fom-Ws-fHv"/>
+                        <exclude reference="v7Z-kl-kk5"/>
+                        <exclude reference="8Yi-GC-6ab"/>
+                        <exclude reference="pS6-42-xkp"/>
+                        <exclude reference="vqo-g4-rML"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
