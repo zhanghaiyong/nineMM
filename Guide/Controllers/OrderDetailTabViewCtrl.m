@@ -164,32 +164,43 @@
         
         [cell returnBlock:^{
             
-            [[HUDConfig shareHUD]alwaysShow];
-            CancleOrderParams *cancleParams = [[CancleOrderParams alloc]init];
-            cancleParams.id = [orderDetail.orderId intValue];
             
-            [KSMNetworkRequest postRequest:KCancleOrder params:cancleParams.mj_keyValues success:^(NSDictionary *dataDic) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否取消此订单？" preferredStyle:UIAlertControllerStyleAlert];
+            
+            [alert addAction:[UIAlertAction actionWithTitle:@"是" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 
-                NSLog(@"KCancleOrder = %@",dataDic);
+                [[HUDConfig shareHUD]alwaysShow];
+                CancleOrderParams *cancleParams = [[CancleOrderParams alloc]init];
+                cancleParams.id = [orderDetail.orderId intValue];
                 
-                [[HUDConfig shareHUD]dismiss];
-                
-                if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
+                [KSMNetworkRequest postRequest:KCancleOrder params:cancleParams.mj_keyValues success:^(NSDictionary *dataDic) {
                     
-                    [self doBack:cell.cancleButton];
+                    NSLog(@"KCancleOrder = %@",dataDic);
+                    [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
                     
-                    if ([self.delegate respondsToSelector:@selector(deleteOrder:)]) {
-                        [self.delegate deleteOrder:_section];
+                    [[HUDConfig shareHUD]dismiss];
+                    
+                    if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
+                        
+                        [self doBack:cell.cancleButton];
+                        
+                        if ([self.delegate respondsToSelector:@selector(deleteOrder:)]) {
+                            [self.delegate deleteOrder:_section];
+                        }
                     }
-                }
+                    
+                } failure:^(NSError *error) {
+                    
+                    [[HUDConfig shareHUD]SuccessHUD:@"取消失败" delay:DELAY];
+                    NSLog(@"KCancleOrder = %@",error);
+                }];
+                
+            }]];
             
-                [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
-                
-            } failure:^(NSError *error) {
-                
-                [[HUDConfig shareHUD]SuccessHUD:@"取消失败" delay:DELAY];
-                NSLog(@"KCancleOrder = %@",error);
-            }];
+            [alert addAction:[UIAlertAction actionWithTitle:@"否" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            }]];
+            
+            [self presentViewController:alert animated:YES completion:nil];
             
         }];
         

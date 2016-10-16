@@ -210,13 +210,18 @@
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bwT-DA-nBc">
+                    <button opaque="NO" userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bwT-DA-nBc">
+                        <color key="backgroundColor" red="1" green="0.1333333333" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="60" id="aYb-W3-Mr3"/>
+                            <constraint firstAttribute="width" constant="80" id="aYb-W3-Mr3"/>
+                            <constraint firstAttribute="height" constant="30" id="dxL-ng-g6x"/>
                         </constraints>
-                        <state key="normal" title="取消">
-                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <state key="normal" title="取消订单">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="4"/>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="cancleOrderAction:" destination="7e3-KS-WzF" eventType="touchUpInside" id="bDX-IV-CMs"/>
                         </connections>
@@ -277,17 +282,15 @@
                     <constraint firstItem="85g-QP-Xc6" firstAttribute="leading" secondItem="VRO-kk-o3c" secondAttribute="trailing" constant="10" id="bKM-Fr-4eD"/>
                     <constraint firstItem="eBJ-61-iqZ" firstAttribute="centerY" secondItem="gNx-gX-Ebi" secondAttribute="centerY" id="bUr-9m-ob0"/>
                     <constraint firstItem="85g-QP-Xc6" firstAttribute="leading" secondItem="pnC-95-uB9" secondAttribute="leading" constant="10" id="cB3-fp-SBT"/>
-                    <constraint firstAttribute="trailing" secondItem="bwT-DA-nBc" secondAttribute="trailing" id="dJB-nw-TCP"/>
+                    <constraint firstAttribute="trailing" secondItem="bwT-DA-nBc" secondAttribute="trailing" constant="10" id="dJB-nw-TCP"/>
                     <constraint firstItem="mRr-VH-Kj0" firstAttribute="leading" secondItem="Ues-iu-qCy" secondAttribute="trailing" constant="30" id="e4f-OT-Fwr"/>
                     <constraint firstItem="XgK-0w-CH9" firstAttribute="leading" secondItem="4qt-3c-lD7" secondAttribute="trailing" constant="10" id="eiV-J1-aHY"/>
                     <constraint firstAttribute="trailing" secondItem="26o-ib-bIK" secondAttribute="trailing" id="eyo-bh-HaA"/>
                     <constraint firstItem="85g-QP-Xc6" firstAttribute="centerY" secondItem="VRO-kk-o3c" secondAttribute="centerY" id="fiM-vo-MAw"/>
                     <constraint firstItem="gxc-7o-1sB" firstAttribute="leading" secondItem="pnC-95-uB9" secondAttribute="leading" constant="10" id="ftc-ft-HqM"/>
-                    <constraint firstItem="d1g-lx-aip" firstAttribute="top" secondItem="bwT-DA-nBc" secondAttribute="bottom" id="hNG-jP-bTR"/>
                     <constraint firstItem="XgK-0w-CH9" firstAttribute="leading" secondItem="4qt-3c-lD7" secondAttribute="trailing" constant="30" id="hWe-O1-VUs"/>
                     <constraint firstAttribute="trailing" secondItem="1ca-ri-hXh" secondAttribute="trailing" constant="10" id="idN-Wu-A2w"/>
                     <constraint firstItem="XgK-0w-CH9" firstAttribute="leading" secondItem="pnC-95-uB9" secondAttribute="leading" constant="10" id="jW3-HK-KFp"/>
-                    <constraint firstItem="bwT-DA-nBc" firstAttribute="top" secondItem="pnC-95-uB9" secondAttribute="top" id="jh3-m6-Hau"/>
                     <constraint firstItem="e1W-Wc-Vbh" firstAttribute="centerY" secondItem="gxc-7o-1sB" secondAttribute="centerY" id="jvV-Qo-4gt"/>
                     <constraint firstAttribute="trailing" secondItem="4NI-bt-gf9" secondAttribute="trailing" constant="10" id="kIU-yB-mQ7"/>
                     <constraint firstItem="qOo-pU-SdC" firstAttribute="top" secondItem="pnC-95-uB9" secondAttribute="top" constant="200" id="ke4-qu-QlB"/>
@@ -295,6 +298,7 @@
                     <constraint firstAttribute="trailing" secondItem="SgS-fq-v4S" secondAttribute="trailing" id="kf6-I4-MZo"/>
                     <constraint firstItem="5NT-kr-wJw" firstAttribute="leading" secondItem="gja-YV-gl7" secondAttribute="leading" id="lAC-Vx-9KQ"/>
                     <constraint firstAttribute="trailing" secondItem="RFB-Ii-oIB" secondAttribute="trailing" id="lcX-HE-SIz"/>
+                    <constraint firstItem="bwT-DA-nBc" firstAttribute="centerY" secondItem="93E-5a-Zrd" secondAttribute="centerY" id="mzV-Jm-3eq"/>
                     <constraint firstItem="SEp-nJ-zzr" firstAttribute="centerY" secondItem="SF6-II-Aaz" secondAttribute="centerY" id="nAb-xt-JxH"/>
                     <constraint firstItem="1ca-ri-hXh" firstAttribute="centerY" secondItem="qOo-pU-SdC" secondAttribute="centerY" id="njb-wa-gex"/>
                     <constraint firstItem="mRr-VH-Kj0" firstAttribute="leading" secondItem="pnC-95-uB9" secondAttribute="leading" constant="10" id="oG1-EN-4Bz"/>

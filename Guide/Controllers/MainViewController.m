@@ -201,13 +201,13 @@
             
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"有新版本，马上升级？" preferredStyle:UIAlertControllerStyleAlert];
             
-            [alert addAction:[UIAlertAction actionWithTitle:@"是" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            [alert addAction:[UIAlertAction actionWithTitle:@"是" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:model.url]];
                 
             }]];
             
-            [alert addAction:[UIAlertAction actionWithTitle:@"否" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [alert addAction:[UIAlertAction actionWithTitle:@"否" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
             }]];
             
             [self presentViewController:alert animated:YES completion:nil];
