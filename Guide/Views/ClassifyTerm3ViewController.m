@@ -803,8 +803,6 @@
                     storeCell.logoBtn.selected        = YES;
                     storeCell.meumNameLabel.textColor = MainColor;
                     storeCell.dataLabel.textColor     = MainColor;
-                    
-                    FxLog(@"%@  %@",storeCell.meumNameLabel.text,storeCell.dataLabel.text);
                 }
                 [storeIds removeAllObjects];
                 [storeIds addObject:@"allStore"];

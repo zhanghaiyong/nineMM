@@ -553,7 +553,7 @@
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:1];
     ProDetailCell3 *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    cell.titleLabel.text = [NSString stringWithFormat:@"已选%ld家门店",model.count];
+    
     
      [storeAreaModel addObjectsFromArray:model];
     
@@ -566,6 +566,9 @@
         areaOrStore = [array componentsJoinedByString:@","];
         self.proPriceByStoreParams.storeIds = areaOrStore;
         self.proPriceByStoreParams.storeSelectingType = @"store";
+        
+        cell.titleLabel.text = [NSString stringWithFormat:@"已选%ld家门店",model.count];
+        
     }else {
         
         NSMutableArray *array = [NSMutableArray array];
@@ -576,6 +579,8 @@
         
         self.proPriceByStoreParams.storeSelectingType = @"area";
         self.proPriceByStoreParams.areaIds = areaOrStore;
+        
+        cell.titleLabel.text = [NSString stringWithFormat:@"已选%ld个区域",array.count];
     }
     
     [[HUDConfig shareHUD]alwaysShow];
