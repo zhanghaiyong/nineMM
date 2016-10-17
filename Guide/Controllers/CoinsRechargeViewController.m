@@ -125,7 +125,7 @@
         
         if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
             
-            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:3];
+            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
         
             if (![[dataDic objectForKey:@"retObj"] isEqual:[NSNull null]]) {
                 
@@ -139,7 +139,7 @@
             }
             
         }else {
-            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
+            [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:3];
             coinRechargeCell1.priceLabel.text = @"";
         }
         

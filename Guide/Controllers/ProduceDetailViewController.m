@@ -20,7 +20,7 @@
     NSInteger typeFlag;
     ProduceDetailModel *produceDetail;
     NSString    *areaOrStore;
-    NSMutableArray     *userSource;
+    NSArray     *userSource;
     NSMutableArray     *storeAreaModel;
     CGFloat webViewHeight;
     ProDetailCell2 *cell3;
@@ -93,7 +93,7 @@
     
     self.title = @"资源详情";
     storeAreaModel = [NSMutableArray array];
-    userSource = [NSMutableArray array];
+    userSource = [NSArray array];
     
 //    NSString *filePath = [NSString stringWithFormat:@"%@/%@",[HYSandbox docPath],SHOPPING_CAR];
 //    NSArray *shoppings = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
@@ -538,13 +538,22 @@
 #pragma mark UserSourceViewController Delegate
 - (void)chosedUserSource:(NSArray *)array {
 
-    [userSource addObjectsFromArray:array];
+    userSource = array;
+    NSLog(@"zdgdz = %@",userSource);
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
+    ProDetailCell3 *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    cell.titleLabel.text = [NSString stringWithFormat:@"已选%ld个酒品",array.count];
 }
 
 #pragma mark Term3Delegate
 - (void)areaIdOrStoresId:(NSArray *)model type:(NSString *)type {
 
     FxLog(@"dzfsdg =  %@%@",model,type);
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:1];
+    ProDetailCell3 *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    cell.titleLabel.text = [NSString stringWithFormat:@"已选%ld家门店",model.count];
     
      [storeAreaModel addObjectsFromArray:model];
     
