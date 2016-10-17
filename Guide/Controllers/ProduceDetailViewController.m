@@ -580,7 +580,7 @@
         self.proPriceByStoreParams.storeSelectingType = @"area";
         self.proPriceByStoreParams.areaIds = areaOrStore;
         
-        cell.titleLabel.text = [NSString stringWithFormat:@"已选%ld个区域",array.count];
+        cell.titleLabel.text = [NSString stringWithFormat:@"已选%ld个区域或门店",model.count];
     }
     
     [[HUDConfig shareHUD]alwaysShow];
