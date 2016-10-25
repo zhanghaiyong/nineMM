@@ -76,6 +76,7 @@
 		BF40865F1D12EF8500E11065 /* GroupButtonsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF40865E1D12EF8500E11065 /* GroupButtonsModel.m */; };
 		BF4086621D12EF9500E11065 /* TopBannersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF4086611D12EF9500E11065 /* TopBannersModel.m */; };
 		BF531CE71DB32386002B3D64 /* CancleOrderParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BF531CE61DB32386002B3D64 /* CancleOrderParams.m */; };
+		BF531CEA1DB600CA002B3D64 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF531CE91DB600CA002B3D64 /* MapKit.framework */; };
 		BF5829EC1D55944D00951730 /* OrderDetailCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5829EA1D55944D00951730 /* OrderDetailCell1.m */; };
 		BF5829ED1D55944D00951730 /* OrderDetailCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF5829EB1D55944D00951730 /* OrderDetailCell1.xib */; };
 		BF5829FB1D55969A00951730 /* OrderDetailCell4.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5829F91D55969A00951730 /* OrderDetailCell4.m */; };
@@ -353,6 +354,8 @@
 		BF4086611D12EF9500E11065 /* TopBannersModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopBannersModel.m; sourceTree = "<group>"; };
 		BF531CE51DB32386002B3D64 /* CancleOrderParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CancleOrderParams.h; sourceTree = "<group>"; };
 		BF531CE61DB32386002B3D64 /* CancleOrderParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CancleOrderParams.m; sourceTree = "<group>"; };
+		BF531CE81DB600C8002B3D64 /* Guide.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Guide.entitlements; sourceTree = "<group>"; };
+		BF531CE91DB600CA002B3D64 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		BF5829E91D55944D00951730 /* OrderDetailCell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailCell1.h; sourceTree = "<group>"; };
 		BF5829EA1D55944D00951730 /* OrderDetailCell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailCell1.m; sourceTree = "<group>"; };
 		BF5829EB1D55944D00951730 /* OrderDetailCell1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetailCell1.xib; sourceTree = "<group>"; };
@@ -618,6 +621,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF531CEA1DB600CA002B3D64 /* MapKit.framework in Frameworks */,
 				A55FFC3F52EF8FC613B238CB /* libPods-Guide.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -725,6 +729,7 @@
 		789E788C1CB60D080039AC69 /* Guide */ = {
 			isa = PBXGroup;
 			children = (
+				BF531CE81DB600C8002B3D64 /* Guide.entitlements */,
 				BF8600CA1D3B223800BCA60A /* Guide.pch */,
 				789E78901CB60D080039AC69 /* AppDelegate.h */,
 				789E78911CB60D080039AC69 /* AppDelegate.m */,
@@ -881,6 +886,7 @@
 		A4F2E92CAB15455BE2BD03C9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BF531CE91DB600CA002B3D64 /* MapKit.framework */,
 				BD770AF8A4235D3FEBA684A1 /* libPods-Guide.a */,
 			);
 			name = Frameworks;
@@ -1457,6 +1463,12 @@
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 0;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 0;
 							};
 						};
 					};

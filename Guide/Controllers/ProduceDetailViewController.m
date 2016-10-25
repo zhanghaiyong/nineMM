@@ -155,7 +155,6 @@
         }else {
         
             [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
-            
         }
     } failure:^(NSError *error) {
         

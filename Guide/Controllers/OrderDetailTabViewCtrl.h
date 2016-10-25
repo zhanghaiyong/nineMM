@@ -25,6 +25,8 @@
 
 @property (nonatomic,assign)NSInteger section;
 
-@property (nonatomic,assign)id<cancleOrderSuccessDelegate>delegate;
+@property (nonatomic,assign)id< cancleOrderSuccessDelegate >delegate;
+
+
 
 @end

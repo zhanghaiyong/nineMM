@@ -22,6 +22,6 @@ static BOOL isProduction = true;
 - (void)unsetAlias;
 - (void)setTopic:(NSString *)topic;
 - (void)unsetTopic;
-- (void)showLocalNotificationAtFront:(UILocalNotification *)notification;
+//- (void)showLocalNotificationAtFront:(UILocalNotification *)notification;
 
 @end

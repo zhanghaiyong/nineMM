@@ -14,7 +14,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="373"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TWn-IW-48z" id="6yf-Pl-Y5b">
-                <frame key="frameInset" width="320" height="372"/>
+                <frame key="frameInset" width="320" height="372.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view tag="100" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OCg-NM-8Pp" customClass="ZHYBannerView">
@@ -220,6 +220,12 @@
                             </mask>
                         </variation>
                     </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TMI-lT-4Ms">
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <action selector="cell1tapAction:" destination="TWn-IW-48z" eventType="touchUpInside" id="Ym8-cp-AEv"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="okM-Dq-zFm" firstAttribute="top" secondItem="OCg-NM-8Pp" secondAttribute="bottom" id="0Ye-wf-Zmz"/>
@@ -248,6 +254,9 @@
                     <constraint firstItem="c8k-lP-LNx" firstAttribute="top" secondItem="OCg-NM-8Pp" secondAttribute="bottom" id="RxQ-xi-HJR"/>
                     <constraint firstItem="82m-tX-Gaj" firstAttribute="leading" secondItem="Y0M-Ar-5Ek" secondAttribute="trailing" id="SKN-pt-Rjv"/>
                     <constraint firstItem="oya-uO-pSI" firstAttribute="leading" secondItem="IRf-Pn-8CN" secondAttribute="trailing" id="T6v-gm-9d4"/>
+                    <constraint firstItem="TMI-lT-4Ms" firstAttribute="top" secondItem="W9S-zn-M8a" secondAttribute="bottom" id="TTW-dY-5Uj"/>
+                    <constraint firstAttribute="trailing" secondItem="TMI-lT-4Ms" secondAttribute="trailing" id="Tje-Vf-TWe"/>
+                    <constraint firstItem="TMI-lT-4Ms" firstAttribute="leading" secondItem="6yf-Pl-Y5b" secondAttribute="leading" id="UAN-EU-Ws4"/>
                     <constraint firstItem="el5-XO-agJ" firstAttribute="leading" secondItem="6yf-Pl-Y5b" secondAttribute="leading" constant="10" id="UFS-sP-qM5"/>
                     <constraint firstItem="MtD-kv-9Yh" firstAttribute="width" secondItem="Y0M-Ar-5Ek" secondAttribute="width" id="VFQ-5f-e3i"/>
                     <constraint firstItem="MtD-kv-9Yh" firstAttribute="leading" secondItem="mQB-Gh-5rI" secondAttribute="trailing" id="VFs-TO-ezB"/>
@@ -271,6 +280,7 @@
                     <constraint firstItem="HTy-54-ISO" firstAttribute="width" secondItem="mQB-Gh-5rI" secondAttribute="width" id="kmA-tA-xUF"/>
                     <constraint firstAttribute="trailing" secondItem="oya-uO-pSI" secondAttribute="trailing" id="kzK-ba-s0D"/>
                     <constraint firstItem="lME-23-2hc" firstAttribute="top" secondItem="PIa-nw-wDx" secondAttribute="top" id="lD4-LK-b6f"/>
+                    <constraint firstItem="FsY-MT-LPL" firstAttribute="top" secondItem="TMI-lT-4Ms" secondAttribute="bottom" id="lnB-56-a41"/>
                     <constraint firstItem="yJo-de-Xz1" firstAttribute="top" secondItem="el5-XO-agJ" secondAttribute="bottom" id="n28-Ez-bhi"/>
                     <constraint firstItem="okM-Dq-zFm" firstAttribute="leading" secondItem="GJ9-vy-hhB" secondAttribute="trailing" id="oq6-jP-AaN"/>
                     <constraint firstItem="IRf-Pn-8CN" firstAttribute="top" secondItem="OCg-NM-8Pp" secondAttribute="bottom" id="pCe-4T-nEj"/>
@@ -294,11 +304,11 @@
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
-                        <exclude reference="2bD-Fa-N2H"/>
                         <exclude reference="umB-Zt-1Ru"/>
                         <exclude reference="bYt-MF-MNl"/>
-                        <exclude reference="Lis-f1-6cM"/>
                         <exclude reference="hk7-be-RTl"/>
+                        <exclude reference="Lis-f1-6cM"/>
+                        <exclude reference="lD4-LK-b6f"/>
                         <exclude reference="4tn-uZ-OIi"/>
                         <exclude reference="5EB-PU-ezb"/>
                         <exclude reference="ADE-c3-jE9"/>
@@ -309,7 +319,7 @@
                         <exclude reference="n28-Ez-bhi"/>
                         <exclude reference="wD3-4V-efn"/>
                         <exclude reference="ykt-tt-xBA"/>
-                        <exclude reference="lD4-LK-b6f"/>
+                        <exclude reference="2bD-Fa-N2H"/>
                         <exclude reference="tlG-Uz-w52"/>
                     </mask>
                 </variation>

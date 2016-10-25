@@ -86,6 +86,8 @@
 //资源 eg:  action:queryGoodsFeature:base
 #define queryGoodsFeature    (@"queryGoodsFeature")
 
+#define None    (@"none")
+
 
 
 

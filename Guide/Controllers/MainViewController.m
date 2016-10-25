@@ -435,6 +435,15 @@
                 
                 UILabel *subTitle = [cell.contentView viewWithTag:113];
                 subTitle.text = newsModel.subtitle;
+                
+                [cell tapNewSourceAction:^{
+                    
+                    UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+                    URLViewController *URLVC = [mainSB instantiateViewControllerWithIdentifier:@"URLViewController"];
+                    URLVC.title = newsModel.title;
+                    URLVC.urlString = [NSString stringWithFormat:@"%@/article/mobile/%@.page",BaseURLString,newsModel.id];
+                    [self.navigationController pushViewController:URLVC animated:YES];
+                }];
             }
 
             return cell;
@@ -717,7 +726,6 @@
         
     }else if ([array containsObject:showGoodsDetail]) {
         
-        
         UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
         ProduceDetailViewController *produceDetail = [mainSB instantiateViewControllerWithIdentifier:@"ProduceDetailViewController"];
         produceDetail.produceId = array.lastObject;
@@ -737,6 +745,13 @@
         URLVC.urlString = [NSString stringWithFormat:@"%@/%@.page",KArticleHtml,model.imageId];
         [self.navigationController pushViewController:URLVC animated:YES];
         
+    }else if ([array containsObject:None]) {
+        
+        UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"MainView" bundle:nil];
+        URLViewController *URLVC = [mainSB instantiateViewControllerWithIdentifier:@"URLViewController"];
+        URLVC.title = model.title;
+        URLVC.urlString = [NSString stringWithFormat:@"%@/article/mobile/%@.page",BaseURLString,model.id];
+        [self.navigationController pushViewController:URLVC animated:YES];
     }
     FxLog(@"%@",array);
     

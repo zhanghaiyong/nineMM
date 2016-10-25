@@ -1,9 +1,13 @@
+static NSString *appKey = @"ca5cfa7d71691b108f3b03f7";
+static NSString *channel = @"Publish channel";
+static BOOL isProduction = true;
+
 #import "AppDelegate.h"
 #import "SDKKey.h"
 #import "LaunchViewController.h"
 #import "LoginViewController.h"
 #import "PageInfo.h"
-#import "JiPush.h"
+//#import "JiPush.h"
 
 @interface AppDelegate ()
 
@@ -40,15 +44,43 @@
     
     
     
-    
     [Uitils reach];
     
     //设置键盘自动关闭
     [[SDKKey shareSDKKey] IQKeyboard];
     
     //推送注册
-    [[JiPush shareJpush] registerPush:launchOptions];
-    [[JiPush shareJpush]addObserver];
+    //推送注册
+    //Required
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0) {
+        
+        JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
+        entity.types = UNAuthorizationOptionAlert|UNAuthorizationOptionBadge|UNAuthorizationOptionSound;
+        [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
+    }
+    else if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        //可以添加自定义categories
+        [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
+                                                          UIUserNotificationTypeSound |
+                                                          UIUserNotificationTypeAlert)
+                                              categories:nil];
+    }
+    else {
+        //categories 必须为nil
+        [JPUSHService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                          UIRemoteNotificationTypeSound |
+                                                          UIRemoteNotificationTypeAlert)
+                                              categories:nil];
+    }
+    
+    //Required
+    // init Push(2.1.5版本的SDK新增的注册方法，改成可上报IDFA，如果没有使用IDFA直接传nil  )
+    // 如需继续使用pushConfig.plist文件声明appKey等配置内容，请依旧使用[JPUSHService setupWithOption:launchOptions]方式初始化。
+    [JPUSHService setupWithOption:launchOptions appKey:appKey
+                          channel:channel
+                 apsForProduction:isProduction
+            advertisingIdentifier:nil];
+    
     
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     
@@ -69,10 +101,8 @@
     return YES;
 }
 
-
-
-
 - (void)applicationWillResignActive:(UIApplication *)application {
+    
     
 }
 
@@ -101,20 +131,13 @@
     FxLog(@"%@", [NSString stringWithFormat:@"Device Token: %@", deviceToken]);
     
     //极光推送
-    [[JiPush shareJpush]registerDeviceToken:deviceToken];
-    
-//    NSString *token = [[[[deviceToken description] stringByReplacingOccurrencesOfString:@"<"
-//                                                                             withString:@""]stringByReplacingOccurrencesOfString:@">"
-//                        withString:@""]stringByReplacingOccurrencesOfString:@" "
-//                       withString:@""];
-//    //融云消息推送
-//    [[RCIMClient sharedRCIMClient] setDeviceToken:token];
+    [JPUSHService registerDeviceToken:deviceToken];
+
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
     FxLog(@"did Fail To Register For Remote Notifications With Error: %@", error);
 }
-
 
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_7_1
@@ -125,63 +148,43 @@
 }
 #endif
 
-//IOS 7支持需要
+
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger))completionHandler {
+    // Required
+    NSDictionary * userInfo = notification.request.content.userInfo;
+    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        [JPUSHService handleRemoteNotification:userInfo];
+        
+        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[UIApplication sharedApplication].applicationIconBadgeNumber + 1];
+    }
+    completionHandler(UNNotificationPresentationOptionAlert | UNNotificationPresentationOptionSound | UNNotificationPresentationOptionBadge); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以选择设置
+}
+
+// iOS 10 Support
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
+    // Required
+    NSDictionary * userInfo = response.notification.request.content.userInfo;
+    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        [JPUSHService handleRemoteNotification:userInfo];
+        
+    }
+    completionHandler(UNNotificationPresentationOptionAlert | UNNotificationPresentationOptionSound | UNNotificationPresentationOptionBadge);  // 系统要求执行这个方法
+}
+
+
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:application.applicationIconBadgeNumber + 1];
+    // Required, iOS 7 Support
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[UIApplication sharedApplication].applicationIconBadgeNumber + 1];
     
-    [[JiPush shareJpush]handleNotification:userInfo];
-    FxLog(@"推送 收到通知:%@", userInfo);
     completionHandler(UIBackgroundFetchResultNewData);
-//    [[NSNotificationCenter defaultCenter] postNotificationName:REFRESH_SYSTEM object:self userInfo:nil];
-//    [[NSNotificationCenter defaultCenter] postNotificationName:REFRESH_ORDER object:self userInfo:nil];
-//    [[NSNotificationCenter defaultCenter] postNotificationName:REFRESH_APPOINT object:self userInfo:nil];
 }
 
-
-//收到推送的调用
-- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
-    /*!
-     * @abstract 前台展示本地推送
-     *
-     * @param notification 本地推送对象
-     * @param notificationKey 需要前台显示的本地推送通知的标示符
-     *
-     * @discussion 默认App在前台运行时不会进行弹窗，在程序接收通知调用此接口可实现指定的推送弹窗。
-     */
-    
-    
-    
-    //用于显示一个提示框
-    //    [[JiPush shareJpush] showLocalNotificationAtFront:notification];
-    
-    //    [SVProgressHUD show];
-    //fId  消息发送者的用户 ID
-    //cType 会话类型。PR指单聊、 DS指讨论组、 GRP指群组、 CS指客服、SYS指系统会话、 MC指应用内公众服务、 MP指跨应用公众服务。
-    //oName 消息类型，参考融云消息类型表.消息标志；可自定义消息类型。
-    //tId 接收者的用户 Id。
-    FxLog(@"%@",notification.userInfo);
+    // Required,For systems with less than or equal to iOS6
+    [JPUSHService handleRemoteNotification:userInfo];
 }
 
-//- (NSString *)logDic:(NSDictionary *)dic {
-//    if (![dic count]) {
-//        return nil;
-//    }
-//    NSString *tempStr1 =
-//    [[dic description] stringByReplacingOccurrencesOfString:@"\\u"
-//                                                 withString:@"\\U"];
-//    NSString *tempStr2 =
-//    [tempStr1 stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
-//    NSString *tempStr3 =
-//    [[@"\"" stringByAppendingString:tempStr2] stringByAppendingString:@"\""];
-//    NSData *tempData = [tempStr3 dataUsingEncoding:NSUTF8StringEncoding];
-//    NSString *str =
-//    [NSPropertyListSerialization propertyListFromData:tempData
-//                                     mutabilityOption:NSPropertyListImmutable
-//                                               format:NULL
-//                                     errorDescription:NULL];
-//    return str;
-//}
 
 @end

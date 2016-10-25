@@ -68,8 +68,10 @@
             [[HUDConfig shareHUD]ErrorHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
             UIStoryboard *SB = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
             LoginViewController *loginVC = [SB instantiateViewControllerWithIdentifier:@"LoginViewController"];
-            UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:loginVC];
-            [self presentViewController:navi animated:YES completion:nil];
+            [self presentViewController:loginVC animated:YES completion:^{
+                
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
             
         }else {
             

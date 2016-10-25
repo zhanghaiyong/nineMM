@@ -12,5 +12,14 @@
 
     // Configure the view for the selected state
 }
+- (IBAction)cell1tapAction:(id)sender {
+    
+    self.block();
+}
+
+- (void)tapNewSourceAction:(MainCell1Block)block {
+
+    _block = block;
+}
 
 @end

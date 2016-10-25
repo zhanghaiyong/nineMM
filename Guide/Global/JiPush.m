@@ -59,10 +59,10 @@
     [JPUSHService handleRemoteNotification:userInfo];
 }
 
-- (void)showLocalNotificationAtFront:(UILocalNotification *)notification {
-    
-    [JPUSHService showLocalNotificationAtFront:notification identifierKey:nil];
-}
+//- (void)showLocalNotificationAtFront:(UILocalNotification *)notification {
+//    
+//    [JPUSHService showLocalNotificationAtFront:notification identifierKey:nil];
+//}
 
 - (void)setAlias:(NSString *)alias {
     
