@@ -182,6 +182,9 @@
                     
                     if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
                         
+                        //取消订单后，应该退回对应的酒币，清除用户数据，重新请求
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"clearPersionData" object:self userInfo:nil];
+                        
                         [self doBack:cell.cancleButton];
                         
                         if ([self.delegate respondsToSelector:@selector(deleteOrder:)]) {

@@ -60,6 +60,8 @@
         
         if ([[dataDic objectForKey:@"retCode"]integerValue] == 0) {
             
+            //购买成功后，清除用户数据，重新请求
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"clearPersionData" object:self userInfo:nil];
             
             if (self.ProduceBag.count > 0) {
                 

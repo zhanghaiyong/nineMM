@@ -22,18 +22,19 @@
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
 
     // 请求超时设定
-    session.requestSerializer.timeoutInterval = 50;
-    session.securityPolicy.allowInvalidCertificates = YES;
+//    session.requestSerializer.timeoutInterval = 50;
+//    session.securityPolicy.allowInvalidCertificates = YES;
     [session GET:url parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
-        successHandler(dic);
+        successHandler(responseObject);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
-        KSMLog(@"------请求失败-------%@",error);
+        [[HUDConfig shareHUD]Tips :error.localizedDescription delay:DELAY];
+        [[HUDConfig shareHUD] dismiss];
+        
         failureHandler(error);
     }];
 

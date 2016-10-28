@@ -188,7 +188,7 @@
 
 - (void)testVersion {
     
-    [KSMNetworkRequest postRequest:KVersion params:nil success:^(NSDictionary *dataDic) {
+    [KSMNetworkRequest getRequest:KVersion params:nil success:^(NSDictionary *dataDic) {
         
         FxLog(@"c当时的 =%@",dataDic);
         
@@ -196,6 +196,8 @@
         
         NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
         NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+        
+        NSLog(@"app_Version = %@",app_Version);
         
         if ([app_Version integerValue] != [model.version integerValue]) {
             

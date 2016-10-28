@@ -65,7 +65,7 @@
             
             [[HUDConfig shareHUD]SuccessHUD:[dataDic objectForKey:@"retMsg"] delay:DELAY];
             self.block(self.emailTF.text,self.title);
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"clearPersionDara" object:self userInfo:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"clearPersionData" object:self userInfo:nil];
             [self performSelector:@selector(backAction) withObject:self afterDelay:1];
             
         }else {

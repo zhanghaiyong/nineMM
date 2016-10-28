@@ -8,6 +8,7 @@
 
     NSMutableArray *productArr;
     NSMutableArray *SelectProArray;
+    NSMutableArray *selectModelRow;
     UIButton *editBtn;
     
 }
@@ -35,6 +36,7 @@
     self.title = @"购物车";
     
     SelectProArray = [NSMutableArray array];
+    selectModelRow = [NSMutableArray array];
     
     editBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     editBtn.frame = CGRectMake(0, 0, 60, 44);
@@ -57,7 +59,7 @@
         NSString *filePath = [NSString stringWithFormat:@"%@/%@",[HYSandbox docPath],SHOPPING_CAR];
         productArr = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
         
-        [SelectProArray removeAllObjects];
+//        [SelectProArray removeAllObjects];
         [self.tableV reloadData];
         [self.tableV.mj_header endRefreshing];
         
@@ -126,6 +128,14 @@
     }];
     
     
+    if ([selectModelRow containsObject:[NSString stringWithFormat:@"%ld",indexPath.row]]) {
+        
+        cell.isSelected.selected = YES;
+    }else{
+    
+        cell.isSelected.selected = NO;
+    }
+    
 //    for (ShopingCarModel *selectedModel in SelectProArray) {
 //        
 //        if ([selectedModel isEqual:model]) {
@@ -144,9 +154,9 @@
 //        
 //    }else {
 //    
-        cell.isSelected.selected = NO;
-        self.selectAll.selected = NO;
-        self.totalPrice.text = @"0";
+//        cell.isSelected.selected = NO;
+//        self.selectAll.selected = NO;
+//        self.totalPrice.text = @"0";
 //    }
 //    
     
@@ -165,11 +175,13 @@
     
     if (cell.isSelected.selected) {
         
+        [selectModelRow removeObject:[NSString stringWithFormat:@"%ld",indexPath.row]];
         cell.isSelected.selected = NO;
-        [SelectProArray removeObject:model];
+        [SelectProArray removeObjectAtIndex:indexPath.row];
         
     }else {
         
+        [selectModelRow addObject:[NSString stringWithFormat:@"%ld",indexPath.row]];
         cell.isSelected.selected = YES;
         [SelectProArray addObject:model];
     }
@@ -207,6 +219,7 @@
     if (button.selected) {
         
         [SelectProArray removeAllObjects];
+        [selectModelRow removeAllObjects];
         self.totalPrice.text = @"0";
         button.selected = NO;
         
@@ -221,6 +234,7 @@
         
         //先把已经选择的商品移除
         [SelectProArray removeAllObjects];
+        [selectModelRow removeAllObjects];
         //再加入所有商品
         [SelectProArray addObjectsFromArray:productArr];
         button.selected = YES;
@@ -228,6 +242,7 @@
         CGFloat totalPrice = 0.0;
         for (int i = 0; i< SelectProArray.count; i++) {
             
+            [selectModelRow addObject:[NSString stringWithFormat:@"%d",i]];
             ShopingCarModel *model = SelectProArray[i];
             totalPrice += [model.amount floatValue];
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];

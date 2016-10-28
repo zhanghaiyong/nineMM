@@ -4,6 +4,7 @@
 #import "UpdateAvatarParams.h"
 #import "UpdateUserInfoParams.h"
 #import "ModifyEmail.h"
+#import "VersionModel.h"
 @interface ControlAccount ()<UITableViewDataSource,UITableViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 {
 
@@ -18,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *userCode;
 @property (weak, nonatomic) IBOutlet UILabel *userType;
 @property (weak, nonatomic) IBOutlet UILabel *userLevel;
+@property (weak, nonatomic) IBOutlet UILabel *appVersion;
 @end
 
 @implementation ControlAccount
@@ -151,7 +153,7 @@
                 if ([[dataDic objectForKey:@"retCode"] integerValue] == 0) {
                     
                     [[HUDConfig shareHUD]SuccessHUD:@"上传成功" delay:DELAY];
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"clearPersionDara" object:self userInfo:nil];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"clearPersionData" object:self userInfo:nil];
                 }
                 
                 
@@ -209,6 +211,9 @@
                 self.userType.text = memberInfo.typeName;
                 self.userLevel.text = memberInfo.levelName;
                 [Uitils cacheImagwWithSize:_avatar.size imageID:memberInfo.avatarId imageV:_avatar placeholder:@"组-23"];
+                NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+                NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+                self.appVersion.text = [NSString stringWithFormat:@"V%@",app_Version];
             }
             
         }else {
@@ -299,8 +304,53 @@
             }
         }];
         [self.navigationController pushViewController:modifyEmail animated:YES];
-        
     }
+    
+    if (indexPath.section == 1) {
+        
+        if (indexPath.row == 4) {
+            
+             [self testVersion];
+        }
+    }
+}
+
+- (void)testVersion {
+    
+    [[HUDConfig shareHUD]alwaysShow];
+    
+    [KSMNetworkRequest getRequest:KVersion params:nil success:^(NSDictionary *dataDic) {
+        
+        FxLog(@"c当时的 =%@",dataDic);
+        
+        [[HUDConfig shareHUD]dismiss];
+        
+        VersionModel *model = [VersionModel mj_objectWithKeyValues:[[dataDic objectForKey:@"ios"] objectForKey:@"promot"]];
+        
+        NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+        NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+        
+        if ([app_Version integerValue] != [model.version integerValue]) {
+            
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"有新版本，马上升级？" preferredStyle:UIAlertControllerStyleAlert];
+            
+            [alert addAction:[UIAlertAction actionWithTitle:@"是" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:model.url]];
+            }]];
+            
+            [alert addAction:[UIAlertAction actionWithTitle:@"否" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            }]];
+            
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+        
+    } failure:^(NSError *error) {
+        
+        [[HUDConfig shareHUD]dismiss];
+        FxLog(@"version fail = %@",error);
+        
+    }];
 }
 
 @end
