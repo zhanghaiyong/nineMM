@@ -280,7 +280,7 @@
                         
                         NSDictionary *dic  = persionModel.coins[i];
                         ButtonView *coinBV = (ButtonView *)[cell2.contentView viewWithTag:300+i];
-                        coinBV.labelTitle = [NSString stringWithFormat:@"%@",dic.allValues[0]];
+                        coinBV.labelTitle = [Uitils toChinses:dic.allKeys[0]];
                         coinBV.imageName = [Uitils toImageName:dic.allKeys[0]];
                     }
                     
@@ -290,7 +290,7 @@
                         
                         NSDictionary *dic  = persionModel.coins[i];
                         
-                            ButtonView *coinBV = [[ButtonView alloc]initWithFrame:CGRectMake(i*SCREEN_WIDTH/persionModel.coins.count, 44, SCREEN_WIDTH/persionModel.coins.count, cell2.height) title:[NSString stringWithFormat:@"%@",dic.allValues[0]] image:[Uitils toImageName:dic.allKeys[0]]];
+                            ButtonView *coinBV = [[ButtonView alloc]initWithFrame:CGRectMake(i*SCREEN_WIDTH/persionModel.coins.count, 44, SCREEN_WIDTH/persionModel.coins.count, cell2.height) title:[Uitils toChinses:dic.allKeys[0]] image:[Uitils toImageName:dic.allKeys[0]]];
                             coinBV.imageSize = CGSizeMake(25, 25);
                             coinBV.tag = 300+i;
                             [cell2.contentView addSubview:coinBV];
