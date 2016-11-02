@@ -273,14 +273,29 @@
                 NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:0 inSection:1];
                 UITableViewCell *cell2  = [self.tableView cellForRowAtIndexPath:indexPath2];
 
-                for (int i = 0; i<persionModel.coins.count; i++) {
-                    
-                    NSDictionary *dic  = persionModel.coins[i];
-                    ButtonView *coinBV = [[ButtonView alloc]initWithFrame:CGRectMake(i*SCREEN_WIDTH/persionModel.coins.count, 44, SCREEN_WIDTH/persionModel.coins.count, cell2.height) title:[NSString stringWithFormat:@"%@",dic.allValues[0]] image:[Uitils toImageName:dic.allKeys[0]]];
-                    coinBV.imageSize = CGSizeMake(25, 25);
-                    [cell2.contentView addSubview:coinBV];
-                }
                 
+                if (cell2.contentView.subviews.count > 4) {
+                    
+                    for (int i = 0; i<persionModel.coins.count; i++) {
+                        
+                        NSDictionary *dic  = persionModel.coins[i];
+                        ButtonView *coinBV = (ButtonView *)[cell2.contentView viewWithTag:300+i];
+                        coinBV.labelTitle = [NSString stringWithFormat:@"%@",dic.allValues[0]];
+                        coinBV.imageName = [Uitils toImageName:dic.allKeys[0]];
+                    }
+                    
+                }else {
+                
+                    for (int i = 0; i<persionModel.coins.count; i++) {
+                        
+                        NSDictionary *dic  = persionModel.coins[i];
+                        
+                            ButtonView *coinBV = [[ButtonView alloc]initWithFrame:CGRectMake(i*SCREEN_WIDTH/persionModel.coins.count, 44, SCREEN_WIDTH/persionModel.coins.count, cell2.height) title:[NSString stringWithFormat:@"%@",dic.allValues[0]] image:[Uitils toImageName:dic.allKeys[0]]];
+                            coinBV.imageSize = CGSizeMake(25, 25);
+                            coinBV.tag = 300+i;
+                            [cell2.contentView addSubview:coinBV];
+                    }
+                }
                 //头像
                 [Uitils cacheImagwWithSize:_avatar.size imageID:[persionModel.memberInfo objectForKey:@"avatarImgId"] imageV:_avatar placeholder:@"组-23"];
                 //用户名

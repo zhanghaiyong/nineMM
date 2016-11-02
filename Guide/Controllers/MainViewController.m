@@ -251,6 +251,7 @@
                 if (self.produceListParams.page == 1) {
                     
                     self.produces = [MainProduceModel mj_objectArrayWithKeyValuesArray:rows];
+                    
                     [self.tableView.mj_header endRefreshing];
                     
                 }else {
