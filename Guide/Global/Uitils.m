@@ -153,7 +153,7 @@
         
     }else {
     
-        imageName = @"白";
+        imageName = @"银色";
     }
     
     
@@ -174,10 +174,10 @@
         
         chinese = @"蓝币";
         
-        //白币
+        //银币
     }else if ([dataString isEqualToString:@"white"]) {
         
-        chinese = @"白币";
+        chinese = @"银币";
         
         //黑币
     }else if ([dataString isEqualToString:@"black"]) {

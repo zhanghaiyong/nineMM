@@ -39,8 +39,8 @@
         case 100: //金币
             coinStatus = @"goldenCoin";
             break;
-        case 101: //蓝币
-             coinStatus = @"blueCoin";
+        case 101: //银币
+             coinStatus = @"whiteCoin";
             break;
         case 102: //红币
              coinStatus = @"redCoin";
@@ -48,8 +48,8 @@
         case 103: //黑币
              coinStatus = @"blackCoin";
             break;
-        case 104: //白币
-            coinStatus = @"whiteCoin";
+        case 104: //蓝币
+            coinStatus = @"blueCoin";
             break;
         default:
             break;

@@ -377,7 +377,7 @@
                 }
                 if ([coinStatus isEqualToString:@"whiteCoin"]) {
                     
-                    cell3.payCoinType.text = @"支付币种：白币";
+                    cell3.payCoinType.text = @"支付币种：银币";
                     return;
                 }
                 

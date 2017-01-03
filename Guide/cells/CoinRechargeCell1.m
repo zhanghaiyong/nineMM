@@ -42,7 +42,7 @@
             coinTypeCode = @"golden";
             break;
         case 101:
-            coinTypeCode = @"black";
+            coinTypeCode = @"white";
             break;
         case 102:
             coinTypeCode = @"blue";

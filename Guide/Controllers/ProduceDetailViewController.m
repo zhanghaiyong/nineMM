@@ -246,7 +246,7 @@
             coinImg.hidden = NO;
             coinImg.image  = [UIImage imageNamed:[Uitils toImageName:produceDetail.acceptableCoinTypes[i]]];
         }
-        cell.PriceLending.constant = 10+produceDetail.acceptableCoinTypes.count*25;
+        cell.PriceLending.constant = 10+produceDetail.acceptableCoinTypes.count*30;
         
         if (produceDetail.images.count > 0) {
             //滚动试图
